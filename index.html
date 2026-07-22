@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahead — Glucose monitoring companion</title>
+<meta name="description" content="Ahead is a Type 1 diabetes glucose monitoring companion app, built by someone who lives it. Real-time trend alerts, dual-sensor support, and interactive reports for your care team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F0B18;
+    --bg-elevated: #16101F;
+    --bg-card: #1B1428;
+    --ink: #F1ECFA;
+    --ink-dim: #A99BC4;
+    --ink-faint: #6E6285;
+    --purple: #6B3FA0;
+    --purple-bright: #9B6FD1;
+    --green: #3DDC97;
+    --amber: #F4B740;
+    --red: #E8552C;
+    --low: #E0A030;
+    --border: rgba(255,255,255,0.09);
+    --display: 'Space Grotesk', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Nav ---- */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(15,11,24,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.wrap { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; }
+  .wordmark { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: 0.01em; }
+  .navlinks { display: flex; gap: 28px; font-family: var(--mono); font-size: 13px; color: var(--ink-dim); }
+  .navlinks a { text-decoration: none; }
+  .navlinks a:hover { color: var(--ink); }
+
+  /* ---- Hero ---- */
+  .hero { padding: 88px 24px 64px; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--green); margin: 0 0 18px;
+  }
+  .eyebrow::before { content: "● "; }
+  h1 {
+    font-family: var(--display); font-weight: 600; font-size: clamp(34px, 4.6vw, 52px);
+    line-height: 1.08; letter-spacing: -0.01em; margin: 0 0 22px;
+  }
+  h1 .accent { color: var(--purple-bright); }
+  .lede { font-size: 17px; color: var(--ink-dim); max-width: 46ch; margin: 0 0 32px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--body); font-size: 15px; font-weight: 600; text-decoration: none;
+    padding: 13px 24px; border-radius: 10px; display: inline-block; transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .btn-primary { background: var(--purple); color: #fff; }
+  .btn-primary:hover { transform: translateY(-1px); background: var(--purple-bright); }
+  .btn-ghost { border: 1px solid var(--border); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--purple-bright); color: var(--purple-bright); }
+
+  /* ---- Trace visual (signature element) ---- */
+  .trace-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 22px 20px 16px; position: relative;
+  }
+  .trace-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .trace-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+  .trace-value { font-family: var(--mono); font-size: 30px; font-weight: 500; color: var(--green); }
+  .trace-value span { font-size: 14px; color: var(--ink-faint); font-weight: 400; }
+  svg.trace { width: 100%; height: auto; display: block; }
+  .trace-line {
+    fill: none; stroke: var(--green); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 620; stroke-dashoffset: 620;
+    animation: draw 1.8s ease-out 0.3s forwards;
+  }
+  .trace-dot { fill: var(--green); animation: dotIn 0.4s ease-out 1.9s both; }
+  .trace-band { fill: rgba(61,220,151,0.06); }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes dotIn { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    .trace-line { animation: none; stroke-dashoffset: 0; }
+    .trace-dot { animation: none; opacity: 1; }
+  }
+
+  /* ---- Sections ---- */
+  section { padding: 72px 24px; }
+  .section-head { max-width: 60ch; margin-bottom: 44px; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 3vw, 32px); margin: 0 0 12px; }
+  .section-sub { color: var(--ink-dim); font-size: 15.5px; margin: 0; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feature {
+    background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 14px; padding: 26px 22px;
+  }
+  .feature .tag {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    display: inline-block; padding: 3px 9px; border-radius: 5px; margin-bottom: 16px;
+  }
+  .tag-trend { background: rgba(244,183,64,0.14); color: var(--amber); }
+  .tag-report { background: rgba(107,63,160,0.2); color: var(--purple-bright); }
+  .tag-open { background: rgba(61,220,151,0.14); color: var(--green); }
+  .feature h3 { font-family: var(--display); font-size: 18px; margin: 0 0 10px; font-weight: 600; }
+  .feature p { color: var(--ink-dim); font-size: 14.5px; margin: 0; }
+
+  /* ---- Portal teaser ---- */
+  .portal {
+    background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 20px;
+    padding: 48px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: center;
+  }
+  .portal-status {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--low); background: rgba(224,160,48,0.12); display: inline-block; padding: 4px 10px; border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .portal h2 { margin-bottom: 14px; }
+  .portal p { color: var(--ink-dim); font-size: 15px; margin: 0 0 22px; }
+  .portal-visual {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 22px; font-family: var(--mono);
+    font-size: 12.5px; color: var(--ink-faint); line-height: 1.9;
+  }
+  .portal-visual .row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 6px 0; }
+  .portal-visual .row:last-child { border-bottom: none; }
+
+  /* ---- Footer ---- */
+  footer { border-top: 1px solid var(--border); padding: 36px 24px 44px; }
+  .foot-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
+  .disclaimer { font-size: 12.5px; color: var(--ink-faint); max-width: 52ch; line-height: 1.7; }
+  .foot-links { font-family: var(--mono); font-size: 12.5px; color: var(--ink-dim); display: flex; gap: 20px; }
+  .foot-links a { text-decoration: none; }
+  .foot-links a:hover { color: var(--purple-bright); }
+
+  @media (max-width: 820px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; }
+    .portal { grid-template-columns: 1fr; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="wordmark">Ahead</div>
+    <div class="navlinks">
+      <a href="#features">What it does</a>
+      <a href="#portal">Portal</a>
+      <a href="mailto:hello@aheadt1d.com">Get in touch</a>
+    </div>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Built for Type 1</p>
+      <h1>Glucose monitoring, <span class="accent">built by someone living it.</span></h1>
+      <p class="lede">Ahead watches your CGM trend in real time, tells you what actually matters, and turns weeks of data into a report your endocrinologist can read in thirty seconds.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#portal">See the portal</a>
+        <a class="btn btn-ghost" href="mailto:hello@aheadt1d.com">Get in touch</a>
+      </div>
+    </div>
+    <div class="trace-card">
+      <div class="trace-head">
+        <span class="trace-label">Current glucose</span>
+        <span class="trace-value">104 <span>mg/dL</span></span>
+      </div>
+      <svg class="trace" viewBox="0 0 400 150" preserveAspectRatio="none">
+        <rect class="trace-band" x="0" y="52" width="400" height="46"></rect>
+        <path class="trace-line" d="M10,70 C40,66 55,50 78,44 C102,38 118,60 140,78 C160,94 168,112 180,118 C196,126 214,120 232,104 C252,86 262,64 284,58 C306,52 322,66 340,72 C356,78 372,74 388,66"></path>
+        <circle class="trace-dot" cx="388" cy="66" r="5"></circle>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What Ahead actually does</h2>
+      <p class="section-sub">No filler features. Three things, built to be right.</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <span class="tag tag-trend">Trend detection</span>
+        <h3>Alerts that know the difference</h3>
+        <p>A tiered system watches both where your glucose is projected to land and how fast it's moving — so a slow drift gets a nudge, and a real drop gets your phone's full attention.</p>
+      </div>
+      <div class="feature">
+        <span class="tag tag-report">Interactive reports</span>
+        <h3>Built for the appointment, not just the app</h3>
+        <p>Time in range, GMI, glycemic variability, and your full glucose trace, in one link your care team can open on any device — no export, no login wall.</p>
+      </div>
+      <div class="feature">
+        <span class="tag tag-open">Works with what you have</span>
+        <h3>Runs alongside your CGM's own app</h3>
+        <p>Ahead reads from Health Connect — it doesn't replace your sensor's built-in alarms or ask you to trust a new device. It's a companion, not a walled garden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portal">
+  <div class="wrap">
+    <div class="portal">
+      <div>
+        <span class="portal-status">In development</span>
+        <h2>A portal you can open from anywhere</h2>
+        <p>Right now, Ahead's reports live on your phone. Next, we're building a web portal so you — or anyone you share a link with — can pull up glucose data and reports from any browser, no app install required.</p>
+        <a class="btn btn-primary" href="mailto:hello@aheadt1d.com?subject=Ahead%20portal%20early%20access">Get early access</a>
+      </div>
+      <div class="portal-visual">
+        <div class="row"><span>Manual upload</span><span style="color:var(--green)">building now</span></div>
+        <div class="row"><span>Nightscout connect</span><span style="color:var(--ink-faint)">planned</span></div>
+        <div class="row"><span>Dexcom auto-sync</span><span style="color:var(--ink-faint)">planned</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <p class="disclaimer">Ahead is a monitoring companion tool. It does not replace your CGM's built-in alarms, your insulin pump or AID system, or guidance from your care team. Always follow your prescribed treatment plan.</p>
+    <div class="foot-links">
+      <a href="mailto:hello@aheadt1d.com">Support</a>
+      <a href="#features">What it does</a>
+      <a href="#portal">Portal</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

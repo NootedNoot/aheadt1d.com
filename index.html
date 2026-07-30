@@ -37,43 +37,75 @@
     font-family: var(--body);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   a { color: inherit; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   /* ── Nav ── */
   header {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(40,4,77,0.88);
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(13,6,24,0.78);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
   nav.wrap {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 24px;
+    padding: 16px 24px; gap: 20px;
   }
-  .wordmark { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: 0.01em; }
-  .navlinks { display: flex; gap: 28px; font-family: var(--mono); font-size: 13px; color: var(--ink-dim); }
+  .wordmark {
+    font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: 0.01em;
+    display: flex; align-items: center; flex: 0 0 auto;
+  }
+  /* Live-status orb — quiet easter egg. Colors reflect a real live glucose
+     feed; the ping animation runs at all times, muted-grey until the fetch
+     resolves. No number is ever shown, just a status color. */
+  .status-orb {
+    position: relative; display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; margin-left: 10px; background: var(--ink-faint);
+    transition: background 0.6s ease; cursor: default;
+  }
+  .status-orb::after {
+    content: ''; position: absolute; inset: -6px; border-radius: 50%;
+    background: inherit; opacity: 0.5;
+    animation: orbPing 2.4s cubic-bezier(0,0,0.2,1) infinite;
+  }
+  .status-orb.ok    { background: var(--green); }
+  .status-orb.warn  { background: var(--amber); }
+  .status-orb.alert { background: var(--red); }
+  @keyframes orbPing { 0% { transform: scale(0.6); opacity: 0.5; } 75%, 100% { transform: scale(2.4); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .status-orb::after { animation: none; opacity: 0.25; } }
+
+  .navlinks {
+    display: flex; align-items: center; gap: 26px; font-family: var(--mono); font-size: 13px;
+    color: var(--ink-dim); overflow-x: auto; scrollbar-width: none; white-space: nowrap;
+  }
+  .navlinks::-webkit-scrollbar { display: none; }
   .navlinks a { text-decoration: none; transition: color 0.15s; }
   .navlinks a:hover { color: var(--ink); }
-  .navlinks .nav-demo {
-    color: var(--green);
-    border: 1px solid rgba(61,220,151,0.35);
-    padding: 4px 12px; border-radius: 20px;
-    transition: background 0.15s, color 0.15s;
+  .nav-cta {
+    flex: 0 0 auto; font-family: var(--body); font-size: 13px; font-weight: 600; text-decoration: none;
+    color: var(--ink); border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px;
+    transition: border-color 0.15s, color 0.15s;
   }
-  .navlinks .nav-demo:hover { background: rgba(61,220,151,0.12); color: var(--green); }
+  .nav-cta:hover { border-color: var(--purple-bright); color: var(--purple-bright); }
 
   /* ── Hero ── */
-  .hero { padding: 88px 24px 64px; position: relative; overflow: hidden; }
-  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+  .hero { padding: 96px 24px 70px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: -260px; left: 50%; width: 900px; height: 560px;
+    transform: translateX(-50%); pointer-events: none; z-index: 0;
+    background: radial-gradient(closest-side, rgba(139,92,246,0.28), rgba(139,92,246,0) 70%);
+    filter: blur(6px);
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; position: relative; z-index: 1; }
   .eyebrow {
     font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--green); margin: 0 0 18px;
   }
   .eyebrow::before { content: "● "; }
   h1 {
-    font-family: var(--display); font-weight: 600; font-size: clamp(34px,4.6vw,52px);
+    font-family: var(--display); font-weight: 600; font-size: clamp(34px, 4.6vw, 52px);
     line-height: 1.08; letter-spacing: -0.01em; margin: 0 0 22px;
   }
   h1 .accent { color: var(--purple-bright); }
@@ -82,19 +114,17 @@
   .btn {
     font-family: var(--body); font-size: 15px; font-weight: 600; text-decoration: none;
     padding: 13px 24px; border-radius: 10px; display: inline-block;
-    transition: transform 0.15s, opacity 0.15s, background 0.15s;
+    transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease, border-color 0.15s ease;
   }
   .btn-primary { background: var(--purple); color: #fff; }
   .btn-primary:hover { transform: translateY(-1px); background: var(--purple-bright); }
   .btn-ghost { border: 1px solid var(--border); color: var(--ink); }
   .btn-ghost:hover { border-color: var(--purple-bright); color: var(--purple-bright); }
-  .btn-green { background: rgba(61,220,151,0.15); color: var(--green); border: 1px solid rgba(61,220,151,0.3); }
-  .btn-green:hover { background: rgba(61,220,151,0.25); transform: translateY(-1px); }
 
   /* ── Trace card ── */
   .trace-card {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
-    padding: 22px 20px 16px;
+    padding: 22px 20px 16px; position: relative;
   }
   .trace-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
   .trace-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
@@ -109,35 +139,41 @@
   .trace-dot { fill: var(--green); animation: dotIn 0.4s ease-out 1.9s both; }
   .trace-band { fill: rgba(61,220,151,0.06); }
   @keyframes draw { to { stroke-dashoffset: 0; } }
-  @keyframes dotIn { from { opacity:0; transform:scale(0.4); } to { opacity:1; transform:scale(1); } }
+  @keyframes dotIn { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
   @media (prefers-reduced-motion: reduce) {
     .trace-line { animation: none; stroke-dashoffset: 0; }
     .trace-dot { animation: none; opacity: 1; }
   }
 
   /* ── Sections ── */
-  section { padding: 72px 24px; }
+  section { padding: 80px 24px; }
   .section-head { max-width: 60ch; margin-bottom: 44px; }
-  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px,3vw,32px); margin: 0 0 12px; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 3vw, 32px); margin: 0 0 12px; }
   .section-sub { color: var(--ink-dim); font-size: 15.5px; margin: 0; }
 
+  /* Fade-in-on-scroll, applied via IntersectionObserver below */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
   /* ── Features ── */
-  .features { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .feature {
-    background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 14px; padding: 26px 22px;
+    background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 14px; padding: 28px 26px;
   }
   .feature .tag {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
     display: inline-block; padding: 3px 9px; border-radius: 5px; margin-bottom: 16px;
   }
-  .tag-trend  { background: rgba(244,183,64,0.14);   color: var(--amber); }
-  .tag-report { background: rgba(168,127,224,0.18);  color: var(--purple-bright); }
-  .tag-open   { background: rgba(61,220,151,0.14);   color: var(--green); }
+  .tag-trend  { background: rgba(244,183,64,0.14);  color: var(--amber); }
+  .tag-report { background: rgba(167,139,250,0.18); color: var(--purple-bright); }
+  .tag-open   { background: rgba(61,220,151,0.14);  color: var(--green); }
+  .tag-safety { background: rgba(232,85,44,0.14);   color: var(--red); }
   .feature h3 { font-family: var(--display); font-size: 18px; margin: 0 0 10px; font-weight: 600; }
   .feature p  { color: var(--ink-dim); font-size: 14.5px; margin: 0; }
 
   /* ── Pat section ── */
-  #pat { background: linear-gradient(135deg, rgba(123,79,176,0.18) 0%, rgba(46,8,77,0) 60%); }
+  #pat { background: linear-gradient(135deg, rgba(139,92,246,0.16) 0%, rgba(13,6,24,0) 60%); }
   .pat-grid {
     display: grid; grid-template-columns: 280px 1fr; gap: 52px; align-items: center;
   }
@@ -147,8 +183,13 @@
   .pat-text p { color: var(--ink-dim); font-size: 15.5px; margin: 0 0 18px; max-width: 48ch; }
   .pat-tagline {
     font-family: var(--mono); font-size: 13px; color: var(--ink-faint);
-    border-left: 2px solid var(--purple); padding-left: 14px; margin: 0 0 28px;
+    border-left: 2px solid var(--purple); padding-left: 14px; margin: 0 0 24px;
     font-style: italic;
+  }
+  .pat-status {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--amber);
+    background: rgba(244,183,64,0.12); display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px; border-radius: 20px; margin: 0;
   }
 
   /* Pat antenna pulse */
@@ -162,49 +203,41 @@
   }
   .pat-bounce { animation: happybounce 2.2s ease-in-out infinite; transform-origin: center bottom; }
   .antenna-ripple { animation: antennaPulse 1.6s ease-out infinite; fill: none; stroke: var(--green); stroke-width: 2; }
-
-  /* ── Portal ── */
-  .portal {
-    background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 20px;
-    padding: 48px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: center;
+  @media (prefers-reduced-motion: reduce) {
+    .pat-bounce { animation: none; }
+    .antenna-ripple { animation: none; opacity: 0; }
   }
-  .portal-status {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--green); background: rgba(61,220,151,0.12); display: inline-block;
-    padding: 4px 10px; border-radius: 6px; margin-bottom: 16px;
-  }
-  .portal-status::before { content: "● "; }
-  .portal h2 { margin-bottom: 14px; }
-  .portal p  { color: var(--ink-dim); font-size: 15px; margin: 0 0 22px; }
-  .portal-visual {
-    border: 1px solid var(--border); border-radius: 12px; padding: 22px;
-    font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint); line-height: 1.9;
-    background: var(--bg-card);
-  }
-  .portal-visual .row {
-    display: flex; justify-content: space-between;
-    border-bottom: 1px solid var(--border); padding: 6px 0;
-  }
-  .portal-visual .row:last-child { border-bottom: none; }
-  .status-live    { color: var(--green); }
-  .status-soon    { color: var(--amber); }
-  .status-planned { color: var(--ink-faint); }
 
   /* ── Footer ── */
-  footer { border-top: 1px solid var(--border); padding: 36px 24px 44px; }
-  .foot-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
-  .disclaimer { font-size: 12.5px; color: var(--ink-faint); max-width: 52ch; line-height: 1.7; }
-  .foot-links { font-family: var(--mono); font-size: 12.5px; color: var(--ink-dim); display: flex; gap: 20px; }
-  .foot-links a { text-decoration: none; }
-  .foot-links a:hover { color: var(--purple-bright); }
+  footer { border-top: 1px solid var(--border); padding: 56px 24px 28px; }
+  .foot-cols {
+    display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; padding-bottom: 40px;
+  }
+  .foot-brand .wordmark { margin-bottom: 10px; }
+  .foot-brand p { color: var(--ink-faint); font-size: 13.5px; max-width: 32ch; margin: 0; }
+  .foot-col h4 {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 0 0 14px; font-weight: 500;
+  }
+  .foot-col a { display: block; font-size: 14px; color: var(--ink-dim); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+  .foot-col a:hover { color: var(--purple-bright); }
+  .foot-bottom {
+    border-top: 1px solid var(--border); padding-top: 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    font-family: var(--mono); font-size: 12px; color: var(--ink-faint);
+  }
 
   /* ── Responsive ── */
   @media (max-width: 820px) {
-    .hero-grid    { grid-template-columns: 1fr; }
-    .features     { grid-template-columns: 1fr; }
-    .portal       { grid-template-columns: 1fr; padding: 32px 24px; }
-    .pat-grid     { grid-template-columns: 1fr; }
+    .hero-grid  { grid-template-columns: 1fr; }
+    .features   { grid-template-columns: 1fr; }
+    .pat-grid   { grid-template-columns: 1fr; }
     .pat-svg-wrap { order: -1; }
+    .foot-cols  { grid-template-columns: 1fr 1fr; }
+    .foot-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 520px) {
+    .foot-cols { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -213,13 +246,14 @@
 <!-- ══ NAV ══ -->
 <header>
   <nav class="wrap">
-    <div class="wordmark">Ahead</div>
+    <div class="wordmark">Ahead<span class="status-orb" id="statusOrb" aria-hidden="true"></span></div>
     <div class="navlinks">
       <a href="#features">What it does</a>
       <a href="#pat">Meet Pat</a>
-      <a href="https://nootednoot.github.io/ahead-dashboard/" class="nav-demo" target="_blank">Live Demo</a>
-      <a href="mailto:hello@aheadt1d.com">Get in touch</a>
+      <a href="#">Pricing</a>
+      <a href="#">FAQ</a>
     </div>
+    <a class="nav-cta" href="mailto:hello@aheadt1d.com">Get in touch</a>
   </nav>
 </header>
 
@@ -231,8 +265,8 @@
       <h1>Glucose monitoring, <span class="accent">built by someone living it.</span></h1>
       <p class="lede">Ahead watches your CGM trend in real time, tells you what actually matters, and turns weeks of data into a report your endocrinologist can read in thirty seconds.</p>
       <div class="cta-row">
-        <a class="btn btn-green" href="https://nootednoot.github.io/ahead-dashboard/" target="_blank">See it live →</a>
-        <a class="btn btn-ghost" href="mailto:hello@aheadt1d.com">Get in touch</a>
+        <a class="btn btn-primary" href="mailto:hello@aheadt1d.com?subject=Early%20access">Get early access</a>
+        <a class="btn btn-ghost" href="#pat">Meet Pat →</a>
       </div>
     </div>
     <div class="trace-card">
@@ -252,22 +286,27 @@
 <!-- ══ FEATURES ══ -->
 <section id="features">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <h2>What Ahead actually does</h2>
-      <p class="section-sub">No filler features. Three things, built to be right.</p>
+      <p class="section-sub">No filler features — just the parts that actually keep you safer.</p>
     </div>
     <div class="features">
-      <div class="feature">
+      <div class="feature reveal">
         <span class="tag tag-trend">Trend detection</span>
         <h3>Alerts that know the difference</h3>
-        <p>A tiered system watches both where your glucose is projected to land and how fast it's moving — so a slow drift gets a nudge, and a real drop gets your phone's full attention.</p>
+        <p>Ahead doesn't judge one number in isolation. It weighs where you're headed against how fast you're getting there, so a slow drift earns a quiet nudge and a genuine fall gets your phone's full attention — tiered on purpose, so it never cries wolf.</p>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
+        <span class="tag tag-safety">Safety guardrails</span>
+        <h3>Built to fail safely, not silently</h3>
+        <p>If a reading can't come through the usual way, an independent backup path quietly picks up the slack. And if data genuinely goes dark, Ahead says so right away — a gap in monitoring is never mistaken for good news.</p>
+      </div>
+      <div class="feature reveal">
         <span class="tag tag-report">Interactive reports</span>
         <h3>Built for the appointment, not just the app</h3>
         <p>Time in range, GMI, glycemic variability, and your full glucose trace, in one link your care team can open on any device — no export, no login wall.</p>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
         <span class="tag tag-open">Works with what you have</span>
         <h3>Runs alongside your CGM's own app</h3>
         <p>Ahead reads from Health Connect — it doesn't replace your sensor's built-in alarms or ask you to trust a new device. It's a companion, not a walled garden.</p>
@@ -279,7 +318,7 @@
 <!-- ══ PAT ══ -->
 <section id="pat">
   <div class="wrap">
-    <div class="pat-grid">
+    <div class="pat-grid reveal">
 
       <!-- Pat SVG — small landing page version -->
       <div class="pat-svg-wrap">
@@ -352,45 +391,87 @@
         <h2>Meet Pat.</h2>
         <p>Diabetes is serious enough. The app doesn't have to be. Fun Mode puts Pat — Ahead's glucose companion — front and center. He reacts to your numbers in real time: drinking juice during a low, giving himself insulin for a high, happy-dancing when you're in range.</p>
         <p class="pat-tagline">Same data. Different energy. Because 2am lows are easier with a friend.</p>
-        <a class="btn btn-green" href="https://nootednoot.github.io/ahead-dashboard/" target="_blank">Try the live demo →</a>
+        <p class="pat-status">🚧 Coming to the app soon</p>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ══ PORTAL ══ -->
-<section id="portal">
-  <div class="wrap">
-    <div class="portal">
-      <div>
-        <span class="portal-status">Live beta</span>
-        <h2>See your glucose from any browser</h2>
-        <p>The Ahead web portal is live. Current glucose, rate of change, full trend history — open a link and it's there. Share it with your care team and they can pull it up the moment you walk in. No export, no login wall, no app install required.</p>
-        <a class="btn btn-primary" href="https://nootednoot.github.io/ahead-dashboard/" target="_blank">Open the live demo</a>
-      </div>
-      <div class="portal-visual">
-        <div class="row"><span>Live glucose + rate</span>    <span class="status-live">live now</span></div>
-        <div class="row"><span>Trend graph (1/3/6 hr)</span> <span class="status-live">live now</span></div>
-        <div class="row"><span>Auto-refresh every 5 min</span><span class="status-live">live now</span></div>
-        <div class="row"><span>Nightscout connect</span>     <span class="status-soon">coming soon</span></div>
-        <div class="row"><span>Dexcom auto-sync</span>       <span class="status-planned">planned</span></div>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <div class="wrap foot-grid">
-    <p class="disclaimer">Ahead is a monitoring companion tool. It does not replace your CGM's built-in alarms, your insulin pump or AID system, or guidance from your care team. Always follow your prescribed treatment plan.</p>
-    <div class="foot-links">
-      <a href="mailto:hello@aheadt1d.com">Support</a>
-      <a href="#features">What it does</a>
-      <a href="https://nootednoot.github.io/ahead-dashboard/" target="_blank">Live Demo</a>
+  <div class="wrap">
+    <div class="foot-cols">
+      <div class="foot-brand">
+        <div class="wordmark">Ahead</div>
+        <p>A glucose monitoring companion for Type 1, built by someone who lives it.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <a href="#features">What it does</a>
+        <a href="#pat">Meet Pat</a>
+        <a href="#">Pricing</a>
+        <a href="#">Changelog</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="foot-col">
+        <h4>Support</h4>
+        <a href="#">FAQ</a>
+        <a href="mailto:hello@aheadt1d.com">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ahead</span>
+      <span>Made for the Type 1 community.</span>
     </div>
   </div>
 </footer>
+
+<script>
+  // Live-status orb (see .status-orb above): reflects a real glucose feed as
+  // a color only — never a number — and fails silently to neutral if the
+  // feed is unreachable, so the easter egg never looks like a broken app.
+  (function () {
+    var orb = document.getElementById('statusOrb');
+    if (!orb) return;
+    fetch('https://web-production-5e0b.up.railway.app/api/v1/entries.json?count=1', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (data) {
+        var entry = data && data[0];
+        if (!entry || typeof entry.sgv !== 'number') return;
+        var v = entry.sgv;
+        var state = 'ok';
+        if (v < 55 || v > 250) state = 'alert';
+        else if (v < 70 || v > 180) state = 'warn';
+        orb.classList.add(state);
+      })
+      .catch(function () { /* offline or feed unavailable - orb stays neutral */ });
+  })();
+
+  // Fade sections in as they scroll into view.
+  (function () {
+    var targets = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || !targets.length) {
+      targets.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 
 </body>
 </html>

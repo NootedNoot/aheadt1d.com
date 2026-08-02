@@ -3,3 +3,7 @@ Thumbs.db
 *.swp
 .vscode/
 .idea/
+
+# Real personal glucose report exports - never commit these (see Jul 2026
+# history-scrub incident). Keep report generation output out of this repo.
+reports/

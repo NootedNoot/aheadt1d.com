@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Showcase — Ahead</title>
+  <meta name="description" content="Explore Ahead in action: kinetic rate alerting, 3 AM low prevention, and dual-sensor handoff." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .showcase-hero {
+      padding: 84px 0 64px;
+      text-align: center;
+    }
+    .showcase-hero h1 {
+      font-size: clamp(34px, 4.8vw, 54px);
+      margin-bottom: 20px;
+    }
+    .showcase-hero p {
+      font-size: 18px;
+      color: var(--ink-dim);
+      max-width: 60ch;
+      margin: 0 auto 32px;
+    }
+
+    /* Screen Walkthrough Grid */
+    .screen-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .screen-feature.reverse {
+      direction: rtl;
+    }
+    .screen-feature.reverse > * {
+      direction: ltr;
+    }
+
+    /* Mock Device Frame */
+    .phone-mockup {
+      background: #150228;
+      border: 3px solid var(--border-light);
+      border-radius: 36px;
+      padding: 24px 20px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      max-width: 340px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .phone-notch {
+      width: 120px;
+      height: 18px;
+      background: #000;
+      border-radius: 0 0 12px 12px;
+      margin: -24px auto 18px;
+    }
+
+    .mockup-inner {
+      background: var(--bg-deep);
+      border-radius: 20px;
+      padding: 20px 16px;
+      border: 1px solid var(--border);
+    }
+
+    .mockup-glucose {
+      font-family: var(--font-mono);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      text-align: center;
+      margin: 14px 0 6px;
+    }
+
+    .mockup-sub {
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .screen-feature { grid-template-columns: 1fr; gap: 36px; }
+      .screen-feature.reverse { direction: ltr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="main-nav">
+        <a href="index.html" class="brand-wrap">
+          <span class="brand-logo">
+            Ahead
+            <span class="status-orb" id="statusOrb"></span>
+            <span class="brand-badge">T1D</span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="showcase.html" class="active">Showcase</a></li>
+          <li><a href="tech.html">The Math</a></li>
+          <li><a href="research.html">Lab Notebook</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="founder.html">Founder</a></li>
+          <li><a href="portal.html">Beta Portal</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="download.html" class="nav-cta">Get APK</a>
+          <button class="mobile-toggle" aria-label="Toggle Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══ HERO ══ -->
+    <section class="page-section showcase-hero">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow eyebrow-green" style="justify-content: center;">Living With Ahead</p>
+          <h1>Built for the reality of 3 AM lows and sudden spikes.</h1>
+          <p>
+            Ahead was designed on the kitchen counter at 3 AM while drinking juice boxes. Here is how it feels and works in real daily life.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FEATURE 1: PRE-ALERTING ══ -->
+    <section class="page-section">
+      <div class="wrap">
+        <div class="screen-feature reveal">
+          <div>
+            <span class="tag-badge tag-amber">Kinetic Alerts</span>
+            <h2 style="font-size: 32px; margin-bottom: 16px;">Quiet nudges before sirens fire.</h2>
+            <p style="color: var(--ink-dim); font-size: 16px; line-height: 1.7; margin-bottom: 20px;">
+              When Ahead detects a steep rate of change (like -2.5 mg/dL/min), it doesn't wait for your blood sugar to reach 65 mg/dL. It calculates the decay slope and gives you a gentle vibration while you're still at 115 mg/dL.
+            </p>
+            <p style="color: var(--ink-dim); font-size: 16px; line-height: 1.7;">
+              That 25-minute head start means 8 grams of fast-acting carbs can gently level you out at 90 mg/dL without rebounding to 240 mg/dL from over-treating a terrifying crash.
+            </p>
+          </div>
+
+          <!-- UI Mockup -->
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="mockup-inner">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ink-muted);">
+                <span>AHEAD MONITOR</span>
+                <span style="color: var(--amber);">EARLY NUDGE</span>
+              </div>
+              <div class="mockup-glucose" style="color: var(--amber);">
+                114
+              </div>
+              <div class="mockup-sub">
+                -2.4 mg/dL/min ↘ · Projected 68 in 19 min
+              </div>
+              <div style="background: rgba(255, 183, 77, 0.1); border: 1px solid var(--amber-border); padding: 12px; border-radius: 10px; font-size: 12.5px; color: var(--amber);">
+                <strong>Ahead Recommendation:</strong> Consider 6-8g fast carbs now to flatten trajectory before low threshold.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ FEATURE 2: DUAL SENSOR HANDOFF ══ -->
+        <div class="screen-feature reverse reveal">
+          <div>
+            <span class="tag-badge tag-purple">Zero Blind Spots</span>
+            <h2 style="font-size: 32px; margin-bottom: 16px;">Dual-sensor grace period handoff.</h2>
+            <p style="color: var(--ink-dim); font-size: 16px; line-height: 1.7; margin-bottom: 20px;">
+              Dexcom G7 offers a 12-hour grace period when a sensor expires. Ahead allows you to insert and warm up your new sensor while your old sensor continues streaming readings to your screen.
+            </p>
+            <p style="color: var(--ink-dim); font-size: 16px; line-height: 1.7;">
+              No 30-minute blackout where you don't know your numbers, and no jittery initial warmup spikes catching you off guard.
+            </p>
+          </div>
+
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="mockup-inner">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ink-muted);">
+                <span>SENSOR HANDOFF</span>
+                <span style="color: var(--green);">SYNCED</span>
+              </div>
+              <div class="mockup-glucose">
+                102
+              </div>
+              <div class="mockup-sub">
+                Primary: SN ...xxx (Active) | Backup: SN ...xxx (Warming)
+              </div>
+              <div class="code-box" style="font-size: 11px; padding: 10px;">
+                Sensor 1: 102 mg/dL (Old)<br/>
+                Sensor 2: 98 mg/dL (Ready to switch)<br/>
+                Delta: 4 mg/dL · Variance &lt; 5%
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ CALL TO ACTION ══ -->
+    <section class="page-section" style="text-align: center;">
+      <div class="wrap-narrow">
+        <h2 style="font-size: 36px; margin-bottom: 16px;">Try Ahead on your Android device</h2>
+        <p style="color: var(--ink-dim); font-size: 17px; margin-bottom: 32px;">
+          Available as a free direct APK download or accessible via our live web portal.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center;">
+          <a href="download.html" class="btn btn-primary">Download Ahead APK</a>
+          <a href="tech.html" class="btn btn-secondary">Read the Math Spec →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-disclaimer">
+        <strong>Medical Disclaimer:</strong> Ahead is a monitoring companion and research tool designed for informational purposes. It does not replace your CGM's native alarms, your insulin delivery system, or the guidance of your physician.
+      </div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 8px;">Ahead <span class="brand-badge">T1D</span></div>
+          <p>Autonomous glucose monitoring, trend prediction, and companion software built for the Type 1 community.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="showcase.html">App Showcase</a></li>
+            <li><a href="tech.html">The Trend Math</a></li>
+            <li><a href="research.html">Lab Notebook</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Media &amp; Story</h4>
+          <ul>
+            <li><a href="videos.html">Getting Ahead Series</a></li>
+            <li><a href="founder.html">Founder's Story</a></li>
+            <li><a href="portal.html">Beta Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Download</h4>
+          <ul>
+            <li><a href="download.html">Download APK</a></li>
+            <li><a href="support.html">Android Setup Guide</a></li>
+            <li><a href="contact.html">Contact Founder</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="legal.html">Privacy Policy</a></li>
+            <li><a href="legal.html#terms">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AheadT1D. Built by Ryan Singer in Colorado Springs, CO.</span>
+        <span>Ahead of diabetes.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

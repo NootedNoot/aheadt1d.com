@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download Ahead APK — Android Direct</title>
+  <meta name="description" content="Download the latest version of Ahead (v0.1.0 debug/beta) directly for Android. Free, open, and no subscriptions." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .download-hero {
+      padding: 84px 0 60px;
+      text-align: center;
+    }
+    .dl-card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+      text-align: left;
+    }
+    .release-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .changelog-list {
+      list-style: none;
+      margin: 18px 0;
+    }
+    .changelog-list li {
+      font-size: 14.5px;
+      color: var(--ink-dim);
+      margin-bottom: 10px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .changelog-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="main-nav">
+        <a href="index.html" class="brand-wrap">
+          <span class="brand-logo">
+            Ahead
+            <span class="status-orb" id="statusOrb"></span>
+            <span class="brand-badge">T1D</span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="showcase.html">Showcase</a></li>
+          <li><a href="tech.html">The Math</a></li>
+          <li><a href="research.html">Lab Notebook</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="founder.html">Founder</a></li>
+          <li><a href="portal.html">Beta Portal</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="download.html" class="nav-cta active">Get APK</a>
+          <button class="mobile-toggle" aria-label="Toggle Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══ HERO ══ -->
+    <section class="page-section download-hero">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow eyebrow-green" style="justify-content: center;">Android Direct Release</p>
+          <h1 style="font-size: clamp(34px, 4.8vw, 54px); margin-bottom: 16px;">Download Ahead for Android</h1>
+          <p style="font-size: 18px; color: var(--ink-dim); max-width: 56ch; margin: 0 auto 36px;">
+            Install Ahead directly onto your phone without Play Store delays. Always free, zero telemetry bloat, and open for Type 1 diabetics.
+          </p>
+
+          <div class="dl-card">
+            <div class="release-meta">
+              <div>
+                <span class="mono" style="font-size: 18px; font-weight: 700; color: var(--ink);">Ahead v0.1.0 (Beta)</span>
+                <div style="font-size: 12px; color: var(--ink-muted); margin-top: 2px;">Target SDK: Android 13-15 (API 33-35) · Minimum SDK 28</div>
+              </div>
+              <span class="tag-badge tag-green">Latest Build</span>
+            </div>
+
+            <h4 style="font-size: 15px; margin-bottom: 8px;">What's in this build:</h4>
+            <ul class="changelog-list">
+              <li>Direct Dexcom G7 BLE connection via native EC-JPAKE handshake.</li>
+              <li>Health Connect bidirectional glucose pipe with 90s deduplication.</li>
+              <li>Proactive kinetic slope calculations and decaying projection alerts.</li>
+            </ul>
+
+            <div style="margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="downloads/ahead-v0.1.0.apk" class="btn btn-primary" style="flex: 1; min-width: 200px;">
+                Download APK (14.2 MB)
+              </a>
+              <a href="support.html" class="btn btn-secondary">
+                Installation Guide →
+              </a>
+            </div>
+
+            <div class="code-box" style="margin-top: 24px; font-size: 11px;">
+              SHA-256 Checksum:<br/>
+              e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-disclaimer">
+        <strong>Medical Disclaimer:</strong> Ahead is a monitoring companion and research tool designed for informational purposes. It does not replace your CGM's native alarms, your insulin delivery system, or the guidance of your physician.
+      </div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 8px;">Ahead <span class="brand-badge">T1D</span></div>
+          <p>Autonomous glucose monitoring, trend prediction, and companion software built for the Type 1 community.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="showcase.html">App Showcase</a></li>
+            <li><a href="tech.html">The Trend Math</a></li>
+            <li><a href="research.html">Lab Notebook</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Media &amp; Story</h4>
+          <ul>
+            <li><a href="videos.html">Getting Ahead Series</a></li>
+            <li><a href="founder.html">Founder's Story</a></li>
+            <li><a href="portal.html">Beta Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Download</h4>
+          <ul>
+            <li><a href="download.html">Download APK</a></li>
+            <li><a href="support.html">Android Setup Guide</a></li>
+            <li><a href="contact.html">Contact Founder</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="legal.html">Privacy Policy</a></li>
+            <li><a href="legal.html#terms">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AheadT1D. Built by Ryan Singer in Colorado Springs, CO.</span>
+        <span>Ahead of diabetes.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

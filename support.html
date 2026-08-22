@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Android Setup &amp; Support Guide — Ahead</title>
+  <meta name="description" content="Step-by-step instructions for installing Ahead APK, configuring background battery exemptions, and linking Health Connect permissions." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .support-hero {
+      padding: 84px 0 60px;
+    }
+    .guide-step {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px;
+      margin-bottom: 28px;
+    }
+    .step-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--purple-light);
+      background: rgba(157, 101, 255, 0.15);
+      border: 1px solid var(--border-light);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="main-nav">
+        <a href="index.html" class="brand-wrap">
+          <span class="brand-logo">
+            Ahead
+            <span class="status-orb" id="statusOrb"></span>
+            <span class="brand-badge">T1D</span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="showcase.html">Showcase</a></li>
+          <li><a href="tech.html">The Math</a></li>
+          <li><a href="research.html">Lab Notebook</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="founder.html">Founder</a></li>
+          <li><a href="portal.html">Beta Portal</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="download.html" class="nav-cta">Get APK</a>
+          <button class="mobile-toggle" aria-label="Toggle Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══ HERO ══ -->
+    <section class="page-section support-hero section-divider">
+      <div class="wrap-narrow">
+        <div class="reveal">
+          <p class="eyebrow eyebrow-green">Android Setup Guide</p>
+          <h1 style="font-size: clamp(34px, 4.8vw, 52px); margin-bottom: 20px;">Getting Ahead running on your phone.</h1>
+          <p style="font-size: 18px; color: var(--ink-dim); line-height: 1.7;">
+            Because Ahead is medical-adjacent safety software that must wake you in your sleep, Android requires a few one-time permissions so OEM battery savers don't silence your alerts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ GUIDE STEPS ══ -->
+    <section class="page-section">
+      <div class="wrap-narrow">
+
+        <!-- Step 1 -->
+        <div class="guide-step reveal">
+          <span class="step-badge">STEP 01</span>
+          <h3 style="font-size: 22px; margin-bottom: 10px;">Install the APK (Sideloading)</h3>
+          <p style="color: var(--ink-dim); font-size: 15.5px; line-height: 1.65; margin-bottom: 14px;">
+            Download the <a href="download.html" style="color: var(--purple-light); font-weight: 600;">Ahead APK file</a> onto your Android device. When prompted, tap <em>"Allow from this source"</em> in your browser or file manager settings to complete installation.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="guide-step reveal">
+          <span class="step-badge">STEP 02</span>
+          <h3 style="font-size: 22px; margin-bottom: 10px;">Grant Health Connect Permissions</h3>
+          <p style="color: var(--ink-dim); font-size: 15.5px; line-height: 1.65; margin-bottom: 14px;">
+            Open Ahead and tap <strong>"Allow all"</strong> when the Health Connect permission dialog appears. Make sure both <strong>Blood Glucose</strong> (Read) and <strong>Background Data Access</strong> are enabled so readings continue while your phone is locked.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="guide-step reveal">
+          <span class="step-badge">STEP 03</span>
+          <h3 style="font-size: 22px; margin-bottom: 10px;">Disable Battery Optimizations (Critical)</h3>
+          <p style="color: var(--ink-dim); font-size: 15.5px; line-height: 1.65; margin-bottom: 14px;">
+            Samsung, Xiaomi, and Pixel devices aggressively kill background services to save 1% battery. In Ahead's setup wizard, tap <strong>"Grant Exemption"</strong> to mark Ahead as <em>Unrestricted</em> in Android Battery Settings.
+          </p>
+          <div class="code-box" style="font-size: 12px;">
+            Settings > Apps > Ahead > Battery > Set to "Unrestricted"
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="guide-step reveal">
+          <span class="step-badge">STEP 04</span>
+          <h3 style="font-size: 22px; margin-bottom: 10px;">Pair Transmitter (Dexcom G7 Direct BLE)</h3>
+          <p style="color: var(--ink-dim); font-size: 15.5px; line-height: 1.65;">
+            Enter your 12-digit Transmitter Serial Number and 4-digit pairing PIN found on your applicator box. Ahead will complete the EC-JPAKE handshake within 3 to 10 seconds.
+          </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 48px;">
+          <h3 style="font-size: 20px; margin-bottom: 12px;">Hit a snag or running a custom ROM?</h3>
+          <p style="color: var(--ink-dim); font-size: 15px; margin-bottom: 20px;">Ryan is happy to help you get it paired directly.</p>
+          <a href="contact.html" class="btn btn-secondary">Contact Developer →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-disclaimer">
+        <strong>Medical Disclaimer:</strong> Ahead is a monitoring companion and research tool designed for informational purposes. It does not replace your CGM's native alarms, your insulin delivery system, or the guidance of your physician.
+      </div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 8px;">Ahead <span class="brand-badge">T1D</span></div>
+          <p>Autonomous glucose monitoring, trend prediction, and companion software built for the Type 1 community.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="showcase.html">App Showcase</a></li>
+            <li><a href="tech.html">The Trend Math</a></li>
+            <li><a href="research.html">Lab Notebook</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Media &amp; Story</h4>
+          <ul>
+            <li><a href="videos.html">Getting Ahead Series</a></li>
+            <li><a href="founder.html">Founder's Story</a></li>
+            <li><a href="portal.html">Beta Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Download</h4>
+          <ul>
+            <li><a href="download.html">Download APK</a></li>
+            <li><a href="support.html">Android Setup Guide</a></li>
+            <li><a href="contact.html">Contact Founder</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="legal.html">Privacy Policy</a></li>
+            <li><a href="legal.html#terms">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AheadT1D. Built by Ryan Singer in Colorado Springs, CO.</span>
+        <span>Ahead of diabetes.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

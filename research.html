@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab Notebook &amp; Research — Ahead</title>
+  <meta name="description" content="Public lab notebook documenting Ahead's ongoing development, clinical learnings, and what lies ahead in proactive T1D algorithms." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .research-hero {
+      padding: 84px 0 60px;
+    }
+    .timeline-container {
+      position: relative;
+      margin: 48px 0;
+      padding-left: 36px;
+      border-left: 2px solid var(--border);
+    }
+    .log-entry {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .log-dot {
+      position: absolute;
+      left: -43px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--purple-brand);
+      border: 3px solid var(--bg-deep);
+    }
+    .log-dot.green { background: var(--green); }
+    .log-dot.amber { background: var(--amber); }
+
+    .log-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 26px;
+    }
+
+    .log-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .log-date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--purple-light);
+      font-weight: 600;
+    }
+
+    .hypothesis-box {
+      background: rgba(157, 101, 255, 0.08);
+      border-left: 3px solid var(--purple-brand);
+      padding: 14px 18px;
+      border-radius: 0 10px 10px 0;
+      margin: 16px 0;
+      font-size: 14.5px;
+      color: var(--ink-dim);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="main-nav">
+        <a href="index.html" class="brand-wrap">
+          <span class="brand-logo">
+            Ahead
+            <span class="status-orb" id="statusOrb"></span>
+            <span class="brand-badge">T1D</span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="showcase.html">Showcase</a></li>
+          <li><a href="tech.html">The Math</a></li>
+          <li><a href="research.html" class="active">Lab Notebook</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="founder.html">Founder</a></li>
+          <li><a href="portal.html">Beta Portal</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="download.html" class="nav-cta">Get APK</a>
+          <button class="mobile-toggle" aria-label="Toggle Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══ HERO ══ -->
+    <section class="page-section research-hero section-divider">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow eyebrow-purple">Open Science &amp; Lab Notes</p>
+          <h1 style="font-size: clamp(34px, 4.8vw, 54px); margin-bottom: 20px;">Public Lab Notebook: What’s Ahead</h1>
+          <p style="font-size: 18px; color: var(--ink-dim); max-width: 65ch; line-height: 1.7;">
+            Ahead is being built in public. We don't hide our ongoing experiments behind closed doors. This page tracks what we're learning right now, what we're testing on real hardware, and where our research is heading.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ROADMAP & TIMELINE ══ -->
+    <section class="page-section">
+      <div class="wrap">
+        <div class="timeline-container reveal">
+
+          <!-- Entry 1: Current Stage -->
+          <div class="log-entry">
+            <div class="log-dot green"></div>
+            <div class="log-card">
+              <div class="log-meta">
+                <span class="log-date">CURRENT STAGE · ACTIVE LAB TESTING</span>
+                <span class="tag-badge tag-green">On-Device Hardware</span>
+              </div>
+              <h3 style="font-size: 22px; margin-bottom: 10px;">Native G7 EC-JPAKE Handshake &amp; Dual Handoff Verification</h3>
+              <p style="color: var(--ink-dim); font-size: 15.5px; line-height: 1.7;">
+                Successfully achieved direct Bluetooth Low Energy handshakes with physical Dexcom G7 transmitters on Android without relying on companion intermediary apps. The native service derives session AES keys via BouncyCastle EC point scalar math.
+              </p>
+              <div class="hypothesis-box">
+                <strong>Finding:</strong> Direct BLE connection eliminates the 10-15 minute sync delays previously seen when routing through system data layers, cutting alert latency to sub-second receipt times upon transmitter pulse.
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 2: Active Investigation -->
+          <div class="log-entry">
+            <div class="log-dot amber"></div>
+            <div class="log-card">
+              <div class="log-meta">
+                <span class="log-date">IN PROGRESS · CLINICAL CORRELATION</span>
+                <span class="tag-badge tag-amber">Trajectory Tuning</span>
+              </div>
+              <h3 style="font-size: 22px; margin-bottom: 10px;">Dynamic Friction Coefficients for Post-Exercise Deceleration</h3>
+              <p style="color: var(--ink-dim); font-size: 15.5px; line-height: 1.7;">
+                Investigating glycemic velocity patterns following anaerobic vs. aerobic exertion. While aerobic cardio creates steep linear plunges, anaerobic bursts often trigger hepatic glucose release followed by delayed sensitivity 90 minutes later.
+              </p>
+              <div class="hypothesis-box">
+                <strong>Current Hypothesis:</strong> Incorporating on-device step acceleration data allows the decay engine to adjust trajectory dampening automatically when physical motion drops off.
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 3: What lies ahead -->
+          <div class="log-entry">
+            <div class="log-dot"></div>
+            <div class="log-card">
+              <div class="log-meta">
+                <span class="log-date">LOOKING AHEAD · NEXT 12 MONTHS</span>
+                <span class="tag-badge tag-purple">Future Milestone</span>
+              </div>
+              <h3 style="font-size: 22px; margin-bottom: 10px;">Multi-Device Mesh Alerting &amp; Local Offline Peer Broadcasts</h3>
+              <p style="color: var(--ink-dim); font-size: 15.5px; line-height: 1.7;">
+                Designing Ahead Lite companion mesh protocols. If a Type 1 diabetic is sleeping in a tent or cabin with zero cellular signal, their primary phone should be able to wake a caregiver's secondary device over local Wi-Fi or Bluetooth mesh without internet infrastructure.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-disclaimer">
+        <strong>Medical Disclaimer:</strong> Ahead is a monitoring companion and research tool designed for informational purposes. It does not replace your CGM's native alarms, your insulin delivery system, or the guidance of your physician.
+      </div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 8px;">Ahead <span class="brand-badge">T1D</span></div>
+          <p>Autonomous glucose monitoring, trend prediction, and companion software built for the Type 1 community.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="showcase.html">App Showcase</a></li>
+            <li><a href="tech.html">The Trend Math</a></li>
+            <li><a href="research.html">Lab Notebook</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Media &amp; Story</h4>
+          <ul>
+            <li><a href="videos.html">Getting Ahead Series</a></li>
+            <li><a href="founder.html">Founder's Story</a></li>
+            <li><a href="portal.html">Beta Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Download</h4>
+          <ul>
+            <li><a href="download.html">Download APK</a></li>
+            <li><a href="support.html">Android Setup Guide</a></li>
+            <li><a href="contact.html">Contact Founder</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="legal.html">Privacy Policy</a></li>
+            <li><a href="legal.html#terms">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AheadT1D. Built by Ryan Singer in Colorado Springs, CO.</span>
+        <span>Ahead of diabetes.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy &amp; Terms — Ahead</title>
+  <meta name="description" content="Privacy policy, terms of service, and patient data commitment for AheadT1D." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .legal-hero {
+      padding: 84px 0 50px;
+    }
+    .legal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px 32px;
+      margin-bottom: 36px;
+    }
+    .legal-card h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+    .legal-card p, .legal-card li {
+      font-size: 15px;
+      color: var(--ink-dim);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .legal-card ul {
+      margin-left: 24px;
+      margin-bottom: 20px;
+    }
+    .draft-alert {
+      background: rgba(255, 183, 77, 0.1);
+      border: 1px solid var(--amber-border);
+      padding: 16px 20px;
+      border-radius: 12px;
+      color: var(--amber);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="main-nav">
+        <a href="index.html" class="brand-wrap">
+          <span class="brand-logo">
+            Ahead
+            <span class="status-orb" id="statusOrb"></span>
+            <span class="brand-badge">T1D</span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="showcase.html">Showcase</a></li>
+          <li><a href="tech.html">The Math</a></li>
+          <li><a href="research.html">Lab Notebook</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="founder.html">Founder</a></li>
+          <li><a href="portal.html">Beta Portal</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="download.html" class="nav-cta">Get APK</a>
+          <button class="mobile-toggle" aria-label="Toggle Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══ HERO ══ -->
+    <section class="page-section legal-hero section-divider">
+      <div class="wrap-narrow">
+        <div class="reveal">
+          <p class="eyebrow eyebrow-purple">Legal &amp; Data Ethics</p>
+          <h1 style="font-size: clamp(34px, 4.8vw, 50px); margin-bottom: 16px;">Privacy Policy &amp; Terms of Service</h1>
+          <p style="font-size: 17.5px; color: var(--ink-dim); line-height: 1.65;">
+            Our core philosophy: Your health data belongs exclusively on your own phone. We don't sell, broker, or monetize your blood glucose records.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ LEGAL CONTENT ══ -->
+    <section class="page-section">
+      <div class="wrap-narrow">
+
+        <div class="draft-alert reveal">
+          <strong>Notice for Beta Testing:</strong> These terms are structured transparently for open beta development. Formal regulatory and legal counsel review will be finalized prior to full public app store distribution.
+        </div>
+
+        <div class="legal-card reveal" id="privacy">
+          <h2>1. Privacy Policy &amp; Local Data Storage</h2>
+          <p>
+            Ahead is engineered around a <strong>local-first architectural model</strong>. Real-time Bluetooth Low Energy (BLE) transmissions between your Dexcom G7 sensor and the Ahead Android app are processed and stored directly on your physical device and within Android Health Connect.
+          </p>
+          <ul>
+            <li><strong>No Centralized Telemetry:</strong> Ahead does not transmit continuous raw CGM streams to third-party ad networks or analytics brokers.</li>
+            <li><strong>Health Connect Access:</strong> Permissions granted to Ahead are used exclusively to read and write your blood glucose records for real-time alerting and display.</li>
+            <li><strong>Opt-In Remote Alerts:</strong> If you configure SMS emergency alerts, only the timestamped alert event and necessary emergency contact data are processed to dispatch the notification.</li>
+          </ul>
+        </div>
+
+        <div class="legal-card reveal" id="terms">
+          <h2>2. Terms of Service &amp; Medical Disclaimer</h2>
+          <p>
+            <strong>Ahead is a companion monitoring and research application. It is NOT an FDA-cleared primary medical device or an automated insulin dosing (AID) controller.</strong>
+          </p>
+          <ul>
+            <li>Ahead does not replace your primary Continuous Glucose Monitor's factory alarms or receiver hardware.</li>
+            <li>Do not make critical insulin dosing decisions based solely on experimental projections without confirming your blood glucose via a blood glucose fingerstick meter.</li>
+            <li>You assume full personal responsibility for the management of your diabetes care and treatment regimen.</li>
+          </ul>
+        </div>
+
+        <div class="legal-card reveal">
+          <h2>3. Open Source &amp; Intellectual Property</h2>
+          <p>
+            Ahead is developed independently by Ryan Singer under the GNU General Public License v3 (GPLv3). You are free to inspect, audit, and build the source code for your own personal use.
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-disclaimer">
+        <strong>Medical Disclaimer:</strong> Ahead is a monitoring companion and research tool designed for informational purposes. It does not replace your CGM's native alarms, your insulin delivery system, or the guidance of your physician.
+      </div>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 8px;">Ahead <span class="brand-badge">T1D</span></div>
+          <p>Autonomous glucose monitoring, trend prediction, and companion software built for the Type 1 community.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="showcase.html">App Showcase</a></li>
+            <li><a href="tech.html">The Math</a></li>
+            <li><a href="research.html">Lab Notebook</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Media &amp; Story</h4>
+          <ul>
+            <li><a href="videos.html">Getting Ahead Series</a></li>
+            <li><a href="founder.html">Founder's Story</a></li>
+            <li><a href="portal.html">Beta Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Download</h4>
+          <ul>
+            <li><a href="download.html">Download APK</a></li>
+            <li><a href="support.html">Android Setup Guide</a></li>
+            <li><a href="contact.html">Contact Founder</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="legal.html">Privacy Policy</a></li>
+            <li><a href="legal.html#terms">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AheadT1D. Built by Ryan Singer in Colorado Springs, CO.</span>
+        <span>Ahead of diabetes.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

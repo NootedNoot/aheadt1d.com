@@ -1324,7 +1324,7 @@ html.modal-open{overflow:hidden}
           </div>
         </details>
 
-        <p class="reveal" style="margin-top:24px;color:var(--dim);font-size:.9rem"><strong style="color:var(--mute)">Free software, with thanks.</strong> AheadBLE is licensed under the GNU GPL v3 and builds on the open-source Dexcom G7 protocol work of the <strong style="color:var(--mute)">Juggluco</strong> project. Source on <a href="https://github.com/NootedNoot/ahead-ble">GitHub</a>.</p>
+        <p class="reveal" style="margin-top:24px;color:var(--dim);font-size:.9rem"><strong style="color:var(--mute)">Free software, with thanks.</strong> AheadBLE is licensed under the GNU GPL v3. It doesn’t pair with your G7 independently — it connects through a sensor pairing made by the <strong style="color:var(--mute)">Juggluco</strong> project’s app, which needs to be installed and paired first. Source on <a href="https://github.com/NootedNoot/ahead-ble">GitHub</a>.</p>
       </div>
     </section>
 
@@ -1419,7 +1419,7 @@ html.modal-open{overflow:hidden}
             <tbody>
               <tr><th scope="row">Who installs it</th><td>Someone wearing a Dexcom G7</td><td>The person living with Type 1</td><td>Family, partners, caregivers</td></tr>
               <tr><th scope="row">Its one job</th><td>Talk to the sensor</td><td>Analyze, project ahead and alert</td><td>Follow along from a distance</td></tr>
-              <tr><th scope="row">Where readings come from</th><td>The G7, over Bluetooth</td><td>Health Connect (filled by AheadBLE)</td><td>The person’s Ahead account, over the internet</td></tr>
+              <tr><th scope="row">Where readings come from</th><td>The G7, over Bluetooth (via a pairing Juggluco makes)</td><td>Health Connect (filled by AheadBLE, Juggluco or the Dexcom app)</td><td>The person’s Ahead account, over the internet</td></tr>
               <tr><th scope="row">Uses Bluetooth &amp; Health Connect</th><td>Both</td><td>Health Connect</td><td>Neither</td></tr>
               <tr><th scope="row">Needs internet</th><td>No</td><td>To sign in, sync and share — not to analyze or alert</td><td>Yes</td></tr>
               <tr><th scope="row">Alerts</th><td>Connection status only</td><td>Yellow warnings, red alerts and your own Alarm Thresholds</td><td>Lows, fast drops, and data gone quiet</td></tr>
@@ -1527,7 +1527,13 @@ html.modal-open{overflow:hidden}
 
         <!-- Getting started -->
         <details class="faq" id="q-which-apps" data-cat="start"><summary>Which apps do I need?</summary><div class="faq-a">
-          <p><strong>If you live with Type 1 and wear a Dexcom G7:</strong> install <strong>AheadBLE</strong> first, then <strong>Ahead</strong>.</p>
+          <p><strong>If you live with Type 1 and wear a Dexcom G7</strong>, you need <strong>Ahead</strong> plus something feeding Health Connect. Pick one:</p>
+          <ul>
+            <li>Already using the <strong>official Dexcom app</strong>? Turn on its Health Connect sharing — nothing else to install.</li>
+            <li>Already using <strong>Juggluco</strong>? Same deal — enable its Health Connect sync in its settings.</li>
+            <li>Using neither? Install <strong>Juggluco</strong> and pair it with your sensor first, then install <strong>AheadBLE</strong> on top — AheadBLE connects through Juggluco’s pairing rather than pairing with the sensor on its own.</li>
+          </ul>
+          <p>Then install <strong>Ahead</strong> either way.</p>
           <p><strong>If you’re a parent, partner or friend following someone:</strong> install <strong>Ahead Lite</strong>. They share their stream with you. You never need AheadBLE or Ahead on a follower’s phone.</p>
           <div class="faq-foot"><span class="faq-cat">Getting started</span><button type="button" class="btn-mini" data-copy-link="q-which-apps"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
@@ -1562,7 +1568,8 @@ html.modal-open{overflow:hidden}
 
         <!-- AheadBLE -->
         <details class="faq" id="q-what-ble" data-cat="ble"><summary>What is AheadBLE?</summary><div class="faq-a">
-          <p>AheadBLE (it appears on your phone as <strong>Ahead Connect</strong>) is a small app with one job: talk to your Dexcom G7 over Bluetooth and hand each reading to Ahead. It saves every reading to Health Connect and also pings Ahead instantly, so alerts don’t wait on a timer. <a href="#ble">More on AheadBLE</a>.</p>
+          <p>AheadBLE (it appears on your phone as <strong>Ahead Connect</strong>) is a small app with one job: hand each Dexcom G7 reading to Ahead the instant it arrives, instead of waiting on Health Connect’s own sync timing. It saves every reading to Health Connect too.</p>
+          <p>It doesn’t pair with your sensor independently — it connects through a pairing <strong>Juggluco</strong> has already made. Install and pair Juggluco with your G7 first and keep it installed, then install AheadBLE on top. <a href="#ble">More on AheadBLE</a>.</p>
           <div class="faq-foot"><span class="faq-cat">AheadBLE</span><button type="button" class="btn-mini" data-copy-link="q-what-ble"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
 
@@ -1572,8 +1579,8 @@ html.modal-open{overflow:hidden}
         </div></details>
 
         <details class="faq" id="q-needs-ble" data-cat="ble"><summary>Does Ahead work without AheadBLE?</summary><div class="faq-a">
-          <p>Ahead needs a live glucose source. It doesn’t connect to the sensor itself — it reads Health Connect. AheadBLE is the app that fills Health Connect from a G7, and it’s the one we build and test Ahead with. <strong>Until AheadBLE is installed, connected and showing “Sensor connected :)”, Ahead has nothing to show.</strong></p>
-          <p>Other apps that write to Health Connect could feed Ahead too, but that route isn’t covered or tested here.</p>
+          <p>Yes. Ahead doesn’t connect to the sensor itself — it just reads Health Connect, whatever app is filling it. The <strong>official Dexcom app</strong> and <strong>Juggluco</strong> both work as your source: turn on Health Connect sharing in whichever one you already use, and Ahead picks up readings from there, no AheadBLE required.</p>
+          <p>AheadBLE is a third option for people who’d rather not run a full CGM app — but it isn’t an independent connection, it rides on a sensor pairing Juggluco has already made, so Juggluco still needs to be installed and paired first. Whichever source you pick, Ahead has nothing to show until that source has a live, recent reading.</p>
           <div class="faq-foot"><span class="faq-cat">AheadBLE</span><button type="button" class="btn-mini" data-copy-link="q-needs-ble"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
 
@@ -1781,7 +1788,7 @@ html.modal-open{overflow:hidden}
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-disclaimer">
-        <strong>Medical disclaimer:</strong> Ahead is a monitoring companion and research tool for informational purposes. It is not a medical device, does not replace your CGM’s own alarms, your insulin delivery system or the guidance of your physician, and never provides dosing advice. AheadBLE is free software under the GNU GPL v3, built on open-source work from the Juggluco project.
+        <strong>Medical disclaimer:</strong> Ahead is a monitoring companion and research tool for informational purposes. It is not a medical device, does not replace your CGM’s own alarms, your insulin delivery system or the guidance of your physician, and never provides dosing advice. AheadBLE is free software under the GNU GPL v3; it connects to your sensor through a pairing made by the Juggluco app, which must be installed and paired first.
       </div>
       <div class="foot-links">
         <a href="#top">Home</a><a href="#downloads">Downloads</a><a href="#install">Setup guide</a><a href="#faq">FAQ</a><a href="mailto:hello@aheadt1d.com">Contact</a><a href="legal.html#privacy">Privacy Policy</a><a href="legal.html#terms">Terms of Use</a>

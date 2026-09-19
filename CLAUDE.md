@@ -26,3 +26,9 @@ aheadt1d.com — served as static files (it sits behind Cloudflare; pushing to `
 - **Be honest on the page.** Claims come from the code, not vibes: "data never leaves your device" was false (family sharing uploads readings), so it isn't on the page. The three apps are beta debug builds and the page says so.
 - Don't explain the trend-detection thresholds/formulas on the site — describe the concept only.
 - AheadBLE is GPLv3 (builds on Juggluco). The page links to `github.com/NootedNoot/ahead-ble` for source; that repo needs a LICENSE and to be public for the link to resolve (owner is handling this).
+
+## Spooky season theme
+
+Both pages have a friendly Halloween mode: mouse trail of ghosts/bats/pumpkins, moon, cobwebs, cats, a skeleton, an owl, hanging bats, a pumpkin-patch footer. It turns on automatically Sep 1 - Nov 3 each year, can be forced with `?spooky=1` / `?spooky=0`, and has a pumpkin toggle in the nav (choice is remembered in localStorage `ahead-spooky`). Off = the normal purple sparkles.
+
+Owner's rules for any theme/decoration work: **no candy, sweets or food imagery or wording** (this is a Type 1 diabetes app; pumpkins/jack-o'-lanterns are fine) and **no death jokes** (he vetoed tombstones/"R.I.P."). Keep it friendly. The art is generated from `gen-art.py` and `gen-spooky2-css.py` in the source folder (`website-drafts/claude-download`).

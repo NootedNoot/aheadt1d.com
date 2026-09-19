@@ -3,176 +3,589 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy &amp; Terms — Ahead</title>
-  <meta name="description" content="Privacy policy, terms of service, and patient data commitment for AheadT1D." />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Privacy Policy &amp; Terms of Use — AheadT1D</title>
+  <meta name="description" content="Plain-English privacy policy and terms of use for Ahead, AheadBLE and Ahead Lite: what we collect, where it lives, who can see it, and how to delete it." />
+  <meta name="theme-color" content="#1d0339" />
+  <link rel="canonical" href="https://aheadt1d.com/legal.html" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232ee59d' d='M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" />
   <style>
-    .legal-hero {
-      padding: 84px 0 50px;
-    }
-    .legal-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 36px 32px;
-      margin-bottom: 36px;
-    }
-    .legal-card h2 {
-      font-size: 24px;
-      margin-bottom: 16px;
-      color: var(--ink);
-    }
-    .legal-card p, .legal-card li {
-      font-size: 15px;
-      color: var(--ink-dim);
-      line-height: 1.7;
-      margin-bottom: 14px;
-    }
-    .legal-card ul {
-      margin-left: 24px;
-      margin-bottom: 20px;
-    }
-    .draft-alert {
-      background: rgba(255, 183, 77, 0.1);
-      border: 1px solid var(--amber-border);
-      padding: 16px 20px;
-      border-radius: 12px;
-      color: var(--amber);
-      font-size: 14px;
-      margin-bottom: 32px;
-    }
+/* ── Ahead download page · v2 "Northern lights" ─────────────────────────────
+   Midnight base + five accents (mint, sky, coral, sun, violet) so it is not just purple.
+   Self-contained: no dependency on the site's styles.css. */
+:root{
+  --bg:#1d0339; --bg2:#2a0552; --card:rgba(255,255,255,.055); --card2:rgba(255,255,255,.09);
+  --line:rgba(255,255,255,.13); --ink:#f1f3ff; --mute:#c9bbe8; --dim:#a08fc9;
+  --mint:#2ee59d; --sky:#c49bff; --coral:#ff7ab8; --sun:#ffc857; --violet:#9d65ff;
+  --r:22px; --r-sm:14px;
+  --f-head:'Space Grotesk','Segoe UI',system-ui,sans-serif;
+  --f-body:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg,video{max-width:100%}
+a{color:var(--sky)}
+a:hover{color:#fff}
+h1,h2,h3,h4{font-family:var(--f-head);line-height:1.12;margin:0;letter-spacing:-.02em}
+p{margin:0 0 .8em}
+.mono{font-family:var(--f-mono);font-size:.92em}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.icon{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.2em}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto;position:relative;z-index:2}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:8px}
+.skip-link{position:absolute;left:12px;top:-60px;background:var(--sun);color:#1a1200;padding:10px 16px;border-radius:10px;z-index:200;font-weight:700}
+.skip-link:focus{top:12px}
+
+/* ── Living background ── */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(120% 80% at 50% -10%,#4e148c 0%,var(--bg) 60%)}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;will-change:transform}
+.b1{width:52vmax;height:52vmax;left:-14vmax;top:-18vmax;background:radial-gradient(circle,var(--sky),transparent 65%);animation:drift1 26s ease-in-out infinite alternate}
+.b2{width:46vmax;height:46vmax;right:-12vmax;top:6vmax;background:radial-gradient(circle,var(--violet),transparent 65%);animation:drift2 32s ease-in-out infinite alternate;opacity:.42}
+.b3{width:40vmax;height:40vmax;left:18vw;bottom:-22vmax;background:radial-gradient(circle,#7b3fe4,transparent 65%);animation:drift3 29s ease-in-out infinite alternate;opacity:.5}
+.b4{width:30vmax;height:30vmax;right:6vw;bottom:-10vmax;background:radial-gradient(circle,var(--coral),transparent 65%);animation:drift1 35s ease-in-out infinite alternate-reverse;opacity:.26}
+@keyframes drift1{to{transform:translate3d(12vmax,9vmax,0) scale(1.15)}}
+@keyframes drift2{to{transform:translate3d(-14vmax,10vmax,0) scale(1.1)}}
+@keyframes drift3{to{transform:translate3d(10vmax,-12vmax,0) scale(1.2)}}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent)}
+#sparks{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+.progress-top{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--sky),var(--mint),var(--sun),var(--coral),var(--violet));z-index:120}
+
+/* ── Header ── */
+.site-header{position:fixed;top:12px;left:0;right:0;z-index:100;pointer-events:none}
+.nav{pointer-events:auto;width:min(1120px,100% - 24px);margin-inline:auto;display:flex;align-items:center;gap:10px;padding:8px 10px 8px 18px;border-radius:999px;background:rgba(30,4,62,.66);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--f-head);font-weight:700;font-size:1.15rem;color:#fff;text-decoration:none;margin-right:auto}
+.brand svg{width:22px;height:22px}
+.brand small{font:600 .62rem/1 var(--f-mono);letter-spacing:.14em;padding:4px 7px;border-radius:999px;background:linear-gradient(90deg,var(--mint),var(--sky));color:#03210f}
+.nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;padding:8px 13px;border-radius:999px;color:var(--mute);text-decoration:none;font-size:.9rem;font-weight:600;transition:.2s}
+.nav ul a:hover,.nav ul a.on{color:#fff;background:var(--card2)}
+.nav-cta{padding:10px 18px;border-radius:999px;background:linear-gradient(120deg,var(--sun),var(--coral));color:#2a0a10;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{color:#2a0a10;filter:brightness(1.08)}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:999px;font:700 1rem var(--f-body);text-decoration:none;border:0;cursor:pointer;transition:transform .18s,filter .18s,background .18s;color:#04140f}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn-hot{background:linear-gradient(120deg,var(--mint),var(--sky));box-shadow:0 10px 30px -8px rgba(46,229,157,.55)}
+.btn-hot:hover{color:#04140f;filter:brightness(1.08)}
+.btn-ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--card2);color:#fff}
+.btn-mini{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--mute);font:600 .78rem var(--f-body);cursor:pointer;transition:.18s}
+.btn-mini:hover{background:var(--card2);color:#fff}
+.btn-mini.done{background:rgba(46,229,157,.18);border-color:var(--mint);color:var(--mint)}
+
+/* ── Hero ── */
+.hero{position:relative;padding:150px 0 70px;min-height:min(100svh,880px);display:flex;align-items:center}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s;z-index:1;mask-image:linear-gradient(#000 55%,transparent);-webkit-mask-image:linear-gradient(#000 55%,transparent);mix-blend-mode:screen}
+.hero-video.on{opacity:.38}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:9px;font:600 .8rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--mint);padding:7px 14px;border:1px solid rgba(46,229,157,.35);border-radius:999px;background:rgba(46,229,157,.08);margin-bottom:22px}
+.kicker i{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(46,229,157,.7);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 12px rgba(46,229,157,0)}100%{box-shadow:0 0 0 0 rgba(46,229,157,0)}}
+.hero h1{font-size:clamp(2.7rem,6.4vw,5rem);font-weight:700}
+.shimmer{background:linear-gradient(100deg,var(--sky),var(--mint) 30%,var(--sun) 55%,var(--coral) 78%,var(--violet));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 7s linear infinite;padding-right:.06em}
+@keyframes sweep{to{background-position:-220% 0}}
+.lead{font-size:clamp(1.05rem,2vw,1.25rem);color:var(--mute);max-width:34em;margin:22px 0 26px}
+.lead strong{color:var(--ink)}
+.picker{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.pick{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:700 .95rem var(--f-body);cursor:pointer;transition:.2s}
+.pick:hover{background:var(--card2);transform:translateY(-2px)}
+.pick[aria-pressed="true"]{border-color:var(--mint);background:rgba(46,229,157,.13);box-shadow:0 0 0 4px rgba(46,229,157,.12)}
+.pick[data-role="follower"][aria-pressed="true"]{border-color:var(--sun);background:rgba(255,200,87,.13);box-shadow:0 0 0 4px rgba(255,200,87,.12)}
+.role-hint{color:var(--mute);font-size:.95rem;min-height:1.6em;margin:-6px 0 20px}
+.role-hint strong{color:var(--ink)}
+.role-hint button{background:none;border:0;color:var(--sky);text-decoration:underline;cursor:pointer;font:inherit;padding:0 0 0 6px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.device-note{display:flex;gap:8px;align-items:flex-start;margin:18px 0 0;font-size:.88rem;color:var(--dim)}
+.device-note button{background:none;border:0;color:var(--sky);text-decoration:underline;cursor:pointer;font:inherit;padding:0}
+
+/* ── Screenshot fan (real screens) ── */
+.stage{position:relative;display:flex;justify-content:center}
+.fan{position:relative;width:min(470px,100%);aspect-ratio:470/590;--mx:0px;--my:0px}
+.fan-card{position:absolute;margin:0;border-radius:26px;overflow:hidden;background:#0d0818;border:1.5px solid rgba(255,255,255,.24);box-shadow:0 34px 70px -22px rgba(0,0,0,.75),0 0 70px -12px rgba(157,101,255,.6);transform:translate3d(calc(var(--mx) * var(--d,1)),calc(var(--my) * var(--d,1)),0);transition:transform .25s ease-out;animation:bob 7s ease-in-out infinite}
+.fan-card img{display:block;width:100%;height:auto}
+.fan-card img.trend,.frame img.trend{aspect-ratio:720/800;object-fit:cover;object-position:top}
+.f-back{left:0;top:9%;width:45%;rotate:-7deg;z-index:1;filter:saturate(.9) brightness(.85)}
+.f-mid{left:24%;top:0;width:52%;rotate:1.5deg;z-index:2;animation-delay:-2s}
+.f-front{right:-2%;bottom:3%;width:56%;rotate:5deg;z-index:3;animation-delay:-4s}
+.floaty{position:absolute;z-index:4;padding:9px 14px;border-radius:14px;font:700 .82rem var(--f-body);background:rgba(36,6,74,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 12px 30px -10px rgba(0,0,0,.6);display:flex;align-items:center;gap:8px;white-space:nowrap;animation:bob 6s ease-in-out infinite}
+.floaty i{width:9px;height:9px;border-radius:50%}
+.f1{left:-8%;top:14%}.f1 i{background:var(--mint)}
+.f2{right:-8%;top:30%;animation-delay:-2s}.f2 i{background:var(--sun)}
+.f3{left:-4%;bottom:12%;animation-delay:-4s}.f3 i{background:var(--coral)}
+@keyframes bob{50%{translate:0 -12px}}
+
+/* ── Ticker ── */
+.ticker{position:relative;z-index:2;overflow:hidden;border-block:1px solid var(--line);background:rgba(29,3,57,.55);backdrop-filter:blur(8px);padding:14px 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:40px;width:max-content;animation:marquee 38s linear infinite}
+.track span{font:600 .95rem var(--f-head);color:var(--mute);white-space:nowrap;display:flex;align-items:center;gap:40px;letter-spacing:.01em}
+.track span::after{content:"✦";color:var(--sun)}
+.track span:nth-child(3n)::after{color:var(--mint)}.track span:nth-child(3n+1)::after{color:var(--coral)}.track span:nth-child(3n+2)::after{color:var(--sky)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ── Sections ── */
+.sec{position:relative;padding:96px 0}
+.sec-head{max-width:720px;margin-bottom:44px}
+.eyebrow{font:600 .8rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;color:var(--mint)}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:700}
+.sec-head p{color:var(--mute);margin-top:14px;font-size:1.08rem}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in-view{opacity:1;transform:none}
+.notice{display:flex;gap:12px;align-items:flex-start;padding:16px 20px;border-radius:var(--r-sm);border:1px solid rgba(255,200,87,.4);background:rgba(255,200,87,.08);color:#ffe7ae;margin-top:26px}
+.notice p{margin:0;font-size:.98rem}
+.notice.mint{border-color:rgba(46,229,157,.4);background:rgba(46,229,157,.08);color:#b9fbe3}
+.notice a{color:inherit}
+
+/* ── Download cards ── */
+.dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.app-card{--c1:var(--sky);--c2:var(--mint);position:relative;display:flex;flex-direction:column;gap:14px;padding:26px 24px 24px;border-radius:var(--r);background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);overflow:hidden;transition:transform .25s,opacity .35s,filter .35s,box-shadow .25s}
+.app-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--c1),var(--c2))}
+.app-card::after{content:"";position:absolute;width:260px;height:260px;right:-100px;top:-120px;border-radius:50%;background:radial-gradient(circle,var(--c1),transparent 68%);opacity:.22;pointer-events:none;transition:opacity .3s}
+.app-card{cursor:pointer}
+.app-card .btn,.app-card summary,.app-card a{cursor:pointer}
+.app-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -28px var(--c1)}
+.app-card:hover::after{opacity:.4}
+.app-card[data-app="ble"]{--c1:var(--sky);--c2:#7b5bff}
+.app-card[data-app="ahead"]{--c1:var(--mint);--c2:var(--sky)}
+.app-card[data-app="lite"]{--c1:var(--sun);--c2:var(--coral)}
+html[data-role="t1d"] .app-card[data-role="follower"],html[data-role="follower"] .app-card[data-role="t1d"]{opacity:.36;filter:saturate(.4)}
+html[data-role="t1d"] .app-card[data-role="follower"]:hover,html[data-role="follower"] .app-card[data-role="t1d"]:hover{opacity:.8;filter:none}
+.ico{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--c1),var(--c2));color:#04141f;box-shadow:0 12px 26px -10px var(--c1);position:relative;z-index:1}
+.ico .icon{width:28px;height:28px;stroke-width:2.2}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;position:relative;z-index:1}
+.pill{font:700 .68rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--ink)}
+.rec{display:none;align-items:center;gap:5px;font:800 .75rem var(--f-body);color:var(--mint)}
+html[data-role="t1d"] .app-card[data-role="t1d"] .rec,html[data-role="follower"] .app-card[data-role="follower"] .rec{display:inline-flex}
+.app-card h3{font-size:1.75rem;position:relative;z-index:1}
+.alias{margin:-8px 0 0;color:var(--c1);font-weight:700;font-size:.9rem;position:relative;z-index:1}
+.app-desc{color:var(--mute);font-size:.98rem;margin:0;position:relative;z-index:1}
+.app-desc strong{color:var(--ink)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 0;padding:0;position:relative;z-index:1}
+.facts div{display:flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;background:rgba(0,0,0,.28);border:1px solid var(--line);font-size:.8rem}
+.facts dt{color:var(--dim);font-weight:600}
+.facts dd{margin:0;color:var(--ink);font-weight:700}
+.btn-dl{background:linear-gradient(120deg,var(--c1),var(--c2));color:#04141f;width:100%;padding:16px 20px;font-size:1.05rem;position:relative;z-index:1;box-shadow:0 14px 30px -12px var(--c1)}
+.btn-dl:hover{color:#04141f;filter:brightness(1.1)}
+.card-cta{margin-top:auto;display:flex;flex-direction:column;gap:11px}
+.dl-note{text-align:center;color:var(--dim);font-size:.84rem;margin:0;position:relative;z-index:1}
+.dl-note a{color:var(--mute)}
+.license-line{font-size:.82rem;color:var(--dim);margin:0;position:relative;z-index:1}
+details.fp{position:relative;z-index:1}
+details.fp summary{cursor:pointer;color:var(--mute);font:600 .82rem var(--f-body);list-style:none;display:flex;align-items:center;gap:7px;justify-content:center}
+details.fp summary::-webkit-details-marker{display:none}
+details.fp summary::before{content:"▸";transition:transform .2s;color:var(--c1)}
+details.fp[open] summary::before{transform:rotate(90deg)}
+.hash{margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid var(--line)}
+.hash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.hash-label{font:700 .68rem var(--f-mono);letter-spacing:.1em;color:var(--dim)}
+.hash code{font:500 .72rem/1.5 var(--f-mono);color:#e0d4ff;word-break:break-all;display:block}
+.hash .pkg{margin-top:8px;font-size:.78rem;color:var(--dim)}
+
+/* Verify tool */
+.big-acc{margin-top:30px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);overflow:hidden}
+.big-acc>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:14px;padding:20px 24px;font:700 1.15rem var(--f-head)}
+.big-acc>summary::-webkit-details-marker{display:none}
+.big-acc>summary .ico-s{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--violet),var(--sky));color:#1a0333;flex:none}
+.big-acc>summary small{display:block;font:500 .88rem var(--f-body);color:var(--mute);margin-top:2px}
+.big-acc>summary::after{content:"+";margin-left:auto;font:400 1.8rem var(--f-head);color:var(--mute);transition:transform .25s}
+.big-acc[open]>summary::after{transform:rotate(45deg)}
+.big-acc>.acc-body{padding:4px 24px 26px}
+.verify{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.vcard{padding:20px;border-radius:var(--r-sm);background:rgba(0,0,0,.25);border:1px solid var(--line)}
+.vcard h3{font-size:1.05rem;margin-bottom:8px}
+.vcard p{color:var(--mute);font-size:.92rem}
+.drop{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:26px 14px;border:2px dashed rgba(255,255,255,.25);border-radius:var(--r-sm);cursor:pointer;transition:.2s;color:var(--mute)}
+.drop:hover,.drop.over{border-color:var(--mint);background:rgba(46,229,157,.08);color:var(--ink)}
+.drop .icon{width:32px;height:32px;color:var(--mint)}
+.drop small{color:var(--dim)}
+.vresult{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;font-size:.92rem;word-break:break-word}
+.vresult.show{display:block}
+.vresult.ok{background:rgba(46,229,157,.13);border:1px solid var(--mint);color:#c8ffec}
+.vresult.bad{background:rgba(255,122,184,.12);border:1px solid var(--coral);color:#ffd0db}
+.vresult.wait{background:var(--card2);border:1px solid var(--line)}
+.vresult code{display:block;margin-top:8px;font:500 .74rem var(--f-mono);word-break:break-all}
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid var(--line);margin-bottom:12px}
+.seg button{padding:7px 16px;border-radius:999px;border:0;background:none;color:var(--mute);font:700 .84rem var(--f-body);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--card2);color:#fff}
+.code-box{padding:12px 14px;border-radius:12px;background:#120225;border:1px solid var(--line);font:500 .8rem/1.6 var(--f-mono);color:#bff5de;overflow-x:auto;white-space:pre}
+.cmd-note{margin-top:10px;font-size:.84rem!important}
+
+/* ── How it fits ── */
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:6px}
+.node{position:relative;text-align:center;padding:24px 14px 20px;border-radius:var(--r);background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line)}
+.node .ni{width:62px;height:62px;border-radius:20px;margin:0 auto 12px;display:grid;place-items:center;color:#06111d}
+.node .ni .icon{width:30px;height:30px;stroke-width:2.1}
+.node h3{font-size:1.1rem;margin-bottom:6px}
+.node p{font-size:.86rem;color:var(--mute);margin:0}
+.c-sensor{background:linear-gradient(135deg,var(--coral),var(--sun))}
+.c-ble{background:linear-gradient(135deg,var(--sky),#7b5bff)}
+.c-ahead{background:linear-gradient(135deg,var(--mint),var(--sky))}
+.c-lite{background:linear-gradient(135deg,var(--sun),var(--coral))}
+.node.opt{border-style:dashed}
+.link{position:relative;width:78px;text-align:center;font:600 .66rem/1.3 var(--f-mono);letter-spacing:.05em;color:var(--dim);text-transform:uppercase;padding-bottom:16px}
+.wire{position:absolute;left:0;right:0;bottom:2px;height:3px;border-radius:3px;background:rgba(255,255,255,.14);overflow:hidden}
+.wire::after{content:"";position:absolute;top:0;left:-30%;width:30%;height:100%;border-radius:3px;background:linear-gradient(90deg,transparent,var(--mint),transparent);animation:packet 2.2s linear infinite}
+.link:nth-of-type(4) .wire::after{animation-delay:.7s}.link:nth-of-type(6) .wire::after{animation-delay:1.4s}
+@keyframes packet{to{left:100%}}
+.link.dashed .wire{background:repeating-linear-gradient(90deg,rgba(255,255,255,.28) 0 6px,transparent 6px 12px)}
+
+/* ── Setup ── */
+.tabs{display:inline-flex;gap:6px;padding:5px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid var(--line);margin-bottom:26px;flex-wrap:wrap}
+.tabs button{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;border:0;background:none;color:var(--mute);font:700 .95rem var(--f-body);cursor:pointer;transition:.2s}
+.tabs button[aria-selected="true"]{background:linear-gradient(120deg,var(--mint),var(--sky));color:#04140f}
+.tabs button[data-tab="follower"][aria-selected="true"]{background:linear-gradient(120deg,var(--sun),var(--coral))}
+.progress{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.bar{flex:1;height:10px;border-radius:9px;background:rgba(255,255,255,.1);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--sky),var(--mint),var(--sun));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.count{font:600 .82rem var(--f-mono);color:var(--mute);white-space:nowrap}
+.reset{background:none;border:0;color:var(--dim);text-decoration:underline;cursor:pointer;font:600 .82rem var(--f-body)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.step{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:var(--r-sm);background:var(--card);border:1px solid var(--line);transition:.3s}
+.step.done{background:rgba(46,229,157,.07);border-color:rgba(46,229,157,.4)}
+.step.done h3{color:var(--mint)}
+.tick{cursor:pointer;flex:none;padding:2px}
+.tick input{position:absolute;opacity:0;width:1px;height:1px}
+.box{position:relative;width:38px;height:38px;border-radius:12px;border:2px solid rgba(255,255,255,.28);display:grid;place-items:center;font:700 1rem var(--f-head);transition:.25s;color:var(--mute)}
+.box .icon{position:absolute;width:20px;height:20px;stroke-width:3;opacity:0;transform:scale(.4);transition:.25s}
+.tick input:checked+.box{background:var(--mint);border-color:var(--mint);color:#04140f;transform:rotate(-6deg) scale(1.06)}
+.tick input:checked+.box .n{opacity:0}
+.tick input:checked+.box .icon{opacity:1;transform:scale(1)}
+.tick input:focus-visible+.box{outline:3px solid var(--sun);outline-offset:3px}
+.step h3{font-size:1.08rem;margin-bottom:4px;transition:color .3s}
+.step p{margin:0 0 6px;color:var(--mute);font-size:.95rem}
+.step p strong{color:var(--ink)}
+.tip{font-size:.87rem!important;color:var(--dim)!important;padding-left:12px;border-left:3px solid var(--sun)}
+.badge-opt{font:700 .62rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:rgba(157,101,255,.2);color:var(--violet);vertical-align:middle;margin-left:6px}
+.all-done{display:none}.all-done.show{display:flex;animation:pop .6s cubic-bezier(.2,1.4,.3,1)}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+
+/* ── AheadBLE ── */
+.must{padding:26px 28px;border-radius:var(--r);background:linear-gradient(120deg,rgba(196,155,255,.16),rgba(123,91,255,.1));border:1px solid rgba(196,155,255,.45);margin-bottom:24px;position:relative;overflow:hidden}
+.must::before{content:"1";position:absolute;right:18px;top:-30px;font:800 9rem var(--f-head);color:rgba(196,155,255,.12);pointer-events:none}
+.must h3{font-size:1.4rem;margin-bottom:8px;position:relative}
+.must p{margin:0;color:#e6d8ff;position:relative}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.panel{padding:24px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.panel h3{font-size:1.2rem;margin-bottom:12px}
+.ticks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ticks li{display:flex;gap:10px;font-size:.93rem;color:var(--mute)}
+.ticks li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304140f' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4L18 8'/%3E%3C/svg%3E") center/70% no-repeat}
+.ticks.warn li::before{background:var(--sun) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23201500' stroke-width='3.5' stroke-linecap='round'%3E%3Cpath d='M12 7v6M12 17v.01'/%3E%3C/svg%3E") center/70% no-repeat}
+.ticks strong{color:var(--ink)}
+.status-demo{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 4px}
+.status-demo span{font:700 .9rem var(--f-mono);padding:10px 16px;border-radius:12px}
+.status-demo .yes{background:rgba(46,229,157,.14);color:var(--mint);border:1px solid rgba(46,229,157,.5)}
+.status-demo .no{background:rgba(255,122,184,.12);color:var(--coral);border:1px solid rgba(255,122,184,.5)}
+.timeline{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:t}
+.timeline li{counter-increment:t;padding:16px;border-radius:var(--r-sm);background:rgba(0,0,0,.25);border:1px solid var(--line)}
+.timeline li::before{content:counter(t);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--sky);color:#04141f;font:800 .85rem var(--f-head);margin-bottom:10px}
+.timeline h4{font-size:.98rem;margin-bottom:6px}
+.timeline p{font-size:.85rem;color:var(--mute);margin:0}
+
+/* ── Real screens gallery ── */
+.rshots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:34px;align-items:center}
+.rshot{margin:0;text-align:center}
+.rshot .frame{border-radius:28px;overflow:hidden;border:1.5px solid rgba(255,255,255,.22);background:#0d0818;box-shadow:0 30px 60px -24px rgba(0,0,0,.7),0 0 60px -16px rgba(157,101,255,.55);transition:transform .3s}
+.rshot:hover .frame{transform:translateY(-8px) rotate(-1deg)}
+.rshot img{display:block;width:100%;height:auto}
+.rshot figcaption{margin-top:16px;color:var(--mute);font-size:.92rem}
+.rshot figcaption b{display:block;color:var(--ink);font-family:var(--f-head);font-size:1.1rem;margin-bottom:2px}
+
+/* ── Honest bits ── */
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tcard{padding:22px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);position:relative;overflow:hidden}
+.tcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--sun)}
+.tcard.red::before{background:var(--coral)}.tcard.mint::before{background:var(--mint)}.tcard.sky::before{background:var(--sky)}
+.tcard h3{font-size:1.05rem;margin-bottom:8px}
+.tcard p,.tcard li{color:var(--mute);font-size:.9rem;margin:0}
+.tcard ul{margin:0;padding-left:18px;display:grid;gap:5px}
+.tcard strong{color:var(--ink)}
+.sub-h{font-size:1.5rem;margin:44px 0 18px}
+
+/* ── Details accordion (compare / permissions) ── */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r-sm);border:1px solid var(--line)}
+.tbl{width:100%;border-collapse:collapse;font-size:.9rem;min-width:560px}
+.tbl th,.tbl td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tbody tr:last-child>*{border-bottom:0}
+.tbl thead th{background:rgba(255,255,255,.06);font:700 .8rem var(--f-head);letter-spacing:.04em}
+.tbl tbody th{color:var(--ink);font-weight:700;width:26%}
+.tbl td{color:var(--mute)}
+.tbl .c-ble{color:var(--sky);background:none}.tbl .c-ahead{color:var(--mint);background:none}.tbl .c-lite{color:var(--sun);background:none}
+details.perm{border:1px solid var(--line);border-radius:var(--r-sm);background:rgba(0,0,0,.2);margin-top:12px}
+details.perm summary{cursor:pointer;padding:14px 18px;font:700 1rem var(--f-head);list-style:none;display:flex}
+details.perm summary::-webkit-details-marker{display:none}
+details.perm summary span:first-child{display:flex;align-items:center;gap:10px}
+.sum-sub{font:600 .72rem var(--f-mono);color:var(--dim);letter-spacing:.06em}
+details.perm .tbl-wrap{margin:0 14px 14px}
+.perm-none{margin:0 18px 16px;font-size:.88rem;color:var(--mute)}
+
+/* ── FAQ ── */
+.faq-tools{display:flex;gap:12px;margin-bottom:14px}
+.search{flex:1;position:relative}
+.search .icon{position:absolute;left:18px;top:50%;translate:0 -50%;color:var(--dim);width:20px;height:20px}
+.search input{width:100%;padding:16px 20px 16px 50px;border-radius:999px;border:1.5px solid var(--line);background:rgba(0,0,0,.35);color:var(--ink);font:500 1rem var(--f-body)}
+.search input::placeholder{color:var(--dim)}
+.search input:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 4px rgba(196,155,255,.16)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--mute);font:700 .84rem var(--f-body);cursor:pointer;transition:.18s}
+.chip:hover{background:var(--card2);color:#fff}
+.chip[aria-pressed="true"]{background:linear-gradient(120deg,var(--sky),var(--violet));border-color:transparent;color:#1a0333}
+.faq-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font:600 .82rem var(--f-mono);color:var(--dim)}
+.faq-meta .links button{background:none;border:0;color:var(--sky);cursor:pointer;font:600 .82rem var(--f-body);margin-left:14px;text-decoration:underline}
+details.faq{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--card);margin-bottom:10px;transition:border-color .2s,background .2s}
+details.faq[hidden]{display:none}
+details.faq[open]{border-color:rgba(196,155,255,.5);background:var(--card2)}
+details.faq summary{cursor:pointer;list-style:none;padding:17px 56px 17px 20px;font:700 1.02rem var(--f-head);position:relative}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";position:absolute;right:20px;top:50%;translate:0 -50%;font:400 1.6rem var(--f-head);color:var(--sky);transition:transform .25s}
+details.faq[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq-a{padding:0 20px 18px;color:var(--mute);font-size:.98rem}
+.faq-a strong{color:var(--ink)}
+.faq-a ol,.faq-a ul{padding-left:22px}
+.faq-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.faq-cat{font:600 .68rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.nores{display:none;text-align:center;padding:30px;color:var(--mute);border:1px dashed var(--line);border-radius:var(--r-sm)}
+.help{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:34px;padding:30px;border-radius:var(--r);background:linear-gradient(120deg,rgba(196,155,255,.14),rgba(157,101,255,.14),rgba(255,122,184,.12));border:1px solid var(--line)}
+.help h3{font-size:1.5rem}.help p{margin:4px 0 0;color:var(--mute)}
+.help-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ── Footer ── */
+.site-footer{position:relative;z-index:2;padding:56px 0 34px;border-top:1px solid var(--line);background:rgba(18,2,36,.7)}
+.footer-disclaimer{font-size:.84rem;color:var(--dim);padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);margin-bottom:28px}
+.footer-disclaimer strong{color:var(--mute)}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:22px}
+.foot-links a{color:var(--mute);text-decoration:none;font-weight:600;font-size:.92rem}
+.foot-links a:hover{color:#fff}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:var(--dim);font-size:.84rem}
+.toast{position:fixed;left:50%;bottom:26px;translate:-50% 30px;opacity:0;pointer-events:none;background:#fff;color:#1a0333;padding:12px 20px;border-radius:999px;font:700 .9rem var(--f-body);box-shadow:0 20px 40px -10px rgba(0,0,0,.6);transition:.3s;z-index:150}
+.toast.show{opacity:1;translate:-50% 0}
+
+/* ── Responsive ── */
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:56px}
+  .stage{order:-1;margin:0 auto 8px;width:100%;max-width:440px}
+  .rshots{grid-template-columns:1fr;max-width:340px;margin-inline:auto}
+  .hero{padding-top:120px}
+  .dl-grid,.trio{grid-template-columns:1fr}
+  .quad{grid-template-columns:1fr 1fr}
+  .timeline{grid-template-columns:1fr 1fr}
+  .verify{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr;gap:0}
+  .link{width:auto;height:44px;padding:0;display:flex;align-items:center;justify-content:center;margin:0 auto}
+  .link .wire{left:50%;right:auto;width:3px;height:100%;top:0;bottom:0;translate:-50% 0}
+  .wire::after{left:0;top:-30%;width:100%;height:30%;background:linear-gradient(180deg,transparent,var(--mint),transparent);animation-name:packetY}
+  .link br{display:none}
+  .link{font-size:0}
+  .nav ul{display:none}
+}
+@keyframes packetY{to{top:100%}}
+@media(max-width:600px){
+  body{font-size:16px}
+  .sec{padding:70px 0}
+  .quad,.timeline{grid-template-columns:1fr}
+  .floaty{display:none}
+  .btn{width:100%}
+  .hero-actions .btn{flex:1 1 100%}
+  .step{padding:16px 14px;gap:12px}
+  .nav{padding-left:14px}
+  .nav-cta{padding:9px 14px}
+  .must{padding:22px 20px}
+  .faq-tools{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  .hist{stroke-dashoffset:0}
+  .track{animation:none}
+}
+@media print{.aurora,.grain,#sparks,.site-header,.progress-top,.ticker,.floaty{display:none!important}body{background:#fff;color:#000}.reveal{opacity:1;transform:none}}
+/* ── Accounts cards ── */
+.acct-grid{margin-top:0}
+.acct{position:relative;padding:24px;border-radius:var(--r);background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.acct::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--mint),var(--sky))}
+.acct.lite::before{background:linear-gradient(90deg,var(--sun),var(--coral))}
+.acct.ble::before{background:linear-gradient(90deg,var(--sky),#7b5bff)}
+.acct .ni{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#06111d;margin:0}
+.acct .ni .icon{width:26px;height:26px;stroke-width:2.1}
+.acct .pill{align-self:flex-start}
+.acct h3{font-size:1.2rem}
+.acct p{margin:0;color:var(--mute);font-size:.94rem}
+.acct p strong{color:var(--ink)}
+.acct-note{margin-top:18px;color:var(--mute);font-size:.95rem;text-align:center}
+.acct-note strong{color:var(--ink)}
+
+/* ── Legal / long-form pages ── */
+.legal{position:relative;z-index:2;padding:130px 0 80px}
+.prose-wrap{max-width:760px}
+.legal h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:6px 0 8px}
+.updated{color:var(--dim);font:600 .82rem var(--f-mono);letter-spacing:.06em;margin-bottom:24px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 8px}
+.toc a{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--mute);text-decoration:none;font-weight:700;font-size:.88rem}
+.toc a:hover{background:var(--card2);color:#fff}
+.prose{margin-top:46px;padding-top:6px;scroll-margin-top:90px}
+.prose h2{font-size:clamp(1.7rem,3.4vw,2.3rem);margin-bottom:14px;background:linear-gradient(100deg,#fff,var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+.prose h3{font-size:1.15rem;margin:26px 0 8px;color:var(--ink)}
+.prose p,.prose li{color:var(--mute);font-size:1rem}
+.prose strong{color:var(--ink)}
+.prose ul{padding-left:22px;display:grid;gap:8px;margin:0 0 .8em}
+.prose a{color:var(--sky)}
+
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></symbol>
+  </defs></svg>
 
-  <!-- Navigation -->
+  <div class="aurora" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <header class="site-header">
-    <div class="wrap">
-      <nav class="main-nav">
-        <a href="index.html" class="brand-wrap">
-          <span class="brand-logo">
-            Ahead
-            <span class="status-orb" id="statusOrb"></span>
-            <span class="brand-badge">T1D</span>
-          </span>
-        </a>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="showcase.html">Showcase</a></li>
-          <li><a href="tech.html">The Math</a></li>
-          <li><a href="research.html">Lab Notebook</a></li>
-          <li><a href="videos.html">Videos</a></li>
-          <li><a href="founder.html">Founder</a></li>
-          <li><a href="portal.html">Beta Portal</a></li>
-        </ul>
-        <div class="nav-actions">
-          <a href="download.html" class="nav-cta">Get APK</a>
-          <button class="mobile-toggle" aria-label="Toggle Menu">☰</button>
-        </div>
-      </nav>
-    </div>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" class="brand" aria-label="Ahead T1D home"><svg class="icon" style="color:var(--mint);fill:currentColor;stroke:none" aria-hidden="true"><use href="#i-drop"/></svg>Ahead <small>T1D</small></a>
+      <ul id="navlinks">
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#terms">Terms</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+      <a class="nav-cta" href="index.html#downloads">Get the apps</a>
+    </nav>
   </header>
 
-  <main>
-    <!-- ══ HERO ══ -->
-    <section class="page-section legal-hero section-divider">
-      <div class="wrap-narrow">
-        <div class="reveal">
-          <p class="eyebrow eyebrow-purple">Legal &amp; Data Ethics</p>
-          <h1 style="font-size: clamp(34px, 4.8vw, 50px); margin-bottom: 16px;">Privacy Policy &amp; Terms of Service</h1>
-          <p style="font-size: 17.5px; color: var(--ink-dim); line-height: 1.65;">
-            Our core philosophy: Your health data belongs exclusively on your own phone. We don't sell, broker, or monetize your blood glucose records.
-          </p>
-        </div>
+  <main id="main" class="legal">
+    <div class="wrap prose-wrap">
+      <p class="eyebrow" style="color:var(--sun)">Legal, in plain English</p>
+      <h1>Privacy Policy &amp; Terms of Use</h1>
+      <p class="updated">Last updated September 18, 2026</p>
+
+      <div class="notice" role="note">
+        <svg class="icon" aria-hidden="true" style="width:1.2em;height:1.2em"><use href="#i-drop"/></svg>
+        <p><strong>This is a beta, and this page hasn’t been reviewed by a lawyer yet.</strong> We wrote it to be accurate and readable, and we’ll get proper legal review before Ahead goes to an app store. If anything here is unclear, email <a href="mailto:hello@aheadt1d.com">hello@aheadt1d.com</a>.</p>
       </div>
-    </section>
 
-    <!-- ══ LEGAL CONTENT ══ -->
-    <section class="page-section">
-      <div class="wrap-narrow">
-
-        <div class="draft-alert reveal">
-          <strong>Notice for Beta Testing:</strong> These terms are structured transparently for open beta development. Formal regulatory and legal counsel review will be finalized prior to full public app store distribution.
-        </div>
-
-        <div class="legal-card reveal" id="privacy">
-          <h2>1. Privacy Policy &amp; Local Data Storage</h2>
-          <p>
-            Ahead is engineered around a <strong>local-first architectural model</strong>. Real-time Bluetooth Low Energy (BLE) transmissions between your Dexcom G7 sensor and the Ahead Android app are processed and stored directly on your physical device and within Android Health Connect.
-          </p>
-          <ul>
-            <li><strong>No Centralized Telemetry:</strong> Ahead does not transmit continuous raw CGM streams to third-party ad networks or analytics brokers.</li>
-            <li><strong>Health Connect Access:</strong> Permissions granted to Ahead are used exclusively to read and write your blood glucose records for real-time alerting and display.</li>
-            <li><strong>Opt-In Remote Alerts:</strong> If you configure SMS emergency alerts, only the timestamped alert event and necessary emergency contact data are processed to dispatch the notification.</li>
-          </ul>
-        </div>
-
-        <div class="legal-card reveal" id="terms">
-          <h2>2. Terms of Service &amp; Medical Disclaimer</h2>
-          <p>
-            <strong>Ahead is a companion monitoring and research application. It is NOT an FDA-cleared primary medical device or an automated insulin dosing (AID) controller.</strong>
-          </p>
-          <ul>
-            <li>Ahead does not replace your primary Continuous Glucose Monitor's factory alarms or receiver hardware.</li>
-            <li>Do not make critical insulin dosing decisions based solely on experimental projections without confirming your blood glucose via a blood glucose fingerstick meter.</li>
-            <li>You assume full personal responsibility for the management of your diabetes care and treatment regimen.</li>
-          </ul>
-        </div>
-
-        <div class="legal-card reveal">
-          <h2>3. Open Source &amp; Intellectual Property</h2>
-          <p>
-            Ahead is developed independently by Ryan Singer under the GNU General Public License v3 (GPLv3). You are free to inspect, audit, and build the source code for your own personal use.
-          </p>
-        </div>
-
+      <div class="toc">
+        <a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Use</a><a href="#licenses">Software licenses</a><a href="#contact">Contact</a>
       </div>
-    </section>
+
+      <section id="privacy" class="prose">
+        <h2>Privacy Policy</h2>
+        <p><strong>The short version:</strong> your Bluetooth link and alerting happen on your phone. If you make an account, your readings sync to our server so trend checks and family sharing work, and only the people you invite can see them. We don’t sell your data, and there are no ads or analytics trackers in the apps.</p>
+
+        <h3>Who we are</h3>
+        <p>Ahead (“we”) is an independent project built by Ryan Singer in Colorado Springs, Colorado, USA. It includes three Android apps — <strong>AheadBLE</strong>, <strong>Ahead</strong> and <strong>Ahead Lite</strong> — and this website, aheadt1d.com. Contact: <a href="mailto:hello@aheadt1d.com">hello@aheadt1d.com</a>.</p>
+
+        <h3>What each app does with your data</h3>
+        <ul>
+          <li><strong>AheadBLE</strong> has no account and no internet access. It pairs with your Dexcom G7 over Bluetooth and saves each reading to Android’s Health Connect on your phone. It never sends anything to us.</li>
+          <li><strong>Ahead</strong> reads your glucose from Health Connect. The analysis, projections and alerts run on your phone. When you sign in, Ahead also syncs your readings to your Ahead account (see below).</li>
+          <li><strong>Ahead Lite</strong> is for people following someone else. It signs in to your own account and downloads readings from the people who have chosen to share with you. It doesn’t use Bluetooth or Health Connect.</li>
+        </ul>
+
+        <h3>What we store on our servers</h3>
+        <p>Only if you create an account:</p>
+        <ul>
+          <li><strong>Account details:</strong> your email address, an optional display name, and your password (stored only as a salted hash, never in readable form), plus when you created the account and last signed in.</li>
+          <li><strong>Glucose readings:</strong> each reading’s time and value, uploaded by Ahead.</li>
+          <li><strong>Sharing:</strong> who you’ve shared with (or who has shared with you), so followers can see the right person and nobody else.</li>
+          <li><strong>Devices:</strong> a key for each phone signed in to your account, so a lost phone can be cut off.</li>
+          <li><strong>Security logs:</strong> sign-in and sign-up attempts (the email typed, whether it worked, the IP address and time) and requests that were rate-limited. These help us spot break-in attempts.</li>
+          <li><strong>Email tokens:</strong> single-use, expiring codes behind the verification and password-reset emails (stored hashed).</li>
+        </ul>
+        <p>We do <strong>not</strong> collect your location, contacts, photos or anything from your phone beyond what’s listed above. The camera permission in AheadBLE is only used to scan the barcode on your sensor applicator, on your phone.</p>
+
+        <h3>Who can see your readings</h3>
+        <p>Only you, and only the people you add in <strong>Menu → Account → Manage Sharing</strong>. You can remove anyone at any time and their access ends. Sharing requires the other person to have an account with a verified email, so a typo can’t hand your data to a stranger. Our own access to the server is limited to the developer, for running and fixing the service; we don’t browse your readings out of curiosity.</p>
+
+        <h3>Who we use to run it</h3>
+        <ul>
+          <li><strong>Railway</strong> hosts our server.</li>
+          <li><strong>Supabase</strong> hosts our database.</li>
+          <li><strong>Resend</strong> delivers our emails (verification and password reset).</li>
+          <li><strong>Cloudflare</strong> delivers this website and its downloads, and can see ordinary web-request information (like IP address) as any host does.</li>
+          <li><strong>Google Fonts</strong> supplies this website’s typefaces, so your browser contacts Google to load them. The apps do not.</li>
+        </ul>
+        <p>These companies process data for us to run the service. We don’t sell your data to them or anyone else, and we don’t use advertising networks or analytics or tracking services. This website doesn’t use tracking cookies; it only saves your role choice and setup checklist ticks in your own browser (local storage) so the page remembers them.</p>
+
+        <h3>How long we keep it</h3>
+        <p>Right now we don’t automatically delete old readings — they stay until you delete your account or ask us to. When you delete your account, your account, readings, devices and sharing are removed. Security-log lines about sign-in attempts may remain for a while afterwards, no longer linked to your account.</p>
+
+        <h3>Your choices</h3>
+        <ul>
+          <li><strong>Delete your account</strong> in the app under <strong>Menu → Account → Delete account</strong>. You’ll confirm with your password.</li>
+          <li><strong>Stop sharing</strong> with anyone, any time, in Manage Sharing.</li>
+          <li><strong>Ask us anything</strong> — for a copy of your data, a correction, or confirmation that something is deleted — at <a href="mailto:hello@aheadt1d.com">hello@aheadt1d.com</a>. There’s no in-app password reset yet, so forgotten passwords are also handled by email.</li>
+          <li><strong>Use it on-device only.</strong> AheadBLE never talks to our servers, and you control which permissions each app has in Android settings.</li>
+        </ul>
+
+        <h3>Security</h3>
+        <p>We protect accounts with hashed passwords, expiring sign-in tokens, rate limits and encrypted connections, and we keep the ability to disable an account or a lost device. No system is perfectly secure, and this is early beta software built by one person, so please don’t treat it as a vault.</p>
+
+        <h3>Children</h3>
+        <p>Ahead isn’t designed for children to sign up on their own, and we don’t knowingly create accounts for children under 13. A parent or guardian who sets up Ahead for their child is making that choice and is responsible for the account.</p>
+
+        <h3>Changes</h3>
+        <p>If we change this policy in a meaningful way we’ll update the date above and, where we can, tell account holders by email.</p>
+      </section>
+
+      <section id="terms" class="prose">
+        <h2>Terms of Use</h2>
+        <p>By installing or using Ahead, AheadBLE or Ahead Lite, or by using this website, you agree to these terms.</p>
+
+        <h3>Ahead is not a medical device</h3>
+        <ul>
+          <li>Ahead is a monitoring companion and research project for information and awareness. It has <strong>not</strong> been cleared or approved by the FDA or any regulator.</li>
+          <li>It does <strong>not</strong> replace your CGM’s own alarms, your receiver, your insulin delivery system, or your care team’s advice.</li>
+          <li>It <strong>never</strong> tells you how much insulin to take or what to eat. Projections are estimates from glucose readings alone and don’t know about insulin, food or activity. If you’re unsure about a reading, confirm it (for example with a fingerstick) before acting.</li>
+          <li>Alerts are best-effort. Android, Bluetooth, your sensor, your battery settings and the internet can all delay or block them. Keep another way of being alerted.</li>
+          <li>You are responsible for your own diabetes care and for decisions made using what you see. If someone you follow is in trouble, don’t rely on an app — call them or get help.</li>
+        </ul>
+
+        <h3>Beta software</h3>
+        <p>Ahead is early beta software built and tested by one person. The downloads on this site are development (“debug”) builds shared directly, not store releases. Features can change, break or disappear, and the service may be interrupted or shut down. We’ll do our best, but there’s no guarantee.</p>
+
+        <h3>Your account and how you use it</h3>
+        <ul>
+          <li>Give us accurate information and keep your password safe. You’re responsible for what happens on your account.</li>
+          <li>The <strong>main account</strong> in Ahead should belong to the person living with Type 1. Companion accounts in Ahead Lite are for people following them.</li>
+          <li>Only share your data with people you trust, and only follow someone who has chosen to share with you. Don’t try to access anyone’s data without their invitation.</li>
+          <li>Don’t attack, overload, reverse-engineer for harm, or try to break into the service or other people’s accounts. We may disable accounts or devices that do.</li>
+        </ul>
+
+        <h3>No warranty, and limits on liability</h3>
+        <p>To the fullest extent the law allows, the apps, the website and the service are provided <strong>“as is” and “as available,” without warranties of any kind</strong>, and we aren’t liable for indirect or consequential harm, lost data, or missed or delayed alerts. Nothing here limits rights you have under law that can’t be waived.</p>
+
+        <h3>Changes and ending</h3>
+        <p>We may update these terms, and we may suspend or end the service. You can stop using Ahead and delete your account at any time.</p>
+      </section>
+
+      <section id="licenses" class="prose">
+        <h2>Software licenses</h2>
+        <ul>
+          <li><strong>AheadBLE</strong> is free software under the <strong>GNU General Public License v3 (GPLv3)</strong>. It builds on the open-source Dexcom G7 protocol work of the <strong>Juggluco</strong> project and its contributors, with thanks. Its source code and license text are being published at <a href="https://github.com/NootedNoot/ahead-ble">github.com/NootedNoot/ahead-ble</a>.</li>
+          <li><strong>Ahead</strong> and <strong>Ahead Lite</strong> are © 2026 Ryan Singer. During the beta you may install and use them for your own personal, non-commercial use. Please don’t redistribute them or sell them.</li>
+          <li>This website’s text and design are © 2026 AheadT1D.</li>
+        </ul>
+      </section>
+
+      <section id="contact" class="prose">
+        <h2>Contact</h2>
+        <p>Questions, deletion requests or bug reports: <a href="mailto:hello@aheadt1d.com">hello@aheadt1d.com</a>. A real person reads every message.</p>
+      </section>
+    </div>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-disclaimer">
-        <strong>Medical Disclaimer:</strong> Ahead is a monitoring companion and research tool designed for informational purposes. It does not replace your CGM's native alarms, your insulin delivery system, or the guidance of your physician.
+        <strong>Medical disclaimer:</strong> Ahead is a monitoring companion and research tool for informational purposes. It is not a medical device, does not replace your CGM’s own alarms, your insulin delivery system or the guidance of your physician, and never provides dosing advice.
       </div>
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="brand-logo" style="margin-bottom: 8px;">Ahead <span class="brand-badge">T1D</span></div>
-          <p>Autonomous glucose monitoring, trend prediction, and companion software built for the Type 1 community.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="showcase.html">App Showcase</a></li>
-            <li><a href="tech.html">The Math</a></li>
-            <li><a href="research.html">Lab Notebook</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Media &amp; Story</h4>
-          <ul>
-            <li><a href="videos.html">Getting Ahead Series</a></li>
-            <li><a href="founder.html">Founder's Story</a></li>
-            <li><a href="portal.html">Beta Portal</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Download</h4>
-          <ul>
-            <li><a href="download.html">Download APK</a></li>
-            <li><a href="support.html">Android Setup Guide</a></li>
-            <li><a href="contact.html">Contact Founder</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="legal.html">Privacy Policy</a></li>
-            <li><a href="legal.html#terms">Terms of Use</a></li>
-          </ul>
-        </div>
+      <div class="foot-links">
+        <a href="index.html">Home</a><a href="index.html#downloads">Downloads</a><a href="index.html#faq">FAQ</a><a href="legal.html#privacy">Privacy Policy</a><a href="legal.html#terms">Terms of Use</a><a href="mailto:hello@aheadt1d.com">Contact</a>
       </div>
       <div class="footer-bottom">
         <span>© 2026 AheadT1D. Built by Ryan Singer in Colorado Springs, CO.</span>
@@ -180,7 +593,5 @@
       </div>
     </div>
   </footer>
-
-  <script src="app.js"></script>
 </body>
 </html>

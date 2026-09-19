@@ -1828,7 +1828,7 @@ html.modal-open{overflow:hidden}
       <ul class="mlist">
         <li><span class="mi">1</span><span><b>Not a medical device.</b> It hasn’t been cleared or approved by the FDA or any regulator, and it doesn’t replace your CGM’s own alarms, your receiver, your insulin delivery system or your care team. It never tells you how much insulin to take or what to eat.</span></li>
         <li><span class="mi">2</span><span><b>Alerts and projections can be late, wrong or missing.</b> Phones, Bluetooth, sensors, batteries and the internet all fail. Keep another way of being alerted, and confirm with a fingerstick before you act on a number.</span></li>
-        <li><span class="mi">3</span><span><b>You use it at your own risk.</b> It’s provided “as is,” with no warranty. To the fullest extent the law allows, you release Ahead and its developer from claims for harm or loss connected to using it, including missed, late or incorrect alerts, and our liability is limited as described in the Terms.</span></li>
+        <li><span class="mi">3</span><span><b>You accept any and all risks.</b> It’s provided “as is,” with no warranty. By downloading, you accept every risk of using it, and to the fullest extent the law allows you release Ahead and its developer from all claims for harm or loss connected to it — including missed, late or incorrect alerts — and agree we owe you nothing (our liability is $0).</span></li>
         <li><span class="mi">4</span><span><b>Not affiliated with Dexcom.</b> AheadBLE uses unofficial software to talk to a Dexcom G7. Dexcom doesn’t support it, and using it may affect your sensor’s warranty or support.</span></li>
         <li><span class="mi">5</span><span><b>Under 18, or following someone?</b> A parent or guardian must agree for you, and you should only follow people who have chosen to share with you. In an emergency, call your local emergency number.</span></li>
       </ul>
@@ -2243,7 +2243,7 @@ html.modal-open{overflow:hidden}
   };
 
   /* ══ Download gate: everyone ticks "I agree" before EACH download (click-through terms) ══ */
-  var TERMS_VERSION = '2026-09-19';
+  var TERMS_VERSION = '2026-09-19.2';
   var gate = $('#dlModal'), gCheck = $('#dlAgree'), gGo = $('#dlAccept'), gName = $('#dlAppName'), gCancel = $('#dlCancel'), gCard = gate && $('.modal-card', gate);
   var pending = null, lastFocus = null;
   function gateFocusables() {

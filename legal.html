@@ -757,7 +757,7 @@ html.modal-open{overflow:hidden}
 
         <h3>What each app does with your data</h3>
         <ul>
-          <li><strong>AheadBLE</strong> has no account and no internet access. It pairs with your Dexcom G7 over Bluetooth and saves each reading to Android’s Health Connect on your phone. It never sends anything to us.</li>
+          <li><strong>AheadBLE</strong> has no account and doesn’t use the internet for anything. It connects to your Dexcom G7 over Bluetooth — through a pairing the Juggluco app has already made with your sensor, so Juggluco needs to be installed and paired first — and saves each reading to Android’s Health Connect on your phone. It never sends anything to us.</li>
           <li><strong>Ahead</strong> reads your glucose from Health Connect. The analysis, projections and alerts run on your phone. When you sign in, Ahead also syncs your readings to your Ahead account (see below).</li>
           <li><strong>Ahead Lite</strong> is for people following someone else. It signs in to your own account and downloads readings from the people who have chosen to share with you. It doesn’t use Bluetooth or Health Connect.</li>
         </ul>
@@ -870,7 +870,7 @@ html.modal-open{overflow:hidden}
       <section id="licenses" class="prose">
         <h2>Software licenses</h2>
         <ul>
-          <li><strong>AheadBLE</strong> is free software under the <strong>GNU General Public License v3 (GPLv3)</strong>. It builds on the open-source Dexcom G7 protocol work of the <strong>Juggluco</strong> project and its contributors, with thanks. Its source code and license text are being published at <a href="https://github.com/NootedNoot/ahead-ble">github.com/NootedNoot/ahead-ble</a>.</li>
+          <li><strong>AheadBLE</strong> is free software under the <strong>GNU General Public License v3 (GPLv3)</strong>. It doesn’t pair with your G7 independently — it connects through a sensor pairing made by the <strong>Juggluco</strong> project’s app, which needs to be installed and paired first, and we’re grateful for its protocol work. Its source code and license text are being published at <a href="https://github.com/NootedNoot/ahead-ble">github.com/NootedNoot/ahead-ble</a>.</li>
           <li><strong>Ahead</strong> and <strong>Ahead Lite</strong> are © 2026 Ryan Singer. During the beta you may install and use them for your own personal, non-commercial use. Please don’t redistribute them or sell them.</li>
           <li>This website’s text and design are © 2026 AheadT1D.</li>
         </ul>

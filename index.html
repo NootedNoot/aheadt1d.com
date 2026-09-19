@@ -661,6 +661,34 @@ html[data-spooky] .patch-item{display:block;flex:none}
 /* room for the cat that sits on the "Still stuck?" card */
 html[data-spooky] .help{margin-top:78px}
 
+/* ── Download gate (click-through terms) ── */
+html.modal-open{overflow:hidden}
+.modal{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:16px;background:rgba(12,2,28,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.modal[hidden]{display:none}
+.modal-card{width:min(660px,100%);max-height:min(90vh,820px);overflow:auto;border-radius:24px;background:linear-gradient(180deg,#3a1268,#260849);border:1px solid rgba(255,255,255,.2);box-shadow:0 40px 110px -20px rgba(0,0,0,.85);padding:28px 28px 22px;outline:none;animation:swapIn .35s ease}
+.modal-card h2{font-size:clamp(1.5rem,4vw,2rem);margin:2px 0 8px}
+.modal-card .lede{color:var(--mute);margin-bottom:16px}
+.modal-card .lede strong{color:var(--ink)}
+.mlist{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:10px}
+.mlist li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.24);border:1px solid var(--line);font-size:.92rem;line-height:1.5;color:var(--mute)}
+.mlist li b{color:var(--ink)}
+.mlist .mi{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--sun),var(--coral));color:#2a0a10;font:800 .85rem var(--f-head)}
+.agree{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;border:1.5px solid rgba(255,255,255,.28);background:var(--card);cursor:pointer;margin-bottom:16px;font-size:.93rem;line-height:1.5;color:var(--ink)}
+.agree:hover{border-color:var(--mint)}
+.agree input{width:22px;height:22px;flex:none;margin-top:1px;accent-color:var(--mint);cursor:pointer}
+.agree a{color:var(--sky)}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.btn[disabled]{opacity:.42;cursor:not-allowed;transform:none!important;filter:grayscale(.5);box-shadow:none}
+.modal-fine{margin:14px 0 0;color:var(--dim);font-size:.8rem;text-align:right}
+@media(max-width:600px){
+  .modal{padding:10px}
+  .modal-card{padding:20px 16px 16px;border-radius:20px;max-height:94vh}
+  .modal-actions{flex-direction:column-reverse}
+  .modal-actions .btn{width:100%}
+  .modal-fine{text-align:center}
+}
+@media print{.modal{display:none!important}}
+
   </style>
 </head>
 <body>
@@ -838,7 +866,7 @@ html[data-spooky] .help{margin-top:78px}
           <button type="button" class="pick" data-role="follower" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-people"/></svg> I follow someone</button>
           <button type="button" class="linkbtn" id="showAll" hidden>Show all three</button>
         </div>
-        <p class="dl-fine reveal">Direct APKs for Android 9 or newer. Each one has a published fingerprint so you can confirm it’s exactly what we built.</p>
+        <p class="dl-fine reveal">Direct APKs for Android 9 or newer. Each one has a published fingerprint so you can confirm it’s exactly what we built. By downloading you agree to the <a href="legal.html#terms">Terms of Use</a> and the medical disclaimer — you’ll be asked to confirm.</p>
 
         <div class="dl-grid">
 
@@ -1791,6 +1819,31 @@ html[data-spooky] .help{margin-top:78px}
     </div>
   </footer>
 
+  <!-- Click-through terms: shown before every download -->
+  <div class="modal" id="dlModal" role="dialog" aria-modal="true" aria-labelledby="dlModalTitle" hidden>
+    <div class="modal-card" tabindex="-1">
+      <p class="eyebrow" style="color:var(--sun)">Before you download</p>
+      <h2 id="dlModalTitle">Please read and agree</h2>
+      <p class="lede">Ahead is early beta software built by one person. You’re about to download <strong id="dlAppName">this app</strong>.</p>
+      <ul class="mlist">
+        <li><span class="mi">1</span><span><b>Not a medical device.</b> It hasn’t been cleared or approved by the FDA or any regulator, and it doesn’t replace your CGM’s own alarms, your receiver, your insulin delivery system or your care team. It never tells you how much insulin to take or what to eat.</span></li>
+        <li><span class="mi">2</span><span><b>Alerts and projections can be late, wrong or missing.</b> Phones, Bluetooth, sensors, batteries and the internet all fail. Keep another way of being alerted, and confirm with a fingerstick before you act on a number.</span></li>
+        <li><span class="mi">3</span><span><b>You use it at your own risk.</b> It’s provided “as is,” with no warranty. To the fullest extent the law allows, you release Ahead and its developer from claims for harm or loss connected to using it, including missed, late or incorrect alerts, and our liability is limited as described in the Terms.</span></li>
+        <li><span class="mi">4</span><span><b>Not affiliated with Dexcom.</b> AheadBLE uses unofficial software to talk to a Dexcom G7. Dexcom doesn’t support it, and using it may affect your sensor’s warranty or support.</span></li>
+        <li><span class="mi">5</span><span><b>Under 18, or following someone?</b> A parent or guardian must agree for you, and you should only follow people who have chosen to share with you. In an emergency, call your local emergency number.</span></li>
+      </ul>
+      <label class="agree" for="dlAgree">
+        <input type="checkbox" id="dlAgree" />
+        <span>I have read and agree to the <a href="legal.html#terms" target="_blank" rel="noopener">Terms of Use</a>, the <a href="legal.html#privacy" target="_blank" rel="noopener">Privacy Policy</a> and this disclaimer. I’m 18 or older, or a parent or guardian agreeing for a minor.</span>
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="dlCancel">Cancel</button>
+        <button type="button" class="btn btn-hot" id="dlAccept" disabled>Accept &amp; download</button>
+      </div>
+      <p class="modal-fine">We ask every time you download. A note of which app you accepted and when is saved in your browser.</p>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
@@ -2188,13 +2241,60 @@ html[data-spooky] .help{margin-top:78px}
     ahead: 'Downloading Ahead — wait until AheadBLE says “Sensor connected :)”.',
     lite: 'Downloading Ahead Lite — ask them to share with you.'
   };
-  $$('.app-card .btn-dl').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var card = a.closest('.app-card'), app = card && card.getAttribute('data-app');
-      burst(e.clientX || a.getBoundingClientRect().left + 40, e.clientY || a.getBoundingClientRect().top, 46);
-      if (NUDGE[app]) toast(NUDGE[app]);
+
+  /* ══ Download gate: everyone ticks "I agree" before EACH download (click-through terms) ══ */
+  var TERMS_VERSION = '2026-09-19';
+  var gate = $('#dlModal'), gCheck = $('#dlAgree'), gGo = $('#dlAccept'), gName = $('#dlAppName'), gCancel = $('#dlCancel'), gCard = gate && $('.modal-card', gate);
+  var pending = null, lastFocus = null;
+  function gateFocusables() {
+    return $$('a[href], button:not([disabled]), input:not([disabled])', gate).filter(function (el) { return el.offsetParent !== null; });
+  }
+  function openGate(a) {
+    var card = a.closest('.app-card');
+    pending = { href: a.getAttribute('href'), app: card ? card.getAttribute('data-app') : '', name: card ? card.getAttribute('data-name') : 'this app', file: card ? card.getAttribute('data-file') : '' };
+    gName.textContent = pending.name;
+    gGo.textContent = 'Accept & download ' + pending.name;
+    gCheck.checked = false; gGo.disabled = true;
+    lastFocus = document.activeElement;
+    gate.hidden = false; document.documentElement.classList.add('modal-open');
+    gCard.scrollTop = 0;
+    setTimeout(function () { gCard.focus(); }, 30);
+  }
+  function closeGate() {
+    gate.hidden = true; document.documentElement.classList.remove('modal-open'); pending = null;
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  if (gate) {
+    gCheck.addEventListener('change', function () { gGo.disabled = !gCheck.checked; });
+    gCancel.addEventListener('click', closeGate);
+    gate.addEventListener('click', function (e) { if (e.target === gate) closeGate(); });
+    document.addEventListener('keydown', function (e) {
+      if (gate.hidden) return;
+      if (e.key === 'Escape') { closeGate(); return; }
+      if (e.key !== 'Tab') return;
+      var f = gateFocusables(); if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === gCard)) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
-  });
+    gGo.addEventListener('click', function () {
+      if (!pending || !gCheck.checked) return;
+      var p = pending, r = gGo.getBoundingClientRect();
+      try {
+        var log = JSON.parse(store.get('ahead-dl-accepted') || '[]'); if (!Array.isArray(log)) log = [];
+        log.push({ app: p.app, file: p.file, terms: TERMS_VERSION, at: new Date().toISOString() });
+        store.set('ahead-dl-accepted', JSON.stringify(log.slice(-25)));
+      } catch (err) {}
+      var link = document.createElement('a');
+      link.href = p.href; link.setAttribute('download', ''); link.rel = 'noopener'; link.style.display = 'none';
+      document.body.appendChild(link); link.click(); link.remove();
+      document.dispatchEvent(new CustomEvent('ahead-download', { detail: p }));
+      closeGate();
+      burst(r.left + r.width / 2, r.top, 46);
+      if (NUDGE[p.app]) toast(NUDGE[p.app]);
+    });
+    $$('.app-card .btn-dl').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); openGate(a); }); });
+  }
 
   /* ══ Tabs ══ */
   tabs.forEach(function (t) {

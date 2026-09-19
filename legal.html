@@ -642,6 +642,34 @@ html[data-spooky] .patch-item{display:block;flex:none}
 /* room for the cat that sits on the "Still stuck?" card */
 html[data-spooky] .help{margin-top:78px}
 
+/* ── Download gate (click-through terms) ── */
+html.modal-open{overflow:hidden}
+.modal{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:16px;background:rgba(12,2,28,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.modal[hidden]{display:none}
+.modal-card{width:min(660px,100%);max-height:min(90vh,820px);overflow:auto;border-radius:24px;background:linear-gradient(180deg,#3a1268,#260849);border:1px solid rgba(255,255,255,.2);box-shadow:0 40px 110px -20px rgba(0,0,0,.85);padding:28px 28px 22px;outline:none;animation:swapIn .35s ease}
+.modal-card h2{font-size:clamp(1.5rem,4vw,2rem);margin:2px 0 8px}
+.modal-card .lede{color:var(--mute);margin-bottom:16px}
+.modal-card .lede strong{color:var(--ink)}
+.mlist{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:10px}
+.mlist li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.24);border:1px solid var(--line);font-size:.92rem;line-height:1.5;color:var(--mute)}
+.mlist li b{color:var(--ink)}
+.mlist .mi{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--sun),var(--coral));color:#2a0a10;font:800 .85rem var(--f-head)}
+.agree{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;border:1.5px solid rgba(255,255,255,.28);background:var(--card);cursor:pointer;margin-bottom:16px;font-size:.93rem;line-height:1.5;color:var(--ink)}
+.agree:hover{border-color:var(--mint)}
+.agree input{width:22px;height:22px;flex:none;margin-top:1px;accent-color:var(--mint);cursor:pointer}
+.agree a{color:var(--sky)}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.btn[disabled]{opacity:.42;cursor:not-allowed;transform:none!important;filter:grayscale(.5);box-shadow:none}
+.modal-fine{margin:14px 0 0;color:var(--dim);font-size:.8rem;text-align:right}
+@media(max-width:600px){
+  .modal{padding:10px}
+  .modal-card{padding:20px 16px 16px;border-radius:20px;max-height:94vh}
+  .modal-actions{flex-direction:column-reverse}
+  .modal-actions .btn{width:100%}
+  .modal-fine{text-align:center}
+}
+@media print{.modal{display:none!important}}
+
   </style>
 </head>
 <body>
@@ -709,7 +737,7 @@ html[data-spooky] .help{margin-top:78px}
     <div class="wrap prose-wrap">
       <p class="eyebrow" style="color:var(--sun)">Legal, in plain English</p>
       <h1>Privacy Policy &amp; Terms of Use</h1>
-      <p class="updated">Last updated September 18, 2026</p>
+      <p class="updated">Last updated September 19, 2026</p>
 
       <div class="notice" role="note">
         <svg class="icon" aria-hidden="true" style="width:1.2em;height:1.2em"><use href="#i-drop"/></svg>
@@ -757,7 +785,7 @@ html[data-spooky] .help{margin-top:78px}
           <li><strong>Cloudflare</strong> delivers this website and its downloads, and can see ordinary web-request information (like IP address) as any host does.</li>
           <li><strong>Google Fonts</strong> supplies this website’s typefaces, so your browser contacts Google to load them. The apps do not.</li>
         </ul>
-        <p>These companies process data for us to run the service. We don’t sell your data to them or anyone else, and we don’t use advertising networks or analytics or tracking services. This website doesn’t use tracking cookies; it only saves your role choice and setup checklist ticks in your own browser (local storage) so the page remembers them.</p>
+        <p>These companies process data for us to run the service. We don’t sell your data to them or anyone else, and we don’t use advertising networks or analytics or tracking services. This website doesn’t use tracking cookies; it only saves your role choice, your setup checklist ticks, and a note that you agreed to the download terms (which app, and when) in your own browser (local storage) so the page remembers them.</p>
 
         <h3>How long we keep it</h3>
         <p>Right now we don’t automatically delete old readings — they stay until you delete your account or ask us to. When you delete your account, your account, readings, devices and sharing are removed. Security-log lines about sign-in attempts may remain for a while afterwards, no longer linked to your account.</p>
@@ -782,7 +810,7 @@ html[data-spooky] .help{margin-top:78px}
 
       <section id="terms" class="prose">
         <h2>Terms of Use</h2>
-        <p>By installing or using Ahead, AheadBLE or Ahead Lite, or by using this website, you agree to these terms.</p>
+        <p>By ticking “I agree” before a download, by installing or using Ahead, AheadBLE or Ahead Lite, or by using this website, you agree to these terms.</p>
 
         <h3>Ahead is not a medical device</h3>
         <ul>
@@ -804,8 +832,35 @@ html[data-spooky] .help{margin-top:78px}
           <li>Don’t attack, overload, reverse-engineer for harm, or try to break into the service or other people’s accounts. We may disable accounts or devices that do.</li>
         </ul>
 
-        <h3>No warranty, and limits on liability</h3>
-        <p>To the fullest extent the law allows, the apps, the website and the service are provided <strong>“as is” and “as available,” without warranties of any kind</strong>, and we aren’t liable for indirect or consequential harm, lost data, or missed or delayed alerts. Nothing here limits rights you have under law that can’t be waived.</p>
+        <h3>Assumption of risk and release</h3>
+        <p>Managing diabetes involves real risk, and software can fail. By using Ahead, AheadBLE or Ahead Lite you accept that risk, including the risk that a reading, projection, alert or notification is late, wrong or missing. <strong>To the fullest extent the law allows, you release Ryan Singer and the Ahead project (together, “we”) from claims for injury, illness, death, property damage or other loss connected to your use of the apps, the website or the downloads</strong> — including missed, delayed or incorrect alerts. This doesn’t release anything the law says can’t be released.</p>
+
+        <h3>No warranty</h3>
+        <p>To the fullest extent the law allows, the apps, the website and the service are provided <strong>“AS IS” AND “AS AVAILABLE,” WITHOUT WARRANTIES OF ANY KIND</strong>, express or implied, including any warranty of accuracy, reliability, fitness for a particular purpose or non-infringement. We don’t promise that an alert will arrive, arrive on time, or be correct.</p>
+
+        <h3>Limits on liability</h3>
+        <p>To the fullest extent the law allows, we are not liable for indirect, incidental, special, consequential or punitive damages, or for lost data, and our total liability for anything related to Ahead is limited to <strong>$100</strong> (the apps are free during the beta). Some places don’t allow these limits, so they apply only as far as the law permits. Nothing here limits rights that can’t be waived under the law where you live.</p>
+
+        <h3>If a claim comes back to us</h3>
+        <p>If your misuse of the apps — for example accessing someone’s data without their permission, or breaking these terms or the law — leads to a claim against us, you agree, to the extent the law allows, to cover our reasonable costs of dealing with it.</p>
+
+        <h3>Dexcom, unofficial software and trademarks</h3>
+        <p>Ahead isn’t affiliated with, endorsed by or supported by <strong>Dexcom, Inc.</strong> “Dexcom” and “G7” are trademarks of Dexcom, Inc. AheadBLE talks to your sensor using unofficial software. The sensor’s maker doesn’t support it, and using it may affect your sensor’s warranty, support or performance. If you’re unsure, check with the sensor’s maker and your care team first.</p>
+
+        <h3>Emergencies</h3>
+        <p>Ahead can’t call for help and isn’t an emergency service. If you or someone you follow may be in danger, call your local emergency number (911 in the US).</p>
+
+        <h3>Young people</h3>
+        <p>If you’re under 18, a parent or guardian must read and agree to these terms for you and is responsible for your use of Ahead.</p>
+
+        <h3>Agreeing to these terms</h3>
+        <p>You agree to these terms by ticking “I agree” before a download, by installing or using the apps, or by using this website. Each time you download, we ask you to confirm, and a note of which app you accepted and when is saved in your browser.</p>
+
+        <h3>Governing law and disputes</h3>
+        <p>These terms are governed by the laws of the State of Colorado, USA. Any dispute will be brought in the state or federal courts located in Colorado, except where the law where you live requires otherwise.</p>
+
+        <h3>If part of this doesn’t hold up</h3>
+        <p>If any part of these terms can’t be enforced, the rest still applies.</p>
 
         <h3>Changes and ending</h3>
         <p>We may update these terms, and we may suspend or end the service. You can stop using Ahead and delete your account at any time.</p>

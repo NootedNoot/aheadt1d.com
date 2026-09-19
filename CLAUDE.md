@@ -32,3 +32,9 @@ aheadt1d.com — served as static files (it sits behind Cloudflare; pushing to `
 Both pages have a friendly Halloween mode: mouse trail of ghosts/bats/pumpkins, moon, cobwebs, cats, a skeleton, an owl, hanging bats, a pumpkin-patch footer. It turns on automatically Sep 1 - Nov 3 each year, can be forced with `?spooky=1` / `?spooky=0`, and has a pumpkin toggle in the nav (choice is remembered in localStorage `ahead-spooky`). Off = the normal purple sparkles.
 
 Owner's rules for any theme/decoration work: **no candy, sweets or food imagery or wording** (this is a Type 1 diabetes app; pumpkins/jack-o'-lanterns are fine) and **no death jokes** (he vetoed tombstones/"R.I.P."). Keep it friendly. The art is generated from `gen-art.py` and `gen-spooky2-css.py` in the source folder (`website-drafts/claude-download`).
+
+## Download gate (click-through terms)
+
+Every APK download button on `index.html` opens an agree-to-continue popup (medical disclaimer, own-risk/release, Dexcom non-affiliation, minors, emergencies) with a required checkbox; the download only starts after "Accept & download". It asks every time; a note of which app/when is stored in the visitor's own browser only (`localStorage` `ahead-dl-accepted`, terms version `2026-09-19`). The fuller Terms live in `legal.html` (assumption of risk + release, AS-IS disclaimer, $100 liability cap, indemnity, Colorado law/venue). These were drafted without a lawyer - the page says so - and the $100 cap / Colorado venue are placeholders.
+
+Known limits: direct `/downloads/*.apk` URLs still work for anyone who has them (static hosting can't gate them), and there is no server-side record of acceptance. Any new page that lets people download or sign up must carry the same agreement.

@@ -13,17 +13,26 @@
       text-align: center;
     }
 
-    .dl-primary-card {
-      max-width: 780px;
+    .dl-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 28px;
+      max-width: 1140px;
       margin: 0 auto;
+    }
+
+    .dl-primary-card {
       background: linear-gradient(180deg, var(--bg-surface) 0%, #29044e 100%);
       border: 1px solid var(--border-light);
       border-radius: 24px;
-      padding: 40px 36px;
+      padding: 36px 30px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 30px rgba(157, 101, 255, 0.12);
       text-align: left;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .dl-primary-card::before {
@@ -33,7 +42,14 @@
       left: 0;
       right: 0;
       height: 3px;
+    }
+
+    .card-full::before {
       background: linear-gradient(90deg, var(--green), var(--purple-brand), var(--amber));
+    }
+
+    .card-lite::before {
+      background: linear-gradient(90deg, #00E5FF, var(--purple-brand), #B388FF);
     }
 
     .release-header {
@@ -115,6 +131,23 @@
     .btn-download-hero:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 34px rgba(46, 229, 157, 0.5);
+    }
+
+    .btn-download-lite {
+      background: linear-gradient(135deg, #9d65ff 0%, #7028e4 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 8px 28px rgba(157, 101, 255, 0.4) !important;
+    }
+
+    .btn-download-lite:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 34px rgba(157, 101, 255, 0.6) !important;
+    }
+
+    .tag-cyan {
+      background: rgba(0, 229, 255, 0.12);
+      color: #00E5FF;
+      border: 1px solid rgba(0, 229, 255, 0.3);
     }
 
     .checksum-bar {
@@ -252,9 +285,202 @@
       .compat-grid {
         grid-template-columns: 1fr;
       }
-      .dl-primary-card {
-        padding: 28px 20px;
+    /* ── Difference & Comparison Section ── */
+    .diff-narrative-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    @media (max-width: 820px) {
+      .diff-narrative-grid {
+        grid-template-columns: 1fr;
       }
+    }
+
+    .diff-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .diff-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .diff-card-full {
+      border-color: rgba(46, 229, 157, 0.35);
+    }
+
+    .diff-card-full:hover {
+      border-color: var(--green);
+    }
+
+    .diff-card-lite {
+      border-color: rgba(157, 101, 255, 0.45);
+    }
+
+    .diff-card-lite:hover {
+      border-color: var(--purple-brand);
+    }
+
+    .diff-badge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .diff-role-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+
+    .diff-role-full {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green-border);
+    }
+
+    .diff-role-lite {
+      background: rgba(157, 101, 255, 0.15);
+      color: var(--purple-light);
+      border: 1px solid rgba(157, 101, 255, 0.35);
+    }
+
+    .diff-headline {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .diff-desc {
+      font-size: 14.5px;
+      color: var(--ink-dim);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .diff-points-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .diff-point-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--ink-dim);
+      line-height: 1.5;
+    }
+
+    .diff-point-item strong {
+      color: var(--ink);
+    }
+
+    .diff-who-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--ink-dim);
+      line-height: 1.5;
+    }
+
+    .diff-who-box strong {
+      color: var(--ink);
+    }
+
+    /* ── Comparison Matrix Table ── */
+    .compare-table-wrap {
+      margin-top: 48px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow-x: auto;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .compare-table {
+      width: 100%;
+      min-width: 680px;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .compare-table th {
+      padding: 18px 24px;
+      background: rgba(0, 0, 0, 0.35);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table th.col-ahead {
+      color: var(--green);
+    }
+
+    .compare-table th.col-lite {
+      color: var(--purple-light);
+    }
+
+    .compare-table td {
+      padding: 16px 24px;
+      font-size: 13.5px;
+      color: var(--ink-dim);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: middle;
+      line-height: 1.5;
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .feature-name {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .check-yes {
+      color: var(--green);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .check-alt {
+      color: var(--purple-light);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .faq-list {
@@ -320,70 +546,318 @@
     <section class="page-section download-hero">
       <div class="wrap">
         <div class="reveal">
-          <p class="eyebrow eyebrow-green" style="justify-content: center;">● Latest Stable Release · v0.1.0</p>
+          <p class="eyebrow eyebrow-green" style="justify-content: center;">● Official Android Downloads · Open Direct Sideload</p>
           <h1 style="font-size: clamp(34px, 4.8vw, 56px); margin-bottom: 16px; letter-spacing: -0.03em;">Download Ahead for Android</h1>
-          <p style="font-size: 18px; color: var(--ink-dim); max-width: 60ch; margin: 0 auto 40px; line-height: 1.65;">
-            Autonomous trend projection, dual 15 & 30-minute extrapolation, distinguishable acoustic alarms, and custom tripwires — direct to your device.
+          <p style="font-size: 18px; color: var(--ink-dim); max-width: 68ch; margin: 0 auto 44px; line-height: 1.65;">
+            Choose <strong>Ahead</strong> for autonomous on-device monitoring with distinct acoustic alarms and dual 15m/30m projections, or <strong>Ahead Lite</strong> for an ultra-light, glanceable companion and caregiver viewer.
           </p>
 
-          <!-- Main Download Box -->
-          <div class="dl-primary-card">
-            <div class="release-header">
+          <!-- Dual Download Cards Grid -->
+          <div class="dl-cards-grid">
+            
+            <!-- Card 1: Ahead (Full Engine) -->
+            <div class="dl-primary-card card-full">
               <div>
-                <div class="release-title">
-                  Ahead for Android
-                  <span class="tag-badge tag-green" style="margin: 0; font-size: 10px;">v0.1.0-beta</span>
+                <div class="release-header">
+                  <div>
+                    <div class="release-title">
+                      Ahead
+                      <span class="tag-badge tag-green" style="margin: 0; font-size: 10px;">v0.1.0-beta</span>
+                    </div>
+                    <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">
+                      Primary Monitor · Standalone Engine
+                    </div>
+                  </div>
+                  <span class="tag-badge tag-purple" style="margin: 0;">Full Build</span>
                 </div>
-                <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">
-                  Released September 2026 · Standalone APK Install
+
+                <p style="font-size: 14px; color: var(--ink-dim); margin-top: 16px; line-height: 1.6;">
+                  The complete autonomous T1D monitor. Connects directly to Dexcom &amp; Libre via Health Connect or BLE, calculates 15m &amp; 30m projections, and plays 7 distinct acoustic alert tones with DND override.
+                </p>
+
+                <!-- Specs Grid -->
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <span class="spec-label">Target OS</span>
+                    <span class="spec-value">Android 9 – 15</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Package Size</span>
+                    <span class="spec-value">24.4 MB</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Data Ingestion</span>
+                    <span class="spec-value">Health Connect &amp; BLE</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Engine Mode</span>
+                    <span class="spec-value">100% On-Device</span>
+                  </div>
                 </div>
               </div>
-              <span class="tag-badge tag-purple" style="margin: 0;">Verified Build</span>
+
+              <div>
+                <!-- Download CTA -->
+                <div class="cta-actions" style="margin-top: 16px;">
+                  <a href="downloads/ahead-latest.apk" download="ahead-latest.apk" class="btn-download-hero" id="downloadBtnAhead">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download Ahead APK (v0.1.0)
+                  </a>
+                  <span style="font-size: 12px; color: var(--ink-muted); text-align: center;">For your primary smartphone carried with you</span>
+                </div>
+
+                <!-- Checksum Bar -->
+                <div class="checksum-bar">
+                  <div style="display: flex; align-items: center; gap: 8px; overflow: hidden;">
+                    <span style="font-family: var(--font-mono); font-size: 10px; color: var(--green); font-weight: 700;">SHA-256</span>
+                    <span class="checksum-text" id="shaAhead">4afc29630d290414c02fc6bb7ed4bd68be48691f54779c7d7e298c0548d9f759</span>
+                  </div>
+                  <button class="btn-copy-checksum" id="copyBtnAhead" onclick="copyChecksum('shaAhead', 'copyBtnAhead')">Copy Hash</button>
+                </div>
+              </div>
             </div>
 
-            <!-- Specs Grid -->
-            <div class="specs-grid">
-              <div class="spec-item">
-                <span class="spec-label">Target OS</span>
-                <span class="spec-value">Android 9.0 – 15</span>
+            <!-- Card 2: Ahead Lite (Companion Follower) -->
+            <div class="dl-primary-card card-lite">
+              <div>
+                <div class="release-header">
+                  <div>
+                    <div class="release-title">
+                      Ahead Lite
+                      <span class="tag-badge tag-cyan" style="margin: 0; font-size: 10px;">v1.0.0</span>
+                    </div>
+                    <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">
+                      Glanceable Display · Cloud Follower
+                    </div>
+                  </div>
+                  <span class="tag-badge tag-purple" style="margin: 0;">Lightweight</span>
+                </div>
+
+                <p style="font-size: 14px; color: var(--ink-dim); margin-top: 16px; line-height: 1.6;">
+                  Ultra-light companion dashboard. Streams readings from Ahead Cloud with zero sensor drain, presenting large glanceable numbers, trend velocity, 15m projection, and live test-data safeguards.
+                </p>
+
+                <!-- Specs Grid -->
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <span class="spec-label">Target OS</span>
+                    <span class="spec-value">Android 9 – 15</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Package Size</span>
+                    <span class="spec-value">21.0 MB</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Data Ingestion</span>
+                    <span class="spec-value">Ahead Cloud API</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Engine Mode</span>
+                    <span class="spec-value">Low-Battery Follower</span>
+                  </div>
+                </div>
               </div>
-              <div class="spec-item">
-                <span class="spec-label">Package Size</span>
-                <span class="spec-value">24.4 MB</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Architecture</span>
-                <span class="spec-value">Universal (ARM / x86)</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Architecture</span>
-                <span class="spec-value">100% On-Device</span>
+
+              <div>
+                <!-- Download CTA -->
+                <div class="cta-actions" style="margin-top: 16px;">
+                  <a href="downloads/ahead-lite-latest.apk" download="ahead-lite-latest.apk" class="btn-download-hero btn-download-lite" id="downloadBtnLite">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download Ahead Lite APK (v1.0.0)
+                  </a>
+                  <span style="font-size: 12px; color: var(--ink-muted); text-align: center;">For caregivers, parents &amp; secondary displays</span>
+                </div>
+
+                <!-- Checksum Bar -->
+                <div class="checksum-bar">
+                  <div style="display: flex; align-items: center; gap: 8px; overflow: hidden;">
+                    <span style="font-family: var(--font-mono); font-size: 10px; color: var(--purple-light); font-weight: 700;">SHA-256</span>
+                    <span class="checksum-text" id="shaLite">612a9d0301ecfade1cb777f46bf3fbd8452e91590c55b7c21173c0664ce6f68a</span>
+                  </div>
+                  <button class="btn-copy-checksum" id="copyBtnLite" onclick="copyChecksum('shaLite', 'copyBtnLite')">Copy Hash</button>
+                </div>
               </div>
             </div>
 
-            <!-- Download CTA -->
-            <div class="cta-actions">
-              <a href="downloads/ahead-latest.apk" download="ahead-latest.apk" class="btn-download-hero" id="downloadBtn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                Download Ahead APK (v0.1.0)
-              </a>
-              <span style="font-size: 12.5px; color: var(--ink-muted);">Direct Android sideload package · No Google Play account required</span>
-            </div>
-
-            <!-- Checksum Bar -->
-            <div class="checksum-bar">
-              <div style="display: flex; align-items: center; gap: 8px; overflow: hidden;">
-                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--purple-light); font-weight: 700;">SHA-256</span>
-                <span class="checksum-text" id="shaText">4afc29630d290414c02fc6bb7ed4bd68be48691f54779c7d7e298c0548d9f759</span>
-              </div>
-              <button class="btn-copy-checksum" id="copyBtn" onclick="copyChecksum()">Copy Hash</button>
-            </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ══ AHEAD VS AHEAD LITE COMPARISON SECTION ══ -->
+    <section class="page-section section-divider" id="compare" style="background: rgba(0, 0, 0, 0.2);">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow eyebrow-purple">Ecosystem Comparison</p>
+          <h2>Ahead vs. Ahead Lite: What Each Is &amp; How They Differ</h2>
+          <p class="section-lead">We built two specialized apps to solve two distinct needs in diabetes care. Here is how they compare so you know exactly which to install.</p>
+        </div>
+
+        <!-- Narrative Breakdown Cards -->
+        <div class="diff-narrative-grid reveal">
+          
+          <!-- Deep Dive: Ahead -->
+          <div class="diff-card diff-card-full">
+            <div>
+              <div class="diff-badge-wrap">
+                <span class="diff-role-pill diff-role-full">Primary Device Engine</span>
+                <span class="tag-badge tag-green" style="margin: 0; font-size: 10.5px;">Standalone</span>
+              </div>
+              <h3 class="diff-headline">Ahead (The Autonomous Monitor)</h3>
+              <p class="diff-desc">
+                Ahead is a self-sufficient, heavy-duty continuous monitoring system built to live on the primary phone carried by the person with Type 1 Diabetes. It is designed to work even in the middle of nowhere without cellular reception.
+              </p>
+
+              <ul class="diff-points-list">
+                <li class="diff-point-item">
+                  <span style="color: var(--green); font-weight: 800;">✓</span>
+                  <div><strong>Direct Sensor Pairing:</strong> Reads directly from Dexcom G7/G6 or FreeStyle Libre 2/3 via Google Health Connect or Bluetooth LE. Does not depend on the internet.</div>
+                </li>
+                <li class="diff-point-item">
+                  <span style="color: var(--green); font-weight: 800;">✓</span>
+                  <div><strong>Dual 15m &amp; 30m Projections:</strong> Continuously computes forward velocity and acceleration, calculating both 15-minute and extended 30-minute horizons.</div>
+                </li>
+                <li class="diff-point-item">
+                  <span style="color: var(--green); font-weight: 800;">✓</span>
+                  <div><strong>7 Distinguishable Acoustic Tones:</strong> Custom harmonic waveforms (descending tones for lows, ascending for highs, rapid pulses for urgent drops) so you can tell what is happening by sound alone.</div>
+                </li>
+                <li class="diff-point-item">
+                  <span style="color: var(--green); font-weight: 800;">✓</span>
+                  <div><strong>Custom Tripwires &amp; DND Override:</strong> Set custom numeric thresholds or rate-of-fall triggers (<span class="mono">-2.0 mg/dL/min</span>) that break through Do Not Disturb.</div>
+                </li>
+                <li class="diff-point-item">
+                  <span style="color: var(--green); font-weight: 800;">✓</span>
+                  <div><strong>24/7 Watchdog Service:</strong> An Android foreground service with automatic wake-up watchdog ensures Android never kills background monitoring.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="diff-who-box">
+              <strong>Best For:</strong> The individual living with T1D. Install Ahead on your main phone that goes with you everywhere.
+            </div>
+          </div>
+
+          <!-- Deep Dive: Ahead Lite -->
+          <div class="diff-card diff-card-lite">
+            <div>
+              <div class="diff-badge-wrap">
+                <span class="diff-role-pill diff-role-lite">Caregiver &amp; Glanceable Companion</span>
+                <span class="tag-badge tag-purple" style="margin: 0; font-size: 10.5px;">Cloud Synced</span>
+              </div>
+              <h3 class="diff-headline">Ahead Lite (The Glanceable Companion)</h3>
+              <p class="diff-desc">
+                Ahead Lite is an ultra-lightweight, zero-friction visual dashboard and follower app. It is designed for caregivers, secondary phones, desk displays, or nightstand tablets that need glanceable glucose without battery drain.
+              </p>
+
+              <ul class="diff-points-list">
+                <li class="diff-point-item">
+                  <span style="color: var(--purple-light); font-weight: 800;">✓</span>
+                  <div><strong>Cloud Follower Architecture:</strong> Streams verified glucose points from Ahead Cloud API (<span class="mono">ahead-backend</span>) or Nightscout so loved ones stay informed remotely.</div>
+                </li>
+                <li class="diff-point-item">
+                  <span style="color: var(--purple-light); font-weight: 800;">✓</span>
+                  <div><strong>Zero-Impact Battery Footprint:</strong> Eliminates continuous Bluetooth radio polling and heavy CPU wakelocks, conserving battery on older or budget devices.</div>
+                </li>
+                <li class="diff-point-item">
+                  <span style="color: var(--purple-light); font-weight: 800;">✓</span>
+                  <div><strong>Instant High-Contrast Dashboard:</strong> Large crisp glucose readout, current trend slope (<span class="mono">+1.6 mg/dL/min</span>), 15m projection, and a clean historical sparkline curve.</div>
+                </li>
+                <li class="diff-point-item">
+                  <span style="color: var(--purple-light); font-weight: 800;">✓</span>
+                  <div><strong>Injected Test Data Safeguards:</strong> Communicates with Ahead via on-device IPC. If synthetic test scenarios are injected, Ahead Lite shows a clear warning banner (<span class="mono">🚨 INJECTED TEST DATA ACTIVE</span>) to prevent follower confusion.</div>
+                </li>
+                <li class="diff-point-item">
+                  <span style="color: var(--purple-light); font-weight: 800;">✓</span>
+                  <div><strong>Zero-Friction Pairing:</strong> No sensor calibrations, Health Connect permissions, or Bluetooth pairing required—just connect to your cloud stream.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="diff-who-box">
+              <strong>Best For:</strong> Parents, spouses, caregivers, secondary desk monitors, or anyone who wants an uncluttered glucose dashboard.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Side-by-Side Comparison Table -->
+        <div class="compare-table-wrap reveal">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th style="width: 32%;">Capability / Feature</th>
+                <th class="col-ahead" style="width: 34%;">Ahead (Full Monitor)</th>
+                <th class="col-lite" style="width: 34%;">Ahead Lite (Companion)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="feature-name">Primary Purpose</td>
+                <td>Autonomous on-device monitor &amp; alert engine</td>
+                <td>Glanceable display &amp; remote caregiver follower</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Sensor Ingestion</td>
+                <td><span class="check-yes">Direct</span> Health Connect &amp; Bluetooth BLE</td>
+                <td><span class="check-alt">Cloud Sync</span> Ahead Cloud API / Nightscout</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Offline Independence</td>
+                <td><span class="check-yes">100% Offline</span> Operates without cell service</td>
+                <td><span class="check-alt">Cloud Dependent</span> Requires internet connectivity</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Trajectory Projections</td>
+                <td><span class="check-yes">Dual 15m &amp; 30m</span> Projections with rate math</td>
+                <td><span class="check-alt">15m Horizon</span> Projection with current trend rate</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Acoustic Alert Tones</td>
+                <td><span class="check-yes">7 Distinct Waveforms</span> (Urgent, Warn, Calm tones)</td>
+                <td>Standard follower push notifications</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Custom Tripwires &amp; Fall Rates</td>
+                <td><span class="check-yes">Fully Configurable</span> Custom thresholds &amp; rate triggers</td>
+                <td>Target range boundary indicators</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Do Not Disturb Override</td>
+                <td><span class="check-yes">Yes</span> Critical alerts bypass DND &amp; silent mode</td>
+                <td>Follows standard Android notification volume</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Battery Consumption</td>
+                <td>Continuous foreground monitoring (~3-5% daily)</td>
+                <td><span class="check-alt">Near Zero</span> (No Bluetooth or wake locks)</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Injected Test Data Safety</td>
+                <td>Debug injector + upload firewall preventing cloud leak</td>
+                <td><span class="check-alt">Live Banner</span> Auto-detects test state via IPC</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Android Package ID</td>
+                <td><span class="mono">com.aheadt1d.app</span></td>
+                <td><span class="mono">com.aheadt1d.lite</span></td>
+              </tr>
+              <tr>
+                <td class="feature-name">Recommended Device</td>
+                <td>Primary phone carried by person with diabetes</td>
+                <td>Caregivers, parents, tablets, secondary displays</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </section>
 
@@ -579,6 +1053,20 @@
               When an update is released, simply download the new APK from this page and tap install. Android will seamlessly update Ahead in-place without touching your preferences, history, or custom thresholds.
             </p>
           </div>
+
+          <div class="faq-item">
+            <h4 class="faq-question">Can I install both Ahead and Ahead Lite on the same device?</h4>
+            <p class="faq-answer">
+              <strong>Yes.</strong> Ahead (<span class="mono">com.aheadt1d.app</span>) and Ahead Lite (<span class="mono">com.aheadt1d.lite</span>) have separate package IDs and install side-by-side with complete isolation. When run on the same phone, Ahead Lite uses local ContentProvider IPC to safely coordinate test scenarios and display safety disclaimers whenever synthetic data is active.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h4 class="faq-question">Which app should parents, partners, or caregivers install?</h4>
+            <p class="faq-answer">
+              Caregivers should install <strong>Ahead Lite</strong>. It streams glucose points remotely from Ahead Cloud or Nightscout with near-zero battery drain, instant glanceable typography, and automatic alerts without requiring local sensor calibration or Bluetooth management.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -637,10 +1125,13 @@
 
   <script src="app.js"></script>
   <script>
-    function copyChecksum() {
-      const text = document.getElementById('shaText').innerText;
+    function copyChecksum(textId = 'shaAhead', btnId = 'copyBtnAhead') {
+      const el = document.getElementById(textId);
+      if (!el) return;
+      const text = el.innerText.trim();
       navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById('copyBtn');
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
         const oldText = btn.innerText;
         btn.innerText = 'Copied!';
         btn.style.background = 'var(--green)';

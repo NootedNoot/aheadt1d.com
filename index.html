@@ -689,6 +689,38 @@ html.modal-open{overflow:hidden}
 }
 @media print{.modal{display:none!important}}
 
+/* ── "Ahead is a second buddy, not your main CGM": the safety messaging ── */
+.readfirst{position:relative;z-index:2;padding:6px 0 26px;margin-top:-8px}
+.rf-card{display:grid;grid-template-columns:auto 1fr auto;gap:18px 24px;align-items:center;padding:24px 28px;border-radius:var(--r);background:linear-gradient(120deg,rgba(255,138,43,.18),rgba(255,107,139,.13));border:1.5px solid rgba(255,184,71,.6);box-shadow:0 22px 56px -26px rgba(255,138,43,.55)}
+.rf-ico{width:56px;height:56px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,var(--sun),var(--coral));color:#2a0a10}
+.rf-ico .icon{width:29px;height:29px;stroke-width:2.3}
+.rf-card h2{font-size:clamp(1.3rem,2.8vw,1.85rem);margin-bottom:8px}
+.rf-card p{margin:0;color:#ffe9c9;font-size:1rem}
+.rf-card p strong{color:#fff}
+.rf-points{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.rf-points span{padding:6px 13px;border-radius:999px;background:rgba(0,0,0,.3);border:1px solid rgba(255,184,71,.45);font-weight:700;font-size:.82rem;color:#fff3dc}
+@media(max-width:860px){.rf-card{grid-template-columns:1fr;gap:14px;padding:20px 18px}.rf-card .btn{width:100%}}
+.warnline{margin:0;padding:9px 12px;border-radius:12px;background:rgba(255,184,71,.13);border:1px solid rgba(255,184,71,.5);color:#ffe7b8;font-size:.84rem;font-weight:600;line-height:1.45;position:relative;z-index:1}
+.tcard.wide{margin-bottom:16px;padding:24px 26px}
+.tcard.wide h3{font-size:1.25rem;margin-bottom:12px}
+.tcard.wide ul{gap:9px}
+.tcard.wide li,.tcard.wide p{font-size:.96rem}
+.mlist li.key{border-color:rgba(255,184,71,.7);background:rgba(255,138,43,.15)}
+.mlist li.key b{color:#fff}
+.agree-key{border-color:rgba(255,184,71,.65);background:rgba(255,138,43,.1)}
+.agree-key:hover{border-color:var(--sun)}
+.agree b{color:#fff}
+.nudge{position:fixed;right:18px;bottom:18px;z-index:140;width:min(390px,calc(100% - 24px));padding:18px 18px 16px;border-radius:20px;background:linear-gradient(180deg,#3a1268,#27094b);border:1.5px solid rgba(255,184,71,.65);box-shadow:0 30px 70px -20px rgba(0,0,0,.8);opacity:0;transform:translateY(24px);transition:opacity .35s ease,transform .35s ease}
+.nudge[hidden]{display:none}
+.nudge.on{opacity:1;transform:none}
+.nudge-h{margin:0 0 6px;font:800 .72rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sun)}
+.nudge p{margin:0 0 12px;color:var(--mute);font-size:.94rem;line-height:1.5}
+.nudge p strong{color:#fff}
+.nudge-a{display:flex;gap:8px;flex-wrap:wrap}
+.nudge-a .btn{padding:10px 16px;font-size:.88rem;flex:1 1 auto}
+@media(max-width:600px){.nudge{right:12px;left:12px;bottom:12px;width:auto}}
+@media print{.nudge{display:none!important}}
+
   </style>
 </head>
 <body>
@@ -816,6 +848,21 @@ html.modal-open{overflow:hidden}
       </div>
     </section>
 
+    <!-- ══ READ THIS FIRST ══ -->
+    <div class="readfirst">
+      <div class="wrap">
+        <div class="rf-card reveal" role="note" aria-label="Important safety notice">
+          <span class="rf-ico"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg></span>
+          <div>
+            <h2>Ahead is a second buddy — not your main CGM.</h2>
+            <p>Keep your <strong>official Dexcom app or receiver as your primary</strong>, with its alarms on. If Ahead, your phone or Bluetooth fails, your CGM setup must still be able to alert you without it. Ahead is <strong>not</strong> the thing to rely on with a Dexcom G7.</p>
+            <div class="rf-points"><span>Keep your official alarms ON</span><span>Never rely on Ahead alone</span><span>Test that your CGM works without it</span></div>
+          </div>
+          <a class="btn btn-ghost" href="#safety">Read the safety notes</a>
+        </div>
+      </div>
+    </div>
+
     <div class="ticker" aria-hidden="true">
       <div class="track">
         <span>Looks 15 &amp; 30 minutes ahead</span><span>Alerts you can tell apart without looking</span><span>A sensor link that heals itself</span><span>Family can follow along</span><span>Built for the Dexcom G7</span><span>Android 9 and newer</span><span class="boo">No jump scares, just early warnings</span><span class="boo">Purr-fectly timed alerts</span><span class="boo">Boo-tiful graphs</span><span class="boo">Fangs for the early warning</span><span class="boo">Skele-tons of help in the FAQ</span>
@@ -874,11 +921,12 @@ html.modal-open{overflow:hidden}
           <article class="app-card reveal" data-app="ble" data-role="t1d" data-name="AheadBLE" data-version="0.1.0" data-file="ahead-ble-latest.apk" data-bytes="21016973" data-sha="4b0c1ec268744e332a6b67e8549d485fa3b05cf420e203729bd8120ce46a8298">
             <div class="card-top">
               <span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-bt"/></svg></span>
-                            <span class="tags"><span class="pill">Step 1 · Sensor</span><span class="rec"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> For you</span></span>
+                            <span class="tags"><span class="pill">Sensor link</span><span class="rec"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> For you</span></span>
             </div>
             <h3>AheadBLE</h3>
             <p class="alias">Shows up on your phone as “Ahead Connect”</p>
-            <p class="app-desc">The bridge between your Dexcom G7 and your phone. <strong>Install and connect it first</strong> — Ahead has nothing to show until it’s running.</p>
+            <p class="app-desc">Our own connection to your Dexcom G7, for phones that don’t run the official Dexcom app. <strong>Install and connect it before Ahead</strong> — Ahead has nothing to show until a source is sending readings.</p>
+            <p class="warnline">⚠ A second tool. Keep your official CGM app or receiver, and its alarms, as your primary.</p>
             <dl class="facts">
               <div><dt>v</dt><dd>0.1.0 beta</dd></div>
               <div><dt>Size</dt><dd>21.0 MB</dd></div>
@@ -902,11 +950,12 @@ html.modal-open{overflow:hidden}
           <article class="app-card reveal" data-app="ahead" data-role="t1d" data-name="Ahead" data-version="0.1.0" data-file="ahead-latest.apk" data-bytes="25553338" data-sha="7740e25c962461c7a2108658638164aa8e5c720753b9105984aad8921eccac1c">
             <div class="card-top">
               <span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
-                            <span class="tags"><span class="pill">Step 2 · Main app</span><span class="rec"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> For you</span></span>
+                            <span class="tags"><span class="pill">Main app</span><span class="rec"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> For you</span></span>
             </div>
             <h3>Ahead</h3>
             <p class="alias">For the person living with Type 1</p>
             <p class="app-desc">Reads your glucose, projects <strong>15 and 30 minutes ahead</strong>, and alerts you early with tones, vibration and spoken alerts you can tell apart without looking. Can share with family.</p>
+            <p class="warnline">⚠ A second buddy, not your main CGM. Keep your official alarms on.</p>
             <dl class="facts">
               <div><dt>v</dt><dd>0.1.0 beta</dd></div>
               <div><dt>Size</dt><dd>25.6 MB</dd></div>
@@ -914,7 +963,7 @@ html.modal-open{overflow:hidden}
             </dl>
             <div class="card-cta">
               <a class="btn btn-dl" href="downloads/ahead-latest.apk" download><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg> Download Ahead</a>
-              <p class="dl-note">Install after AheadBLE says “Sensor connected”</p>
+              <p class="dl-note">Install once readings are reaching Health Connect</p>
               <details class="fp"><summary>Fingerprint &amp; details</summary>
                 <div class="hash">
                   <div class="hash-head"><span class="hash-label">SHA-256</span><button type="button" class="btn-mini" data-copy="7740e25c962461c7a2108658638164aa8e5c720753b9105984aad8921eccac1c" aria-label="Copy Ahead SHA-256"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></div>
@@ -934,6 +983,7 @@ html.modal-open{overflow:hidden}
             <h3>Ahead Lite</h3>
             <p class="alias">A companion, not a stripped-down Ahead</p>
             <p class="app-desc">Follow someone you care about: a big glanceable number, trend arrow, <strong>15-minute projection</strong> and 3-hour chart, with calm alerts for lows and fast drops — and a heads-up if their data goes quiet. No Bluetooth, no sensor.</p>
+            <p class="warnline">⚠ A second pair of eyes. It doesn’t replace their own CGM alarms.</p>
             <dl class="facts">
               <div><dt>v</dt><dd>1.0.0</dd></div>
               <div><dt>Size</dt><dd>22.0 MB</dd></div>
@@ -1070,7 +1120,7 @@ html.modal-open{overflow:hidden}
 
         <div class="notice mint reveal">
           <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
-          <p><strong>Why the order matters:</strong> Ahead doesn’t read your sensor itself — it reads Health Connect. If AheadBLE isn’t running, Ahead sees an empty feed. That’s why AheadBLE goes first. The dashed part is optional: Ahead works fully on its own without sharing with anyone.</p>
+          <p><strong>Why the order matters:</strong> Ahead doesn’t read your sensor itself — it reads Health Connect. If nothing is putting readings there yet, Ahead sees an empty feed. So your source goes first: AheadBLE, or the official Dexcom app / Juggluco with Health Connect sharing on. The dashed part is optional: Ahead works fully on its own without sharing with anyone.</p>
         </div>
       </div>
     </section>
@@ -1117,6 +1167,7 @@ html.modal-open{overflow:hidden}
 
         <!-- Type 1 path -->
         <div role="tabpanel" id="panel-t1d" data-panel="t1d" aria-labelledby="tab-t1d">
+          <div class="notice" role="note" style="margin:0 0 18px"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><p><strong>Before you start:</strong> Ahead is a second buddy, not your main CGM. Keep your official Dexcom app or receiver (and its alarms) as your primary the whole time. After setup, check that it’s still receiving readings and still alarms on its own — if setting up these apps interrupted it, stop and undo that.</p></div>
           <div class="progress"><div class="bar" aria-hidden="true"><i></i></div><span class="count" aria-live="polite">0 of 7 done</span><button type="button" class="reset">Reset</button></div>
           <ol class="steps">
             <li class="step">
@@ -1125,6 +1176,7 @@ html.modal-open{overflow:hidden}
                 <h3>Download AheadBLE and allow the install</h3>
                 <p>On the phone that will wear the sensor. When Android asks, allow your browser to install apps (<strong>Settings → Install unknown apps</strong>). You can switch that back off afterwards.</p>
                 <p class="tip">Play Protect may say the app is unrecognized. That’s normal for a beta shared outside the store. Only continue if you got it from this page and the <a href="#verify">fingerprint matches</a>.</p>
+                <p class="tip"><strong>Already use the official Dexcom app or Juggluco?</strong> You can skip AheadBLE: turn on Health Connect sharing there (Dexcom app: Settings → Connections → Health Connect; Juggluco: menu → Settings → Health Connect), then jump to step 5 to install Ahead.</p>
               </div>
             </li>
             <li class="step">
@@ -1162,6 +1214,7 @@ html.modal-open{overflow:hidden}
               <div>
                 <h3>Check the loop is closed</h3>
                 <p>Within a few minutes Ahead should show your current number and trend. If it says there’s no data, go back to step 3 — AheadBLE has to show <strong>connected</strong> first.</p>
+                <p class="tip"><strong>Now test your safety net:</strong> confirm your official Dexcom app or receiver is still showing readings and its alarms still sound on their own. Never rely on Ahead alone.</p>
               </div>
             </li>
             <li class="step">
@@ -1220,7 +1273,7 @@ html.modal-open{overflow:hidden}
               <label class="tick"><input type="checkbox" data-step="f-6" /><span class="box"><span class="n">6</span><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span class="sr-only">Mark step 6 done</span></label>
               <div>
                 <h3>Know what you’re looking at</h3>
-                <p>You’ll see their current number, trend, a 15-minute projection and a 3-hour chart. These are estimates from glucose alone — they don’t know about insulin, food or activity. <strong>If you’re worried, call them.</strong></p>
+                <p>You’ll see their current number, trend, a 15-minute projection and a 3-hour chart. These are estimates from glucose alone — they don’t know about insulin, food or activity. <strong>If you’re worried, call them.</strong> Ahead Lite is a second pair of eyes — it doesn’t replace their own CGM alarms or an emergency service.</p>
                 <p class="tip">Your sign-in lasts about 30 days, so open the app about once a month. If it ever says it can’t reach data, open it and sign in again.</p>
               </div>
             </li>
@@ -1267,13 +1320,13 @@ html.modal-open{overflow:hidden}
       <div class="wrap">
         <div class="sec-head reveal">
           <p class="eyebrow" style="color:var(--sky)">The part everyone asks about</p>
-          <h2>What is AheadBLE, and why does Ahead need it?</h2>
-          <p>Ahead never talks to your sensor directly. It reads your glucose from Android’s Health Connect. <strong style="color:var(--ink)">AheadBLE is the small app whose only job is to talk to your Dexcom G7 over Bluetooth and put every reading where Ahead can use it.</strong></p>
+          <h2>What is AheadBLE, and do I need it?</h2>
+          <p>Ahead never talks to your sensor directly — it reads your glucose from Android’s Health Connect. <strong style="color:var(--ink)">AheadBLE is our own small app whose only job is to talk to your Dexcom G7 over Bluetooth</strong> and put every reading where Ahead can use it. <strong style="color:var(--ink)">You need one source of readings:</strong> AheadBLE, or the official Dexcom app or Juggluco with their Health Connect sharing turned on.</p>
         </div>
 
         <div class="must reveal">
-          <h3>Set AheadBLE up first. Ahead has nothing to show without it.</h3>
-          <p>Install it, pair your sensor, and wait until its notification says <strong>“Sensor connected :)”</strong> before you open Ahead. It’s a quick, one-time step per sensor — then you can forget about it.</p>
+          <h3>If AheadBLE is your source, set it up first. Ahead has nothing to show without a source.</h3>
+          <p>Install it, pair your sensor, and wait until its notification says <strong>“Sensor connected :)”</strong> before you open Ahead. It’s a quick, one-time step per sensor — then you can forget about it. <strong>Already use the official Dexcom app or Juggluco?</strong> Skip AheadBLE and turn on Health Connect sharing there instead.</p>
         </div>
 
         <div class="trio reveal">
@@ -1324,7 +1377,7 @@ html.modal-open{overflow:hidden}
           </div>
         </details>
 
-        <p class="reveal" style="margin-top:24px;color:var(--dim);font-size:.9rem"><strong style="color:var(--mute)">Free software, with thanks.</strong> AheadBLE is licensed under the GNU GPL v3. It doesn’t pair with your G7 independently — it connects through a sensor pairing made by the <strong style="color:var(--mute)">Juggluco</strong> project’s app, which needs to be installed and paired first. Source on <a href="https://github.com/NootedNoot/ahead-ble">GitHub</a>.</p>
+        <p class="reveal" style="margin-top:24px;color:var(--dim);font-size:.9rem"><strong style="color:var(--mute)">Free software, with thanks.</strong> AheadBLE is licensed under the GNU GPL v3 and builds on the open-source Dexcom G7 protocol work of the <strong style="color:var(--mute)">Juggluco</strong> project. Source on <a href="https://github.com/NootedNoot/ahead-ble">GitHub</a>.</p>
       </div>
     </section>
 
@@ -1376,11 +1429,19 @@ html.modal-open{overflow:hidden}
           <h2>Straight talk about safety.</h2>
           <p>Glucose monitoring matters, so here’s exactly what this is and isn’t.</p>
         </div>
+        <div class="tcard red wide reveal">
+          <h3>Ahead is a second buddy for your CGM — never your main one</h3>
+          <ul>
+            <li>Keep your <strong>official Dexcom app or receiver as your primary</strong>, and keep its alarms on. Don’t mute or switch off anything because Ahead is installed.</li>
+            <li>If Ahead fails — and it can, without warning — your official setup must still be able to alert you <strong>without it</strong>. Test that before you trust any setup.</li>
+            <li>Ahead isn’t designed, tested or supported as the main way to use a Dexcom G7. If Ahead and your CGM or a fingerstick disagree, <strong>trust the CGM and the fingerstick</strong>.</li>
+          </ul>
+        </div>
         <div class="quad">
           <div class="tcard reveal"><h3>Early beta, one developer</h3><p>Built and tested by one person, mostly on one phone and one sensor. Bugs will happen — please tell us when they do.</p></div>
           <div class="tcard reveal"><h3>Development builds</h3><p>These are <strong>debug builds</strong>: fully functional, but not the hardened release builds you’d get from a store. Install only from this page and check the fingerprint.</p></div>
           <div class="tcard red reveal"><h3>Not a medical device</h3><p>Ahead hasn’t been through regulatory review. It’s for awareness and it <strong>never tells you how much insulin to take</strong> or what to eat.</p></div>
-          <div class="tcard red reveal"><h3>Keep a second safety net</h3><p>Alerts are best-effort — Android can delay background apps. Keep another way of being alerted and follow your care team’s guidance.</p></div>
+          <div class="tcard red reveal"><h3>Keep your official alarms on</h3><p>Alerts from any phone app are best-effort — Android can delay background apps. Keep your official CGM alarms as your primary, plus another way of being alerted, and follow your care team’s guidance.</p></div>
         </div>
 
         <h3 class="sub-h reveal" id="privacy">Your data</h3>
@@ -1419,7 +1480,7 @@ html.modal-open{overflow:hidden}
             <tbody>
               <tr><th scope="row">Who installs it</th><td>Someone wearing a Dexcom G7</td><td>The person living with Type 1</td><td>Family, partners, caregivers</td></tr>
               <tr><th scope="row">Its one job</th><td>Talk to the sensor</td><td>Analyze, project ahead and alert</td><td>Follow along from a distance</td></tr>
-              <tr><th scope="row">Where readings come from</th><td>The G7, over Bluetooth (via a pairing Juggluco makes)</td><td>Health Connect (filled by AheadBLE, Juggluco or the Dexcom app)</td><td>The person’s Ahead account, over the internet</td></tr>
+              <tr><th scope="row">Where readings come from</th><td>The G7, over Bluetooth</td><td>Health Connect (filled by AheadBLE, the official Dexcom app or Juggluco)</td><td>The person’s Ahead account, over the internet</td></tr>
               <tr><th scope="row">Uses Bluetooth &amp; Health Connect</th><td>Both</td><td>Health Connect</td><td>Neither</td></tr>
               <tr><th scope="row">Needs internet</th><td>No</td><td>To sign in, sync and share — not to analyze or alert</td><td>Yes</td></tr>
               <tr><th scope="row">Alerts</th><td>Connection status only</td><td>Yellow warnings, red alerts and your own Alarm Thresholds</td><td>Lows, fast drops, and data gone quiet</td></tr>
@@ -1435,7 +1496,7 @@ html.modal-open{overflow:hidden}
           <summary><span class="ico-s"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><span>What each app asks for, and why<small>Nothing hidden — the reason behind every permission</small></span></summary>
           <div class="acc-body">
         <details class="perm">
-          <summary><span>AheadBLE <span class="sum-sub">10 permissions</span></span></summary>
+          <summary><span>AheadBLE <span class="sum-sub">11 permissions</span></span></summary>
           <div class="tbl-wrap"><table class="tbl"><thead><tr><th scope="col">Permission</th><th scope="col">Why it’s needed</th></tr></thead><tbody>
             <tr><th scope="row">Nearby devices (Bluetooth)</th><td>Finds and talks to your G7.</td></tr>
             <tr><th scope="row">Location</th><td>Android 11 and older require it before any app can scan for Bluetooth devices. AheadBLE never reads your location.</td></tr>
@@ -1446,19 +1507,18 @@ html.modal-open{overflow:hidden}
             <tr><th scope="row">Run at start-up</th><td>Restarts itself after a reboot or app update.</td></tr>
             <tr><th scope="row">Exact alarms &amp; wake lock</th><td>Backup timers that wake it if Android puts it to sleep.</td></tr>
             <tr><th scope="row">Ignore battery optimizations</th><td>Lets it ask to be exempt from battery restrictions so the link stays up.</td></tr>
+            <tr><th scope="row">Internet</th><td>Android lists this for AheadBLE because Google’s barcode-scanning component (which reads the code on your sensor applicator) can send anonymous usage statistics to Google. AheadBLE has no server and never sends your glucose readings anywhere.</td></tr>
             <tr><th scope="row">Ahead’s private broadcast</th><td>A signal only Ahead can receive, so readings reach it instantly.</td></tr>
           </tbody></table></div>
         </details>
 
         <details class="perm">
-          <summary><span>Ahead <span class="sum-sub">12 permissions</span></span></summary>
+          <summary><span>Ahead <span class="sum-sub">10 permissions</span></span></summary>
           <div class="tbl-wrap"><table class="tbl"><thead><tr><th scope="col">Permission</th><th scope="col">Why it’s needed</th></tr></thead><tbody>
-            <tr><th scope="row">Health Connect: read blood glucose (incl. background)</th><td>Reads the readings your chosen source (AheadBLE, Juggluco or the Dexcom app) saved — even when Ahead isn’t open.</td></tr>
+            <tr><th scope="row">Health Connect: read blood glucose (incl. background)</th><td>Reads the readings AheadBLE saved — even when Ahead isn’t open.</td></tr>
             <tr><th scope="row">Health Connect: exercise &amp; sleep, and step counting</th><td>Feeds the Health Data screen with context around your glucose.</td></tr>
             <tr><th scope="row">Notifications &amp; vibration</th><td>Delivers your alerts.</td></tr>
             <tr><th scope="row">Do Not Disturb access</th><td>Lets red alerts and your Alarm Thresholds break through Do Not Disturb. Optional but recommended.</td></tr>
-            <tr><th scope="row">Full-screen alert</th><td>Shows the red-alert screen over your lock screen so it can’t be missed.</td></tr>
-            <tr><th scope="row">Send SMS</th><td>Texts an emergency contact you’ve set up yourself — only after you tap Yes on the red-alert confirmation. Never sent automatically or silently.</td></tr>
             <tr><th scope="row">Foreground service</th><td>Keeps monitoring running in the background.</td></tr>
             <tr><th scope="row">Run at start-up</th><td>Restarts monitoring after a reboot or app update.</td></tr>
             <tr><th scope="row">Exact alarms</th><td>A backup heartbeat that wakes it even in deep battery-saving sleep.</td></tr>
@@ -1529,13 +1589,13 @@ html.modal-open{overflow:hidden}
 
         <!-- Getting started -->
         <details class="faq" id="q-which-apps" data-cat="start"><summary>Which apps do I need?</summary><div class="faq-a">
-          <p><strong>If you live with Type 1 and wear a Dexcom G7</strong>, you need <strong>Ahead</strong> plus something feeding Health Connect. Pick one:</p>
+          <p><strong>If you live with Type 1 and wear a Dexcom G7:</strong> you need <strong>Ahead</strong> plus something that puts your readings into Health Connect. Pick one:</p>
           <ul>
-            <li>Already using the <strong>official Dexcom app</strong>? Turn on its Health Connect sharing — nothing else to install.</li>
-            <li>Already using <strong>Juggluco</strong>? Same deal — enable its Health Connect sync in its settings.</li>
-            <li>Using neither? Install <strong>Juggluco</strong> and pair it with your sensor first, then install <strong>AheadBLE</strong> on top — AheadBLE connects through Juggluco’s pairing rather than pairing with the sensor on its own.</li>
+            <li><strong>The official Dexcom app</strong> — turn on its Health Connect sharing (Settings → Connections → Health Connect). Nothing else to install, and it can stay your primary.</li>
+            <li><strong>Juggluco</strong> — enable its Health Connect sync (menu → Settings → Health Connect).</li>
+            <li><strong>AheadBLE</strong> — our own connection to your G7 (it pairs with the 4-digit code on your applicator). Handy if your phone can’t run the official app. Install it first and wait for “Sensor connected :)”.</li>
           </ul>
-          <p>Then install <strong>Ahead</strong> either way.</p>
+          <p>Then install <strong>Ahead</strong>.</p>
           <p><strong>If you’re a parent, partner or friend following someone:</strong> install <strong>Ahead Lite</strong>. They share their stream with you. You never need AheadBLE or Ahead on a follower’s phone.</p>
           <div class="faq-foot"><span class="faq-cat">Getting started</span><button type="button" class="btn-mini" data-copy-link="q-which-apps"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
@@ -1570,19 +1630,18 @@ html.modal-open{overflow:hidden}
 
         <!-- AheadBLE -->
         <details class="faq" id="q-what-ble" data-cat="ble"><summary>What is AheadBLE?</summary><div class="faq-a">
-          <p>AheadBLE (it appears on your phone as <strong>Ahead Connect</strong>) is a small app with one job: hand each Dexcom G7 reading to Ahead the instant it arrives, instead of waiting on Health Connect’s own sync timing. It saves every reading to Health Connect too.</p>
-          <p>It doesn’t pair with your sensor independently — it connects through a pairing <strong>Juggluco</strong> has already made. Install and pair Juggluco with your G7 first and keep it installed, then install AheadBLE on top. <a href="#ble">More on AheadBLE</a>.</p>
+          <p>AheadBLE (it appears on your phone as <strong>Ahead Connect</strong>) is our small standalone app for the Dexcom G7. It pairs with your sensor itself — using the 4-digit code on the applicator — receives each reading over Bluetooth, saves it to Health Connect, and also pings Ahead instantly so alerts don’t wait on a timer. It doesn’t need the official Dexcom app or Juggluco installed. <a href="#ble">More on AheadBLE</a>.</p>
           <div class="faq-foot"><span class="faq-cat">AheadBLE</span><button type="button" class="btn-mini" data-copy-link="q-what-ble"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
 
         <details class="faq" id="q-ble-account" data-cat="ble"><summary>Does AheadBLE need an account?</summary><div class="faq-a">
-          <p>No. AheadBLE has no sign-in and doesn’t use the internet — it just pairs with your sensor and passes readings to your phone. Your account lives in <strong>Ahead</strong>. <a href="#q-accounts">How accounts work</a>.</p>
+          <p>No. AheadBLE has no sign-in and never sends your readings anywhere — it just pairs with your sensor and passes readings to your phone. Your account lives in <strong>Ahead</strong>. <a href="#q-accounts">How accounts work</a>.</p>
           <div class="faq-foot"><span class="faq-cat">AheadBLE</span><button type="button" class="btn-mini" data-copy-link="q-ble-account"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
 
         <details class="faq" id="q-needs-ble" data-cat="ble"><summary>Does Ahead work without AheadBLE?</summary><div class="faq-a">
-          <p>Yes. Ahead doesn’t connect to the sensor itself — it just reads Health Connect, whatever app is filling it. The <strong>official Dexcom app</strong> and <strong>Juggluco</strong> both work as your source: turn on Health Connect sharing in whichever one you already use, and Ahead picks up readings from there, no AheadBLE required.</p>
-          <p>AheadBLE is a third option for people who’d rather not run a full CGM app — but it isn’t an independent connection, it rides on a sensor pairing Juggluco has already made, so Juggluco still needs to be installed and paired first. Whichever source you pick, Ahead has nothing to show until that source has a live, recent reading.</p>
+          <p><strong>Yes, if something else is putting your readings into Health Connect.</strong> Ahead doesn’t connect to the sensor itself — it reads Health Connect. AheadBLE is the source we build and test with, but the <strong>official Dexcom app</strong> and <strong>Juggluco</strong> work too: turn on Health Connect sharing in whichever you already use and Ahead picks the readings up, no AheadBLE needed.</p>
+          <p><strong>Until some source is sending readings, Ahead has nothing to show.</strong> Using the official Dexcom app as your source is also the simplest way to keep it as your primary and let Ahead be a second buddy.</p>
           <div class="faq-foot"><span class="faq-cat">AheadBLE</span><button type="button" class="btn-mini" data-copy-link="q-needs-ble"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
 
@@ -1615,7 +1674,8 @@ html.modal-open{overflow:hidden}
         </div></details>
 
         <details class="faq" id="q-dexcom-app" data-cat="ble"><summary>Can I use the Dexcom app at the same time?</summary><div class="faq-a">
-          <p>That’s untested. We recommend AheadBLE be the only app that connects directly to your sensor. Treat running both as unsupported.</p>
+          <p><strong>With Ahead, yes:</strong> Ahead can read what the official Dexcom app shares to Health Connect, so the Dexcom app can stay your primary and Ahead is a second pair of eyes.</p>
+          <p><strong>With AheadBLE, we don’t know:</strong> running the official app and AheadBLE against the same sensor at once is untested, and some setups may only let one app connect to the sensor at a time. If they interfere, pick one source — and keep an official, independent alarm path (the Dexcom app or receiver) as your primary. Don’t rely on AheadBLE or Ahead alone. Not sure? Ask your care team or Dexcom first.</p>
           <div class="faq-foot"><span class="faq-cat">AheadBLE</span><button type="button" class="btn-mini" data-copy-link="q-dexcom-app"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
 
@@ -1642,7 +1702,7 @@ html.modal-open{overflow:hidden}
         </div></details>
 
         <details class="faq" id="q-offline" data-cat="ahead"><summary>Does Ahead work offline?</summary><div class="faq-a">
-          <p>Ahead does its analysis and alerting on your phone, so alerts don’t need a connection. You need internet to sign in, sync to your account and share with family. AheadBLE only needs Bluetooth.</p>
+          <p>Yes for alerts. Ahead does its analysis and alerting on your phone, so alerts don’t need our server or an internet connection — as long as your glucose source (AheadBLE, the Dexcom app or Juggluco) keeps writing readings to Health Connect. You need internet to sign in, sync to your account and share with family. AheadBLE only needs Bluetooth.</p>
           <div class="faq-foot"><span class="faq-cat">Ahead</span><button type="button" class="btn-mini" data-copy-link="q-offline"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
         </div></details>
 
@@ -1688,6 +1748,27 @@ html.modal-open{overflow:hidden}
         </div></details>
 
         <!-- Safety & privacy -->
+        <details class="faq" id="q-not-primary" data-cat="safe"><summary>Can I use Ahead instead of my Dexcom app or receiver?</summary><div class="faq-a">
+          <p><strong>No.</strong> Ahead is a second buddy that sits alongside your official CGM setup — not a replacement for it. Your official Dexcom app or receiver should stay your primary way of seeing your glucose and getting alarms, with its alarms on. Ahead isn’t designed, tested or supported as the main thing to rely on with a Dexcom G7.</p>
+          <p>The simplest second-buddy setup: keep the official Dexcom app as your primary, turn on its Health Connect sharing (Settings → Connections → Health Connect), and let Ahead read from there.</p>
+          <div class="faq-foot"><span class="faq-cat">Safety &amp; privacy</span><button type="button" class="btn-mini" data-copy-link="q-not-primary"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
+        </div></details>
+
+        <details class="faq" id="q-ahead-fails" data-cat="safe"><summary>What happens if Ahead stops working?</summary><div class="faq-a">
+          <p>Your official CGM setup should keep working on its own — that’s exactly why it stays your primary. Ahead can stop for plenty of reasons: a phone restart, battery limits, a Bluetooth hiccup, an update, a bug. Before you trust any setup, check that your official Dexcom alarms still sound without Ahead running, and keep another way of being alerted.</p>
+          <div class="faq-foot"><span class="faq-cat">Safety &amp; privacy</span><button type="button" class="btn-mini" data-copy-link="q-ahead-fails"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
+        </div></details>
+
+        <details class="faq" id="q-dexcom-alarms" data-cat="safe"><summary>Should I turn off my Dexcom alarms because Ahead alerts me?</summary><div class="faq-a">
+          <p><strong>No.</strong> Never mute, disable or ignore your official alarms because Ahead is installed. Ahead’s alerts are extra — not instead of anything.</p>
+          <div class="faq-foot"><span class="faq-cat">Safety &amp; privacy</span><button type="button" class="btn-mini" data-copy-link="q-dexcom-alarms"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
+        </div></details>
+
+        <details class="faq" id="q-overnight" data-cat="safe"><summary>Can I rely on Ahead while I sleep, drive or exercise — or with hypoglycemia unawareness?</summary><div class="faq-a">
+          <p>Not on its own. Alerts from any phone app can be late or missing. Use your official CGM alarms as your primary in every situation, keep another way of being alerted, and talk to your care team about what’s right for you. If Ahead and your CGM or a fingerstick disagree, trust the CGM and the fingerstick.</p>
+          <div class="faq-foot"><span class="faq-cat">Safety &amp; privacy</span><button type="button" class="btn-mini" data-copy-link="q-overnight"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
+        </div></details>
+
         <details class="faq" id="q-medical" data-cat="safe"><summary>Is Ahead a medical device?</summary><div class="faq-a">
           <p>No. Ahead hasn’t been through regulatory review. It’s an independent monitoring tool and research project built by one person. Don’t use it as your only safeguard, and follow your care team’s guidance.</p>
           <div class="faq-foot"><span class="faq-cat">Safety &amp; privacy</span><button type="button" class="btn-mini" data-copy-link="q-medical"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link</span></button></div>
@@ -1790,7 +1871,7 @@ html.modal-open{overflow:hidden}
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-disclaimer">
-        <strong>Medical disclaimer:</strong> Ahead is a monitoring companion and research tool for informational purposes. It is not a medical device, does not replace your CGM’s own alarms, your insulin delivery system or the guidance of your physician, and never provides dosing advice. AheadBLE is free software under the GNU GPL v3; it connects to your sensor through a pairing made by the Juggluco app, which must be installed and paired first.
+        <strong>Medical disclaimer:</strong> Ahead is a monitoring companion and research tool for informational purposes. It is not a medical device, does not replace your CGM’s own alarms, your insulin delivery system or the guidance of your physician, and never provides dosing advice. AheadBLE is free software under the GNU GPL v3, built on open-source work from the Juggluco project.
       </div>
       <div class="foot-links">
         <a href="#top">Home</a><a href="#downloads">Downloads</a><a href="#install">Setup guide</a><a href="#faq">FAQ</a><a href="mailto:hello@aheadt1d.com">Contact</a><a href="legal.html#privacy">Privacy Policy</a><a href="legal.html#terms">Terms of Use</a>
@@ -1835,12 +1916,17 @@ html.modal-open{overflow:hidden}
       <h2 id="dlModalTitle">Please read and agree</h2>
       <p class="lede">Ahead is early beta software built by one person. You’re about to download <strong id="dlAppName">this app</strong>.</p>
       <ul class="mlist">
-        <li><span class="mi">1</span><span><b>Not a medical device.</b> It hasn’t been cleared or approved by the FDA or any regulator, and it doesn’t replace your CGM’s own alarms, your receiver, your insulin delivery system or your care team. It never tells you how much insulin to take or what to eat.</span></li>
-        <li><span class="mi">2</span><span><b>Alerts and projections can be late, wrong or missing.</b> Phones, Bluetooth, sensors, batteries and the internet all fail. Keep another way of being alerted, and confirm with a fingerstick before you act on a number.</span></li>
-        <li><span class="mi">3</span><span><b>You accept any and all risks.</b> It’s provided “as is,” with no warranty. By downloading, you accept every risk of using it, and to the fullest extent the law allows you release Ahead and its developer from all claims for harm or loss connected to it — including missed, late or incorrect alerts — and agree we owe you nothing (our liability is $0).</span></li>
-        <li><span class="mi">4</span><span><b>Not affiliated with Dexcom.</b> AheadBLE uses unofficial software to talk to a Dexcom G7. Dexcom doesn’t support it, and using it may affect your sensor’s warranty or support.</span></li>
-        <li><span class="mi">5</span><span><b>Under 18, or following someone?</b> A parent or guardian must agree for you, and you should only follow people who have chosen to share with you. In an emergency, call your local emergency number.</span></li>
+        <li class="key"><span class="mi">1</span><span><b>Ahead is a second buddy — not your main CGM.</b> Keep your official Dexcom app or receiver as your primary way of getting glucose readings and alarms, and keep those alarms on. If Ahead, your phone or Bluetooth fails, your official setup must still be able to alert you without it. Ahead isn’t designed to be the main thing you rely on with a Dexcom G7.</span></li>
+        <li><span class="mi">2</span><span><b>Not a medical device.</b> It hasn’t been cleared or approved by the FDA or any regulator, and it doesn’t replace your CGM’s own alarms, your receiver, your insulin delivery system or your care team. It never tells you how much insulin to take or what to eat.</span></li>
+        <li><span class="mi">3</span><span><b>Alerts and projections can be late, wrong or missing.</b> Phones, Bluetooth, sensors, batteries and the internet all fail. Confirm with your official CGM or a fingerstick before you act on a number.</span></li>
+        <li><span class="mi">4</span><span><b>You accept any and all risks.</b> It’s provided “as is,” with no warranty. By downloading, you accept every risk of using it, and to the fullest extent the law allows you release Ahead and its developer from all claims for harm or loss connected to it — including missed, late or incorrect alerts — and agree we owe you nothing (our liability is $0).</span></li>
+        <li><span class="mi">5</span><span><b>Not affiliated with Dexcom.</b> AheadBLE uses unofficial software to talk to a Dexcom G7. Dexcom doesn’t support it, and using it may affect your sensor’s warranty or support. We haven’t tested it alongside every official setup, so check that yours still works.</span></li>
+        <li><span class="mi">6</span><span><b>Under 18, or following someone?</b> A parent or guardian must agree for you, and you should only follow people who have chosen to share with you. In an emergency, call your local emergency number.</span></li>
       </ul>
+      <label class="agree agree-key" for="dlBackup">
+        <input type="checkbox" id="dlBackup" />
+        <span><b>I understand Ahead is only a second buddy.</b> I will keep my official CGM app or receiver, and its alarms, on as my primary — and I won’t rely on Ahead alone.</span>
+      </label>
       <label class="agree" for="dlAgree">
         <input type="checkbox" id="dlAgree" />
         <span>I have read and agree to the <a href="legal.html#terms" target="_blank" rel="noopener">Terms of Use</a>, the <a href="legal.html#privacy" target="_blank" rel="noopener">Privacy Policy</a> and this disclaimer. I’m 18 or older, or a parent or guardian agreeing for a minor.</span>
@@ -1852,6 +1938,12 @@ html.modal-open{overflow:hidden}
       <p class="modal-fine">We ask every time you download. A note of which app you accepted and when is saved in your browser.</p>
     </div>
   </div>
+
+  <aside class="nudge" id="safetyNudge" role="region" aria-label="Safety reminder" hidden>
+    <p class="nudge-h">Quick safety reminder</p>
+    <p><strong>Ahead is a second buddy, not your main CGM.</strong> Keep your official Dexcom app or receiver as your primary, with its alarms on.</p>
+    <div class="nudge-a"><a class="btn btn-ghost" href="#safety">Read the safety notes</a><button type="button" class="btn btn-hot" id="nudgeOk">Got it</button></div>
+  </aside>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -2186,13 +2278,13 @@ html.modal-open{overflow:hidden}
   /* ══ Role picker (also honors ?for=family / ?for=me) ══ */
   var picks = $$('.pick'), hint = $('#roleHint');
   var HINTS = {
-    t1d: 'You need two apps, in this order: <strong>AheadBLE</strong> first, then <strong>Ahead</strong>.',
+    t1d: 'You need <strong>Ahead</strong> plus a source of readings: <strong>AheadBLE</strong>, or the official Dexcom app / Juggluco sharing to Health Connect.',
     follower: 'You just need <strong>Ahead Lite</strong> — and the person you follow shares their stream with you.',
     none: 'Pick one and we’ll highlight the right downloads and setup steps.'
   };
   var DL_COPY = {
-    none: { t: 'Three apps, two paths.', s: 'Living with Type 1? You use <strong>AheadBLE and Ahead together</strong> — Ahead has nothing to show without a glucose source, and AheadBLE is the one we build and test with. Following someone? You just need <strong>Ahead Lite</strong>. Pick your path and we’ll line up the right downloads.' },
-    t1d: { t: 'Two apps, installed in this order.', s: '<strong>AheadBLE first:</strong> it talks to your G7 and saves every reading to Health Connect. <strong>Then Ahead:</strong> it reads them, projects ahead and alerts you. Without AheadBLE running, Ahead has nothing to show.' },
+    none: { t: 'Three apps, two paths.', s: 'Living with Type 1? You use <strong>Ahead plus a source of readings</strong> — AheadBLE, or the official Dexcom app / Juggluco sharing to Health Connect. Ahead has nothing to show until one of them is sending readings. Following someone? You just need <strong>Ahead Lite</strong>. Pick your path and we’ll line up the right downloads.' },
+    t1d: { t: 'Ahead, plus a source of readings.', s: '<strong>Ahead reads Health Connect</strong>, so something has to put your G7 readings there. <strong>Already use the official Dexcom app or Juggluco?</strong> Turn on its Health Connect sharing and just install Ahead — the official app can stay your primary. <strong>No official app on your phone?</strong> Install <strong>AheadBLE first</strong> (it talks to your G7 itself), then Ahead.' },
     follower: { t: 'One app for you: Ahead Lite.', s: 'You don’t need AheadBLE or Ahead on your phone. The person you follow shares their readings with your Ahead Lite account — <a href="#accounts">here’s how accounts work</a>.' }
   };
   var dlT = $('#dlTitle'), dlS = $('#dlSub'), showAll = $('#showAll');
@@ -2252,8 +2344,8 @@ html.modal-open{overflow:hidden}
   };
 
   /* ══ Download gate: everyone ticks "I agree" before EACH download (click-through terms) ══ */
-  var TERMS_VERSION = '2026-09-19.2';
-  var gate = $('#dlModal'), gCheck = $('#dlAgree'), gGo = $('#dlAccept'), gName = $('#dlAppName'), gCancel = $('#dlCancel'), gCard = gate && $('.modal-card', gate);
+  var TERMS_VERSION = '2026-09-19.3';
+  var gate = $('#dlModal'), gCheck = $('#dlAgree'), gBackup = $('#dlBackup'), gGo = $('#dlAccept'), gName = $('#dlAppName'), gCancel = $('#dlCancel'), gCard = gate && $('.modal-card', gate);
   var pending = null, lastFocus = null;
   function gateFocusables() {
     return $$('a[href], button:not([disabled]), input:not([disabled])', gate).filter(function (el) { return el.offsetParent !== null; });
@@ -2263,7 +2355,7 @@ html.modal-open{overflow:hidden}
     pending = { href: a.getAttribute('href'), app: card ? card.getAttribute('data-app') : '', name: card ? card.getAttribute('data-name') : 'this app', file: card ? card.getAttribute('data-file') : '' };
     gName.textContent = pending.name;
     gGo.textContent = 'Accept & download ' + pending.name;
-    gCheck.checked = false; gGo.disabled = true;
+    gCheck.checked = false; gBackup.checked = false; gGo.disabled = true;
     lastFocus = document.activeElement;
     gate.hidden = false; document.documentElement.classList.add('modal-open');
     gCard.scrollTop = 0;
@@ -2274,7 +2366,9 @@ html.modal-open{overflow:hidden}
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
   if (gate) {
-    gCheck.addEventListener('change', function () { gGo.disabled = !gCheck.checked; });
+    function syncGo() { gGo.disabled = !(gCheck.checked && gBackup.checked); }
+    gCheck.addEventListener('change', syncGo);
+    gBackup.addEventListener('change', syncGo);
     gCancel.addEventListener('click', closeGate);
     gate.addEventListener('click', function (e) { if (e.target === gate) closeGate(); });
     document.addEventListener('keydown', function (e) {
@@ -2287,11 +2381,11 @@ html.modal-open{overflow:hidden}
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
     gGo.addEventListener('click', function () {
-      if (!pending || !gCheck.checked) return;
+      if (!pending || !gCheck.checked || !gBackup.checked) return;
       var p = pending, r = gGo.getBoundingClientRect();
       try {
         var log = JSON.parse(store.get('ahead-dl-accepted') || '[]'); if (!Array.isArray(log)) log = [];
-        log.push({ app: p.app, file: p.file, terms: TERMS_VERSION, at: new Date().toISOString() });
+        log.push({ app: p.app, file: p.file, terms: TERMS_VERSION, secondBuddyAck: true, at: new Date().toISOString() });
         store.set('ahead-dl-accepted', JSON.stringify(log.slice(-25)));
       } catch (err) {}
       var link = document.createElement('a');
@@ -2304,6 +2398,22 @@ html.modal-open{overflow:hidden}
     });
     $$('.app-card .btn-dl').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); openGate(a); }); });
   }
+
+  /* ══ Safety reminder: slides in once per session when the Downloads section comes into view ══ */
+  (function () {
+    var n = $('#safetyNudge'), dl = $('#downloads');
+    if (!n || !dl) return;
+    var seen = false; try { seen = sessionStorage.getItem('ahead-safety-nudge') === '1'; } catch (e) {}
+    if (seen) return;
+    function show() { if (gate && !gate.hidden) return; n.hidden = false; window.requestAnimationFrame(function () { n.classList.add('on'); }); }
+    function hide() { n.classList.remove('on'); setTimeout(function () { n.hidden = true; }, 350); try { sessionStorage.setItem('ahead-safety-nudge', '1'); } catch (e) {} }
+    $('#nudgeOk').addEventListener('click', hide);
+    $('a', n).addEventListener('click', hide);
+    if ('IntersectionObserver' in window) {
+      var no = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { no.disconnect(); setTimeout(show, 700); } }, { threshold: .2 });
+      no.observe(dl);
+    }
+  })();
 
   /* ══ Tabs ══ */
   tabs.forEach(function (t) {

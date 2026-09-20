@@ -670,6 +670,38 @@ html.modal-open{overflow:hidden}
 }
 @media print{.modal{display:none!important}}
 
+/* ── "Ahead is a second buddy, not your main CGM": the safety messaging ── */
+.readfirst{position:relative;z-index:2;padding:6px 0 26px;margin-top:-8px}
+.rf-card{display:grid;grid-template-columns:auto 1fr auto;gap:18px 24px;align-items:center;padding:24px 28px;border-radius:var(--r);background:linear-gradient(120deg,rgba(255,138,43,.18),rgba(255,107,139,.13));border:1.5px solid rgba(255,184,71,.6);box-shadow:0 22px 56px -26px rgba(255,138,43,.55)}
+.rf-ico{width:56px;height:56px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,var(--sun),var(--coral));color:#2a0a10}
+.rf-ico .icon{width:29px;height:29px;stroke-width:2.3}
+.rf-card h2{font-size:clamp(1.3rem,2.8vw,1.85rem);margin-bottom:8px}
+.rf-card p{margin:0;color:#ffe9c9;font-size:1rem}
+.rf-card p strong{color:#fff}
+.rf-points{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.rf-points span{padding:6px 13px;border-radius:999px;background:rgba(0,0,0,.3);border:1px solid rgba(255,184,71,.45);font-weight:700;font-size:.82rem;color:#fff3dc}
+@media(max-width:860px){.rf-card{grid-template-columns:1fr;gap:14px;padding:20px 18px}.rf-card .btn{width:100%}}
+.warnline{margin:0;padding:9px 12px;border-radius:12px;background:rgba(255,184,71,.13);border:1px solid rgba(255,184,71,.5);color:#ffe7b8;font-size:.84rem;font-weight:600;line-height:1.45;position:relative;z-index:1}
+.tcard.wide{margin-bottom:16px;padding:24px 26px}
+.tcard.wide h3{font-size:1.25rem;margin-bottom:12px}
+.tcard.wide ul{gap:9px}
+.tcard.wide li,.tcard.wide p{font-size:.96rem}
+.mlist li.key{border-color:rgba(255,184,71,.7);background:rgba(255,138,43,.15)}
+.mlist li.key b{color:#fff}
+.agree-key{border-color:rgba(255,184,71,.65);background:rgba(255,138,43,.1)}
+.agree-key:hover{border-color:var(--sun)}
+.agree b{color:#fff}
+.nudge{position:fixed;right:18px;bottom:18px;z-index:140;width:min(390px,calc(100% - 24px));padding:18px 18px 16px;border-radius:20px;background:linear-gradient(180deg,#3a1268,#27094b);border:1.5px solid rgba(255,184,71,.65);box-shadow:0 30px 70px -20px rgba(0,0,0,.8);opacity:0;transform:translateY(24px);transition:opacity .35s ease,transform .35s ease}
+.nudge[hidden]{display:none}
+.nudge.on{opacity:1;transform:none}
+.nudge-h{margin:0 0 6px;font:800 .72rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sun)}
+.nudge p{margin:0 0 12px;color:var(--mute);font-size:.94rem;line-height:1.5}
+.nudge p strong{color:#fff}
+.nudge-a{display:flex;gap:8px;flex-wrap:wrap}
+.nudge-a .btn{padding:10px 16px;font-size:.88rem;flex:1 1 auto}
+@media(max-width:600px){.nudge{right:12px;left:12px;bottom:12px;width:auto}}
+@media print{.nudge{display:none!important}}
+
   </style>
 </head>
 <body>
@@ -757,8 +789,8 @@ html.modal-open{overflow:hidden}
 
         <h3>What each app does with your data</h3>
         <ul>
-          <li><strong>AheadBLE</strong> has no account and doesn’t use the internet for anything. It connects to your Dexcom G7 over Bluetooth — through a pairing the Juggluco app has already made with your sensor, so Juggluco needs to be installed and paired first — and saves each reading to Android’s Health Connect on your phone. It never sends anything to us.</li>
-          <li><strong>Ahead</strong> reads your glucose from Health Connect. The analysis, projections and alerts run on your phone. When you sign in, Ahead also syncs your readings to your Ahead account (see below).</li>
+          <li><strong>AheadBLE</strong> has no account and never sends your readings to us or anyone else. It pairs with your Dexcom G7 over Bluetooth itself (no other app needed) and saves each reading to Android’s Health Connect on your phone. It includes Google’s ML Kit barcode scanner, used to read the code on your sensor applicator, which — like other apps that use ML Kit — can send anonymous usage and performance statistics to Google; that is why Android lists an Internet permission for AheadBLE. No glucose data is involved.</li>
+          <li><strong>Ahead</strong> reads your glucose from Health Connect (put there by AheadBLE, the official Dexcom app or Juggluco — whichever you use). The analysis, projections and alerts run on your phone, so alerts don’t depend on our server or an internet connection. When you sign in, Ahead also syncs your readings to your Ahead account (see below).</li>
           <li><strong>Ahead Lite</strong> is for people following someone else. It signs in to your own account and downloads readings from the people who have chosen to share with you. It doesn’t use Bluetooth or Health Connect.</li>
         </ul>
 
@@ -810,7 +842,16 @@ html.modal-open{overflow:hidden}
 
       <section id="terms" class="prose">
         <h2>Terms of Use</h2>
-        <p>By ticking “I agree” before a download, by installing or using Ahead, AheadBLE or Ahead Lite, or by using this website, you agree to these terms.</p>
+        <p>By ticking the “I agree” boxes before a download, by downloading, installing or using Ahead, AheadBLE or Ahead Lite, or by using this website, you agree to these terms.</p>
+
+        <h3 id="second-tool">Ahead is a second tool — not your primary CGM</h3>
+        <ul>
+          <li>Ahead, AheadBLE and Ahead Lite are meant to be <strong>a second set of eyes alongside your official CGM system</strong> — never a replacement for it. They are not designed, tested or supported as the primary way of using a Dexcom G7.</li>
+          <li><strong>You must keep your official CGM app or receiver, and its alarms, running as your primary</strong> means of monitoring and alerting. Do not turn off, mute, ignore or stop using your official alarms because Ahead is installed.</li>
+          <li>Ahead can fail without warning — because of your phone, battery settings, Bluetooth, the sensor, an update, a bug, or anything else. <strong>If Ahead fails, your official setup must still be able to alert you without it.</strong> You are responsible for setting that up and for testing it.</li>
+          <li>We haven’t tested, and can’t promise, that Ahead works alongside every official app, receiver, phone or sensor. Some setups may not be able to run both at once. If yours can’t, don’t use Ahead in a way that leaves you without your primary alerts, and check with your care team or the sensor’s maker.</li>
+          <li><strong>Never rely on Ahead alone</strong> — for example while you sleep, drive, exercise, or if you have hypoglycemia unawareness. If Ahead disagrees with your official CGM or a fingerstick, trust your official CGM and the fingerstick.</li>
+        </ul>
 
         <h3>Ahead is not a medical device</h3>
         <ul>
@@ -855,7 +896,7 @@ html.modal-open{overflow:hidden}
         <p>If you’re under 18, a parent or guardian must read and agree to these terms for you and is responsible for your use of Ahead.</p>
 
         <h3>Agreeing to these terms</h3>
-        <p>You agree to these terms by ticking “I agree” before a download, by installing or using the apps, or by using this website. Each time you download, we ask you to confirm, and a note of which app you accepted and when is saved in your browser.</p>
+        <p>You agree to these terms by ticking the “I agree” boxes before a download, by installing or using the apps, or by using this website. Each time you download, we ask you to confirm (including that you understand Ahead is only a second tool), and a note of which app you accepted and when is saved in your browser.</p>
 
         <h3>Governing law and disputes</h3>
         <p>These terms are governed by the laws of the State of Colorado, USA. Any dispute will be brought in the state or federal courts located in Colorado, except where the law where you live requires otherwise.</p>
@@ -870,7 +911,7 @@ html.modal-open{overflow:hidden}
       <section id="licenses" class="prose">
         <h2>Software licenses</h2>
         <ul>
-          <li><strong>AheadBLE</strong> is free software under the <strong>GNU General Public License v3 (GPLv3)</strong>. It doesn’t pair with your G7 independently — it connects through a sensor pairing made by the <strong>Juggluco</strong> project’s app, which needs to be installed and paired first, and we’re grateful for its protocol work. Its source code and license text are being published at <a href="https://github.com/NootedNoot/ahead-ble">github.com/NootedNoot/ahead-ble</a>.</li>
+          <li><strong>AheadBLE</strong> is free software under the <strong>GNU General Public License v3 (GPLv3)</strong>. It builds on the open-source Dexcom G7 protocol work of the <strong>Juggluco</strong> project and its contributors, with thanks. Its source code and license text are being published at <a href="https://github.com/NootedNoot/ahead-ble">github.com/NootedNoot/ahead-ble</a>.</li>
           <li><strong>Ahead</strong> and <strong>Ahead Lite</strong> are © 2026 Ryan Singer. During the beta you may install and use them for your own personal, non-commercial use. Please don’t redistribute them or sell them.</li>
           <li>This website’s text and design are © 2026 AheadT1D.</li>
         </ul>

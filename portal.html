@@ -68,6 +68,12 @@ p{margin:0 0 .8em}
 .nav ul a:hover,.nav ul a.on{color:#fff;background:var(--card2)}
 .nav-cta{padding:10px 18px;border-radius:999px;background:linear-gradient(120deg,var(--sun),var(--coral));color:#2a0a10;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap}
 .nav-cta:hover{color:#2a0a10;filter:brightness(1.08)}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:4.5px;width:38px;height:38px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;transition:background .2s,border-color .2s;flex:none}
+.nav-toggle:hover{background:var(--card2);border-color:rgba(255,255,255,.3)}
+.nav-toggle .bar{width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s ease,opacity .25s ease;display:block}
+.nav-toggle[aria-expanded="true"] .bar1{transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .bar2{opacity:0;transform:scaleX(0)}
+.nav-toggle[aria-expanded="true"] .bar3{transform:translateY(-6.5px) rotate(-45deg)}
 
 /* ── Buttons ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:999px;font:700 1rem var(--f-body);text-decoration:none;border:0;cursor:pointer;transition:transform .18s,filter .18s,background .18s;color:#04140f}
@@ -382,8 +388,59 @@ details.faq[open] summary::after{transform:translateY(-50%) rotate(45deg)}
   .link .wire{left:50%;right:auto;width:3px;height:100%;top:0;bottom:0;translate:-50% 0}
   .wire::after{left:0;top:-30%;width:100%;height:30%;background:linear-gradient(180deg,transparent,var(--mint),transparent);animation-name:packetY}
   .link br{display:none}
-  .link{font-size:0}
-  .nav ul{display:none}
+  .nav{position:relative}
+  .nav-toggle{display:flex}
+  .nav ul{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0;
+    right:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding:14px;
+    border-radius:20px;
+    background:rgba(26,3,52,.96);
+    backdrop-filter:blur(22px) saturate(140%);
+    -webkit-backdrop-filter:blur(22px) saturate(140%);
+    border:1px solid var(--line);
+    box-shadow:0 24px 60px -12px rgba(0,0,0,.85),0 0 40px -10px rgba(157,101,255,.35);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:opacity .22s ease,transform .22s ease,visibility .22s;
+    pointer-events:none;
+    z-index:110;
+  }
+  .nav ul.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .nav ul li{width:100%}
+  .nav ul a{
+    display:flex;
+    align-items:center;
+    padding:12px 18px;
+    font-size:1.02rem;
+    font-weight:700;
+    color:var(--ink);
+    border-radius:12px;
+    background:rgba(255,255,255,.04);
+    border:1px solid transparent;
+    transition:background .18s,color .18s;
+  }
+  .nav ul a:hover,.nav ul a:active{
+    background:rgba(196,155,255,.15);
+    color:#fff;
+  }
+  .nav ul a.on{
+    color:var(--mint);
+    background:rgba(46,229,157,.12);
+    border-color:rgba(46,229,157,.25);
+  }
 }
 @keyframes packetY{to{top:100%}}
 @media(max-width:600px){
@@ -780,6 +837,13 @@ html.modal-open{overflow:hidden}
   .btn-danger-mini{background:rgba(255,82,82,.12);color:#ff5252;border-color:rgba(255,82,82,.3)}
   .btn-danger-mini:hover{background:rgba(255,82,82,.24)}
   .badge-tag{display:inline-block;padding:3px 8px;font-size:.74rem;font-family:var(--f-mono);border-radius:4px;background:rgba(255,255,255,.08);color:var(--dim)}
+  .badge-owner{display:inline-block;padding:2px 7px;font-size:.72rem;font-family:var(--f-mono);border-radius:4px;background:rgba(46,229,157,.15);color:var(--mint);border:1px solid rgba(46,229,157,.3)}
+  .badge-follower{display:inline-block;padding:2px 7px;font-size:.72rem;font-family:var(--f-mono);border-radius:4px;background:rgba(125,207,255,.15);color:var(--sky);border:1px solid rgba(125,207,255,.3)}
+  .badge-active{display:inline-block;padding:2px 7px;font-size:.72rem;font-family:var(--f-mono);border-radius:4px;background:rgba(46,229,157,.1);color:var(--mint)}
+  .badge-disabled{display:inline-block;padding:2px 7px;font-size:.72rem;font-family:var(--f-mono);border-radius:4px;background:rgba(255,82,82,.15);color:#ff5252;border:1px solid rgba(255,82,82,.3)}
+  .user-table th{border-bottom:1px solid var(--line);color:var(--dim);font-family:var(--f-mono);font-size:.74rem;text-transform:uppercase;padding:9px 8px}
+  .user-table td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .user-table tr:hover td{background:rgba(255,255,255,.02)}
 </style>
 </head>
 <body>
@@ -818,6 +882,7 @@ html.modal-open{overflow:hidden}
       <a href="index.html" class="brand" aria-label="Ahead T1D home"><svg class="icon" style="color:var(--mint);fill:currentColor;stroke:none" aria-hidden="true"><use href="#i-drop"/></svg>Ahead <small>T1D</small></a>
       <ul id="navlinks"><li><a href="index.html">Home</a></li><li><a href="index.html#downloads">Downloads</a></li><li><a href="portal.html">Portal</a></li><li><a href="legal.html">Privacy &amp; Terms</a></li></ul>
       <a class="nav-cta" href="index.html#downloads">Get the apps</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation menu" aria-controls="navlinks"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span></button>
     </nav>
   </header>
 
@@ -839,6 +904,40 @@ html.modal-open{overflow:hidden}
       </header>
 
       <div class="portal-grid">
+        <section id="gettingStartedCard" class="dash-card" style="display:none;background:linear-gradient(135deg,rgba(46,229,157,.08),rgba(125,207,255,.08));border-color:rgba(46,229,157,.3);margin-bottom:4px">
+          <div class="dash-card-header">
+            <div>
+              <p class="acct-eyebrow" style="color:var(--mint);margin-bottom:4px">✦ Welcome to Ahead</p>
+              <h2 style="font-size:1.35rem">Getting Started: Connect Ahead to your Phone</h2>
+            </div>
+            <a href="index.html#downloads" class="btn-mini" style="background:var(--mint);color:#04141f;font-weight:700">Download APKs</a>
+          </div>
+          <p style="color:var(--ink);font-size:.95rem;margin:0 0 16px;line-height:1.55">You now have an Ahead account! Follow these 3 simple steps to start streaming real-time glucose and generating your 14-day clinical reports:</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+            <div style="background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                <span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--mint);color:#04141f;font-weight:800;font-size:.8rem">1</span>
+                <strong style="color:var(--ink);font-size:.92rem">Install the Apps</strong>
+              </div>
+              <p style="margin:0;font-size:.84rem;color:var(--mute)">Download <strong>Ahead</strong> and <strong>AheadBLE</strong> on your Android phone from the <a href="index.html#downloads" style="color:var(--mint)">Downloads page</a>.</p>
+            </div>
+            <div style="background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                <span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--mint);color:#04141f;font-weight:800;font-size:.8rem">2</span>
+                <strong style="color:var(--ink);font-size:.92rem">Sign In on Ahead</strong>
+              </div>
+              <p style="margin:0;font-size:.84rem;color:var(--mute)">Open Ahead on your phone and log in with your email and password. Your phone links automatically.</p>
+            </div>
+            <div style="background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                <span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--mint);color:#04141f;font-weight:800;font-size:.8rem">3</span>
+                <strong style="color:var(--ink);font-size:.92rem">Connect CGM / Sensor</strong>
+              </div>
+              <p style="margin:0;font-size:.84rem;color:var(--mute)">Pair AheadBLE to your Dexcom G7 sensor or grant Health Connect. Your glucose will appear here instantly!</p>
+            </div>
+          </div>
+        </section>
+
         <section class="dash-card">
           <div class="dash-card-header">
             <div>
@@ -992,6 +1091,48 @@ html.modal-open{overflow:hidden}
             <button type="button" class="btn-mini btn-danger-mini" id="adminClearReadings">Clear test readings (last 2h)</button>
           </div>
           <div id="adminActionMsg" class="acct-msg" style="margin-top:8px;font-size:.85rem"></div>
+
+          <div style="margin-top:28px;padding-top:22px;border-top:1px solid var(--line)">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+              <div>
+                <h3 style="margin:0;font-size:1.15rem;font-weight:700;color:var(--ink)">User Accounts Management</h3>
+                <p style="margin:2px 0 0;font-size:.84rem;color:var(--dim)">Inspect details, suspend access, manage device keys, or delete accounts.</p>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <input type="text" id="adminUserSearch" placeholder="Search email or name…" style="padding:6px 12px;border-radius:var(--r-sm);border:1px solid var(--line);background:rgba(0,0,0,.3);color:var(--ink);font-size:.85rem;width:180px">
+                <button type="button" class="btn-mini" id="adminRefreshUsers">Refresh users</button>
+              </div>
+            </div>
+
+            <div id="adminUserListMsg" class="acct-msg" style="font-size:.84rem;margin:0 0 10px"></div>
+
+            <div style="overflow-x:auto">
+              <table class="user-table" style="width:100%;border-collapse:collapse;font-size:.88rem;text-align:left">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Role</th>
+                    <th>Devices</th>
+                    <th>Shares</th>
+                    <th>Joined</th>
+                    <th style="text-align:right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTableBody">
+                  <tr><td colspan="7" style="padding:14px 8px;color:var(--mute)">Loading registered accounts…</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div id="adminUserInspectCard" style="display:none;margin-top:16px;padding:18px;border-radius:var(--r-sm);background:rgba(0,0,0,.4);border:1px solid var(--line)">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                <h4 style="margin:0;font-size:1.02rem;color:var(--mint)" id="inspectUserTitle">Account Details</h4>
+                <button type="button" class="btn-mini" id="adminCloseInspect">Close</button>
+              </div>
+              <div id="inspectUserBody" style="font-size:.86rem;color:var(--mute)"></div>
+            </div>
+          </div>
         </section>
       </div>
     </div>
@@ -1037,6 +1178,30 @@ html.modal-open{overflow:hidden}
 </svg></div><svg viewBox="0 0 34 32" class="pp3"><use href="#s-pumpkin"/></svg><svg viewBox="0 0 34 32" class="pp4"><use href="#s-pumpkin"/></svg><svg viewBox="0 0 34 32" class="pp5"><use href="#s-pumpkin"/></svg>
     </div>
   </footer>
+  <script>
+    (function () {
+      var navToggle = document.getElementById('navToggle');
+      var navlinks = document.getElementById('navlinks');
+      if (!navToggle || !navlinks) return;
+      navToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = navlinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (e) {
+        if (!navlinks.contains(e.target) && !navToggle.contains(e.target) && navlinks.classList.contains('open')) {
+          navlinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && navlinks.classList.contains('open')) {
+          navlinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
 <script>
 
 (function () {
@@ -1083,6 +1248,7 @@ html.modal-open{overflow:hidden}
       if (currentUser.isOwner) {
         $('devSection').hidden = false;
         loadSystemHealth();
+        loadOwnerUsers();
       }
 
       loadStreams();
@@ -1364,8 +1530,10 @@ html.modal-open{overflow:hidden}
         $('deviceCountBadge').textContent = active.length + (active.length === 1 ? ' Device' : ' Devices');
         if (active.length === 0) {
           list.innerHTML = '<li class="item-row" style="color:var(--dim);font-size:.88rem">No active devices registered yet.</li>';
+          if ($('gettingStartedCard')) $('gettingStartedCard').style.display = 'block';
           return;
         }
+        if ($('gettingStartedCard')) $('gettingStartedCard').style.display = 'none';
         active.forEach(function (d) {
           var li = document.createElement('li');
           li.className = 'item-row';
@@ -1423,6 +1591,193 @@ html.modal-open{overflow:hidden}
           $('adminActionMsg').className = 'acct-msg error';
         });
     }
+  });
+
+  // --- Owner User Management ---
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, function (m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+    });
+  }
+
+  function loadOwnerUsers(searchQuery) {
+    var q = typeof searchQuery === 'string' ? searchQuery.trim() : ($('adminUserSearch') ? $('adminUserSearch').value.trim() : '');
+    var url = '/api/auth/owner/users' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+    var tbody = $('adminUsersTableBody');
+    if (!tbody) return;
+
+    authFetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !Array.isArray(d.users)) {
+          tbody.innerHTML = '<tr><td colspan="7" style="padding:14px 8px;color:var(--coral)">Failed to load users.</td></tr>';
+          return;
+        }
+        if (d.users.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" style="padding:14px 8px;color:var(--mute)">No accounts found matching search.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = '';
+        d.users.forEach(function (u) {
+          var tr = document.createElement('tr');
+          var isSelf = currentUser && currentUser.id === u.id;
+          var roleBadge = u.isOwner ? '<span class="badge-owner">Owner</span>' : (u.shareCount > 0 ? '<span class="badge-follower">Follower</span>' : '<span class="badge-tag">User</span>');
+          var statusBadge = u.status === 'active' ? '<span class="badge-active">Active</span>' : '<span class="badge-disabled">Suspended</span>';
+          var joined = u.createdAt ? new Date(u.createdAt).toLocaleDateString() : 'N/A';
+          var name = u.displayName ? ('<div style="font-size:.78rem;color:var(--dim)">' + escapeHtml(u.displayName) + '</div>') : '';
+
+          var actionsHtml = '<button type="button" class="btn-mini btn-inspect" data-id="' + u.id + '">Inspect</button> ';
+          if (!isSelf) {
+            if (u.status === 'active') {
+              actionsHtml += '<button type="button" class="btn-mini btn-toggle" data-id="' + u.id + '" data-action="disable">Suspend</button> ';
+            } else {
+              actionsHtml += '<button type="button" class="btn-mini btn-toggle" data-id="' + u.id + '" data-action="enable" style="color:var(--mint)">Reactivate</button> ';
+            }
+            actionsHtml += '<button type="button" class="btn-mini btn-danger-mini btn-del" data-id="' + u.id + '" data-email="' + escapeHtml(u.email) + '">Delete</button>';
+          } else {
+            actionsHtml += '<span style="font-size:.75rem;color:var(--dim);margin-left:6px">(You)</span>';
+          }
+
+          tr.innerHTML = '<td><strong style="color:var(--ink)">' + escapeHtml(u.email) + '</strong>' + name + '</td>' +
+            '<td>' + statusBadge + '</td>' +
+            '<td>' + roleBadge + '</td>' +
+            '<td>' + u.activeDevices + '</td>' +
+            '<td>' + u.shareCount + '</td>' +
+            '<td style="color:var(--dim);font-size:.82rem">' + joined + '</td>' +
+            '<td style="text-align:right;white-space:nowrap">' + actionsHtml + '</td>';
+          tbody.appendChild(tr);
+        });
+
+        // Attach action handlers via delegation
+        tbody.querySelectorAll('.btn-inspect').forEach(function (btn) {
+          btn.addEventListener('click', function () { inspectUser(btn.getAttribute('data-id')); });
+        });
+        tbody.querySelectorAll('.btn-toggle').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var uid = btn.getAttribute('data-id');
+            var action = btn.getAttribute('data-action');
+            authFetch('/api/auth/owner/users/' + uid + '/' + action, { method: 'POST' })
+              .then(function (r) { return r.json(); })
+              .then(function (res) {
+                if (res.error) alert(res.error);
+                loadOwnerUsers();
+                loadSystemHealth();
+              });
+          });
+        });
+        tbody.querySelectorAll('.btn-del').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var uid = btn.getAttribute('data-id');
+            var email = btn.getAttribute('data-email');
+            var conf = prompt('WARNING: Permanently delete account ' + email + ' and all associated devices, glucose readings, and shares?
+
+Type DELETE to confirm:');
+            if (conf !== 'DELETE') return;
+
+            authFetch('/api/auth/owner/users/' + uid, { method: 'DELETE' })
+              .then(function (r) { return r.json(); })
+              .then(function (res) {
+                if (res.error) {
+                  alert('Error: ' + res.error);
+                  return;
+                }
+                alert('Account ' + email + ' was permanently deleted.');
+                $('adminUserInspectCard').style.display = 'none';
+                loadOwnerUsers();
+                loadSystemHealth();
+              })
+              .catch(function () {
+                alert('Network error while attempting to delete account.');
+              });
+          });
+        });
+      })
+      .catch(function () {
+        tbody.innerHTML = '<tr><td colspan="7" style="padding:14px 8px;color:var(--coral)">Failed to load users.</td></tr>';
+      });
+  }
+
+  function inspectUser(userId) {
+    var card = $('adminUserInspectCard');
+    var body = $('inspectUserBody');
+    var title = $('inspectUserTitle');
+    card.style.display = 'block';
+    body.innerHTML = 'Loading account details…';
+
+    authFetch('/api/auth/owner/users/' + userId)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.user) {
+          body.innerHTML = '<span style="color:var(--coral)">Failed to load account details.</span>';
+          return;
+        }
+        var u = d.user;
+        title.textContent = 'Account: ' + u.email + (u.displayName ? (' (' + u.displayName + ')') : '');
+
+        var devHtml = '<p style="margin:10px 0 6px;font-weight:700;color:var(--ink)">Device Keys (' + d.devices.length + '):</p>';
+        if (d.devices.length === 0) {
+          devHtml += '<p style="color:var(--dim);font-size:.82rem">No registered devices.</p>';
+        } else {
+          devHtml += '<ul class="item-list">';
+          d.devices.forEach(function (dev) {
+            var last = dev.lastUsedAt ? ('Last active: ' + new Date(dev.lastUsedAt).toLocaleString()) : 'Never used';
+            var role = dev.role === 'viewer' ? 'Ahead Lite (Viewer)' : 'Ahead (Uploader)';
+            var status = dev.revoked ? '<span style="color:var(--coral)">Revoked</span>' : '<span style="color:var(--mint)">Active</span>';
+            var revokeBtn = dev.revoked ? '' : ('<button type="button" class="btn-mini btn-danger-mini btn-revoke-key" data-id="' + dev.id + '" style="margin-left:8px">Revoke</button>');
+            devHtml += '<li class="item-row" style="padding:8px 0"><div><div class="item-title">' + escapeHtml(dev.label || 'Device') + ' · <span style="font-size:.78rem;color:var(--dim)">' + role + '</span></div><div class="item-sub">' + escapeHtml(dev.keyPrefix) + '… · ' + status + ' · ' + last + '</div></div>' + revokeBtn + '</li>';
+          });
+          devHtml += '</ul>';
+        }
+
+        var shareHtml = '<p style="margin:14px 0 6px;font-weight:700;color:var(--ink)">Follower / Caregiver Relationships (' + d.shares.length + '):</p>';
+        if (d.shares.length === 0) {
+          shareHtml += '<p style="color:var(--dim);font-size:.82rem">No active shares.</p>';
+        } else {
+          shareHtml += '<ul class="item-list">';
+          d.shares.forEach(function (s) {
+            shareHtml += '<li class="item-row" style="padding:6px 0"><span style="font-size:.84rem;color:var(--ink)">Owner: <strong>' + escapeHtml(s.ownerEmail) + '</strong> ➔ Follower: <strong>' + escapeHtml(s.viewerEmail) + '</strong></span><span class="item-sub">' + new Date(s.createdAt).toLocaleDateString() + '</span></li>';
+          });
+          shareHtml += '</ul>';
+        }
+
+        body.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:12px;font-size:.82rem;padding-bottom:10px;border-bottom:1px solid var(--line)">' +
+          '<div>User ID: <code style="font-family:var(--f-mono);color:#e0d4ff">' + u.id + '</code></div>' +
+          '<div>Status: <strong>' + u.status + '</strong></div>' +
+          '<div>Verified: <strong>' + (u.emailVerified ? 'Yes' : 'No') + '</strong></div>' +
+          '<div>Last Login: <strong>' + (u.lastLoginAt ? new Date(u.lastLoginAt).toLocaleString() : 'Never') + '</strong></div>' +
+          '</div>' + devHtml + shareHtml;
+
+        body.querySelectorAll('.btn-revoke-key').forEach(function (rBtn) {
+          rBtn.addEventListener('click', function () {
+            var devId = rBtn.getAttribute('data-id');
+            if (!confirm('Revoke this device key? The app using it will be disconnected.')) return;
+            authFetch('/api/auth/owner/devices/' + devId + '/revoke', { method: 'POST' })
+              .then(function (r) { return r.json(); })
+              .then(function () {
+                inspectUser(userId);
+                loadOwnerUsers();
+                loadSystemHealth();
+              });
+          });
+        });
+      })
+      .catch(function () {
+        body.innerHTML = '<span style="color:var(--coral)">Failed to load account details.</span>';
+      });
+  }
+
+  $('adminCloseInspect').addEventListener('click', function () {
+    $('adminUserInspectCard').style.display = 'none';
+  });
+
+  $('adminRefreshUsers').addEventListener('click', function () {
+    loadOwnerUsers();
+  });
+
+  $('adminUserSearch').addEventListener('input', function () {
+    loadOwnerUsers($('adminUserSearch').value);
   });
 
   // Delete Account

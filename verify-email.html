@@ -68,6 +68,12 @@ p{margin:0 0 .8em}
 .nav ul a:hover,.nav ul a.on{color:#fff;background:var(--card2)}
 .nav-cta{padding:10px 18px;border-radius:999px;background:linear-gradient(120deg,var(--sun),var(--coral));color:#2a0a10;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap}
 .nav-cta:hover{color:#2a0a10;filter:brightness(1.08)}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:4.5px;width:38px;height:38px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;transition:background .2s,border-color .2s;flex:none}
+.nav-toggle:hover{background:var(--card2);border-color:rgba(255,255,255,.3)}
+.nav-toggle .bar{width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s ease,opacity .25s ease;display:block}
+.nav-toggle[aria-expanded="true"] .bar1{transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .bar2{opacity:0;transform:scaleX(0)}
+.nav-toggle[aria-expanded="true"] .bar3{transform:translateY(-6.5px) rotate(-45deg)}
 
 /* ── Buttons ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:999px;font:700 1rem var(--f-body);text-decoration:none;border:0;cursor:pointer;transition:transform .18s,filter .18s,background .18s;color:#04140f}
@@ -382,8 +388,59 @@ details.faq[open] summary::after{transform:translateY(-50%) rotate(45deg)}
   .link .wire{left:50%;right:auto;width:3px;height:100%;top:0;bottom:0;translate:-50% 0}
   .wire::after{left:0;top:-30%;width:100%;height:30%;background:linear-gradient(180deg,transparent,var(--mint),transparent);animation-name:packetY}
   .link br{display:none}
-  .link{font-size:0}
-  .nav ul{display:none}
+  .nav{position:relative}
+  .nav-toggle{display:flex}
+  .nav ul{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0;
+    right:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding:14px;
+    border-radius:20px;
+    background:rgba(26,3,52,.96);
+    backdrop-filter:blur(22px) saturate(140%);
+    -webkit-backdrop-filter:blur(22px) saturate(140%);
+    border:1px solid var(--line);
+    box-shadow:0 24px 60px -12px rgba(0,0,0,.85),0 0 40px -10px rgba(157,101,255,.35);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:opacity .22s ease,transform .22s ease,visibility .22s;
+    pointer-events:none;
+    z-index:110;
+  }
+  .nav ul.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .nav ul li{width:100%}
+  .nav ul a{
+    display:flex;
+    align-items:center;
+    padding:12px 18px;
+    font-size:1.02rem;
+    font-weight:700;
+    color:var(--ink);
+    border-radius:12px;
+    background:rgba(255,255,255,.04);
+    border:1px solid transparent;
+    transition:background .18s,color .18s;
+  }
+  .nav ul a:hover,.nav ul a:active{
+    background:rgba(196,155,255,.15);
+    color:#fff;
+  }
+  .nav ul a.on{
+    color:var(--mint);
+    background:rgba(46,229,157,.12);
+    border-color:rgba(46,229,157,.25);
+  }
 }
 @keyframes packetY{to{top:100%}}
 @media(max-width:600px){
@@ -780,6 +837,13 @@ html.modal-open{overflow:hidden}
   .btn-danger-mini{background:rgba(255,82,82,.12);color:#ff5252;border-color:rgba(255,82,82,.3)}
   .btn-danger-mini:hover{background:rgba(255,82,82,.24)}
   .badge-tag{display:inline-block;padding:3px 8px;font-size:.74rem;font-family:var(--f-mono);border-radius:4px;background:rgba(255,255,255,.08);color:var(--dim)}
+  .badge-owner{display:inline-block;padding:2px 7px;font-size:.72rem;font-family:var(--f-mono);border-radius:4px;background:rgba(46,229,157,.15);color:var(--mint);border:1px solid rgba(46,229,157,.3)}
+  .badge-follower{display:inline-block;padding:2px 7px;font-size:.72rem;font-family:var(--f-mono);border-radius:4px;background:rgba(125,207,255,.15);color:var(--sky);border:1px solid rgba(125,207,255,.3)}
+  .badge-active{display:inline-block;padding:2px 7px;font-size:.72rem;font-family:var(--f-mono);border-radius:4px;background:rgba(46,229,157,.1);color:var(--mint)}
+  .badge-disabled{display:inline-block;padding:2px 7px;font-size:.72rem;font-family:var(--f-mono);border-radius:4px;background:rgba(255,82,82,.15);color:#ff5252;border:1px solid rgba(255,82,82,.3)}
+  .user-table th{border-bottom:1px solid var(--line);color:var(--dim);font-family:var(--f-mono);font-size:.74rem;text-transform:uppercase;padding:9px 8px}
+  .user-table td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .user-table tr:hover td{background:rgba(255,255,255,.02)}
 </style>
 </head>
 <body>
@@ -818,6 +882,7 @@ html.modal-open{overflow:hidden}
       <a href="index.html" class="brand" aria-label="Ahead T1D home"><svg class="icon" style="color:var(--mint);fill:currentColor;stroke:none" aria-hidden="true"><use href="#i-drop"/></svg>Ahead <small>T1D</small></a>
       <ul id="navlinks"><li><a href="index.html">Home</a></li><li><a href="index.html#downloads">Downloads</a></li><li><a href="portal.html">Portal</a></li><li><a href="legal.html">Privacy &amp; Terms</a></li></ul>
       <a class="nav-cta" href="index.html#downloads">Get the apps</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation menu" aria-controls="navlinks"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span></button>
     </nav>
   </header>
 
@@ -885,6 +950,30 @@ html.modal-open{overflow:hidden}
 </svg></div><svg viewBox="0 0 34 32" class="pp3"><use href="#s-pumpkin"/></svg><svg viewBox="0 0 34 32" class="pp4"><use href="#s-pumpkin"/></svg><svg viewBox="0 0 34 32" class="pp5"><use href="#s-pumpkin"/></svg>
     </div>
   </footer>
+  <script>
+    (function () {
+      var navToggle = document.getElementById('navToggle');
+      var navlinks = document.getElementById('navlinks');
+      if (!navToggle || !navlinks) return;
+      navToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = navlinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (e) {
+        if (!navlinks.contains(e.target) && !navToggle.contains(e.target) && navlinks.classList.contains('open')) {
+          navlinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && navlinks.classList.contains('open')) {
+          navlinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
 <script>
 
 (function () {

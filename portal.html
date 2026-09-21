@@ -953,6 +953,46 @@ html.modal-open{overflow:hidden}
             </div>
           </section>
         </div>
+
+        <section id="devSection" class="dash-card" hidden style="margin-top:24px;border-color:rgba(46,229,157,.35);background:rgba(46,229,157,.03)">
+          <div class="dash-card-header">
+            <div>
+              <p class="acct-eyebrow" style="color:var(--mint);margin-bottom:4px">⚡ Developer &amp; Admin Console</p>
+              <h2>Owner Controls &amp; System Health</h2>
+            </div>
+            <span class="portal-user-badge">Owner Mode</span>
+          </div>
+          <p style="font-size:.88rem;color:var(--mute);margin:0 0 16px">This section is visible only to you. Friends and regular users see only their personal 14-day snapshot, caregivers, and devices.</p>
+          
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <div class="metric-label">Total Users</div>
+              <div class="metric-val" id="adminUsersCount">--</div>
+              <div class="metric-sub">Accounts</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Total Readings</div>
+              <div class="metric-val" id="adminReadingsCount">--</div>
+              <div class="metric-sub">In database</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Active Devices</div>
+              <div class="metric-val" id="adminActiveDevices">--</div>
+              <div class="metric-sub">Keys live</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Server Uptime</div>
+              <div class="metric-val" id="adminUptime">--</div>
+              <div class="metric-sub" id="adminMemory">Railway API</div>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+            <button type="button" class="btn-mini" id="adminRefreshHealth">Refresh telemetry</button>
+            <button type="button" class="btn-mini btn-danger-mini" id="adminClearReadings">Clear test readings (last 2h)</button>
+          </div>
+          <div id="adminActionMsg" class="acct-msg" style="margin-top:8px;font-size:.85rem"></div>
+        </section>
       </div>
     </div>
   </main>
@@ -1039,6 +1079,12 @@ html.modal-open{overflow:hidden}
       if (!data || !data.user) return;
       currentUser = data.user;
       $('userBadge').textContent = currentUser.displayName ? (currentUser.displayName + ' (' + currentUser.email + ')') : currentUser.email;
+
+      if (currentUser.isOwner) {
+        $('devSection').hidden = false;
+        loadSystemHealth();
+      }
+
       loadStreams();
       loadDevices();
     })
@@ -1339,6 +1385,45 @@ html.modal-open{overflow:hidden}
         $('deviceList').innerHTML = '<li class="item-row" style="color:var(--coral);font-size:.88rem">Failed to load devices.</li>';
       });
   }
+
+  // Owner & Developer Console
+  function loadSystemHealth() {
+    authFetch('/api/auth/system-health')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || d.error) return;
+        $('adminUsersCount').textContent = d.counts.totalUsers;
+        $('adminReadingsCount').textContent = Number(d.counts.totalReadings).toLocaleString();
+        $('adminActiveDevices').textContent = d.counts.activeDevices;
+        var mins = Math.floor(d.uptimeSeconds / 60);
+        var hrs = Math.floor(mins / 60);
+        $('adminUptime').textContent = hrs > 0 ? (hrs + 'h ' + (mins % 60) + 'm') : (mins + 'm');
+        $('adminMemory').textContent = d.memoryUsageMb + ' MB RSS';
+      })
+      .catch(function () {});
+  }
+
+  $('adminRefreshHealth').addEventListener('click', function () {
+    loadSystemHealth();
+    $('adminActionMsg').textContent = 'Telemetry updated';
+    $('adminActionMsg').className = 'acct-msg ok';
+  });
+
+  $('adminClearReadings').addEventListener('click', function () {
+    if (confirm('Clear glucose readings uploaded in the last 2 hours?')) {
+      authFetch('/api/readings', { method: 'DELETE' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          $('adminActionMsg').textContent = d.message || 'Readings cleared.';
+          $('adminActionMsg').className = 'acct-msg ok';
+          loadStats();
+        })
+        .catch(function () {
+          $('adminActionMsg').textContent = 'Failed to clear readings.';
+          $('adminActionMsg').className = 'acct-msg error';
+        });
+    }
+  });
 
   // Delete Account
   $('deleteAccountBtn').addEventListener('click', function () {

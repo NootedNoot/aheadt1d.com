@@ -1204,6 +1204,39 @@ html.modal-open{overflow:hidden}
               </div>
               <div id="inspectUserBody" style="font-size:.86rem;color:var(--mute)"></div>
             </div>
+
+            <!-- Owner Telemetry Logs Stream -->
+            <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--line)">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+                <div>
+                  <h3 style="margin:0;font-size:1.15rem;font-weight:700;color:var(--ink)">Real-Time Telemetry Logs</h3>
+                  <p style="margin:2px 0 0;font-size:.84rem;color:var(--dim)">Live audit log of glucose readings, severity classifications (Red / Yellow / Green), rate of change (+/-), and projections.</p>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center">
+                  <button type="button" class="btn-mini" id="adminRefreshTelemetry">Refresh telemetry</button>
+                </div>
+              </div>
+
+              <div id="adminTelemetryMsg" class="acct-msg" style="font-size:.84rem;margin:0 0 10px"></div>
+
+              <div style="overflow-x:auto">
+                <table class="user-table" style="width:100%;border-collapse:collapse;font-size:.88rem;text-align:left">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>Glucose</th>
+                      <th>Severity</th>
+                      <th>Rate of Change</th>
+                      <th>15m Projected</th>
+                      <th>Action Taken</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminTelemetryTableBody">
+                    <tr><td colspan="6" style="padding:14px 8px;color:var(--mute)">Loading telemetry logs…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -1478,6 +1511,7 @@ html.modal-open{overflow:hidden}
         $('devSection').hidden = false;
         loadSystemHealth();
         loadOwnerUsers();
+        loadOwnerTelemetryLog();
       }
 
       loadStreams();
@@ -2119,6 +2153,79 @@ html.modal-open{overflow:hidden}
   $('adminUserSearch').addEventListener('input', function () {
     loadOwnerUsers($('adminUserSearch').value);
   });
+
+  // ── Real-Time Telemetry Logs (Owner-only) ──
+  function loadOwnerTelemetryLog() {
+    var tbody = $('adminTelemetryTableBody');
+    var msg = $('adminTelemetryMsg');
+    if (!tbody) return;
+    authFetch('/api/auth/owner/telemetry-log?limit=50')
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var list = data && (data.entries || data.readings);
+        if (!list || list.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="padding:14px 8px;color:var(--mute)">No telemetry readings logged yet.</td></tr>';
+          return;
+        }
+        var html = '';
+        list.forEach(function (row) {
+          var timeStr = row.timestamp ? new Date(row.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : '--';
+
+          var sev = (row.severity || 'normal').toLowerCase();
+          var sevBadge = '<span class="badge-tag" style="background:rgba(46,204,113,.15);color:var(--mint);border-color:rgba(46,204,113,.3)">Normal</span>';
+          if (sev === 'red') {
+            sevBadge = '<span class="badge-tag" style="background:rgba(255,82,82,.2);color:#ff5252;border-color:rgba(255,82,82,.4)">Critical (Red)</span>';
+          } else if (sev === 'yellow') {
+            sevBadge = '<span class="badge-tag" style="background:rgba(255,170,0,.2);color:#ffaa00;border-color:rgba(255,170,0,.4)">Warning (Yellow)</span>';
+          }
+
+          var rateStr = (row.rateFormatted || '--') + (row.arrow ? (' ' + row.arrow) : '');
+          var projStr = row.projected != null ? (row.projected + ' mg/dL') : '--';
+
+          var action = row.action || 'none';
+          var actionBadge = '<span style="font-family:var(--f-mono);font-size:.78rem;color:var(--dim)">none</span>';
+          if (action === 'audible_red') {
+            actionBadge = '<span class="badge-tag" style="background:rgba(255,82,82,.25);color:#ff5252;border-color:rgba(255,82,82,.5)">Audible Red</span>';
+          } else if (action === 'silent_yellow_update') {
+            actionBadge = '<span class="badge-tag" style="background:rgba(255,170,0,.15);color:#ffaa00;border-color:rgba(255,170,0,.3)">Silent Yellow</span>';
+          } else if (action === 'audible_yellow') {
+            actionBadge = '<span class="badge-tag" style="background:rgba(255,170,0,.25);color:#ffaa00;border-color:rgba(255,170,0,.5)">Audible Yellow</span>';
+          } else if (action === 'held_high_red') {
+            actionBadge = '<span class="badge-tag" style="background:rgba(196,155,255,.2);color:#c49bff;border-color:rgba(196,155,255,.4)">Held (High Red)</span>';
+          } else if (action === 'held_low_red') {
+            actionBadge = '<span class="badge-tag" style="background:rgba(196,155,255,.2);color:#c49bff;border-color:rgba(196,155,255,.4)">Held (Low Red)</span>';
+          } else if (action === 'suppressed_cooldown') {
+            actionBadge = '<span class="badge-tag" style="background:rgba(100,100,100,.2);color:var(--dim);border-color:rgba(100,100,100,.3)">Cooldown</span>';
+          }
+
+          var backfilledNote = row.isBackfilled ? ' <span style="font-size:.7rem;color:var(--dim);font-style:italic" title="Computed retroactively or via fallback, not live">(backfilled)</span>' : '';
+
+          html += '<tr style="border-bottom:1px solid rgba(255,255,255,.05)">' +
+            '<td style="padding:10px 8px;font-family:var(--f-mono);font-size:.82rem">' + timeStr + '</td>' +
+            '<td style="padding:10px 8px;font-weight:700;color:var(--ink)">' + (row.sgv || '--') + ' <span style="font-size:.75rem;color:var(--dim)">mg/dL</span></td>' +
+            '<td style="padding:10px 8px">' + sevBadge + '</td>' +
+            '<td style="padding:10px 8px;font-family:var(--f-mono);font-size:.84rem">' + escapeHtml(rateStr) + '</td>' +
+            '<td style="padding:10px 8px;font-weight:600">' + projStr + '</td>' +
+            '<td style="padding:10px 8px">' + actionBadge + backfilledNote + '</td>' +
+            '</tr>';
+        });
+        tbody.innerHTML = html;
+        if (msg) msg.textContent = '';
+      })
+      .catch(function (err) {
+        tbody.innerHTML = '<tr><td colspan="6" style="padding:14px 8px;color:var(--coral)">Failed to load telemetry logs.</td></tr>';
+      });
+  }
+
+  var adminRefreshTelemetryBtn = $('adminRefreshTelemetry');
+  if (adminRefreshTelemetryBtn) {
+    adminRefreshTelemetryBtn.addEventListener('click', function () {
+      loadOwnerTelemetryLog();
+    });
+  }
 
   // ── Tab Switching ──
   function switchTab(tab) {

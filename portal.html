@@ -844,6 +844,20 @@ html.modal-open{overflow:hidden}
   .user-table th{border-bottom:1px solid var(--line);color:var(--dim);font-family:var(--f-mono);font-size:.74rem;text-transform:uppercase;padding:9px 8px}
   .user-table td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
   .user-table tr:hover td{background:rgba(255,255,255,.02)}
+
+  /* Live Glucose Card */
+  .live-card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:var(--r);padding:24px;position:relative;overflow:hidden;backdrop-filter:blur(8px)}
+  .live-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--mint),var(--sky))}
+  .live-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+  .live-dot{display:inline-flex;align-items:center;gap:6px;font:700 .76rem/1 var(--f-mono);color:var(--mint);text-transform:uppercase;letter-spacing:.08em}
+  .live-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint);animation:pulseDot 2s infinite}
+  @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+  .live-val-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .live-val{font:800 clamp(2.8rem,6vw,4rem)/1 var(--f-head);color:var(--ink);letter-spacing:-.02em}
+  .live-unit{font-size:1.1rem;color:var(--mute);font-weight:600}
+  .live-arrow{font-size:2.2rem;font-weight:800;margin-left:4px}
+  .live-delta{font:700 1.05rem/1 var(--f-mono);padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
+  .live-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:.88rem;color:var(--dim)}
 </style>
 </head>
 <body>
@@ -903,7 +917,39 @@ html.modal-open{overflow:hidden}
         </div>
       </header>
 
+      <div id="unverifiedBanner" style="display:none;background:rgba(255,179,0,.08);border:1px solid rgba(255,179,0,.35);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:20px;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.2rem">✉️</span>
+          <span style="color:#ffe7ae;font-size:.88rem">Your email address is not verified yet. Caregivers cannot share their glucose stream with you until your email is verified.</span>
+        </div>
+        <button type="button" class="btn-mini" id="resendVerifyBtn" style="white-space:nowrap;background:rgba(255,179,0,.15);border-color:rgba(255,179,0,.4);color:#ffe7ae">Resend verification email</button>
+      </div>
+
       <div class="portal-grid">
+        <section id="liveGlucoseCard" class="live-card" style="display:none">
+          <div class="live-top">
+            <div style="display:flex;align-items:center;gap:12px">
+              <span class="live-dot">Live Glucose</span>
+              <span id="liveStreamBadge" class="badge-tag" style="display:none"></span>
+            </div>
+            <button type="button" class="btn-mini" id="refreshLiveBtn" title="Refresh glucose reading">Refresh</button>
+          </div>
+          <div class="live-val-row">
+            <div style="display:flex;align-items:baseline">
+              <span id="liveSgv" class="live-val">--</span>
+              <span class="live-unit">&nbsp;mg/dL</span>
+              <span id="liveArrow" class="live-arrow"></span>
+            </div>
+            <span id="liveDelta" class="live-delta" style="display:none"></span>
+            <span id="liveStatusBadge" class="badge-tag" style="font-size:.82rem;padding:5px 12px;font-weight:700"></span>
+          </div>
+          <div class="live-meta">
+            <span id="liveTime">Checking sensor…</span>
+            <span>·</span>
+            <span id="liveRangeHint">Target: 70–180 mg/dL</span>
+          </div>
+        </section>
+
         <section id="gettingStartedCard" class="dash-card" style="display:none;background:linear-gradient(135deg,rgba(46,229,157,.08),rgba(125,207,255,.08));border-color:rgba(46,229,157,.3);margin-bottom:4px">
           <div class="dash-card-header">
             <div>
@@ -1245,6 +1291,12 @@ html.modal-open{overflow:hidden}
       currentUser = data.user;
       $('userBadge').textContent = currentUser.displayName ? (currentUser.displayName + ' (' + currentUser.email + ')') : currentUser.email;
 
+      if (!currentUser.emailVerified) {
+        $('unverifiedBanner').style.display = 'flex';
+      } else {
+        $('unverifiedBanner').style.display = 'none';
+      }
+
       if (currentUser.isOwner) {
         $('devSection').hidden = false;
         loadSystemHealth();
@@ -1257,6 +1309,110 @@ html.modal-open{overflow:hidden}
     .catch(function (err) {
       console.error('Failed to load user info:', err);
     });
+
+  $('resendVerifyBtn').addEventListener('click', function () {
+    this.disabled = true;
+    this.textContent = 'Sending…';
+    var btn = this;
+    authFetch('/api/auth/verify-email/resend', { method: 'POST' })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res.sent) {
+          btn.textContent = 'Verification email sent!';
+          btn.style.color = 'var(--mint)';
+          btn.style.borderColor = 'var(--mint)';
+        } else {
+          btn.textContent = res.error || 'Failed to send';
+          btn.disabled = false;
+        }
+      })
+      .catch(function () {
+        btn.textContent = 'Network error';
+        btn.disabled = false;
+      });
+  });
+
+  function timeAgo(ms) {
+    var diffSec = Math.floor((Date.now() - ms) / 1000);
+    if (diffSec < 60) return 'Just now';
+    var min = Math.floor(diffSec / 60);
+    if (min < 60) return min + (min === 1 ? ' minute ago' : ' minutes ago');
+    var hr = Math.floor(min / 60);
+    if (hr < 24) return hr + (hr === 1 ? ' hour ago' : ' hours ago');
+    return Math.floor(hr / 24) + (Math.floor(hr / 24) === 1 ? ' day ago' : ' days ago');
+  }
+
+  function loadLiveGlucose() {
+    var owner = currentOwnerId || (currentUser ? currentUser.id : null);
+    if (!owner) return;
+    authFetch('/api/readings?count=2&ownerId=' + owner)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var card = $('liveGlucoseCard');
+        if (!d || !Array.isArray(d.entries) || d.entries.length === 0) {
+          card.style.display = 'none';
+          return;
+        }
+        card.style.display = 'block';
+        var entries = d.entries;
+        var latest = entries[entries.length - 1];
+        var prev = entries.length > 1 ? entries[entries.length - 2] : null;
+
+        var sgv = latest.sgv;
+        $('liveSgv').textContent = sgv;
+
+        var sgvColor = '#2ee59d';
+        var statusText = 'In Range';
+        if (sgv < 54) { sgvColor = '#ff5252'; statusText = 'Very Low'; }
+        else if (sgv < 70) { sgvColor = '#ffb300'; statusText = 'Low'; }
+        else if (sgv > 250) { sgvColor = '#ff3d00'; statusText = 'Very High'; }
+        else if (sgv > 180) { sgvColor = '#ff9100'; statusText = 'High'; }
+
+        $('liveSgv').style.color = sgvColor;
+        $('liveStatusBadge').textContent = statusText;
+        $('liveStatusBadge').style.color = sgvColor;
+        $('liveStatusBadge').style.borderColor = sgvColor;
+        $('liveStatusBadge').style.background = sgvColor === '#2ee59d' ? 'rgba(46,229,157,.12)' : (sgvColor === '#ffb300' ? 'rgba(255,179,0,.15)' : 'rgba(255,82,82,.15)');
+
+        if (prev) {
+          var delta = sgv - prev.sgv;
+          var minDiff = Math.max(1, (latest.date - prev.date) / 60000);
+          var rate = delta / minDiff;
+          var arrow = '→';
+          if (rate > 3) arrow = '⇈';
+          else if (rate > 2) arrow = '↑';
+          else if (rate > 1) arrow = '↗';
+          else if (rate < -3) arrow = '⇊';
+          else if (rate < -2) arrow = '↓';
+          else if (rate < -1) arrow = '↘';
+
+          $('liveArrow').textContent = arrow;
+          $('liveArrow').style.color = sgvColor;
+          $('liveDelta').style.display = 'inline-block';
+          $('liveDelta').textContent = (delta >= 0 ? ('+' + delta) : delta) + ' mg/dL';
+        } else {
+          $('liveArrow').textContent = '';
+          $('liveDelta').style.display = 'none';
+        }
+
+        $('liveTime').textContent = 'Reading from ' + timeAgo(latest.date);
+
+        if (currentOwnerId && currentUser && currentOwnerId !== currentUser.id) {
+          $('liveStreamBadge').style.display = 'inline-block';
+          $('liveStreamBadge').textContent = 'Viewing Shared Stream';
+        } else {
+          $('liveStreamBadge').style.display = 'none';
+        }
+      })
+      .catch(function () {
+        $('liveGlucoseCard').style.display = 'none';
+      });
+  }
+
+  $('refreshLiveBtn').addEventListener('click', function () {
+    loadLiveGlucose();
+  });
+  setInterval(loadLiveGlucose, 60000);
 
   // Load Streams
   function loadStreams() {
@@ -1280,11 +1436,13 @@ html.modal-open{overflow:hidden}
           sel.appendChild(opt);
           currentOwnerId = currentUser.id;
         }
+        loadLiveGlucose();
         loadStats();
         loadCaregivers();
       })
       .catch(function () {
         currentOwnerId = currentUser.id;
+        loadLiveGlucose();
         loadStats();
         loadCaregivers();
       });
@@ -1292,6 +1450,7 @@ html.modal-open{overflow:hidden}
 
   $('streamSelect').addEventListener('change', function () {
     currentOwnerId = this.value;
+    loadLiveGlucose();
     loadStats();
   });
 

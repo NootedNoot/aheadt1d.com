@@ -68,12 +68,15 @@ p{margin:0 0 .8em}
 .nav ul a:hover,.nav ul a.on{color:#fff;background:var(--card2)}
 .nav-cta{padding:10px 18px;border-radius:999px;background:linear-gradient(120deg,var(--sun),var(--coral));color:#2a0a10;font-weight:800;font-size:.9rem;text-decoration:none;white-space:nowrap}
 .nav-cta:hover{color:#2a0a10;filter:brightness(1.08)}
-.nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:4.5px;width:38px;height:38px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;transition:background .2s,border-color .2s;flex:none}
+.nav-toggle{display:none;position:relative;width:38px;height:38px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;transition:background .2s,border-color .2s;flex:none}
 .nav-toggle:hover{background:var(--card2);border-color:rgba(255,255,255,.3)}
-.nav-toggle .bar{width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s ease,opacity .25s ease;display:block}
-.nav-toggle[aria-expanded="true"] .bar1{transform:translateY(6.5px) rotate(45deg)}
-.nav-toggle[aria-expanded="true"] .bar2{opacity:0;transform:scaleX(0)}
-.nav-toggle[aria-expanded="true"] .bar3{transform:translateY(-6.5px) rotate(-45deg)}
+.nav-toggle .bar{position:absolute;left:10px;width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .26s cubic-bezier(.4,0,.2,1),opacity .2s ease;transform-origin:center}
+.nav-toggle .bar1{top:12px}
+.nav-toggle .bar2{top:18px}
+.nav-toggle .bar3{top:24px}
+.nav-toggle[aria-expanded="true"] .bar1{transform:translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .bar2{opacity:0;transform:scale(0)}
+.nav-toggle[aria-expanded="true"] .bar3{transform:translateY(-6px) rotate(-45deg)}
 
 /* ── Buttons ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:999px;font:700 1rem var(--f-body);text-decoration:none;border:0;cursor:pointer;transition:transform .18s,filter .18s,background .18s;color:#04140f}
@@ -858,6 +861,12 @@ html.modal-open{overflow:hidden}
   .live-arrow{font-size:2.2rem;font-weight:800;margin-left:4px}
   .live-delta{font:700 1.05rem/1 var(--f-mono);padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
   .live-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:.88rem;color:var(--dim)}
+
+  /* Portal Navigation Tabs */
+  .portal-tabs{display:flex;gap:10px;margin-bottom:24px;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .portal-tab-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--mute);font-weight:600;font-size:.92rem;cursor:pointer;transition:all .18s ease}
+  .portal-tab-btn:hover{background:var(--card2);color:var(--ink);border-color:rgba(255,255,255,.25)}
+  .portal-tab-btn.active{border-color:var(--mint);background:rgba(46,229,157,.15);color:var(--mint);font-weight:700}
 </style>
 </head>
 <body>
@@ -925,7 +934,16 @@ html.modal-open{overflow:hidden}
         <button type="button" class="btn-mini" id="resendVerifyBtn" style="white-space:nowrap;background:rgba(255,179,0,.15);border-color:rgba(255,179,0,.4);color:#ffe7ae">Resend verification email</button>
       </div>
 
-      <div class="portal-grid">
+      <nav class="portal-tabs" aria-label="Portal sections">
+        <button type="button" class="portal-tab-btn active" id="tabDashboardBtn">
+          <span>📊</span> Glucose Dashboard
+        </button>
+        <button type="button" class="portal-tab-btn" id="tabSettingsBtn">
+          <span>⚙️</span> Account Settings
+        </button>
+      </nav>
+
+      <div id="dashboardView" class="portal-grid">
         <section id="liveGlucoseCard" class="live-card" style="display:none">
           <div class="live-top">
             <div style="display:flex;align-items:center;gap:12px">
@@ -1181,6 +1199,144 @@ html.modal-open{overflow:hidden}
           </div>
         </section>
       </div>
+
+      <div id="settingsView" class="portal-grid" style="display:none">
+        <section class="dash-card">
+          <div class="dash-card-header">
+            <div>
+              <p class="acct-eyebrow" style="margin-bottom:4px">Personal Data</p>
+              <h2>Profile Information</h2>
+            </div>
+            <span class="badge-tag" id="profileRoleBadge">User</span>
+          </div>
+          <p style="font-size:.88rem;color:var(--mute);margin:0 0 16px">Your personal details are stored securely and used to personalize your clinical reports.</p>
+          <form id="profileForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px" novalidate>
+            <div>
+              <label for="settingsDisplayName" style="display:block;font-size:.85rem;color:var(--mute);margin-bottom:6px">Display Name</label>
+              <input id="settingsDisplayName" type="text" placeholder="e.g. Ryan Singer" style="width:100%;box-sizing:border-box;padding:10px 14px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.92rem" />
+            </div>
+            <div>
+              <label for="settingsDob" style="display:block;font-size:.85rem;color:var(--mute);margin-bottom:6px">Date of Birth</label>
+              <input id="settingsDob" type="date" style="width:100%;box-sizing:border-box;padding:10px 14px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.92rem" />
+            </div>
+            <div>
+              <label for="settingsDiagnosisDate" style="display:block;font-size:.85rem;color:var(--mute);margin-bottom:6px">T1D Diagnosis Date</label>
+              <input id="settingsDiagnosisDate" type="date" style="width:100%;box-sizing:border-box;padding:10px 14px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.92rem" />
+            </div>
+          </form>
+          <div style="margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button type="button" class="btn-mini" id="saveProfileBtn" style="background:var(--mint);color:#04141f;font-weight:700;padding:8px 18px">Save Profile</button>
+            <span id="profileMsg" class="acct-msg" style="font-size:.85rem"></span>
+          </div>
+        </section>
+
+        <section class="dash-card">
+          <div class="dash-card-header">
+            <div>
+              <p class="acct-eyebrow" style="margin-bottom:4px">Clinical Preferences</p>
+              <h2>Glucose Targets &amp; Units</h2>
+            </div>
+          </div>
+          <p style="font-size:.88rem;color:var(--mute);margin:0 0 16px">Customize your preferred glucose measurement units and target ranges.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+            <div>
+              <label for="settingsUnits" style="display:block;font-size:.85rem;color:var(--mute);margin-bottom:6px">Glucose Units</label>
+              <select id="settingsUnits" style="width:100%;box-sizing:border-box;padding:10px 14px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.92rem">
+                <option value="mg/dL">mg/dL (US standard - e.g. 100 mg/dL)</option>
+                <option value="mmol/L">mmol/L (International standard - e.g. 5.5 mmol/L)</option>
+              </select>
+            </div>
+            <div>
+              <label for="settingsTargetLow" style="display:block;font-size:.85rem;color:var(--mute);margin-bottom:6px">Target Low (mg/dL)</label>
+              <input id="settingsTargetLow" type="number" min="40" max="150" value="70" style="width:100%;box-sizing:border-box;padding:10px 14px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.92rem" />
+            </div>
+            <div>
+              <label for="settingsTargetHigh" style="display:block;font-size:.85rem;color:var(--mute);margin-bottom:6px">Target High (mg/dL)</label>
+              <input id="settingsTargetHigh" type="number" min="120" max="350" value="180" style="width:100%;box-sizing:border-box;padding:10px 14px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.92rem" />
+            </div>
+          </div>
+          <div style="margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button type="button" class="btn-mini" id="savePrefsBtn" style="background:var(--mint);color:#04141f;font-weight:700;padding:8px 18px">Save Preferences</button>
+            <span id="prefsMsg" class="acct-msg" style="font-size:.85rem"></span>
+          </div>
+        </section>
+
+        <div class="portal-grid-2">
+          <section class="dash-card">
+            <div class="dash-card-header">
+              <h2>Account Email</h2>
+              <span class="badge-tag" id="settingsEmailBadge">Verified</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--mute);margin:0 0 16px">Primary email used for signing in and caregiver sharing.</p>
+            <div style="background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:16px;font-family:var(--f-mono);font-size:.9rem;color:var(--ink)" id="settingsCurrentEmailDisplay">--</div>
+            
+            <button type="button" class="btn-mini" id="toggleChangeEmailBtn">Change email address</button>
+            <form id="changeEmailForm" style="display:none;margin-top:16px;flex-direction:column;gap:12px" novalidate>
+              <div>
+                <label for="newEmailInput" style="display:block;font-size:.82rem;color:var(--mute);margin-bottom:4px">New Email Address</label>
+                <input id="newEmailInput" type="email" placeholder="newemail@example.com" style="width:100%;box-sizing:border-box;padding:9px 12px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.9rem" required />
+              </div>
+              <div>
+                <label for="currentPasswordForEmail" style="display:block;font-size:.82rem;color:var(--mute);margin-bottom:4px">Current Password</label>
+                <input id="currentPasswordForEmail" type="password" placeholder="Enter current password" style="width:100%;box-sizing:border-box;padding:9px 12px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.9rem" required />
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <button type="submit" class="btn-mini" id="submitChangeEmailBtn" style="background:var(--mint);color:#04141f;font-weight:700">Confirm Email Change</button>
+                <button type="button" class="btn-mini" id="cancelChangeEmailBtn">Cancel</button>
+              </div>
+              <div id="changeEmailMsg" class="acct-msg" style="font-size:.84rem"></div>
+            </form>
+          </section>
+
+          <section class="dash-card">
+            <div class="dash-card-header">
+              <h2>Change Password</h2>
+            </div>
+            <p style="font-size:.88rem;color:var(--mute);margin:0 0 16px">Update your account password without leaving the portal.</p>
+            <form id="changePasswordForm" style="display:flex;flex-direction:column;gap:12px" novalidate>
+              <div>
+                <label for="currentPasswordInput" style="display:block;font-size:.82rem;color:var(--mute);margin-bottom:4px">Current Password</label>
+                <input id="currentPasswordInput" type="password" placeholder="Enter current password" style="width:100%;box-sizing:border-box;padding:9px 12px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.9rem" required />
+              </div>
+              <div>
+                <label for="newPasswordInput" style="display:block;font-size:.82rem;color:var(--mute);margin-bottom:4px">New Password (10+ characters)</label>
+                <input id="newPasswordInput" type="password" placeholder="Enter new password" style="width:100%;box-sizing:border-box;padding:9px 12px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.9rem" required minlength="10" />
+              </div>
+              <div>
+                <label for="confirmPasswordInput" style="display:block;font-size:.82rem;color:var(--mute);margin-bottom:4px">Confirm New Password</label>
+                <input id="confirmPasswordInput" type="password" placeholder="Re-enter new password" style="width:100%;box-sizing:border-box;padding:9px 12px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.9rem" required />
+              </div>
+              <div>
+                <button type="submit" class="btn-mini" id="submitChangePasswordBtn" style="background:var(--mint);color:#04141f;font-weight:700">Update Password</button>
+              </div>
+              <div id="changePasswordMsg" class="acct-msg" style="font-size:.84rem"></div>
+            </form>
+          </section>
+        </div>
+
+        <section class="dash-card" style="border-color:rgba(255,82,82,.3);background:rgba(255,82,82,.02)">
+          <div class="dash-card-header">
+            <div>
+              <p class="acct-eyebrow" style="color:#ff5252;margin-bottom:4px">Data Privacy &amp; Account</p>
+              <h2>Danger Zone</h2>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
+            <div>
+              <strong style="color:var(--ink);font-size:.95rem">Export All Clinical Data</strong>
+              <p style="margin:2px 0 0;font-size:.82rem;color:var(--mute)">Download complete 14-day readings log as CSV for your physician or personal records.</p>
+            </div>
+            <button type="button" class="btn-mini" id="settingsExportBtn">Export CSV</button>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:14px">
+            <div>
+              <strong style="color:#ff5252;font-size:.95rem">Delete Account</strong>
+              <p style="margin:2px 0 0;font-size:.82rem;color:var(--mute)">Permanently remove your account, glucose history, caregiver access, and device keys.</p>
+            </div>
+            <button type="button" class="btn-mini btn-danger-mini" id="settingsDeleteAccountBtn">Delete Account</button>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 
@@ -1290,6 +1446,10 @@ html.modal-open{overflow:hidden}
       if (!data || !data.user) return;
       currentUser = data.user;
       $('userBadge').textContent = currentUser.displayName ? (currentUser.displayName + ' (' + currentUser.email + ')') : currentUser.email;
+      populateSettings(currentUser);
+      if (currentUser.targetLow && currentUser.targetHigh) {
+        $('liveRangeHint').textContent = 'Target: ' + currentUser.targetLow + '–' + currentUser.targetHigh + ' ' + (currentUser.units || 'mg/dL');
+      }
 
       if (!currentUser.emailVerified) {
         $('unverifiedBanner').style.display = 'flex';
@@ -1830,9 +1990,7 @@ html.modal-open{overflow:hidden}
           btn.addEventListener('click', function () {
             var uid = btn.getAttribute('data-id');
             var email = btn.getAttribute('data-email');
-            var conf = prompt('WARNING: Permanently delete account ' + email + ' and all associated devices, glucose readings, and shares?
-
-Type DELETE to confirm:');
+            var conf = prompt(['WARNING: Permanently delete account ' + email + ' and all associated devices, glucose readings, and shares?', '', 'Type DELETE to confirm:'].join(String.fromCharCode(10)));
             if (conf !== 'DELETE') return;
 
             authFetch('/api/auth/owner/users/' + uid, { method: 'DELETE' })
@@ -1937,6 +2095,265 @@ Type DELETE to confirm:');
 
   $('adminUserSearch').addEventListener('input', function () {
     loadOwnerUsers($('adminUserSearch').value);
+  });
+
+  // ── Tab Switching ──
+  function switchTab(tab) {
+    if (tab === 'settings') {
+      $('tabDashboardBtn').classList.remove('active');
+      $('tabSettingsBtn').classList.add('active');
+      $('dashboardView').style.display = 'none';
+      $('settingsView').style.display = 'grid';
+      try { history.replaceState(null, '', '#settings'); } catch (e) {}
+    } else {
+      $('tabSettingsBtn').classList.remove('active');
+      $('tabDashboardBtn').classList.add('active');
+      $('settingsView').style.display = 'none';
+      $('dashboardView').style.display = 'grid';
+      try { history.replaceState(null, '', '#dashboard'); } catch (e) {}
+    }
+  }
+
+  $('tabDashboardBtn').addEventListener('click', function () { switchTab('dashboard'); });
+  $('tabSettingsBtn').addEventListener('click', function () { switchTab('settings'); });
+
+  if (location.hash === '#settings') {
+    switchTab('settings');
+  }
+
+  // ── Populate Settings ──
+  function populateSettings(u) {
+    if (!u) return;
+    $('settingsDisplayName').value = u.displayName || '';
+    if (u.dob) $('settingsDob').value = u.dob.split('T')[0];
+    if (u.diagnosisDate) $('settingsDiagnosisDate').value = u.diagnosisDate.split('T')[0];
+    $('settingsUnits').value = u.units || 'mg/dL';
+    $('settingsTargetLow').value = u.targetLow || 70;
+    $('settingsTargetHigh').value = u.targetHigh || 180;
+    $('settingsCurrentEmailDisplay').textContent = u.email;
+    $('settingsEmailBadge').textContent = u.emailVerified ? 'Verified' : 'Unverified';
+    $('settingsEmailBadge').style.color = u.emailVerified ? 'var(--mint)' : '#ffb300';
+    $('profileRoleBadge').textContent = u.isOwner ? 'Owner' : 'User';
+  }
+
+  // ── Save Profile ──
+  $('saveProfileBtn').addEventListener('click', function () {
+    var btn = this;
+    var msg = $('profileMsg');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+    msg.textContent = '';
+    msg.className = 'acct-msg';
+
+    var payload = {
+      displayName: $('settingsDisplayName').value.trim(),
+      dob: $('settingsDob').value || null,
+      diagnosisDate: $('settingsDiagnosisDate').value || null,
+    };
+
+    authFetch('/api/auth/profile', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        btn.disabled = false;
+        btn.textContent = 'Save Profile';
+        if (d.error) {
+          msg.textContent = d.error;
+          msg.style.color = 'var(--coral)';
+          msg.className = 'acct-msg on';
+          return;
+        }
+        currentUser = d.user;
+        $('userBadge').textContent = currentUser.displayName ? (currentUser.displayName + ' (' + currentUser.email + ')') : currentUser.email;
+        populateSettings(currentUser);
+        msg.textContent = '✓ Profile saved successfully!';
+        msg.style.color = 'var(--mint)';
+        msg.className = 'acct-msg on';
+        setTimeout(function () { msg.textContent = ''; }, 4000);
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Save Profile';
+        msg.textContent = 'Network error saving profile.';
+        msg.style.color = 'var(--coral)';
+        msg.className = 'acct-msg on';
+      });
+  });
+
+  // ── Save Clinical Preferences ──
+  $('savePrefsBtn').addEventListener('click', function () {
+    var btn = this;
+    var msg = $('prefsMsg');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+    msg.textContent = '';
+    msg.className = 'acct-msg';
+
+    var payload = {
+      units: $('settingsUnits').value,
+      targetLow: parseInt($('settingsTargetLow').value, 10),
+      targetHigh: parseInt($('settingsTargetHigh').value, 10),
+    };
+
+    authFetch('/api/auth/profile', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        btn.disabled = false;
+        btn.textContent = 'Save Preferences';
+        if (d.error) {
+          msg.textContent = d.error;
+          msg.style.color = 'var(--coral)';
+          msg.className = 'acct-msg on';
+          return;
+        }
+        currentUser = d.user;
+        populateSettings(currentUser);
+        $('liveRangeHint').textContent = 'Target: ' + currentUser.targetLow + '–' + currentUser.targetHigh + ' ' + (currentUser.units || 'mg/dL');
+        msg.textContent = '✓ Preferences saved successfully!';
+        msg.style.color = 'var(--mint)';
+        msg.className = 'acct-msg on';
+        setTimeout(function () { msg.textContent = ''; }, 4000);
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Save Preferences';
+        msg.textContent = 'Network error saving preferences.';
+        msg.style.color = 'var(--coral)';
+        msg.className = 'acct-msg on';
+      });
+  });
+
+  // ── Change Email ──
+  $('toggleChangeEmailBtn').addEventListener('click', function () {
+    var form = $('changeEmailForm');
+    form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+  });
+
+  $('cancelChangeEmailBtn').addEventListener('click', function () {
+    $('changeEmailForm').style.display = 'none';
+    $('changeEmailMsg').textContent = '';
+  });
+
+  $('changeEmailForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = $('submitChangeEmailBtn');
+    var msg = $('changeEmailMsg');
+    var newEmail = $('newEmailInput').value.trim();
+    var currentPw = $('currentPasswordForEmail').value;
+
+    btn.disabled = true;
+    btn.textContent = 'Updating email…';
+    msg.textContent = '';
+
+    authFetch('/api/auth/change-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ newEmail: newEmail, currentPassword: currentPw }),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        btn.disabled = false;
+        btn.textContent = 'Confirm Email Change';
+        if (d.error) {
+          msg.textContent = d.error;
+          msg.style.color = 'var(--coral)';
+          msg.className = 'acct-msg on';
+          return;
+        }
+        if (d.token) {
+          localStorage.setItem('ahead_token', d.token);
+          token = d.token;
+        }
+        currentUser = d.user;
+        populateSettings(currentUser);
+        $('userBadge').textContent = currentUser.displayName ? (currentUser.displayName + ' (' + currentUser.email + ')') : currentUser.email;
+        $('unverifiedBanner').style.display = 'flex';
+        $('changeEmailForm').reset();
+        $('changeEmailForm').style.display = 'none';
+        alert('Email address updated to ' + newEmail + '! A verification link has been dispatched to your new email.');
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Confirm Email Change';
+        msg.textContent = 'Network error updating email.';
+        msg.style.color = 'var(--coral)';
+        msg.className = 'acct-msg on';
+      });
+  });
+
+  // ── Change Password ──
+  $('changePasswordForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = $('submitChangePasswordBtn');
+    var msg = $('changePasswordMsg');
+    var oldPw = $('currentPasswordInput').value;
+    var newPw = $('newPasswordInput').value;
+    var confirmPw = $('confirmPasswordInput').value;
+
+    if (newPw !== confirmPw) {
+      msg.textContent = 'New passwords do not match';
+      msg.style.color = 'var(--coral)';
+      msg.className = 'acct-msg on';
+      return;
+    }
+    if (newPw.length < 10) {
+      msg.textContent = 'Password must be at least 10 characters';
+      msg.style.color = 'var(--coral)';
+      msg.className = 'acct-msg on';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Updating password…';
+    msg.textContent = '';
+
+    authFetch('/api/auth/change-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ oldPassword: oldPw, newPassword: newPw }),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        btn.disabled = false;
+        btn.textContent = 'Update Password';
+        if (d.error) {
+          msg.textContent = d.error;
+          msg.style.color = 'var(--coral)';
+          msg.className = 'acct-msg on';
+          return;
+        }
+        if (d.token) {
+          localStorage.setItem('ahead_token', d.token);
+          token = d.token;
+        }
+        $('changePasswordForm').reset();
+        msg.textContent = '✓ Password changed successfully!';
+        msg.style.color = 'var(--mint)';
+        msg.className = 'acct-msg on';
+        setTimeout(function () { msg.textContent = ''; }, 5000);
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Update Password';
+        msg.textContent = 'Network error updating password.';
+        msg.style.color = 'var(--coral)';
+        msg.className = 'acct-msg on';
+      });
+  });
+
+  // ── Danger Zone & Export Shortcuts ──
+  $('settingsExportBtn').addEventListener('click', function () {
+    $('exportBtn').click();
+  });
+  $('settingsDeleteAccountBtn').addEventListener('click', function () {
+    $('deleteAccountBtn').click();
   });
 
   // Delete Account

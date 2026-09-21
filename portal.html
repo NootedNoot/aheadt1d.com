@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Choose a new password — AheadT1D</title>
-  <meta name="description" content="Set a new password for your Ahead account." />
+  <title>Portal &amp; 14-Day Clinical Snapshot — AheadT1D</title>
+  <meta name="description" content="Ahead user portal: 14-day Ambulatory Glucose Profile (AGP), Time in Range, caregiver sharing, and CSV doctor reports." />
   <meta name="robots" content="noindex" />
   <meta name="referrer" content="no-referrer" />
   <meta name="theme-color" content="#1d0339" />
-  <link rel="canonical" href="https://aheadt1d.com/reset-password.html" />
+  <link rel="canonical" href="https://aheadt1d.com/portal.html" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232ee59d' d='M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -822,35 +822,138 @@ html.modal-open{overflow:hidden}
   </header>
 
   
-  <main id="main" class="legal acct">
-    <div class="acct-card">
-      <div id="stateForm">
-        <p class="acct-eyebrow">Ahead</p>
-        <h1>Choose a new password</h1>
-        <p>At least 10 characters — a few random words works well. This link only works once.</p>
-        <form id="resetForm" novalidate>
-          <label class="acct-field"><span class="acct-lab">New password</span>
-            <span class="acct-input"><input id="pw1" type="password" autocomplete="new-password" minlength="10" required aria-describedby="msg" />
-            <button type="button" class="btn-mini" id="toggle" aria-pressed="false">Show</button></span></label>
-          <label class="acct-field"><span class="acct-lab">Type it again</span>
-            <span class="acct-input"><input id="pw2" type="password" autocomplete="new-password" minlength="10" required aria-describedby="msg" /></span></label>
-          <button type="submit" class="btn btn-hot" id="submitBtn">Set new password</button>
-        </form>
-        <div id="msg" class="acct-msg" role="alert" aria-live="polite"></div>
+  <main id="main" class="legal acct portal-main">
+    <div class="portal-wrap">
+      <header class="portal-header">
+        <div class="portal-brand">
+          <h1>Ahead Portal</h1>
+          <span id="userBadge" class="portal-user-badge">Loading…</span>
+        </div>
+        <div class="portal-controls">
+          <label for="streamSelect" style="font-size:.86rem;color:var(--mute)">Stream:</label>
+          <select id="streamSelect" class="stream-select" aria-label="Selected glucose stream">
+            <option value="self">Myself</option>
+          </select>
+          <button type="button" class="btn-mini" id="logoutBtn">Sign out</button>
+        </div>
+      </header>
+
+      <div class="portal-grid">
+        <section class="dash-card">
+          <div class="dash-card-header">
+            <div>
+              <p class="acct-eyebrow" style="margin-bottom:4px">Clinical AGP</p>
+              <h2>14-Day Glucose Snapshot</h2>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <span id="coverageBadge" class="badge-tag">Loading data…</span>
+              <button type="button" class="btn-mini" id="exportBtn">Export CSV</button>
+            </div>
+          </div>
+
+          <div id="noDataNotice" hidden style="padding:24px;text-align:center;color:var(--dim)">
+            <p>No glucose readings recorded in the last 14 days for this stream.</p>
+            <p style="font-size:.85rem">Make sure Ahead is connected to Health Connect or sync is active.</p>
+          </div>
+
+          <div id="statsContent">
+            <div class="tir-bar-wrap">
+              <div class="tir-bar" id="tirBar">
+                <div class="tir-seg tir-vlow" id="segVlow" style="width:0%" title="Very Low (<54 mg/dL)"></div>
+                <div class="tir-seg tir-low" id="segLow" style="width:0%" title="Low (54-69 mg/dL)"></div>
+                <div class="tir-seg tir-in" id="segIn" style="width:0%" title="In Range (70-180 mg/dL)"></div>
+                <div class="tir-seg tir-high" id="segHigh" style="width:0%" title="High (181-250 mg/dL)"></div>
+                <div class="tir-seg tir-vhigh" id="segVhigh" style="width:0%" title="Very High (>250 mg/dL)"></div>
+              </div>
+            </div>
+
+            <div class="tir-legend">
+              <div class="tir-leg-item"><span class="tir-dot" style="background:#ff5252"></span> Very Low (&lt;54): <span id="valVlow" class="tir-val">0%</span></div>
+              <div class="tir-leg-item"><span class="tir-dot" style="background:#ffb300"></span> Low (54-69): <span id="valLow" class="tir-val">0%</span></div>
+              <div class="tir-leg-item"><span class="tir-dot" style="background:#2ee59d"></span> <strong>In Range (70-180): <span id="valIn" class="tir-val">0%</span></strong></div>
+              <div class="tir-leg-item"><span class="tir-dot" style="background:#ff9100"></span> High (181-250): <span id="valHigh" class="tir-val">0%</span></div>
+              <div class="tir-leg-item"><span class="tir-dot" style="background:#ff3d00"></span> Very High (&gt;250): <span id="valVhigh" class="tir-val">0%</span></div>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric-box">
+                <div class="metric-label">Average Glucose</div>
+                <div class="metric-val" id="metricMean">--</div>
+                <div class="metric-sub">mg/dL</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-label">Estimated A1C (GMI)</div>
+                <div class="metric-val" id="metricGmi">--</div>
+                <div class="metric-sub">Target &lt; 7.0%</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-label">Variability (%CV)</div>
+                <div class="metric-val" id="metricCv">--</div>
+                <div class="metric-sub" id="metricCvSub">Target &lt; 36%</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-label">Standard Dev (SD)</div>
+                <div class="metric-val" id="metricSd">--</div>
+                <div class="metric-sub">mg/dL</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-label">Total Readings</div>
+                <div class="metric-val" id="metricReadings">--</div>
+                <div class="metric-sub" id="metricSpan">Last 14 days</div>
+              </div>
+            </div>
+
+            <div class="agp-chart-card">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span class="item-title">24-Hour Modal Ambulatory Profile (AGP)</span>
+                <span style="font-size:.78rem;color:var(--dim)">Median curve + 25-75% interquartile band</span>
+              </div>
+              <div class="agp-svg-wrap">
+                <svg id="agpChart" class="agp-svg" viewBox="0 0 800 220" preserveAspectRatio="none" aria-label="24-hour glucose distribution curve"></svg>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:6px;font:700 .74rem/1 var(--f-mono);color:var(--dim)">
+                <span>12 AM</span><span>3 AM</span><span>6 AM</span><span>9 AM</span><span>12 PM</span><span>3 PM</span><span>6 PM</span><span>9 PM</span><span>12 AM</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="portal-grid-2">
+          <section class="dash-card">
+            <div class="dash-card-header">
+              <h2>Caregiver Sharing</h2>
+              <span class="badge-tag" id="shareCountBadge">0 Viewers</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--mute);margin:0 0 16px">Caregivers can view your real-time glucose and alerts in Ahead Lite.</p>
+            <ul id="caregiverList" class="item-list">
+              <li class="item-row" style="color:var(--dim);font-size:.88rem">Loading caregivers…</li>
+            </ul>
+            <form id="inviteForm" style="margin-top:16px;display:flex;gap:8px" novalidate>
+              <input id="inviteEmail" type="email" placeholder="caregiver@example.com" style="flex:1;min-width:0;padding:8px 12px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:.9rem" required />
+              <button type="submit" class="btn-mini" id="inviteBtn" style="white-space:nowrap">Invite</button>
+            </form>
+            <div id="inviteMsg" class="acct-msg" style="margin-top:8px;font-size:.85rem"></div>
+          </section>
+
+          <section class="dash-card">
+            <div class="dash-card-header">
+              <h2>Connected Devices</h2>
+              <span class="badge-tag" id="deviceCountBadge">0 Devices</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--mute);margin:0 0 16px">Phones running Ahead or Ahead Lite authorized on your account.</p>
+            <ul id="deviceList" class="item-list">
+              <li class="item-row" style="color:var(--dim);font-size:.88rem">Loading devices…</li>
+            </ul>
+            <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <span style="font-size:.84rem;color:var(--mute)">Account security:</span>
+              <div style="display:flex;gap:8px">
+                <a href="reset-password.html" class="btn-mini">Change password</a>
+                <button type="button" class="btn-mini btn-danger-mini" id="deleteAccountBtn">Delete account</button>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
-      <div id="stateDone" hidden>
-        <p class="acct-eyebrow">Ahead</p>
-        <h1>Password changed</h1>
-        <p>For your security we signed you out of your devices. Open <strong>Ahead</strong> or <strong>Ahead Lite</strong> and log in with your new password.</p>
-        <p class="acct-note">We also sent a short notice to your email. If you didn’t just do this, reset your password again and write to <a href="mailto:hello@aheadt1d.com">hello@aheadt1d.com</a>.</p>
-      </div>
-      <div id="stateBad" hidden>
-        <p class="acct-eyebrow">Ahead</p>
-        <h1>This link doesn’t work</h1>
-        <p id="badWhy">It may have expired (they last 30 minutes) or already been used.</p>
-        <p>Open Ahead or Ahead Lite, tap <strong>Forgot password?</strong> on the login screen, and we’ll send a fresh link.</p>
-      </div>
-      <p class="acct-note">Ahead is a second buddy, not your main CGM. Keep your official Dexcom app or receiver and its alarms on.</p>
     </div>
   </main>
 
@@ -899,36 +1002,364 @@ html.modal-open{overflow:hidden}
 (function () {
   'use strict';
   var API = "https://ahead-backend-production-ee80.up.railway.app";
-  var params = new URLSearchParams(location.search);
-  var token = params.get('token');
-  try { history.replaceState(null, '', location.pathname); } catch (e) {}
-  function $(id) { return document.getElementById(id); }
-  var msg = $('msg');
-  function say(text, kind) { msg.textContent = text; msg.className = 'acct-msg' + (kind ? ' ' + kind : ''); }
-  function show(id) { ['stateForm', 'stateDone', 'stateBad'].forEach(function (s) { var el = $(s); if (el) el.hidden = (s !== id); }); var h = document.querySelector('#' + id + ' h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); } }
-  function post(path, payload) {
-    return fetch(API + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-      .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, status: res.status, data: data }; }); });
+  var token = localStorage.getItem('ahead_token');
+  if (!token) {
+    location.replace('login.html');
+    return;
   }
-  var NETWORK = "Couldn't reach the server. Check your connection and try again.";
-  if (!token) { $('badWhy').textContent = 'This page needs the link from your email — open the link from the email again.'; show('stateBad'); return; }
-  var tg = $('toggle');
-  tg.addEventListener('click', function () {
-    var on = tg.getAttribute('aria-pressed') !== 'true';
-    tg.setAttribute('aria-pressed', on ? 'true' : 'false'); tg.textContent = on ? 'Hide' : 'Show';
-    $('pw1').type = on ? 'text' : 'password'; $('pw2').type = on ? 'text' : 'password';
+
+  function $(id) { return document.getElementById(id); }
+  function authFetch(path, opts) {
+    opts = opts || {};
+    opts.headers = opts.headers || {};
+    opts.headers['Authorization'] = 'Bearer ' + token;
+    return fetch(API + path, opts);
+  }
+
+  $('logoutBtn').addEventListener('click', function () {
+    localStorage.removeItem('ahead_token');
+    localStorage.removeItem('ahead_user');
+    location.replace('login.html');
   });
-  $('resetForm').addEventListener('submit', function (ev) {
+
+  var currentUser = null;
+  var currentOwnerId = null;
+
+  // Initialize Portal
+  authFetch('/api/auth/me')
+    .then(function (res) {
+      if (!res.ok) {
+        localStorage.removeItem('ahead_token');
+        location.replace('login.html');
+        return;
+      }
+      return res.json();
+    })
+    .then(function (data) {
+      if (!data || !data.user) return;
+      currentUser = data.user;
+      $('userBadge').textContent = currentUser.displayName ? (currentUser.displayName + ' (' + currentUser.email + ')') : currentUser.email;
+      loadStreams();
+      loadDevices();
+    })
+    .catch(function (err) {
+      console.error('Failed to load user info:', err);
+    });
+
+  // Load Streams
+  function loadStreams() {
+    authFetch('/api/shares/accessible')
+      .then(function (r) { return r.json(); })
+      .then(function (list) {
+        var sel = $('streamSelect');
+        sel.innerHTML = '';
+        if (Array.isArray(list) && list.length > 0) {
+          list.forEach(function (s) {
+            var opt = document.createElement('option');
+            opt.value = s.ownerId;
+            opt.textContent = s.isSelf ? ('Myself (' + s.ownerEmail + ')') : s.ownerEmail;
+            sel.appendChild(opt);
+          });
+          currentOwnerId = sel.value;
+        } else {
+          var opt = document.createElement('option');
+          opt.value = currentUser.id;
+          opt.textContent = 'Myself';
+          sel.appendChild(opt);
+          currentOwnerId = currentUser.id;
+        }
+        loadStats();
+        loadCaregivers();
+      })
+      .catch(function () {
+        currentOwnerId = currentUser.id;
+        loadStats();
+        loadCaregivers();
+      });
+  }
+
+  $('streamSelect').addEventListener('change', function () {
+    currentOwnerId = this.value;
+    loadStats();
+  });
+
+  // Load 14-Day Stats
+  function loadStats() {
+    $('coverageBadge').textContent = 'Loading 14-day data…';
+    var tzOffset = new Date().getTimezoneOffset();
+    authFetch('/api/readings/stats?days=14&tzOffsetMin=' + tzOffset + '&ownerId=' + currentOwnerId)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || d.totalReadings === 0) {
+          $('noDataNotice').hidden = false;
+          $('statsContent').hidden = true;
+          $('coverageBadge').textContent = '0 Readings';
+          return;
+        }
+        $('noDataNotice').hidden = false;
+        $('statsContent').hidden = false;
+        $('noDataNotice').hidden = true;
+
+        $('coverageBadge').textContent = d.activePercent + '% Active (' + d.totalReadings.toLocaleString() + ' readings)';
+
+        // TIR Bars
+        var tir = d.tir;
+        $('segVlow').style.width = tir.veryLow.percent + '%';
+        $('segLow').style.width = tir.low.percent + '%';
+        $('segIn').style.width = tir.inRange.percent + '%';
+        $('segHigh').style.width = tir.high.percent + '%';
+        $('segVhigh').style.width = tir.veryHigh.percent + '%';
+
+        $('valVlow').textContent = tir.veryLow.percent + '%';
+        $('valLow').textContent = tir.low.percent + '%';
+        $('valIn').textContent = tir.inRange.percent + '%';
+        $('valHigh').textContent = tir.high.percent + '%';
+        $('valVhigh').textContent = tir.veryHigh.percent + '%';
+
+        // Metrics
+        $('metricMean').textContent = d.metrics.mean;
+        $('metricGmi').textContent = d.metrics.gmi + '%';
+        $('metricSd').textContent = d.metrics.stdDev;
+        $('metricCv').textContent = d.metrics.cv + '%';
+        $('metricCvSub').textContent = d.metrics.cv <= 36 ? 'Stable (Target < 36%)' : 'Variable (Target < 36%)';
+        $('metricReadings').textContent = d.totalReadings.toLocaleString();
+
+        // Render AGP Chart
+        renderAgp(d.hourlyAgp || []);
+      })
+      .catch(function (err) {
+        console.error('Stats error:', err);
+        $('coverageBadge').textContent = 'Failed to load stats';
+      });
+  }
+
+  // Render SVG AGP Curve
+  function renderAgp(hourly) {
+    var svg = $('agpChart');
+    svg.innerHTML = '';
+    var W = 800, H = 220;
+    var minY = 40, maxY = 350;
+
+    function yCoord(val) {
+      if (val === null || val === undefined) return null;
+      var clamped = Math.max(minY, Math.min(maxY, val));
+      return H - ((clamped - minY) / (maxY - minY)) * (H - 20) - 10;
+    }
+
+    function xCoord(hour) {
+      return (hour / 23) * (W - 40) + 20;
+    }
+
+    // Target Range 70 - 180 Shaded Rect
+    var y70 = yCoord(70);
+    var y180 = yCoord(180);
+    var targetRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    targetRect.setAttribute('x', '0');
+    targetRect.setAttribute('y', y180);
+    targetRect.setAttribute('width', W);
+    targetRect.setAttribute('height', y70 - y180);
+    targetRect.setAttribute('fill', 'rgba(46, 229, 157, 0.08)');
+    svg.appendChild(targetRect);
+
+    // Target boundary lines
+    [70, 180].forEach(function (v) {
+      var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      var y = yCoord(v);
+      line.setAttribute('x1', '0'); line.setAttribute('y1', y);
+      line.setAttribute('x2', W); line.setAttribute('y2', y);
+      line.setAttribute('stroke', v === 70 ? 'rgba(255, 179, 0, 0.35)' : 'rgba(255, 145, 0, 0.35)');
+      line.setAttribute('stroke-dasharray', '4 4');
+      svg.appendChild(line);
+    });
+
+    // Build Interquartile Band (p25 to p75)
+    var topPts = [], btmPts = [];
+    hourly.forEach(function (h) {
+      if (h.median !== null) {
+        var x = xCoord(h.hour);
+        topPts.push(x + ',' + yCoord(h.p75));
+        btmPts.unshift(x + ',' + yCoord(h.p25));
+      }
+    });
+
+    if (topPts.length > 1) {
+      var bandPoly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      bandPoly.setAttribute('points', topPts.concat(btmPts).join(' '));
+      bandPoly.setAttribute('fill', 'rgba(125, 207, 255, 0.18)');
+      svg.appendChild(bandPoly);
+    }
+
+    // Median Line & Points
+    var medianPts = [];
+    hourly.forEach(function (h) {
+      if (h.median !== null) {
+        var x = xCoord(h.hour);
+        var y = yCoord(h.median);
+        medianPts.push(x + ',' + y);
+
+        var pt = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        pt.setAttribute('cx', x); pt.setAttribute('cy', y);
+        pt.setAttribute('r', '3.5');
+        pt.setAttribute('fill', '#2ee59d');
+        var title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = h.hour + ':00 — Median: ' + h.median + ' mg/dL (IQR: ' + h.p25 + '-' + h.p75 + ')';
+        pt.appendChild(title);
+        svg.appendChild(pt);
+      }
+    });
+
+    if (medianPts.length > 1) {
+      var medLine = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+      medLine.setAttribute('points', medianPts.join(' '));
+      medLine.setAttribute('fill', 'none');
+      medLine.setAttribute('stroke', '#2ee59d');
+      medLine.setAttribute('stroke-width', '2.5');
+      svg.appendChild(medLine);
+    }
+  }
+
+  // Export CSV
+  $('exportBtn').addEventListener('click', function () {
+    this.disabled = true;
+    this.textContent = 'Generating…';
+    var btn = this;
+    authFetch('/api/readings/export?days=14&ownerId=' + currentOwnerId)
+      .then(function (r) { return r.blob(); })
+      .then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'ahead-glucose-14days.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        btn.disabled = false;
+        btn.textContent = 'Export CSV';
+      })
+      .catch(function () {
+        alert('Failed to export CSV. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Export CSV';
+      });
+  });
+
+  // Load Caregivers
+  function loadCaregivers() {
+    authFetch('/api/shares')
+      .then(function (r) { return r.json(); })
+      .then(function (shares) {
+        var list = $('caregiverList');
+        list.innerHTML = '';
+        if (!Array.isArray(shares) || shares.length === 0) {
+          list.innerHTML = '<li class="item-row" style="color:var(--dim);font-size:.88rem">No caregivers added yet.</li>';
+          $('shareCountBadge').textContent = '0 Viewers';
+          return;
+        }
+        $('shareCountBadge').textContent = shares.length + (shares.length === 1 ? ' Viewer' : ' Viewers');
+        shares.forEach(function (s) {
+          var li = document.createElement('li');
+          li.className = 'item-row';
+          li.innerHTML = '<div><div class="item-title">' + s.viewerEmail + '</div><div class="item-sub">Added ' + new Date(s.createdAt).toLocaleDateString() + '</div></div><button type="button" class="btn-mini btn-danger-mini" data-id="' + s.shareId + '">Revoke</button>';
+          li.querySelector('button').addEventListener('click', function () {
+            if (confirm('Revoke access for ' + s.viewerEmail + '?')) {
+              authFetch('/api/shares/' + s.shareId, { method: 'DELETE' })
+                .then(function () { loadCaregivers(); });
+            }
+          });
+          list.appendChild(li);
+        });
+      })
+      .catch(function () {
+        $('caregiverList').innerHTML = '<li class="item-row" style="color:var(--coral);font-size:.88rem">Failed to load caregivers.</li>';
+      });
+  }
+
+  // Invite Caregiver
+  $('inviteForm').addEventListener('submit', function (ev) {
     ev.preventDefault();
-    var a = $('pw1').value, b = $('pw2').value, btn = $('submitBtn');
-    if (a.length < 10) { say('Use at least 10 characters.', 'error'); $('pw1').focus(); return; }
-    if (a !== b) { say('The two passwords don’t match.', 'error'); $('pw2').focus(); return; }
-    btn.disabled = true; say('Saving…');
-    post('/api/auth/password-reset/confirm', { token: token, newPassword: a }).then(function (r) {
-      if (r.ok) { $('pw1').value = ''; $('pw2').value = ''; show('stateDone'); return; }
-      if (r.status === 400 && /invalid|expired/i.test(String(r.data && r.data.error))) { show('stateBad'); return; }
-      say((r.data && r.data.error) || 'Something went wrong. Please try again.', 'error'); btn.disabled = false;
-    }).catch(function () { say(NETWORK, 'error'); btn.disabled = false; });
+    var email = $('inviteEmail').value.trim();
+    var msg = $('inviteMsg');
+    var btn = $('inviteBtn');
+    if (!email) return;
+
+    btn.disabled = true;
+    msg.textContent = 'Sending invitation…'; msg.className = 'acct-msg';
+
+    authFetch('/api/shares', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ viewerEmail: email }),
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (d) {
+        btn.disabled = false;
+        if (res.ok) {
+          msg.textContent = 'Caregiver access granted!'; msg.className = 'acct-msg ok';
+          $('inviteEmail').value = '';
+          loadCaregivers();
+          return;
+        }
+        msg.textContent = d.error || 'Failed to grant sharing.'; msg.className = 'acct-msg error';
+      });
+    }).catch(function () {
+      btn.disabled = false;
+      msg.textContent = 'Network error. Please try again.'; msg.className = 'acct-msg error';
+    });
+  });
+
+  // Load Devices
+  function loadDevices() {
+    authFetch('/api/devices')
+      .then(function (r) { return r.json(); })
+      .then(function (devices) {
+        var list = $('deviceList');
+        list.innerHTML = '';
+        var active = (devices || []).filter(function (d) { return !d.revoked; });
+        $('deviceCountBadge').textContent = active.length + (active.length === 1 ? ' Device' : ' Devices');
+        if (active.length === 0) {
+          list.innerHTML = '<li class="item-row" style="color:var(--dim);font-size:.88rem">No active devices registered yet.</li>';
+          return;
+        }
+        active.forEach(function (d) {
+          var li = document.createElement('li');
+          li.className = 'item-row';
+          var label = d.label || 'Android Device';
+          var lastUsed = d.lastUsedAt ? ('Last active ' + new Date(d.lastUsedAt).toLocaleDateString()) : 'Registered recently';
+          li.innerHTML = '<div><div class="item-title">' + label + '</div><div class="item-sub">' + d.keyPrefix + '… · ' + lastUsed + '</div></div><button type="button" class="btn-mini btn-danger-mini" data-id="' + d.deviceId + '">Revoke</button>';
+          li.querySelector('button').addEventListener('click', function () {
+            if (confirm('Revoke this device? It will be logged out of Ahead.')) {
+              authFetch('/api/devices/' + d.deviceId + '/revoke', { method: 'POST' })
+                .then(function () { loadDevices(); });
+            }
+          });
+          list.appendChild(li);
+        });
+      })
+      .catch(function () {
+        $('deviceList').innerHTML = '<li class="item-row" style="color:var(--coral);font-size:.88rem">Failed to load devices.</li>';
+      });
+  }
+
+  // Delete Account
+  $('deleteAccountBtn').addEventListener('click', function () {
+    var pw = prompt('To permanently delete your account and all stored glucose readings, enter your password:');
+    if (!pw) return;
+    authFetch('/api/auth/account', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw }),
+    }).then(function (res) {
+      if (res.ok) {
+        alert('Your account and all associated data have been permanently deleted.');
+        localStorage.removeItem('ahead_token');
+        localStorage.removeItem('ahead_user');
+        location.replace('index.html');
+        return;
+      }
+      return res.json().then(function (d) { alert(d.error || 'Failed to delete account.'); });
+    }).catch(function () {
+      alert('Network error while requesting account deletion.');
+    });
   });
 })();
 

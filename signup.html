@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Choose a new password — AheadT1D</title>
-  <meta name="description" content="Set a new password for your Ahead account." />
+  <title>Create an account — AheadT1D</title>
+  <meta name="description" content="Create your Ahead account for real-time tracking, caregiver sharing, and clinical snapshots." />
   <meta name="robots" content="noindex" />
   <meta name="referrer" content="no-referrer" />
   <meta name="theme-color" content="#1d0339" />
-  <link rel="canonical" href="https://aheadt1d.com/reset-password.html" />
+  <link rel="canonical" href="https://aheadt1d.com/signup.html" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232ee59d' d='M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -824,33 +824,23 @@ html.modal-open{overflow:hidden}
   
   <main id="main" class="legal acct">
     <div class="acct-card">
-      <div id="stateForm">
-        <p class="acct-eyebrow">Ahead</p>
-        <h1>Choose a new password</h1>
-        <p>At least 10 characters — a few random words works well. This link only works once.</p>
-        <form id="resetForm" novalidate>
-          <label class="acct-field"><span class="acct-lab">New password</span>
-            <span class="acct-input"><input id="pw1" type="password" autocomplete="new-password" minlength="10" required aria-describedby="msg" />
-            <button type="button" class="btn-mini" id="toggle" aria-pressed="false">Show</button></span></label>
-          <label class="acct-field"><span class="acct-lab">Type it again</span>
-            <span class="acct-input"><input id="pw2" type="password" autocomplete="new-password" minlength="10" required aria-describedby="msg" /></span></label>
-          <button type="submit" class="btn btn-hot" id="submitBtn">Set new password</button>
-        </form>
-        <div id="msg" class="acct-msg" role="alert" aria-live="polite"></div>
-      </div>
-      <div id="stateDone" hidden>
-        <p class="acct-eyebrow">Ahead</p>
-        <h1>Password changed</h1>
-        <p>For your security we signed you out of your devices. Open <strong>Ahead</strong> or <strong>Ahead Lite</strong> and log in with your new password.</p>
-        <p class="acct-note">We also sent a short notice to your email. If you didn’t just do this, reset your password again and write to <a href="mailto:hello@aheadt1d.com">hello@aheadt1d.com</a>.</p>
-      </div>
-      <div id="stateBad" hidden>
-        <p class="acct-eyebrow">Ahead</p>
-        <h1>This link doesn’t work</h1>
-        <p id="badWhy">It may have expired (they last 30 minutes) or already been used.</p>
-        <p>Open Ahead or Ahead Lite, tap <strong>Forgot password?</strong> on the login screen, and we’ll send a fresh link.</p>
-      </div>
-      <p class="acct-note">Ahead is a second buddy, not your main CGM. Keep your official Dexcom app or receiver and its alarms on.</p>
+      <p class="acct-eyebrow">Ahead Account</p>
+      <h1>Create your account</h1>
+      <p>One unified account for Ahead, Ahead Lite, and your web portal.</p>
+      <form id="signupForm" novalidate>
+        <label class="acct-field"><span class="acct-lab">Email address</span>
+          <span class="acct-input"><input id="email" type="email" autocomplete="email" required placeholder="you@example.com" /></span></label>
+        <label class="acct-field"><span class="acct-lab">Display name (optional)</span>
+          <span class="acct-input"><input id="displayName" type="text" autocomplete="name" placeholder="Ryan" /></span></label>
+        <label class="acct-field"><span class="acct-lab">Password (at least 10 characters)</span>
+          <span class="acct-input"><input id="pw" type="password" autocomplete="new-password" minlength="10" required />
+          <button type="button" class="btn-mini" id="togglePw" aria-pressed="false">Show</button></span></label>
+        <label class="acct-field"><span class="acct-lab">Confirm password</span>
+          <span class="acct-input"><input id="pwConfirm" type="password" autocomplete="new-password" minlength="10" required /></span></label>
+        <button type="submit" class="btn btn-hot" id="signupBtn">Create account</button>
+      </form>
+      <div id="msg" class="acct-msg" role="alert" aria-live="polite"></div>
+      <p class="acct-note">Already have an account? <a href="login.html">Sign in</a>.<br />By creating an account, you agree to our <a href="legal.html#terms">Terms of Use</a> and <a href="privacy.html">Privacy Policy</a>.</p>
     </div>
   </main>
 
@@ -899,36 +889,55 @@ html.modal-open{overflow:hidden}
 (function () {
   'use strict';
   var API = "https://ahead-backend-production-ee80.up.railway.app";
-  var params = new URLSearchParams(location.search);
-  var token = params.get('token');
-  try { history.replaceState(null, '', location.pathname); } catch (e) {}
   function $(id) { return document.getElementById(id); }
   var msg = $('msg');
   function say(text, kind) { msg.textContent = text; msg.className = 'acct-msg' + (kind ? ' ' + kind : ''); }
-  function show(id) { ['stateForm', 'stateDone', 'stateBad'].forEach(function (s) { var el = $(s); if (el) el.hidden = (s !== id); }); var h = document.querySelector('#' + id + ' h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); } }
-  function post(path, payload) {
-    return fetch(API + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-      .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, status: res.status, data: data }; }); });
+
+  if (localStorage.getItem('ahead_token')) {
+    location.replace('portal.html');
+    return;
   }
-  var NETWORK = "Couldn't reach the server. Check your connection and try again.";
-  if (!token) { $('badWhy').textContent = 'This page needs the link from your email — open the link from the email again.'; show('stateBad'); return; }
-  var tg = $('toggle');
+
+  var tg = $('togglePw');
   tg.addEventListener('click', function () {
     var on = tg.getAttribute('aria-pressed') !== 'true';
     tg.setAttribute('aria-pressed', on ? 'true' : 'false'); tg.textContent = on ? 'Hide' : 'Show';
-    $('pw1').type = on ? 'text' : 'password'; $('pw2').type = on ? 'text' : 'password';
+    $('pw').type = on ? 'text' : 'password'; $('pwConfirm').type = on ? 'text' : 'password';
   });
-  $('resetForm').addEventListener('submit', function (ev) {
+
+  $('signupForm').addEventListener('submit', function (ev) {
     ev.preventDefault();
-    var a = $('pw1').value, b = $('pw2').value, btn = $('submitBtn');
-    if (a.length < 10) { say('Use at least 10 characters.', 'error'); $('pw1').focus(); return; }
-    if (a !== b) { say('The two passwords don’t match.', 'error'); $('pw2').focus(); return; }
-    btn.disabled = true; say('Saving…');
-    post('/api/auth/password-reset/confirm', { token: token, newPassword: a }).then(function (r) {
-      if (r.ok) { $('pw1').value = ''; $('pw2').value = ''; show('stateDone'); return; }
-      if (r.status === 400 && /invalid|expired/i.test(String(r.data && r.data.error))) { show('stateBad'); return; }
-      say((r.data && r.data.error) || 'Something went wrong. Please try again.', 'error'); btn.disabled = false;
-    }).catch(function () { say(NETWORK, 'error'); btn.disabled = false; });
+    var email = $('email').value.trim();
+    var name = $('displayName').value.trim();
+    var pw = $('pw').value;
+    var pw2 = $('pwConfirm').value;
+    var btn = $('signupBtn');
+
+    if (!email || !/\S+@\S+\.\S+/.test(email)) { say('Please enter a valid email address.', 'error'); $('email').focus(); return; }
+    if (pw.length < 10) { say('Use at least 10 characters for your password.', 'error'); $('pw').focus(); return; }
+    if (pw !== pw2) { say('Passwords do not match.', 'error'); $('pwConfirm').focus(); return; }
+
+    btn.disabled = true; say('Creating your account…');
+    fetch(API + '/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: pw, displayName: name || null }),
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (res.ok && data.token) {
+          localStorage.setItem('ahead_token', data.token);
+          localStorage.setItem('ahead_user', JSON.stringify(data.user));
+          say('Account created! Loading portal…', 'ok');
+          setTimeout(function () { location.replace('portal.html'); }, 600);
+          return;
+        }
+        say(data.error || 'Failed to create account. Please try again.', 'error');
+        btn.disabled = false;
+      });
+    }).catch(function () {
+      say("Couldn't reach the server. Please check your connection.", 'error');
+      btn.disabled = false;
+    });
   });
 })();
 

@@ -724,6 +724,62 @@ html.modal-open{overflow:hidden}
   .acct-msg.ok{color:var(--mint)}
   .acct-note{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:.86rem;color:var(--dim)}
   [hidden]{display:none!important}
+
+  /* Portal Dashboard Styling */
+  .portal-main{padding:110px 0 90px}
+  .portal-wrap{width:min(1040px,calc(100% - 32px));margin:0 auto;position:relative;z-index:2}
+  .portal-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .portal-brand{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .portal-brand h1{margin:0;font:700 1.8rem/1.2 var(--f-head);color:var(--ink)}
+  .portal-user-badge{display:inline-flex;align-items:center;gap:6px;font:600 .85rem/1 var(--f-mono);color:var(--mint);background:rgba(46,229,157,.08);padding:6px 12px;border-radius:100px;border:1px solid rgba(46,229,157,.2)}
+  .portal-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .stream-select{background:rgba(0,0,0,.35);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 14px;font:inherit;font-size:.9rem}
+  .stream-select:focus{outline:2px solid var(--mint);border-color:var(--mint)}
+
+  .portal-grid{display:grid;grid-template-columns:1fr;gap:24px}
+  @media(min-width:880px){
+    .portal-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  }
+
+  .dash-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 22px;backdrop-filter:blur(8px)}
+  .dash-card-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+  .dash-card h2{margin:0;font:700 1.25rem/1.2 var(--f-head);color:var(--ink)}
+  
+  .tir-bar-wrap{margin:18px 0 10px}
+  .tir-bar{display:flex;height:24px;border-radius:100px;overflow:hidden;background:rgba(0,0,0,.35);border:1px solid var(--line)}
+  .tir-seg{height:100%;transition:width .4s ease}
+  .tir-vlow{background:#ff5252}
+  .tir-low{background:#ffb300}
+  .tir-in{background:#2ee59d}
+  .tir-high{background:#ff9100}
+  .tir-vhigh{background:#ff3d00}
+  
+  .tir-legend{display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:14px}
+  .tir-leg-item{display:flex;align-items:center;gap:6px;font-size:.84rem;color:var(--mute)}
+  .tir-dot{width:10px;height:10px;border-radius:50%}
+  .tir-val{font-weight:700;color:var(--ink);font-family:var(--f-mono)}
+
+  .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:20px 0}
+  .metric-box{background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px;text-align:center}
+  .metric-label{font:700 .74rem/1 var(--f-mono);color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  .metric-val{font:700 1.6rem/1.1 var(--f-head);color:var(--ink)}
+  .metric-sub{font-size:.78rem;color:var(--mute);margin-top:4px}
+
+  .agp-chart-card{margin-top:20px}
+  .agp-svg-wrap{position:relative;width:100%;height:220px;margin-top:12px}
+  .agp-svg{width:100%;height:100%;overflow:visible}
+
+  .item-list{list-style:none;margin:0;padding:0}
+  .item-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);gap:12px}
+  .item-row:last-child{border-bottom:none}
+  .item-title{font-weight:600;color:var(--ink);font-size:.95rem}
+  .item-sub{font-size:.8rem;color:var(--dim);font-family:var(--f-mono)}
+
+  .btn-mini{padding:6px 12px;font-size:.82rem;font-weight:600;border-radius:var(--r-sm);background:rgba(255,255,255,.08);color:var(--ink);border:1px solid var(--line);cursor:pointer;text-decoration:none;display:inline-block}
+  .btn-mini:hover{background:rgba(255,255,255,.15)}
+  .btn-danger-mini{background:rgba(255,82,82,.12);color:#ff5252;border-color:rgba(255,82,82,.3)}
+  .btn-danger-mini:hover{background:rgba(255,82,82,.24)}
+  .badge-tag{display:inline-block;padding:3px 8px;font-size:.74rem;font-family:var(--f-mono);border-radius:4px;background:rgba(255,255,255,.08);color:var(--dim)}
 </style>
 </head>
 <body>
@@ -760,7 +816,7 @@ html.modal-open{overflow:hidden}
   <header class="site-header">
     <nav class="nav" aria-label="Main">
       <a href="index.html" class="brand" aria-label="Ahead T1D home"><svg class="icon" style="color:var(--mint);fill:currentColor;stroke:none" aria-hidden="true"><use href="#i-drop"/></svg>Ahead <small>T1D</small></a>
-      <ul id="navlinks"><li><a href="index.html">Home</a></li><li><a href="index.html#downloads">Downloads</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="legal.html">Privacy &amp; Terms</a></li></ul>
+      <ul id="navlinks"><li><a href="index.html">Home</a></li><li><a href="index.html#downloads">Downloads</a></li><li><a href="portal.html">Portal</a></li><li><a href="legal.html">Privacy &amp; Terms</a></li></ul>
       <a class="nav-cta" href="index.html#downloads">Get the apps</a>
     </nav>
   </header>
@@ -778,13 +834,13 @@ html.modal-open{overflow:hidden}
       <div id="stateDone" hidden>
         <p class="acct-eyebrow">Ahead</p>
         <h1>Email verified</h1>
-        <p>You’re all set — you can close this page and go back to the app.</p>
+        <p>You’re all set — you can close this page, view your <a href="portal.html">portal</a>, or return to the app.</p>
       </div>
       <div id="stateBad" hidden>
         <p class="acct-eyebrow">Ahead</p>
         <h1>This link doesn’t work</h1>
         <p id="badWhy">It may have expired (they last 24 hours) or already been used.</p>
-        <p>Open the app and use <strong>Resend verification email</strong> to get a fresh link.</p>
+        <p>Open the app or portal to get a fresh link.</p>
       </div>
     </div>
   </main>
@@ -846,7 +902,6 @@ html.modal-open{overflow:hidden}
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, status: res.status, data: data }; }); });
   }
   var NETWORK = "Couldn't reach the server. Check your connection and try again.";
-
   if (!token) { $('badWhy').textContent = 'This page needs the link from your email — open the link from the email again.'; show('stateBad'); return; }
   $('confirmBtn').addEventListener('click', function () {
     var btn = $('confirmBtn'); btn.disabled = true; say('Verifying…');
@@ -857,6 +912,7 @@ html.modal-open{overflow:hidden}
     }).catch(function () { say(NETWORK, 'error'); btn.disabled = false; });
   });
 })();
+
 </script>
 </body>
 </html>

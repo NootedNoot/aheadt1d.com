@@ -844,6 +844,20 @@ html.modal-open{overflow:hidden}
   .user-table th{border-bottom:1px solid var(--line);color:var(--dim);font-family:var(--f-mono);font-size:.74rem;text-transform:uppercase;padding:9px 8px}
   .user-table td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
   .user-table tr:hover td{background:rgba(255,255,255,.02)}
+
+  /* Live Glucose Card */
+  .live-card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:var(--r);padding:24px;position:relative;overflow:hidden;backdrop-filter:blur(8px)}
+  .live-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--mint),var(--sky))}
+  .live-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+  .live-dot{display:inline-flex;align-items:center;gap:6px;font:700 .76rem/1 var(--f-mono);color:var(--mint);text-transform:uppercase;letter-spacing:.08em}
+  .live-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint);animation:pulseDot 2s infinite}
+  @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+  .live-val-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .live-val{font:800 clamp(2.8rem,6vw,4rem)/1 var(--f-head);color:var(--ink);letter-spacing:-.02em}
+  .live-unit{font-size:1.1rem;color:var(--mute);font-weight:600}
+  .live-arrow{font-size:2.2rem;font-weight:800;margin-left:4px}
+  .live-delta{font:700 1.05rem/1 var(--f-mono);padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
+  .live-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:.88rem;color:var(--dim)}
 </style>
 </head>
 <body>
@@ -880,7 +894,7 @@ html.modal-open{overflow:hidden}
   <header class="site-header">
     <nav class="nav" aria-label="Main">
       <a href="index.html" class="brand" aria-label="Ahead T1D home"><svg class="icon" style="color:var(--mint);fill:currentColor;stroke:none" aria-hidden="true"><use href="#i-drop"/></svg>Ahead <small>T1D</small></a>
-      <ul id="navlinks"><li><a href="index.html">Home</a></li><li><a href="index.html#downloads">Downloads</a></li><li><a href="portal.html">Portal</a></li><li><a href="legal.html">Privacy &amp; Terms</a></li></ul>
+      <ul id="navlinks"><li><a href="index.html">Home</a></li><li><a href="index.html#downloads">Downloads</a></li><li><a href="portal.html">Portal</a></li><li><a href="login.html">Sign in</a></li><li><a href="legal.html">Privacy &amp; Terms</a></li></ul>
       <a class="nav-cta" href="index.html#downloads">Get the apps</a>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation menu" aria-controls="navlinks"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span></button>
     </nav>
@@ -916,7 +930,7 @@ html.modal-open{overflow:hidden}
         <strong>Medical disclaimer:</strong> Ahead is a monitoring companion and research tool for informational purposes. It is not a medical device, does not replace your CGM’s own alarms, your insulin delivery system or the guidance of your physician, and never provides dosing advice.
       </div>
       <div class="foot-links">
-        <a href="index.html">Home</a><a href="index.html#downloads">Downloads</a><a href="index.html#faq">FAQ</a><a href="legal.html#privacy">Privacy Policy</a><a href="legal.html#terms">Terms of Use</a><a href="mailto:hello@aheadt1d.com">Contact</a>
+        <a href="index.html">Home</a><a href="index.html#downloads">Downloads</a><a href="index.html#faq">FAQ</a><a href="portal.html">Portal</a><a href="login.html">Sign in</a><a href="legal.html#privacy">Privacy Policy</a><a href="legal.html#terms">Terms of Use</a><a href="mailto:hello@aheadt1d.com">Contact</a>
       </div>
       <div class="footer-bottom">
         <span>© 2026 AheadT1D. Built by Ryan Singer in Colorado Springs, CO.</span>

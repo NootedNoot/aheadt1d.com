@@ -926,6 +926,14 @@ html.modal-open{overflow:hidden}
         </div>
       </header>
 
+      <div id="portalErrorBanner" style="display:none;background:rgba(255,82,82,.1);border:1px solid rgba(255,82,82,.4);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:20px;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.2rem">⚠️</span>
+          <span id="portalBannerMsg" style="color:#ffb4b4;font-size:.88rem">Unable to connect to Ahead server. Please try refreshing shortly.</span>
+        </div>
+        <button type="button" class="btn-mini" onclick="location.reload()" style="white-space:nowrap;background:rgba(255,82,82,.2);border-color:rgba(255,82,82,.5);color:#fff">Refresh</button>
+      </div>
+
       <div id="unverifiedBanner" style="display:none;background:rgba(255,179,0,.08);border:1px solid rgba(255,179,0,.35);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:20px;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:1.2rem">✉️</span>
@@ -1436,8 +1444,17 @@ html.modal-open{overflow:hidden}
   authFetch('/api/auth/me')
     .then(function (res) {
       if (!res.ok) {
-        localStorage.removeItem('ahead_token');
-        location.replace('login.html');
+        if (res.status === 401) {
+          localStorage.removeItem('ahead_token');
+          location.replace('login.html');
+          return;
+        }
+        var banner = $('portalErrorBanner');
+        if (banner) {
+          banner.style.display = 'flex';
+          var msg = $('portalBannerMsg');
+          if (msg) msg.textContent = 'Server issue loading profile (HTTP ' + res.status + '). Please try refreshing shortly.';
+        }
         return;
       }
       return res.json();
@@ -1468,6 +1485,12 @@ html.modal-open{overflow:hidden}
     })
     .catch(function (err) {
       console.error('Failed to load user info:', err);
+      var banner = $('portalErrorBanner');
+      if (banner) {
+        banner.style.display = 'flex';
+        var msg = $('portalBannerMsg');
+        if (msg) msg.textContent = 'Unable to reach Ahead server. Please check your internet connection and refresh.';
+      }
     });
 
   $('resendVerifyBtn').addEventListener('click', function () {

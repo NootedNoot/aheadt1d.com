@@ -1000,7 +1000,14 @@ html.modal-open{overflow:hidden}
 
 (function () {
   'use strict';
-  var API = "https://ahead-backend-production-ee80.up.railway.app";
+  var DEFAULT_API = "https://ahead-backend-production-ee80.up.railway.app";
+  var _paramApi = new URLSearchParams(location.search).get('api');
+  if (_paramApi) {
+    try { localStorage.setItem('ahead_api_url', _paramApi.trim().replace(/\/+$/, '')); } catch (_) {}
+  }
+  var API = (function() {
+    try { return localStorage.getItem('ahead_api_url') || DEFAULT_API; } catch (_) { return DEFAULT_API; }
+  })();
   function $(id) { return document.getElementById(id); }
   var msg = $('msg');
   function say(text, kind) { msg.textContent = text; msg.className = 'acct-msg' + (kind ? ' ' + kind : ''); }

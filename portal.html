@@ -922,16 +922,66 @@ html.modal-open{overflow:hidden}
           <select id="streamSelect" class="stream-select" aria-label="Selected glucose stream">
             <option value="self">Myself</option>
           </select>
+          <button type="button" class="btn-mini" id="serverConfigBtn" title="Backend Server Sync" style="display:inline-flex;align-items:center;gap:6px">
+            <span id="serverDot" style="width:8px;height:8px;border-radius:50%;background:#888;display:inline-block"></span>
+            <span id="serverLabel">Checking…</span>
+          </button>
           <button type="button" class="btn-mini" id="logoutBtn">Sign out</button>
         </div>
       </header>
+
+      <div id="serverModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="serverModalTitle">
+        <div class="modal-card" style="width:min(540px, 100%);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <h2 id="serverModalTitle" style="margin:0;font-size:1.35rem;display:flex;align-items:center;gap:8px;">
+              <span>🖥️</span> Backend Server Sync
+            </h2>
+            <button type="button" id="closeServerModalBtn" class="btn-mini" style="background:none;border:none;font-size:1.4rem;color:var(--mute);cursor:pointer;padding:2px 8px;" aria-label="Close modal">&times;</button>
+          </div>
+          <p class="lede" style="font-size:.88rem;margin-bottom:16px;">
+            Choose which backend server this portal connects to. Data is synchronized across servers through Supabase.
+          </p>
+
+          <div style="display:grid;gap:10px;margin-bottom:18px;">
+            <button type="button" id="btnSelectRailway" class="server-preset-card" style="text-align:left;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:var(--ink);cursor:pointer;">
+              <div style="font-weight:700;display:flex;align-items:center;gap:6px;color:var(--mint);">☁️ Railway Cloud (Default)</div>
+              <div style="font-size:.78rem;color:var(--mute);margin-top:2px;word-break:break-all;">https://ahead-backend-production-ee80.up.railway.app</div>
+            </button>
+
+            <button type="button" id="btnSelectLocalTunnel" class="server-preset-card" style="text-align:left;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:var(--ink);cursor:pointer;">
+              <div style="font-weight:700;display:flex;align-items:center;gap:6px;color:var(--sky);">🏠 Local PC (Cloudflare Tunnel)</div>
+              <div id="tunnelPresetSub" style="font-size:.78rem;color:var(--mute);margin-top:2px;word-break:break-all;">https://speakers-glossary-alias-ears.trycloudflare.com</div>
+            </button>
+
+            <button type="button" id="btnSelectLocalhost" class="server-preset-card" style="text-align:left;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:var(--ink);cursor:pointer;">
+              <div style="font-weight:700;display:flex;align-items:center;gap:6px;color:var(--sun);">⚡ Localhost Direct</div>
+              <div style="font-size:.78rem;color:var(--mute);margin-top:2px;">http://localhost:3000 (direct on this PC)</div>
+            </button>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <label for="customApiInput" style="display:block;font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:6px;">Target Backend URL:</label>
+            <input type="url" id="customApiInput" style="width:100%;box-sizing:border-box;padding:10px 14px;border-radius:10px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.88rem;outline:none;" placeholder="https://api.aheadt1d.com">
+          </div>
+
+          <div id="serverTestFeedback" style="display:none;padding:10px 14px;border-radius:10px;font-size:.84rem;margin-bottom:16px;"></div>
+
+          <div class="modal-actions">
+            <button type="button" id="btnTestConn" class="btn-mini" style="padding:8px 14px;">Test Ping</button>
+            <button type="button" id="btnSaveConn" class="btn-mini" style="padding:8px 16px;background:var(--mint);border-color:var(--mint);color:#052e16;font-weight:700;">Save &amp; Connect</button>
+          </div>
+        </div>
+      </div>
 
       <div id="portalErrorBanner" style="display:none;background:rgba(255,82,82,.1);border:1px solid rgba(255,82,82,.4);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:20px;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:1.2rem">⚠️</span>
           <span id="portalBannerMsg" style="color:#ffb4b4;font-size:.88rem">Unable to connect to Ahead server. Please try refreshing shortly.</span>
         </div>
-        <button type="button" class="btn-mini" onclick="location.reload()" style="white-space:nowrap;background:rgba(255,82,82,.2);border-color:rgba(255,82,82,.5);color:#fff">Refresh</button>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button type="button" class="btn-mini" id="bannerSwitchServerBtn" style="white-space:nowrap;background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff">Switch Server</button>
+          <button type="button" class="btn-mini" onclick="location.reload()" style="white-space:nowrap;background:rgba(255,82,82,.2);border-color:rgba(255,82,82,.5);color:#fff">Refresh</button>
+        </div>
       </div>
 
       <div id="unverifiedBanner" style="display:none;background:rgba(255,179,0,.08);border:1px solid rgba(255,179,0,.35);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:20px;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
@@ -1449,7 +1499,19 @@ html.modal-open{overflow:hidden}
 
 (function () {
   'use strict';
-  var API = "https://ahead-backend-production-ee80.up.railway.app";
+  var DEFAULT_API = "https://ahead-backend-production-ee80.up.railway.app";
+  var KNOWN_TUNNEL = "https://speakers-glossary-alias-ears.trycloudflare.com";
+
+  var urlParams = new URLSearchParams(location.search);
+  var paramApi = urlParams.get('api');
+  if (paramApi) {
+    try { localStorage.setItem('ahead_api_url', paramApi.trim().replace(/\/+$/, '')); } catch (_) {}
+  }
+
+  var API = (function() {
+    try { return localStorage.getItem('ahead_api_url') || DEFAULT_API; } catch (_) { return DEFAULT_API; }
+  })();
+
   var token = localStorage.getItem('ahead_token');
   if (!token) {
     location.replace('login.html');
@@ -1463,6 +1525,175 @@ html.modal-open{overflow:hidden}
     opts.headers['Authorization'] = 'Bearer ' + token;
     return fetch(API + path, opts);
   }
+
+  function getServerLabel(url) {
+    if (!url) return 'Unknown';
+    if (url.indexOf('localhost') !== -1 || url.indexOf('127.0.0.1') !== -1) return 'Local Direct';
+    if (url.indexOf('trycloudflare.com') !== -1) return 'Local Tunnel';
+    if (url.indexOf('api.aheadt1d.com') !== -1) return 'aheadt1d.com';
+    if (url.indexOf('railway.app') !== -1) return 'Railway Cloud';
+    try { return new URL(url).hostname; } catch (_) { return 'Custom Server'; }
+  }
+
+  function updateServerPill(status, latency) {
+    var dot = $('serverDot');
+    var label = $('serverLabel');
+    if (!dot || !label) return;
+    if (status === 'online') {
+      dot.style.background = '#10b981';
+      dot.style.boxShadow = '0 0 6px #10b981';
+      label.textContent = getServerLabel(API) + (latency ? ' (' + latency + 'ms)' : '');
+    } else if (status === 'checking') {
+      dot.style.background = '#eab308';
+      dot.style.boxShadow = 'none';
+      label.textContent = 'Checking…';
+    } else {
+      dot.style.background = '#ef4444';
+      dot.style.boxShadow = '0 0 6px #ef4444';
+      label.textContent = getServerLabel(API) + ' (Offline)';
+    }
+  }
+
+  function checkServerHealth() {
+    updateServerPill('checking');
+    var start = Date.now();
+    fetch(API + '/health', { method: 'GET', headers: { 'Accept': 'application/json' } })
+      .then(function(res) {
+        var elapsed = Date.now() - start;
+        if (res.ok) {
+          updateServerPill('online', elapsed);
+        } else {
+          return fetch(API + '/', { method: 'GET' }).then(function(r) {
+            if (r.ok) updateServerPill('online', Date.now() - start);
+            else updateServerPill('offline');
+          });
+        }
+      })
+      .catch(function() {
+        fetch(API + '/', { method: 'GET' })
+          .then(function(r) {
+            if (r.ok) updateServerPill('online', Date.now() - start);
+            else updateServerPill('offline');
+          })
+          .catch(function() {
+            updateServerPill('offline');
+          });
+      });
+  }
+
+  function initServerModal() {
+    var modal = $('serverModal');
+    var openBtn = $('serverConfigBtn');
+    var bannerBtn = $('bannerSwitchServerBtn');
+    var closeBtn = $('closeServerModalBtn');
+    var input = $('customApiInput');
+    var feedback = $('serverTestFeedback');
+
+    function openModal() {
+      if (!modal) return;
+      input.value = API;
+      feedback.style.display = 'none';
+      modal.removeAttribute('hidden');
+      document.documentElement.classList.add('modal-open');
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.setAttribute('hidden', '');
+      document.documentElement.classList.remove('modal-open');
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (bannerBtn) bannerBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    var btnRailway = $('btnSelectRailway');
+    if (btnRailway) {
+      btnRailway.addEventListener('click', function() {
+        input.value = DEFAULT_API;
+        feedback.style.display = 'none';
+      });
+    }
+
+    var btnTunnel = $('btnSelectLocalTunnel');
+    if (btnTunnel) {
+      btnTunnel.addEventListener('click', function() {
+        input.value = KNOWN_TUNNEL;
+        feedback.style.display = 'none';
+      });
+    }
+
+    var btnLocalhost = $('btnSelectLocalhost');
+    if (btnLocalhost) {
+      btnLocalhost.addEventListener('click', function() {
+        input.value = 'http://localhost:3000';
+        feedback.style.display = 'none';
+      });
+    }
+
+    function showFeedback(msg, color) {
+      feedback.textContent = msg;
+      feedback.style.display = 'block';
+      feedback.style.color = '#fff';
+      feedback.style.background = color === '#10b981' ? 'rgba(16,185,129,.2)' : (color === '#ef4444' ? 'rgba(239,68,68,.2)' : 'rgba(234,179,8,.2)');
+      feedback.style.border = '1px solid ' + color;
+    }
+
+    var btnTest = $('btnTestConn');
+    if (btnTest) {
+      btnTest.addEventListener('click', function() {
+        var target = (input.value || '').trim().replace(/\/+$/, '');
+        if (!target) {
+          showFeedback('Please enter a server URL to test.', '#ef4444');
+          return;
+        }
+        showFeedback('Pinging server…', '#eab308');
+        var t0 = Date.now();
+        fetch(target + '/health')
+          .then(function(res) {
+            var ms = Date.now() - t0;
+            if (res.ok) {
+              return res.json().then(function(d) {
+                showFeedback('✅ Connected! Response in ' + ms + 'ms (Database: ' + (d.database || 'ok') + ')', '#10b981');
+              });
+            } else {
+              return fetch(target + '/').then(function(r) {
+                if (r.ok) showFeedback('✅ Connected! Response in ' + ms + 'ms (Root OK)', '#10b981');
+                else showFeedback('⚠️ Server returned HTTP ' + res.status, '#eab308');
+              });
+            }
+          })
+          .catch(function(err) {
+            fetch(target + '/')
+              .then(function(r) {
+                var ms = Date.now() - t0;
+                if (r.ok) showFeedback('✅ Connected! Response in ' + ms + 'ms', '#10b981');
+                else showFeedback('❌ Failed to connect: ' + err.message, '#ef4444');
+              })
+              .catch(function() {
+                showFeedback('❌ Connection failed. Verify that server is running and URL is accessible.', '#ef4444');
+              });
+          });
+      });
+    }
+
+    var btnSave = $('btnSaveConn');
+    if (btnSave) {
+      btnSave.addEventListener('click', function() {
+        var target = (input.value || '').trim().replace(/\/+$/, '');
+        if (!target) target = DEFAULT_API;
+        try {
+          localStorage.setItem('ahead_api_url', target);
+        } catch (_) {}
+        closeModal();
+        location.reload();
+      });
+    }
+  }
+
+  // Check health and init modal
+  checkServerHealth();
+  initServerModal();
 
   $('logoutBtn').addEventListener('click', function () {
     localStorage.removeItem('ahead_token');
@@ -1523,7 +1754,7 @@ html.modal-open{overflow:hidden}
       if (banner) {
         banner.style.display = 'flex';
         var msg = $('portalBannerMsg');
-        if (msg) msg.textContent = 'Unable to reach Ahead server. Please check your internet connection and refresh.';
+        if (msg) msg.textContent = 'Unable to reach ' + getServerLabel(API) + ' (' + API + '). Click "Switch Server" to switch between Railway Cloud and Local PC.';
       }
     });
 

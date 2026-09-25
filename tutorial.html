@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahead Interactive Clinical Simulator — AheadT1D</title>
+  <meta name="description" content="Experience Ahead's predictive alert system in real-time. Learn the Rule of the 2nd Reading to prevent dangerous panic overcorrections." />
+  <meta name="theme-color" content="#1d0339" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232ee59d' d='M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" />
+  <style>
+    :root {
+      --bg: #0D0618;
+      --bg-card: #160D27;
+      --border: #2A1A4A;
+      --text: #E2D9F3;
+      --muted: #8E7FA8;
+      --accent: #8B5CF6;
+      --accent2: #A78BFA;
+      --mint: #34D399;
+      --yellow: #FDE047;
+      --red: #F87171;
+      --font-head: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+    }
+    .container {
+      width: min(840px, 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .brand-title {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+    .badge {
+      background: rgba(167, 139, 250, 0.15);
+      border: 1px solid rgba(167, 139, 250, 0.4);
+      color: var(--accent2);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero {
+      text-align: center;
+      padding: 10px 0 10px;
+    }
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: 32px;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    /* Scenario Selector Pills */
+    .scenario-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-btn:hover {
+      border-color: var(--accent2);
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    /* Simulator Card */
+    .sim-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+    .sim-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .status-badge {
+      padding: 3px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .status-normal { background: rgba(52, 211, 153, 0.15); color: var(--mint); }
+    .status-yellow { background: rgba(253, 224, 71, 0.15); color: var(--yellow); }
+    .status-red { background: rgba(248, 113, 113, 0.2); color: var(--red); }
+
+    .glucose-display {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .glucose-val {
+      font-family: var(--font-head);
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .glucose-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .unit { font-size: 13px; color: var(--muted); }
+    .arrow-delta { font-size: 18px; font-weight: 700; }
+
+    .rate-projection {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 14px;
+      font-family: var(--font-mono);
+    }
+    .rate-text { color: var(--text); }
+    .proj-text { color: var(--muted); }
+
+    .yellow-guidance-banner {
+      background: #2E2405;
+      border: 1px solid #785A0A;
+      color: #FDE047;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Chart SVG Area */
+    .chart-container {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      position: relative;
+    }
+    .chart-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    svg.trajectory-chart {
+      width: 100%;
+      height: 160px;
+      overflow: visible;
+    }
+
+    /* Coaching Section */
+    .coaching-box {
+      background: rgba(139, 92, 246, 0.06);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .coaching-header {
+      font-size: 18px;
+      font-weight: 700;
+      font-family: var(--font-head);
+    }
+    .coaching-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+      white-space: pre-line;
+    }
+    .rule-of-thumb {
+      background: #1E1435;
+      border-left: 3px solid var(--accent2);
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .action-prompt {
+      background: #122A1E;
+      border-left: 3px solid var(--mint);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+      color: #D1FAE5;
+      font-weight: 500;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .btn-step {
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    .btn-prev {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-prev:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .btn-next {
+      background: var(--accent);
+      color: #fff;
+      flex-grow: 1;
+    }
+    .btn-next:hover {
+      background: var(--accent2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <a href="index.html" class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill="#34D399" d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg>
+      <span class="brand-title">Ahead</span>
+    </a>
+    <span class="badge">Clinical Simulator</span>
+  </header>
+
+  <div class="hero">
+    <h1>Learn How Ahead Thinks</h1>
+    <p>CGM alarms cause panic overcorrections. Ahead catches trends early and teaches you when to treat immediately vs. when pausing for Reading #2 keeps you safe.</p>
+  </div>
+
+  <div class="scenario-tabs">
+    <button class="tab-btn active" onclick="switchScenario(0)">
+      <span>📉</span> Tonight's Drop (Yellow Alert)
+    </button>
+    <button class="tab-btn" onclick="switchScenario(1)">
+      <span>🚨</span> Urgent Plunge (RED Alert)
+    </button>
+    <button class="tab-btn" onclick="switchScenario(2)">
+      <span>🍕</span> Post-Meal Spike (Insulin Lag)
+    </button>
+  </div>
+
+  <div class="sim-card">
+    <div class="sim-header">
+      <span class="sim-label" id="step-indicator">STEP 1 OF 4</span>
+      <span class="status-badge status-normal" id="status-badge">NORMAL</span>
+    </div>
+
+    <div class="glucose-display">
+      <span class="glucose-val" id="glucose-val" style="color: var(--mint);">141</span>
+      <div class="glucose-meta">
+        <span class="unit">mg/dL</span>
+        <span class="arrow-delta" id="arrow-delta">→ (-2 mg/dL)</span>
+      </div>
+    </div>
+
+    <div class="rate-projection">
+      <span class="rate-text" id="rate-text">Rate: -0.6 mg/dL/min</span>
+      <span class="proj-text" id="proj-text">· Projected: 132 in 15m · 123 in 30m</span>
+    </div>
+
+    <div class="yellow-guidance-banner" id="guidance-banner" style="display: none;">
+      <span>⏳ Yellow Alert: Wait for 2nd reading before treating.</span>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">GLUCOSE TRAJECTORY &amp; PROJECTION</div>
+      <svg class="trajectory-chart" id="svg-chart" viewBox="0 0 760 160"></svg>
+    </div>
+
+    <div class="coaching-box">
+      <div class="coaching-header" id="coach-header">Cruising Comfortably in Target</div>
+      <div class="coaching-body" id="coach-body">Glucose is comfortable at 141 mg/dL, drifting gently down. No alerts are firing.</div>
+      <div class="rule-of-thumb" id="rule-thumb">💡 AHEAD RULE OF THUMB: Green status means your current trajectory is within safe guardrails.</div>
+      <div class="action-prompt" id="action-prompt">Recommended Action: No action required. Continue normal activities.</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn-step btn-prev" id="btn-prev" onclick="step(-1)" disabled>◀ Previous</button>
+      <button class="btn-step btn-next" id="btn-next" onclick="step(1)">Next Reading (+5m) ▶</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Ahead predictive decision support &middot; <a href="download.html">Download the App</a> &middot; <a href="portal.html">Care Portal</a></p>
+  </footer>
+</div>
+
+<script>
+const scenarios = [
+  {
+    id: "drop_yellow",
+    title: "Tonight's Drop (Yellow Alert)",
+    steps: [
+      {
+        time: 0, val: 141, rate: -0.6, delta: -2, p15: 132, p30: 123, sev: "none",
+        header: "Cruising Comfortably in Target",
+        body: "Glucose is comfortable at 141 mg/dL, drifting gently down at -0.6 mg/dL/min. Ahead displays green with no alarms.",
+        rule: "💡 AHEAD RULE: Green status means your current trend is within safe guardrails.",
+        action: "Recommended Action: No action required. Continue your evening."
+      },
+      {
+        time: 5, val: 132, rate: -1.8, delta: -9, p15: 105, p30: 78, sev: "yellow",
+        header: "The 1st Alert: Yellow Heads-Up",
+        body: "Ahead sounds a Yellow Alert: 132 mg/dL ↘ (-9 mg/dL). Drop rate jumped to -1.8/min, projecting 78 in 30 minutes.\n\n⚠️ Notice: 78 mg/dL is STILL IN-RANGE (70–180 mg/dL)! Ahead alerts you early because of the drop speed, NOT because you are crashing into danger.",
+        rule: "⏳ RULE OF 2ND READING: NEVER panic-eat 40g carbs on the first Yellow ping! 132 is high enough to absorb a drift. Wait for reading #2.",
+        action: "Recommended Action: Pause and observe. Do NOT eat extra carbs yet."
+      },
+      {
+        time: 10, val: 124, rate: -1.6, delta: -8, p15: 100, p30: 76, sev: "yellow",
+        header: "The 2nd Reading: Braking Begins",
+        body: "Reading #2 arrives at 124 mg/dL ↘. The drop rate softened from -1.8 to -1.6/min, with projection holding at 76 mg/dL.\n\nBecause you paused instead of panic-eating, you gave your body and CGM lag time to show whether the fall is accelerating or leveling off.",
+        rule: "💡 CGM sensors have a 5–10 minute lag. Reading #2 confirms if a real intervention is needed or if the drop is braking.",
+        action: "Recommended Action: Continue watching for Reading #3. Double-check with a fingerstick if symptomatic."
+      },
+      {
+        time: 15, val: 119, rate: -1.0, delta: -5, p15: 104, p30: 89, sev: "none",
+        header: "Safe Landing: 250+ Spike Prevented!",
+        body: "Reading #3 arrives at 119 mg/dL →. The drop completely flattened out! Severity cleared back to green (none).\n\n🎯 If you had eaten juice + snacks at Ping #1, you would be skyrocketing past 250 mg/dL right now! Waiting 2–3 pings saved you from an unnecessary roller coaster.",
+        rule: "🎯 3 Pings = Clarity. By waiting 2 to 3 pings on yellow, you avoid the dreaded rebound roller coaster!",
+        action: "Recommended Action: Success! You stayed safely in-range with zero extra carbs needed."
+      }
+    ]
+  },
+  {
+    id: "plunge_red",
+    title: "Urgent Plunge (RED Alert)",
+    steps: [
+      {
+        time: 0, val: 84, rate: -1.4, delta: -6, p15: 63, p30: 42, sev: "yellow",
+        header: "Low Guardrail Approaching",
+        body: "Glucose is 84 mg/dL and falling at -1.4/min, projecting to 63 in 15 minutes. Ahead alerts Yellow to put you on notice that your safety buffer is thin.",
+        rule: "💡 A yellow alert when already under 90 mg/dL requires vigilance. Have carbs within arm's reach.",
+        action: "Recommended Action: Have 15g fast carbs ready nearby."
+      },
+      {
+        time: 5, val: 73, rate: -2.2, delta: -11, p15: 40, p30: 35, sev: "red",
+        header: "🚨 RED ALERT: Do NOT Wait!",
+        body: "Ahead fires a RED Alert: 73 mg/dL ⬇ (-11 mg/dL) plunging fast at -2.2/min and projected to 40 mg/dL!\n\n🛑 CRITICAL CONTRAST: This is NOT a yellow alert at 130. You are already near 70 and plunging hard. DO NOT wait for 2nd or 3rd readings! Treat immediately!",
+        rule: "🚨 Red Means Act Now: When Ahead sounds RED and projects below 55, take 15g fast-acting sugar immediately!",
+        action: "Recommended Action: Take 15g fast carbs (juice box, 4 glucose tabs) right now!"
+      },
+      {
+        time: 20, val: 68, rate: 0.6, delta: 3, p15: 77, p30: 86, sev: "red",
+        header: "Turnaround: Carbs Absorbing",
+        body: "The carbs hit! Rate flipped positive (+0.6 mg/dL/min). Ahead recognizes the turnaround and switches tone to 'Recovering — not yet stable' so you aren't nagged into eating again.",
+        rule: "💡 Give fast carbs 15 minutes to work. Ahead tracks the rising rate so you don't over-treat during the turnaround.",
+        action: "Recommended Action: Rest and monitor. No need to take more carbs unless symptoms persist."
+      }
+    ]
+  },
+  {
+    id: "spike_yellow",
+    title: "Post-Meal Spike (Insulin Lag)",
+    steps: [
+      {
+        time: 0, val: 172, rate: 1.6, delta: 8, p15: 196, p30: 220, sev: "yellow",
+        header: "Post-Meal Spike Alert",
+        body: "45 minutes after dinner, glucose climbs past 170 mg/dL with a Yellow High alert. Projected to reach 220 in 30 minutes.",
+        rule: "💡 Spikes are frustrating, but rapid insulin takes 60–90 minutes to reach peak activity! Your meal dose is still ramping up.",
+        action: "Recommended Action: Check active insulin on board (IOB) before dosing."
+      },
+      {
+        time: 10, val: 196, rate: 2.4, delta: 12, p15: 232, p30: 268, sev: "yellow",
+        header: "The Insulin Stacking Trap",
+        body: "Glucose hits 196 mg/dL. This is when people often 'rage-bolus' 3 extra units in frustration.\n\n⚠️ DANGER: Your meal insulin hasn't peaked yet! Stacking another correction now will hit simultaneously, causing a crash to 45 mg/dL 2 hours later.",
+        rule: "⏳ Don't Stack Insulin: Wait at least 2 to 3 hours after a meal bolus before giving correction insulin.",
+        action: "Recommended Action: Drink water or take a brief walk, but hold off on injecting more insulin."
+      },
+      {
+        time: 25, val: 204, rate: 0.8, delta: 4, p15: 216, p30: 220, sev: "yellow",
+        header: "The Peak Bends: Insulin at Work",
+        body: "The rise rate slowed down from +2.4 to +0.8/min. The insulin caught the carb wave at 204 mg/dL without stacking. In the next 30 minutes, it will smoothly drop back to normal.",
+        rule: "🎯 Patience Pays Off: Trusting your bolus and avoiding stacking saved you from a severe hypoglycemic crash.",
+        action: "Recommended Action: Notice the flat arrow. The insulin is doing its job. No correction needed."
+      }
+    ]
+  }
+];
+
+let curScenario = 0;
+let curStep = 0;
+
+function switchScenario(idx) {
+  curScenario = idx;
+  curStep = 0;
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === idx);
+  });
+  render();
+}
+
+function step(dir) {
+  const scen = scenarios[curScenario];
+  const next = curStep + dir;
+  if (next >= 0 && next < scen.steps.length) {
+    curStep = next;
+    render();
+  } else if (next >= scen.steps.length) {
+    if (curScenario < scenarios.length - 1) {
+      switchScenario(curScenario + 1);
+    }
+  }
+}
+
+function render() {
+  const scen = scenarios[curScenario];
+  const s = scen.steps[curStep];
+
+  document.getElementById('step-indicator').textContent = `STEP ${curStep + 1} OF ${scen.steps.length}`;
+
+  const badge = document.getElementById('status-badge');
+  badge.className = 'status-badge';
+  if (s.sev === 'yellow') {
+    badge.classList.add('status-yellow');
+    badge.textContent = 'YELLOW ALERT';
+  } else if (s.sev === 'red') {
+    badge.classList.add('status-red');
+    badge.textContent = 'RED ALERT';
+  } else {
+    badge.classList.add('status-normal');
+    badge.textContent = 'NORMAL';
+  }
+
+  const valEl = document.getElementById('glucose-val');
+  valEl.textContent = s.val;
+  if (s.val < 70) valEl.style.color = 'var(--red)';
+  else if (s.val > 180) valEl.style.color = 'var(--yellow)';
+  else valEl.style.color = 'var(--mint)';
+
+  const arrow = s.rate <= -2.0 ? '⬇' : s.rate <= -1.2 ? '↘' : s.rate >= 2.0 ? '⬆' : s.rate >= 1.2 ? '↗' : '→';
+  const delta = s.delta > 0 ? `(+${s.delta} mg/dL)` : s.delta < 0 ? `(-${Math.abs(s.delta)} mg/dL)` : '(±0 mg/dL)';
+  document.getElementById('arrow-delta').textContent = `${arrow} ${delta}`;
+
+  const sign = s.rate > 0 ? '+' : '';
+  document.getElementById('rate-text').textContent = `Rate: ${sign}${s.rate.toFixed(1)} mg/dL/min`;
+  document.getElementById('proj-text').textContent = `· Projected: ${s.p15} in 15m · ${s.p30} in 30m`;
+
+  const banner = document.getElementById('guidance-banner');
+  if (s.sev === 'yellow') {
+    banner.style.display = 'flex';
+    banner.innerHTML = s.rate < 0
+      ? '<span>⏳ Yellow Alert: Wait for 2nd or 3rd reading before treating.</span>'
+      : '<span>⏳ Yellow Alert: Wait for 2nd reading before correcting.</span>';
+  } else {
+    banner.style.display = 'none';
+  }
+
+  document.getElementById('coach-header').textContent = s.header;
+  document.getElementById('coach-body').textContent = s.body;
+  document.getElementById('rule-thumb').textContent = s.rule;
+  document.getElementById('action-prompt').textContent = s.action;
+
+  document.getElementById('btn-prev').disabled = curStep === 0;
+  const nextBtn = document.getElementById('btn-next');
+  if (curStep < scen.steps.length - 1) {
+    nextBtn.textContent = 'Next Reading (+5m) ▶';
+  } else if (curScenario < scenarios.length - 1) {
+    nextBtn.textContent = 'Next Scenario ▶';
+  } else {
+    nextBtn.textContent = '✓ Tour Complete';
+  }
+
+  renderChart(scen, curStep);
+}
+
+function renderChart(scen, upTo) {
+  const svg = document.getElementById('svg-chart');
+  const w = 760;
+  const h = 160;
+  const padL = 40;
+  const padR = 40;
+  const padT = 20;
+  const padB = 25;
+
+  const maxTime = scen.steps[scen.steps.length - 1].time + 30;
+  const minG = 40;
+  const maxG = 280;
+
+  function x(t) { return padL + (t / maxTime) * (w - padL - padR); }
+  function y(g) { return padT + ((maxG - g) / (maxG - minG)) * (h - padT - padB); }
+
+  let html = '';
+
+  // Safe zone background (70 to 180)
+  const y70 = y(70);
+  const y180 = y(180);
+  html += `<rect x="${padL}" y="${y180}" width="${w - padL - padR}" height="${y70 - y180}" fill="rgba(52, 211, 153, 0.06)" />`;
+  html += `<line x1="${padL}" y1="${y70}" x2="${w - padR}" y2="${y70}" stroke="rgba(52, 211, 153, 0.2)" stroke-dasharray="4,4" />`;
+  html += `<line x1="${padL}" y1="${y180}" x2="${w - padR}" y2="${y180}" stroke="rgba(52, 211, 153, 0.2)" stroke-dasharray="4,4" />`;
+
+  // Axis grid lines
+  [70, 140, 180, 250].forEach(val => {
+    html += `<text x="${padL - 8}" y="${y(val) + 4}" fill="#7C6FA0" font-size="9" text-anchor="end" font-family="monospace">${val}</text>`;
+  });
+
+  // History path
+  let pathD = '';
+  for (let i = 0; i <= upTo; i++) {
+    const pt = scen.steps[i];
+    const px = x(pt.time);
+    const py = y(pt.val);
+    if (i === 0) pathD += `M ${px} ${py}`;
+    else pathD += ` L ${px} ${py}`;
+  }
+  html += `<path d="${pathD}" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />`;
+
+  // Historical circles
+  for (let i = 0; i <= upTo; i++) {
+    const pt = scen.steps[i];
+    const px = x(pt.time);
+    const py = y(pt.val);
+    const isCur = i === upTo;
+    html += `<circle cx="${px}" cy="${py}" r="${isCur ? 6 : 4}" fill="${isCur ? '#FDE047' : '#A78BFA'}" stroke="#0D0618" stroke-width="2" />`;
+  }
+
+  // Projection dashed line
+  const cur = scen.steps[upTo];
+  if (cur.p15 && cur.p30) {
+    const projColor = cur.sev === 'red' ? '#F87171' : cur.sev === 'yellow' ? '#FDE047' : '#34D399';
+    const p1x = x(cur.time);
+    const p1y = y(cur.val);
+    const p2x = x(cur.time + 15);
+    const p2y = y(cur.p15);
+    const p3x = x(cur.time + 30);
+    const p3y = y(cur.p30);
+
+    html += `<path d="M ${p1x} ${p1y} L ${p2x} ${p2y} L ${p3x} ${p3y}" fill="none" stroke="${projColor}" stroke-width="2" stroke-dasharray="6,4" />`;
+    html += `<circle cx="${p2x}" cy="${p2y}" r="3.5" fill="${projColor}" />`;
+    html += `<circle cx="${p3x}" cy="${p3y}" r="3.5" fill="${projColor}" />`;
+  }
+
+  svg.innerHTML = html;
+}
+
+render();
+</script>
+
+</body>
+</html>

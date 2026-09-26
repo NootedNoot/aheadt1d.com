@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://aheadt1d.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://aheadt1d.com/resources.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aheadt1d.com/portal.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aheadt1d.com/legal.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://aheadt1d.com/login.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://aheadt1d.com/reset-password.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+</urlset>

@@ -707,7 +707,7 @@ details.deep-dive[open] summary::after { content: "−"; }
             <div class="tri-card">
               <span class="badge-tag badge-coral">GLUT4 (Insulin-Dependent)</span>
               <h4 style="margin-top:8px">Skeletal Muscle &amp; Adipose Tissue</h4>
-              <p>The body's primary fuel sink. Completely locked inside intracellular vesicles until insulin binds its receptor and orders them to the cell surface.</p>
+              <p>The body's primary fuel sink. Largely sequestered inside intracellular vesicles until insulin binds its receptor and orders them to the cell surface.</p>
             </div>
           </div>
 
@@ -730,7 +730,9 @@ details.deep-dive[open] summary::after { content: "−"; }
             <p>
               In Type 1 Diabetes, genetically predisposed individuals (bearing HLA-DR3-DQ2 or HLA-DR4-DQ8 alleles) experience an immune breakdown. Autoreactive CD4+ and cytotoxic CD8+ T-lymphocytes invade the pancreatic Islets of Langerhans (<strong>insulitis</strong>). Through perforin, granzymes, and inflammatory cytokines (IFN-γ, IL-1β, TNF-α), they selectively execute beta-cell apoptosis. 
               <br><br>
-              When beta-cell mass collapses past ~85%, endogenous insulin production drops to zero. <strong>The lock-and-key mechanism is destroyed.</strong>
+              When beta-cell mass collapses past ~80–90%, endogenous insulin production falls to near zero — trace C-peptide can linger for years in some people, but not enough to matter. <strong>The lock-and-key mechanism is destroyed.</strong></p>
+          <p>
+            <strong>The honeymoon period:</strong> shortly after diagnosis, the surviving beta cells — freed from glucose toxicity once treatment starts — can briefly recover and resume some insulin production. Insulin needs fall, sometimes dramatically, for weeks to months. It feels like a remission, but it always ends as the autoimmune attack finishes its work. Doses must be reduced during the honeymoon to avoid constant lows, then raised again as it fades — one more reason newly diagnosed patients need close follow-up.
             </p>
           </div>
 
@@ -832,8 +834,8 @@ details.deep-dive[open] summary::after { content: "−"; }
                 </tr>
                 <tr>
                   <td><strong>4. Ketone Synthesis</strong></td>
-                  <td>HMG-CoA synthase synthesizes <strong>Acetoacetate</strong>, <strong>β-hydroxybutyrate</strong>, and <strong>Acetone</strong>.</td>
-                  <td>Ketone bodies flood blood as strong organic acids (pK<sub>a</sub> ≈ 3.5).</td>
+                  <td>Mitochondrial HMG-CoA synthase and lyase generate <strong>acetoacetate</strong> (partly reduced to <strong>β-hydroxybutyrate</strong>; a fraction spontaneously decarboxylates to <strong>acetone</strong>).</td>
+                  <td>Ketone bodies flood blood as strong organic acids (pK<sub>a</sub> ~3.6–4.7).</td>
                 </tr>
                 <tr>
                   <td><strong>5. Acidosis Collapse</strong></td>
@@ -854,6 +856,34 @@ details.deep-dive[open] summary::after { content: "−"; }
               <strong>2. Osmotic Diuresis:</strong> Glucose exceeds the renal absorptive threshold (~180 mg/dL). High tubular glucose acts as an osmotic sponge, dragging water, sodium, and potassium out into urine. Patients lose 5 to 10 liters of water, collapsing blood pressure into hypovolemic shock.
               <br><br>
               <strong>3. The Potassium Deception:</strong> Acidosis forces K<sup>+</sup> out of cells into serum in exchange for H<sup>+</sup> ions. Blood tests may show "normal" or high potassium, but the entire body is critically depleted. Giving insulin without potassium monitoring will suck K<sup>+</sup> back into cells, causing sudden fatal cardiac arrest.
+            </p>
+          </div>
+
+          <div class="callout callout-sun">
+            <div class="callout-head">
+              <span>🛡️</span> Sick-Day Rules: Stopping DKA Before It Starts
+            </div>
+            <p>
+              Illness, infection, and physical stress flood the body with cortisol and adrenaline — the same counter-regulatory hormones from the cascade above — so glucose and ketones can surge even if you are eating nothing. The prevention protocol:
+              <br><br>
+              <strong>1. Never stop basal insulin.</strong> Even while vomiting or fasting, the body still needs background insulin. Stopping it is the fastest route to DKA.
+              <br><br>
+              <strong>2. Check ketones early.</strong> Test blood ketones (&beta;-hydroxybutyrate) whenever glucose stays above roughly 240&ndash;250 mg/dL, during any illness, or with DKA symptoms like nausea, abdominal pain, or fruity breath. Anything at or above 0.6 mmol/L deserves attention; above 1.5 mmol/L with high glucose or vomiting means contacting your care team or seeking urgent care.
+              <br><br>
+              <strong>3. Hydrate aggressively</strong> with water or sugar-free fluids to help the kidneys flush glucose and ketones.
+              <br><br>
+              <strong>4. Correct cautiously</strong> per your care team's sick-day plan — insulin needs often rise during illness, but the stacking trap from Chapter 5 still applies.
+            </p>
+          </div>
+
+          <div class="callout callout-danger">
+            <div class="callout-head" style="color:#ff5252">
+              <span>⚠️</span> Euglycemic DKA: Ketoacidosis Without the High
+            </div>
+            <p>
+              DKA does not always arrive with sky-high glucose. In <strong>euglycemic DKA</strong>, blood sugar stays below ~250 mg/dL — sometimes near normal — while ketoacidosis rages underneath. The classic triggers in type 1 diabetes: <strong>SGLT2 inhibitors</strong> (the “flozins,” sometimes used off-label — they dump glucose into urine, so readings look reassuring while insulin deficiency deepens), <strong>prolonged fasting or very-low-carbohydrate eating</strong>, <strong>pregnancy</strong>, and <strong>heavy alcohol use</strong>. The lipolysis cascade above runs exactly the same; it simply runs at a glucose level that disarms everyone’s suspicion.
+              <br><br>
+              This is the dangerous one precisely because the number on the screen says “fine.” The rule: <strong>check ketones for symptoms, not just for highs</strong> — nausea, vomiting, abdominal pain, rapid breathing, or fruity breath warrant a ketone check even at 140 mg/dL. Euglycemic DKA is a medical emergency exactly like any other DKA, and it is most often missed in emergency departments that triage by glucose alone.
             </p>
           </div>
         </article>
@@ -893,13 +923,27 @@ details.deep-dive[open] summary::after { content: "−"; }
             <p>
               In a non-diabetic, the body's instant response to dropping glucose is switching off beta-cell insulin and triggering pancreatic alpha-cells to secrete <strong>glucagon</strong>, releasing liver glycogen reserves.
               <br><br>
-              In Type 1 Diabetes, within 1 to 5 years of diagnosis, the intra-islet paracrine signaling is permanently broken. <strong>Alpha cells completely lose the ability to sense hypoglycemia.</strong> The body has zero automatic brakes to halt falling glucose — survival depends entirely on external carbohydrates or emergency rescue glucagon (Baqsimi, Zegalogue, GlucaGen).
+              In Type 1 Diabetes, the intra-islet signal that normally triggers glucagon release — the sudden fall in local insulin as glucose drops — goes missing. <strong>The alpha-cell glucagon response to hypoglycemia progressively fails</strong>, typically within 1 to 5 years of diagnosis. The body has zero automatic brakes to halt falling glucose — survival depends entirely on external carbohydrates or emergency rescue glucagon (Baqsimi, Zegalogue, GlucaGen).
             </p>
           </div>
 
           <h3>Hypoglycemia Unawareness (HAAF)</h3>
           <p>
             When a person experiences frequent lows, the brain's autonomic thermostat resets downward (**Hypoglycemia-Associated Autonomic Failure**). The body stops generating the adrenaline surge at 70 mg/dL. Shaking and sweating disappear. Patients can be sitting at 42 mg/dL chatting normally — until cortical ATP abruptly cuts out, resulting in instantaneous collapse or seizure.
+          </p>
+
+          <h3>Treating a Low: The 15-15 Rule</h3>
+          <p>
+            The standard rescue protocol is deliberately simple enough to follow while cognitively impaired — which is exactly the point:
+          </p>
+          <ol style="padding-left:18px;margin-bottom:10px">
+            <li><strong>15 grams of fast carbohydrate</strong> — glucose tablets, juice, or regular soda. Not chocolate, not a full meal: fat slows absorption.</li>
+            <li><strong>Wait 15 minutes</strong>, then recheck.</li>
+            <li><strong>Still below 70 mg/dL?</strong> Repeat once.</li>
+            <li><strong>Recovered?</strong> If the next meal is more than an hour away, follow with a snack containing slower carbs plus protein or fat to hold the line.</li>
+          </ol>
+          <p>
+            The two classic mistakes are treating with too little (fear of the rebound spike) and treating with far too much (the 80-gram juice chug from Chapter 5). The 15-15 rule exists to land the plane, not launch it. If the person is unconscious, seizing, or cannot swallow, do <strong>not</strong> put food or liquid in their mouth — use emergency glucagon and call for help.
           </p>
         </article>
 
@@ -909,7 +953,7 @@ details.deep-dive[open] summary::after { content: "−"; }
             <span class="chapter-eyebrow" style="color:var(--sky)">Chapter 04 · Long-Term Pathophysiology</span>
             <h2>Chronic Complications: How Sugar Destroys Blood Vessels</h2>
             <p class="chapter-intro">
-              Why does elevated glucose cause blindness, kidney failure, and amputations over 10–20 years? The answer lies in the destructive chemistry of Advanced Glycation End-Products (AGEs) and capillary pericyte death.
+              Why does elevated glucose cause blindness, kidney failure, amputations — and heart attacks and strokes — over 10–20 years? The answer lies in the destructive chemistry of Advanced Glycation End-Products (AGEs), capillary pericyte death, and accelerated atherosclerosis.
             </p>
           </div>
 
@@ -932,6 +976,11 @@ details.deep-dive[open] summary::after { content: "−"; }
               <span class="badge-tag badge-sun">3. Protein Kinase C (PKC)</span>
               <h4 style="margin-top:8px">Capillary Leakage &amp; VEGF Surge</h4>
               <p>Excess diacylglycerol (DAG) hyperactivates PKC, thickening capillary basement membranes, shutting down protective nitric oxide (eNOS), and inducing pathological vascular permeability.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-mint">4. Hexosamine Pathway Flux</span>
+              <h4 style="margin-top:8px">Gene-Expression Hijack</h4>
+              <p>Excess fructose-6-phosphate is diverted by the enzyme GFAT into UDP-<em>N</em>-acetylglucosamine, which gets stapled onto transcription factors (O-GlcNAcylation), rewiring vessel-wall gene expression toward clotting (PAI-1) and scarring (TGF-&beta;1) programs.</p>
             </div>
           </div>
 
@@ -974,6 +1023,27 @@ details.deep-dive[open] summary::after { content: "−"; }
               </ul>
             </div>
           </details>
+          <h3>Macrovascular Destruction (Heart, Brain &amp; Limbs)</h3>
+          <p>
+            The same four pathways attack large arteries too. Chronic hyperglycemia injures the endothelium, oxidizes LDL cholesterol, and keeps vessel walls in a low-grade inflammatory state — accelerating atherosclerosis by decades. People with type 1 diabetes carry <strong>two to four times the cardiovascular risk</strong> of the general population, and after roughly 20 years of living with T1D, cardiovascular disease becomes the leading cause of death.
+          </p>
+          <div class="feature-tri">
+            <div class="tri-card">
+              <span class="badge-tag badge-danger">Coronary Artery Disease</span>
+              <h4 style="margin-top:8px">Heart Attacks, Often Silent</h4>
+              <p>Atherosclerotic plaque narrows the coronary arteries. Combined with cardiac autonomic neuropathy (above), ischemia can strike with no chest pain at all — the silent MI. Unexplained fatigue or ECG changes deserve investigation, not dismissal.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-coral">Cerebrovascular Disease</span>
+              <h4 style="margin-top:8px">Stroke</h4>
+              <p>The same plaque process in carotid and cerebral arteries raises stroke risk several-fold. Tight blood-pressure and lipid control matter as much as glucose control for prevention.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-sun">Peripheral Artery Disease</span>
+              <h4 style="margin-top:8px">Limbs at Risk</h4>
+              <p>Narrowed leg arteries plus neuropathy is the classic amputation combination: poor circulation starves tissue of oxygen while nerve damage hides the injury. Foot checks and smoking cessation are the highest-leverage defenses.</p>
+            </div>
+          </div>
         </article>
 
         <!-- CHAPTER 5: CGM DYNAMICS & WHY AHEAD WAS BUILT -->
@@ -1022,6 +1092,11 @@ details.deep-dive[open] summary::after { content: "−"; }
             <strong>This is Insulin Stacking.</strong> Two hours later, both boluses peak simultaneously, sending glucose crashing downward at −3.5 mg/dL/min into a life-threatening hypo. The user panics, chugs 80 grams of juice, and triggers an explosive rebound spike back to 280 mg/dL. The roller-coaster continues.
           </p>
 
+          <h3>Basal vs. Bolus: The Two Insulins</h3>
+          <p>
+            Injected insulin regimens mimic what a healthy pancreas does with two separate jobs. <strong>Basal insulin</strong> (long-acting glargine or degludec, or a pump's continuous trickle) is the background drip that holds glucose steady between meals and overnight — roughly 40&ndash;50% of total daily insulin, and the dose you never skip, even when sick (see Chapter 2). <strong>Bolus insulin</strong> (rapid-acting lispro, aspart, or glulisine) is the mealtime and correction dose that covers glucose about to arrive. Almost every dosing disaster — stacking, the 80-gram juice chug, the 3 a.m. crash — is a bolus timing error: dosed against where glucose <em>was</em> rather than where it is <em>going</em>.
+          </p>
+
           <h3>The Ahead Philosophy: Velocity, Acceleration &amp; The Rule of 3</h3>
           <p>
             Ahead was engineered specifically to solve the mathematical and physiological flaws of reactive CGM alarms:
@@ -1044,6 +1119,13 @@ details.deep-dive[open] summary::after { content: "−"; }
               <p>Sleeping on a sensor squeezes capillary blood out of the local skin pocket, creating a false 45 mg/dL reading. Ahead's trajectory math helps identify unnatural cliff-drops from true metabolic falls.</p>
             </div>
           </div>
+          <h3>Everyday Wildcards: Exercise &amp; Alcohol</h3>
+          <p>
+            <strong>Aerobic exercise</strong> (running, cycling, swimming) pulls glucose into muscle through a second, insulin-independent door: contracting muscle translocates GLUT4 on its own, no insulin key required. The result is falling glucose during the activity plus heightened insulin sensitivity for hours afterward — the most common cause of delayed nighttime lows after an active day. <strong>Anaerobic or high-intensity bursts</strong> (sprints, heavy lifting, competition) do the opposite: adrenaline orders the liver to dump glucose, and readings can spike mid-workout before crashing later.
+          </p>
+          <p>
+            <strong>Alcohol</strong> is the stealth hypo trigger. The liver prioritizes metabolizing ethanol over everything else, which shuts down gluconeogenesis for hours — removing the very backup system that normally defends against falling glucose. A few evening drinks can produce hypoglycemia in the early morning, long after the buzz wore off, especially with insulin on board. The unglamorous defense: eat carbohydrate with alcohol and stay alert to lows overnight.
+          </p>
         </article>
 
         <!-- CHAPTER 6: CLINICAL GLOSSARY -->
@@ -1106,7 +1188,7 @@ details.deep-dive[open] summary::after { content: "−"; }
 
             <div class="glossary-item" data-term="somogyi effect rebound hyperglycemia nocturnal low">
               <div class="glossary-term"><span>Somogyi Effect</span><span class="badge-tag badge-sun">Endocrine</span></div>
-              <div class="glossary-def">Rebound morning hyperglycemia triggered by an untreated middle-of-the-night hypoglycemic crash that sparks an emergency stress hormone surge (epinephrine &amp; cortisol).</div>
+              <div class="glossary-def">Rebound morning hyperglycemia attributed to an untreated middle-of-the-night hypoglycemic crash that sparks an emergency stress hormone surge (epinephrine &amp; cortisol). Classical teaching; modern CGM data suggest true Somogyi rebound is uncommon — most morning highs are waning insulin or the dawn phenomenon instead.</div>
             </div>
 
             <div class="glossary-item" data-term="dawn phenomenon growth hormone cortisol liver morning">
@@ -1116,7 +1198,7 @@ details.deep-dive[open] summary::after { content: "−"; }
 
             <div class="glossary-item" data-term="tir time in range agp 70 180 cgm">
               <div class="glossary-term"><span>Time in Range (TIR)</span><span class="badge-tag badge-mint">Clinical Metric</span></div>
-              <div class="glossary-def">The percentage of time spent between 70–180 mg/dL. Clinical goal is &gt;70%, with &lt;4% below 70 mg/dL. Proven to be a more sensitive predictor of vascular damage than HbA1c alone.</div>
+              <div class="glossary-def">The percentage of time spent between 70–180 mg/dL. Clinical goal is &gt;70%, with &lt;4% below 70 mg/dL. In people with type 1 diabetes, higher TIR is strongly associated with lower risk of microvascular complications, and clinicians now use it alongside HbA1c instead of relying on the average alone.</div>
             </div>
 
             <div class="glossary-item" data-term="insulin stacking bolus iob active insulin">
@@ -1127,6 +1209,34 @@ details.deep-dive[open] summary::after { content: "−"; }
             <div class="glossary-item" data-term="compression low sensor sleep pressure false alarm">
               <div class="glossary-term"><span>Compression Low</span><span class="badge-tag badge-sun">CGM Physics</span></div>
               <div class="glossary-def">False hypoglycemic reading caused by sleeping directly on a CGM sensor, which mechanically squeezes capillary blood out of the local skin pocket and starves the sensor filament.</div>
+            </div>
+            <div class="glossary-item" data-term="hba1c glycated hemoglobin average a1c">
+              <div class="glossary-term"><span>HbA1c</span><span class="badge-tag badge-sky">Clinical Metric</span></div>
+              <div class="glossary-def">Glycated hemoglobin — the percentage of hemoglobin with glucose stuck to it, reflecting average blood sugar over roughly 3 months. General adult target is below 7%, but it hides variability: a 7.0% can mean a steady 154 mg/dL or violent swings between 40 and 300.</div>
+            </div>
+            <div class="glossary-item" data-term="honeymoon period remission partial beta cell">
+              <div class="glossary-term"><span>Honeymoon Period</span><span class="badge-tag badge-mint">Endocrine</span></div>
+              <div class="glossary-def">Partial remission shortly after type 1 diagnosis, when surviving beta cells briefly recover and insulin needs fall — sometimes dramatically. Lasts weeks to months and always ends as the autoimmune attack finishes.</div>
+            </div>
+            <div class="glossary-item" data-term="basal insulin background long-acting glargine">
+              <div class="glossary-term"><span>Basal Insulin</span><span class="badge-tag badge-sky">Dosing</span></div>
+              <div class="glossary-def">Background insulin holding glucose steady between meals and overnight (long-acting glargine/degludec or a pump's trickle). Roughly 40–50% of total daily insulin — the dose you never skip, even when sick.</div>
+            </div>
+            <div class="glossary-item" data-term="bolus insulin mealtime correction rapid-acting lispro">
+              <div class="glossary-term"><span>Bolus Insulin</span><span class="badge-tag badge-coral">Dosing</span></div>
+              <div class="glossary-def">Rapid-acting insulin for meals and corrections (lispro, aspart, glulisine). Covers glucose about to arrive — which is why timing relative to food and to the previous bolus matters so much.</div>
+            </div>
+            <div class="glossary-item" data-term="15-15 rule hypoglycemia treatment low rescue">
+              <div class="glossary-term"><span>15-15 Rule</span><span class="badge-tag badge-danger">Emergency</span></div>
+              <div class="glossary-def">Hypoglycemia rescue protocol: 15 g of fast carbohydrate, wait 15 minutes, recheck; repeat if still below 70 mg/dL. Deliberately simple enough to follow while cognitively impaired.</div>
+            </div>
+            <div class="glossary-item" data-term="sick-day rules illness ketones dka prevention">
+              <div class="glossary-term"><span>Sick-Day Rules</span><span class="badge-tag badge-danger">Emergency</span></div>
+              <div class="glossary-def">Illness protocol: never stop basal insulin, check ketones above ~240 mg/dL or when ill, hydrate aggressively, and correct per your care team's plan. Prevents the infection → stress hormones → DKA cascade.</div>
+            </div>
+            <div class="glossary-item" data-term="euglycemic dka ketoacidosis normal glucose sglt2">
+              <div class="glossary-term"><span>Euglycemic DKA</span><span class="badge-tag badge-danger">Emergency</span></div>
+              <div class="glossary-def">Diabetic ketoacidosis with blood glucose below ~250 mg/dL — sometimes near normal. Triggered by SGLT2 inhibitors, fasting, very-low-carb diets, pregnancy, or alcohol. Dangerous because a “fine” glucose reading delays diagnosis; check ketones for symptoms, not just highs.</div>
             </div>
           </div>
         </article>

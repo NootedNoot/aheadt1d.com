@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Type 1 Diabetes: Biology, Molecular Mechanics &amp; Clinical Complications — Ahead Resources</title>
+  <meta name="description" content="A comprehensive, peer-reviewed medical and biological reference on Type 1 Diabetes: cellular starvation, GLUT4 translocation, DKA ketone cascade, hypoglycemia neuroglycopenia, microvascular complications, and CGM interstitial sensor dynamics." />
+  <meta name="theme-color" content="#1d0339" />
+  <meta property="og:title" content="Type 1 Diabetes: Biology, Molecular Mechanics &amp; Complications — Ahead Resources" />
+  <meta property="og:description" content="Deep clinical and biological guide to cellular energy starvation, insulin receptor kinetics, acute emergencies, long-term vascular pathophysiology, and continuous glucose monitoring." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aheadt1d.com/resources.html" />
+  <link rel="canonical" href="https://aheadt1d.com/resources.html" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232ee59d' d='M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" />
+  <style>
+/* ── Ahead Resources & Biology Hub · Northern Lights Design System ── */
+:root {
+  --bg: #1d0339;
+  --bg2: #2a0552;
+  --bg-deep: #120124;
+  --card: rgba(255, 255, 255, 0.055);
+  --card2: rgba(255, 255, 255, 0.09);
+  --card-hover: rgba(255, 255, 255, 0.12);
+  --line: rgba(255, 255, 255, 0.13);
+  --ink: #f1f3ff;
+  --mute: #c9bbe8;
+  --dim: #a08fc9;
+  --mint: #2ee59d;
+  --sky: #c49bff;
+  --coral: #ff7ab8;
+  --sun: #ffc857;
+  --violet: #9d65ff;
+  --danger: #ff4757;
+  --r: 22px;
+  --r-sm: 14px;
+  --f-head: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --f-body: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img, svg, video { max-width: 100%; }
+a { color: var(--sky); text-decoration: none; transition: color 0.2s; }
+a:hover { color: #fff; text-decoration: underline; }
+h1, h2, h3, h4, h5 { font-family: var(--f-head); line-height: 1.18; margin: 0; letter-spacing: -0.02em; }
+p { margin: 0 0 1em; }
+.mono { font-family: var(--f-mono); font-size: 0.9em; }
+.wrap { width: min(1180px, 100% - 32px); margin-inline: auto; position: relative; z-index: 2; }
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 8px; }
+
+/* Aurora Background */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 50% -10%, #4e148c 0%, var(--bg) 60%);
+}
+.blob { position: absolute; border-radius: 50%; filter: blur(95px); opacity: 0.45; will-change: transform; }
+.b1 { width: 55vmax; height: 55vmax; left: -14vmax; top: -18vmax; background: radial-gradient(circle, var(--sky), transparent 65%); animation: drift1 28s ease-in-out infinite alternate; }
+.b2 { width: 48vmax; height: 48vmax; right: -12vmax; top: 10vmax; background: radial-gradient(circle, var(--violet), transparent 65%); animation: drift2 34s ease-in-out infinite alternate; opacity: 0.38; }
+.b3 { width: 42vmax; height: 42vmax; left: 15vw; bottom: -20vmax; background: radial-gradient(circle, #7b3fe4, transparent 65%); animation: drift3 30s ease-in-out infinite alternate; opacity: 0.45; }
+.b4 { width: 34vmax; height: 34vmax; right: 5vw; bottom: -10vmax; background: radial-gradient(circle, var(--coral), transparent 65%); animation: drift1 36s ease-in-out infinite alternate-reverse; opacity: 0.25; }
+@keyframes drift1 { to { transform: translate3d(12vmax, 8vmax, 0) scale(1.12); } }
+@keyframes drift2 { to { transform: translate3d(-12vmax, 10vmax, 0) scale(1.08); } }
+@keyframes drift3 { to { transform: translate3d(8vmax, -10vmax, 0) scale(1.15); } }
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.45;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(70% 60% at 50% 30%, #000, transparent);
+}
+
+/* Header & Nav */
+.site-header { position: fixed; top: 12px; left: 0; right: 0; z-index: 100; }
+.nav {
+  width: min(1180px, 100% - 24px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px 8px 18px;
+  border-radius: 999px;
+  background: rgba(30, 4, 62, 0.75);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--line);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #fff;
+  text-decoration: none;
+  margin-right: auto;
+}
+.brand:hover { text-decoration: none; }
+.brand svg { width: 22px; height: 22px; }
+.brand small {
+  font: 600 0.62rem/1 var(--f-mono);
+  letter-spacing: 0.14em;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--mint), var(--sky));
+  color: #03210f;
+}
+.nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav ul a {
+  display: block;
+  padding: 7px 13px;
+  border-radius: 999px;
+  color: var(--mute);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.nav ul a:hover, .nav ul a.on { color: #fff; background: var(--card2); text-decoration: none; }
+.nav-cta {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--mint), var(--sky));
+  color: #03210f;
+  font-weight: 800;
+  font-size: 0.88rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.18s, filter 0.18s;
+}
+.nav-cta:hover { color: #03210f; filter: brightness(1.1); transform: translateY(-1px); text-decoration: none; }
+.nav-toggle {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card);
+  cursor: pointer;
+  position: relative;
+}
+.nav-toggle .bar { position: absolute; left: 10px; width: 18px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.2s; }
+.nav-toggle .b1 { top: 12px; }
+.nav-toggle .b2 { top: 18px; }
+.nav-toggle .b3 { top: 24px; }
+.nav-toggle[aria-expanded="true"] .b1 { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .b2 { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .b3 { transform: translateY(-6px) rotate(-45deg); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font: 700 0.95rem var(--f-body);
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.18s, filter 0.18s, background 0.18s;
+  color: #04140f;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-hot { background: linear-gradient(120deg, var(--mint), var(--sky)); box-shadow: 0 10px 28px -8px rgba(46, 229, 157, 0.5); }
+.btn-hot:hover { color: #04140f; filter: brightness(1.1); }
+.btn-ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+.btn-ghost:hover { background: var(--card2); color: #fff; }
+.btn-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--mute);
+  font: 600 0.8rem var(--f-body);
+  cursor: pointer;
+  transition: 0.18s;
+}
+.btn-mini:hover { background: var(--card2); color: #fff; text-decoration: none; }
+.btn-mini.active { background: rgba(46, 229, 157, 0.18); border-color: var(--mint); color: var(--mint); }
+
+/* Badges */
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font: 700 0.72rem var(--f-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line);
+  color: var(--mute);
+}
+.badge-mint { background: rgba(46, 229, 157, 0.14); border-color: rgba(46, 229, 157, 0.35); color: var(--mint); }
+.badge-sun { background: rgba(255, 200, 87, 0.14); border-color: rgba(255, 200, 87, 0.35); color: var(--sun); }
+.badge-coral { background: rgba(255, 122, 184, 0.14); border-color: rgba(255, 122, 184, 0.35); color: var(--coral); }
+.badge-danger { background: rgba(255, 71, 87, 0.18); border-color: rgba(255, 71, 87, 0.45); color: #ff5252; }
+.badge-sky { background: rgba(196, 155, 255, 0.14); border-color: rgba(196, 155, 255, 0.35); color: var(--sky); }
+
+/* Hero */
+.hero {
+  padding: 135px 0 45px;
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(78, 20, 140, 0.15) 0%, transparent 100%);
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 0.8rem var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mint);
+  padding: 6px 14px;
+  border: 1px solid rgba(46, 229, 157, 0.35);
+  border-radius: 999px;
+  background: rgba(46, 229, 157, 0.08);
+  margin-bottom: 18px;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(46, 229, 157, 0.7);
+  animation: ping 2s infinite;
+}
+@keyframes ping {
+  70% { box-shadow: 0 0 0 10px rgba(46, 229, 157, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 229, 157, 0); }
+}
+.hero h1 { font-size: clamp(2.4rem, 5.2vw, 4.2rem); font-weight: 700; margin-bottom: 16px; }
+.shimmer {
+  background: linear-gradient(100deg, var(--sky), var(--mint) 30%, var(--sun) 55%, var(--coral) 78%, var(--violet));
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sweep 7s linear infinite;
+  padding-right: 0.06em;
+}
+@keyframes sweep { to { background-position: -220% 0; } }
+.lead { font-size: clamp(1.05rem, 1.9vw, 1.25rem); color: var(--mute); max-width: 44em; margin-bottom: 24px; line-height: 1.6; }
+.meta-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.88rem;
+  color: var(--dim);
+}
+
+/* Sticky Category Quick-Bar */
+.topic-nav {
+  position: sticky;
+  top: 72px;
+  z-index: 90;
+  background: rgba(29, 3, 57, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+  margin-bottom: 40px;
+}
+.topic-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.topic-nav-inner::-webkit-scrollbar { display: none; }
+.topic-btn {
+  white-space: nowrap;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font: 600 0.82rem var(--f-body);
+  color: var(--mute);
+  background: var(--card);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  transition: 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.topic-btn:hover { background: var(--card2); color: #fff; text-decoration: none; border-color: rgba(255, 255, 255, 0.3); }
+.topic-btn.on { background: rgba(46, 229, 157, 0.15); border-color: var(--mint); color: var(--mint); }
+
+/* Content Cards & Layout */
+.content-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  margin-bottom: 70px;
+}
+@media (max-width: 900px) {
+  .content-grid { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+}
+
+/* Sidebar TOC */
+.sidebar { position: sticky; top: 140px; height: fit-content; }
+.toc-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 18px;
+}
+.toc-title {
+  font: 700 0.82rem var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 12px;
+}
+.toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 0.88rem; }
+.toc-list a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--mute); transition: 0.15s; }
+.toc-list a:hover { background: var(--card); color: #fff; text-decoration: none; }
+
+/* Chapter Card Styles */
+.chapter {
+  background: linear-gradient(180deg, var(--card2), var(--card));
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 34px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+}
+.chapter::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+.ch-cellular::before { background: linear-gradient(90deg, var(--mint), var(--sky)); }
+.ch-dka::before { background: linear-gradient(90deg, var(--coral), var(--sun)); }
+.ch-hypo::before { background: linear-gradient(90deg, #ff4757, var(--coral)); }
+.ch-vascular::before { background: linear-gradient(90deg, var(--violet), var(--sky)); }
+.ch-cgm::before { background: linear-gradient(90deg, var(--mint), var(--sun)); }
+
+.chapter-head { margin-bottom: 24px; }
+.chapter-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 700 0.76rem var(--f-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin-bottom: 8px;
+}
+.chapter h2 { font-size: 1.85rem; margin-bottom: 10px; }
+.chapter-intro { font-size: 1.05rem; color: var(--mute); line-height: 1.65; }
+
+/* Clinical Callout Box */
+.callout {
+  border-radius: var(--r-sm);
+  padding: 18px 22px;
+  margin: 20px 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.28);
+}
+.callout-mint { border-color: rgba(46, 229, 157, 0.35); background: rgba(46, 229, 157, 0.05); }
+.callout-coral { border-color: rgba(255, 122, 184, 0.35); background: rgba(255, 122, 184, 0.05); }
+.callout-sun { border-color: rgba(255, 200, 87, 0.35); background: rgba(255, 200, 87, 0.05); }
+.callout-danger { border-color: rgba(255, 71, 87, 0.45); background: rgba(255, 71, 87, 0.08); }
+.callout-head {
+  font: 700 0.95rem var(--f-head);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.callout p:last-child { margin-bottom: 0; }
+
+/* Interactive Biological Mechanism Explorer */
+.interactive-stage {
+  background: rgba(10, 2, 22, 0.85);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 24px;
+  margin: 24px 0 28px;
+}
+.stage-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.stage-tab {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--mute);
+  font: 700 0.84rem var(--f-body);
+  cursor: pointer;
+  transition: 0.18s;
+}
+.stage-tab:hover { background: var(--card2); color: #fff; }
+.stage-tab.on {
+  background: rgba(46, 229, 157, 0.15);
+  border-color: var(--mint);
+  color: var(--mint);
+}
+.stage-display {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .stage-display { grid-template-columns: 1fr; }
+}
+.diagram-canvas {
+  background: #080112;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.diagram-steps { display: flex; flex-direction: column; gap: 10px; }
+.d-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.84rem;
+}
+.d-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 800 0.72rem var(--f-mono);
+  flex: none;
+}
+
+/* Feature Grid Inside Chapters */
+.feature-tri {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.tri-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 18px;
+}
+.tri-card h4 { font-size: 1.05rem; margin-bottom: 8px; color: #fff; }
+.tri-card p { font-size: 0.88rem; color: var(--mute); margin: 0; line-height: 1.55; }
+
+/* Collapsible Deep-Dive Drawers */
+details.deep-dive {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(0, 0, 0, 0.25);
+  margin: 14px 0;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+details.deep-dive[open] { border-color: rgba(255, 255, 255, 0.3); background: rgba(0, 0, 0, 0.4); }
+details.deep-dive summary {
+  cursor: pointer;
+  padding: 14px 18px;
+  font: 700 0.95rem var(--f-head);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+details.deep-dive summary::-webkit-details-marker { display: none; }
+details.deep-dive summary::after {
+  content: "＋";
+  font-size: 1.1rem;
+  color: var(--mint);
+  transition: transform 0.2s;
+}
+details.deep-dive[open] summary::after { content: "−"; }
+.deep-dive-body {
+  padding: 0 18px 18px;
+  font-size: 0.9rem;
+  color: var(--mute);
+  line-height: 1.65;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Comparison Table */
+.tbl-wrap { overflow-x: auto; margin: 20px 0; border-radius: var(--r-sm); border: 1px solid var(--line); }
+.comp-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left; min-width: 600px; }
+.comp-table th, .comp-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.comp-table th { background: rgba(255, 255, 255, 0.06); font: 700 0.8rem var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+/* Glossary Search */
+.glossary-search-box {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--line);
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  outline: none;
+}
+.glossary-search-box:focus { border-color: var(--mint); }
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+.glossary-item {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 14px 16px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.glossary-item:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.25); }
+.glossary-term { font: 700 0.95rem var(--f-head); color: var(--ink); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
+.glossary-def { font-size: 0.84rem; color: var(--mute); line-height: 1.5; }
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-deep);
+  padding: 48px 0 32px;
+  font-size: 0.88rem;
+  color: var(--dim);
+}
+.footer-disclaimer {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 16px 20px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.footer-links a { color: var(--mute); }
+.footer-links a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+  <!-- Living Aurora Background -->
+  <div class="aurora" aria-hidden="true">
+    <i class="blob b1"></i>
+    <i class="blob b2"></i>
+    <i class="blob b3"></i>
+    <i class="blob b4"></i>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" class="brand" aria-label="Ahead T1D home">
+        <svg viewBox="0 0 24 24" style="color:var(--mint);fill:currentColor;stroke:none" aria-hidden="true">
+          <path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/>
+        </svg>
+        Ahead <small>T1D</small>
+      </a>
+      <ul id="navlinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#downloads">Downloads</a></li>
+        <li><a href="resources.html" class="on">Resources</a></li>
+        <li><a href="tutorial.html">Simulator</a></li>
+        <li><a href="portal.html">Portal</a></li>
+        <li><a href="login.html">Sign in</a></li>
+        <li><a href="legal.html">Legal</a></li>
+      </ul>
+      <a class="nav-cta" href="index.html#downloads">Get the apps</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation menu">
+        <span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker"><i></i>Medical &amp; Biological Knowledge Base</div>
+      <h1>The Biology of <span class="shimmer">Diabetes</span> &amp; Its Complications</h1>
+      <p class="lead">
+        A clinical, peer-reviewed guide to what actually happens inside human cells during Type 1 Diabetes: cellular starvation, insulin-receptor signaling, the ketone acid surge, brain glucose deprivation, and long-term vascular destruction.
+      </p>
+      <div class="meta-ribbon">
+        <span><strong>Target Audience:</strong> People with T1D, Caregivers, Doctors, Researchers</span>
+        <span>•</span>
+        <span><strong>Scientific Grounding:</strong> Cellular Physiology &amp; Endocrine Biochemistry</span>
+        <span>•</span>
+        <span><strong>Reading Time:</strong> ~12 min deep dive</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Topic Navigation Quick-Bar -->
+  <nav class="topic-nav" aria-label="Resource sections">
+    <div class="wrap">
+      <div class="topic-nav-inner">
+        <a href="#cellular" class="topic-btn on">🧬 1. Cellular Machinery</a>
+        <a href="#dka" class="topic-btn">⚡ 2. Starvation &amp; DKA</a>
+        <a href="#hypo" class="topic-btn">🚨 3. Hypoglycemia &amp; The Brain</a>
+        <a href="#complications" class="topic-btn">🩸 4. Vascular Complications</a>
+        <a href="#cgm" class="topic-btn">📉 5. CGM Lag &amp; The Rule of 3</a>
+        <a href="#glossary" class="topic-btn">📖 6. Clinical Glossary</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Body Content Grid -->
+  <main class="wrap">
+    <div class="content-grid">
+
+      <!-- Sticky Sidebar Table of Contents -->
+      <aside class="sidebar">
+        <div class="toc-card">
+          <div class="toc-title">Chapter Directory</div>
+          <ul class="toc-list">
+            <li><a href="#cellular">1. Cellular Machinery &amp; GLUT4</a></li>
+            <li><a href="#dka">2. The Starvation Paradox &amp; DKA</a></li>
+            <li><a href="#hypo">3. Acute Hypoglycemia &amp; Brain Energy</a></li>
+            <li><a href="#complications">4. Micro &amp; Macrovascular Damage</a></li>
+            <li><a href="#cgm">5. Sensor Lag, Velocity &amp; Ahead Math</a></li>
+            <li><a href="#glossary">6. Searchable Clinical Glossary</a></li>
+            <li><a href="tutorial.html" style="color:var(--mint);font-weight:700">✦ Interactive Simulator</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main Chapters Column -->
+      <div class="main-column">
+
+        <!-- CHAPTER 1: CELLULAR MACHINERY & INSULIN -->
+        <article id="cellular" class="chapter ch-cellular">
+          <div class="chapter-head">
+            <span class="chapter-eyebrow">Chapter 01 · Biochemistry</span>
+            <h2>The Molecular Machinery: How Glucose Enters a Cell</h2>
+            <p class="chapter-intro">
+              Every thought, heartbeat, and muscle twitch runs on adenosine triphosphate (ATP) generated from cellular glucose. But glucose is a polar molecule that cannot cross cell membranes without an escort.
+            </p>
+          </div>
+
+          <p>
+            Glucose (C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>) is decorated with hydrophilic hydroxyl (−OH) groups. Because the cell membrane is composed of a hydrophobic phospholipid bilayer, glucose is completely unable to diffuse passively into cells. It requires specialized transmembrane carrier proteins from the <strong>Glucose Transporter (GLUT)</strong> family.
+          </p>
+
+          <div class="feature-tri">
+            <div class="tri-card">
+              <span class="badge-tag badge-mint">GLUT1 &amp; GLUT3</span>
+              <h4 style="margin-top:8px">Brain &amp; Red Blood Cells</h4>
+              <p>Insulin-independent. High affinity. The brain and erythrocytes absorb glucose constantly from circulating blood regardless of insulin levels.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-sky">GLUT2</span>
+              <h4 style="margin-top:8px">Pancreatic Beta Cells &amp; Liver</h4>
+              <p>Bidirectional sensor. In healthy beta-cells, GLUT2 allows rapid glucose entry, triggering the ATP-sensitive K<sup>+</sup> channel cascade that releases insulin.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-coral">GLUT4 (Insulin-Dependent)</span>
+              <h4 style="margin-top:8px">Skeletal Muscle &amp; Adipose Tissue</h4>
+              <p>The body's primary fuel sink. Completely locked inside intracellular vesicles until insulin binds its receptor and orders them to the cell surface.</p>
+            </div>
+          </div>
+
+          <h3>The Insulin Receptor &amp; The GLUT4 Translocation Cascade</h3>
+          <p>
+            In skeletal muscle and adipose tissue, the doors are permanently shut until insulin acts as the molecular key:
+          </p>
+          <ol style="padding-left:20px;margin-bottom:18px;color:var(--mute);display:flex;flex-direction:column;gap:8px">
+            <li><strong>Receptor Binding:</strong> Insulin docks into the extracellular α-subunits of the heterotetrameric (α<sub>2</sub>β<sub>2</sub>) insulin receptor tyrosine kinase.</li>
+            <li><strong>Autophosphorylation:</strong> The intracellular β-subunits autophosphorylate on specific tyrosine residues, recruiting <strong>Insulin Receptor Substrates (IRS-1 &amp; IRS-2)</strong>.</li>
+            <li><strong>PI3K Activation:</strong> IRS proteins activate <strong>Phosphoinositide 3-Kinase (PI3K)</strong>, which phosphorylates PIP<sub>2</sub> into PIP<sub>3</sub> at the inner plasma membrane leaflet.</li>
+            <li><strong>The Akt Kinase Switch:</strong> PIP<sub>3</sub> recruits and activates <strong>Akt (Protein Kinase B)</strong> via PDK1.</li>
+            <li><strong>Vesicle Translocation:</strong> Phosphorylated Akt disables AS160 (a Rab-GAP), freeing <strong>GLUT4 storage vesicles</strong> to migrate through the cytoskeleton, fuse with the cell surface (via VAMP2 and syntaxin-4 SNARE complexes), and open the gates. Glucose floods into the cell by facilitated diffusion.</li>
+          </ol>
+
+          <div class="callout callout-coral">
+            <div class="callout-head" style="color:var(--coral)">
+              <span>⚠️</span> The Autoimmune Breach in Type 1 Diabetes
+            </div>
+            <p>
+              In Type 1 Diabetes, genetically predisposed individuals (bearing HLA-DR3-DQ2 or HLA-DR4-DQ8 alleles) experience an immune breakdown. Autoreactive CD4+ and cytotoxic CD8+ T-lymphocytes invade the pancreatic Islets of Langerhans (<strong>insulitis</strong>). Through perforin, granzymes, and inflammatory cytokines (IFN-γ, IL-1β, TNF-α), they selectively execute beta-cell apoptosis. 
+              <br><br>
+              When beta-cell mass collapses past ~85%, endogenous insulin production drops to zero. <strong>The lock-and-key mechanism is destroyed.</strong>
+            </p>
+          </div>
+
+          <!-- Interactive Molecular Stage -->
+          <div class="interactive-stage">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+              <div>
+                <h4 style="margin:0;font-size:1.1rem;color:#fff">Interactive Molecular Mechanism Viewer</h4>
+                <p style="margin:2px 0 0;font-size:0.84rem;color:var(--dim)">Toggle below to observe how cellular fuel flow behaves across states.</p>
+              </div>
+              <span class="badge-tag badge-mint" id="stageStatusBadge">Healthy Physiology</span>
+            </div>
+
+            <div class="stage-tabs">
+              <button type="button" class="stage-tab on" data-state="healthy">1. Normal Physiology (Insulin Key Active)</button>
+              <button type="button" class="stage-tab" data-state="t1d">2. Type 1 Diabetes (Cellular Starvation)</button>
+              <button type="button" class="stage-tab" data-state="hypo">3. Acute Hypoglycemia (Cerebral Starvation)</button>
+              <button type="button" class="stage-tab" data-state="dka">4. Ketoacidosis Cascade (DKA)</button>
+            </div>
+
+            <div class="stage-display">
+              <div class="diagram-canvas">
+                <div class="diagram-steps" id="stageDiagramSteps">
+                  <div class="d-step"><span class="d-num" style="background:var(--mint);color:#000">1</span><span>Glucose rises in blood after digestion (100–120 mg/dL).</span></div>
+                  <div class="d-step"><span class="d-num" style="background:var(--mint);color:#000">2</span><span>Beta cells release insulin pulses into portal circulation.</span></div>
+                  <div class="d-step"><span class="d-num" style="background:var(--mint);color:#000">3</span><span>Insulin binds tyrosine kinase receptors on muscle &amp; fat.</span></div>
+                  <div class="d-step"><span class="d-num" style="background:var(--mint);color:#000">4</span><span>GLUT4 vesicles fuse with membrane; glucose enters cell to produce ATP.</span></div>
+                </div>
+              </div>
+              <div style="background:rgba(0,0,0,0.35);padding:18px;border-radius:12px;border:1px solid var(--line)">
+                <h4 id="stageDetailTitle" style="color:var(--mint);margin-bottom:6px">Normal Cellular Energy Balance</h4>
+                <p id="stageDetailDesc" style="font-size:0.88rem;color:var(--mute);margin-bottom:10px">
+                  Insulin serves as the master anabolic hormone. Glucose smoothly enters muscle for glycogen storage and fat cells for energy, keeping bloodstream levels tightly regulated between 70–140 mg/dL.
+                </p>
+                <div style="font-size:0.82rem;font-family:var(--f-mono);color:var(--dim)">
+                  <strong>Key Biochemical Marker:</strong> Normal blood pH 7.35–7.45 · Basal ketone &lt; 0.6 mmol/L
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 2: THE STARVATION PARADOX & DKA -->
+        <article id="dka" class="chapter ch-dka">
+          <div class="chapter-head">
+            <span class="chapter-eyebrow" style="color:var(--sun)">Chapter 02 · Acute Pathophysiology</span>
+            <h2>The Starvation Paradox &amp; Diabetic Ketoacidosis (DKA)</h2>
+            <p class="chapter-intro">
+              The supreme irony of Type 1 Diabetes: a person's bloodstream can be drowning in 600 mg/dL of glucose, yet their muscle and fat cells are literally starving to death.
+            </p>
+          </div>
+
+          <h3>Why Cells Starve in a Sea of Sugar</h3>
+          <p>
+            Because GLUT4 transporters remain sequestered in the cytoplasm without insulin, extracellular glucose cannot penetrate muscle or fat tissue. The cell's mitochondria are completely deprived of substrate. Starving tissues release urgent chemical distress signals to the central nervous system.
+          </p>
+
+          <p>
+            The body responds as if it is in extreme wilderness starvation. Counter-regulatory stress hormones explode into the bloodstream:
+          </p>
+          <ul style="padding-left:20px;margin-bottom:18px;color:var(--mute);display:flex;flex-direction:column;gap:6px">
+            <li><strong>Glucagon</strong> (unrestrained by normal intra-islet insulin suppression) orders the liver to empty all stored glycogen (<strong>glycogenolysis</strong>) and convert protein into new glucose (<strong>gluconeogenesis</strong>).</li>
+            <li><strong>Epinephrine (Adrenaline)</strong> increases metabolic demand and accelerates hepatic output.</li>
+            <li><strong>Cortisol &amp; Growth Hormone</strong> induce intense peripheral insulin resistance and accelerate muscle proteolysis.</li>
+          </ul>
+          <p>
+            The liver dumps thousands of milligrams of new glucose into a bloodstream that already cannot clear it. Blood glucose skyrockets from 250 to 500, 800, or past 1,000 mg/dL.
+          </p>
+
+          <h3>The Unrestrained Lipolysis Cascade (The Ketone Factory)</h3>
+          <p>
+            Under normal conditions, insulin is the potent physiological inhibitor of <strong>Hormone-Sensitive Lipase (HSL)</strong> in adipose tissue. In zero-insulin states, HSL runs unchecked, violently tearing adipocyte triglycerides apart into massive surges of <strong>Free Fatty Acids (FFAs)</strong> and glycerol.
+          </p>
+
+          <div class="tbl-wrap">
+            <table class="comp-table">
+              <thead>
+                <tr>
+                  <th>Phase</th>
+                  <th>Biochemical Mechanism</th>
+                  <th>Physiological Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. FFA Influx</strong></td>
+                  <td>Uninhibited HSL releases tidal waves of free fatty acids into liver hepatocytes.</td>
+                  <td>Fatty acids overwhelm liver capacity.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. CPT-1 Shuttle</strong></td>
+                  <td>Low insulin drops malonyl-CoA, fully activating Carnitine Palmitoyltransferase-1 (CPT-1).</td>
+                  <td>Fatty acyl-CoA floods mitochondrial matrix for β-oxidation.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Acetyl-CoA Jam</strong></td>
+                  <td>β-oxidation generates massive Acetyl-CoA. Oxaloacetate is depleted by gluconeogenesis.</td>
+                  <td>Acetyl-CoA cannot enter Krebs cycle; shunted to ketogenesis.</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Ketone Synthesis</strong></td>
+                  <td>HMG-CoA synthase synthesizes <strong>Acetoacetate</strong>, <strong>β-hydroxybutyrate</strong>, and <strong>Acetone</strong>.</td>
+                  <td>Ketone bodies flood blood as strong organic acids (pK<sub>a</sub> ≈ 3.5).</td>
+                </tr>
+                <tr>
+                  <td><strong>5. Acidosis Collapse</strong></td>
+                  <td>Excess H<sup>+</sup> ions exhaust serum bicarbonate (HCO<sub>3</sub><sup>−</sup>). Anion gap spikes past 20–30 mEq/L.</td>
+                  <td>Blood pH plummets below 7.10. High-risk metabolic emergency.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout-danger">
+            <div class="callout-head" style="color:#ff5252">
+              <span>🚨</span> The Deadly Triad of DKA: Acidosis, Dehydration &amp; Potassium Shifts
+            </div>
+            <p>
+              <strong>1. Kussmaul Respirations:</strong> The brain's respiratory center detects systemic acidosis and triggers rapid, deep, panting breaths to blow off CO<sub>2</sub> and lower carbonic acid (H<sub>2</sub>CO<sub>3</sub>). Breath smells distinctively fruity or like nail-polish remover from exhaled acetone.
+              <br><br>
+              <strong>2. Osmotic Diuresis:</strong> Glucose exceeds the renal absorptive threshold (~180 mg/dL). High tubular glucose acts as an osmotic sponge, dragging water, sodium, and potassium out into urine. Patients lose 5 to 10 liters of water, collapsing blood pressure into hypovolemic shock.
+              <br><br>
+              <strong>3. The Potassium Deception:</strong> Acidosis forces K<sup>+</sup> out of cells into serum in exchange for H<sup>+</sup> ions. Blood tests may show "normal" or high potassium, but the entire body is critically depleted. Giving insulin without potassium monitoring will suck K<sup>+</sup> back into cells, causing sudden fatal cardiac arrest.
+            </p>
+          </div>
+        </article>
+
+        <!-- CHAPTER 3: HYPOGLYCEMIA & THE BRAIN -->
+        <article id="hypo" class="chapter ch-hypo">
+          <div class="chapter-head">
+            <span class="chapter-eyebrow" style="color:var(--coral)">Chapter 03 · Acute Crises</span>
+            <h2>Hypoglycemia &amp; Cerebral Energy Deprivation</h2>
+            <p class="chapter-intro">
+              The brain represents only 2% of total body weight, but consumes 20% of resting glucose. When glucose drops, the brain is the first organ to suffocate.
+            </p>
+          </div>
+
+          <p>
+            Unlike skeletal muscle, neurons cannot store meaningful glycogen reserves, nor can they metabolize fatty acids (which cannot cross the blood-brain barrier). Cerebral survival requires an uninterrupted, minute-by-minute flux of glucose across endothelial GLUT1 and neuronal GLUT3 transporters.
+          </p>
+
+          <h3>The Two Waves of Low Blood Sugar</h3>
+          <div class="feature-tri">
+            <div class="tri-card" style="border-color:rgba(255,200,87,0.35)">
+              <span class="badge-tag badge-sun">Wave 1: Adrenergic (70–54 mg/dL)</span>
+              <h4 style="margin-top:8px">The Sympathoadrenal Alarm</h4>
+              <p>The hypothalamus triggers a massive blast of <strong>epinephrine (adrenaline)</strong> and norepinephrine. Cold sweats (diaphoresis), shaking hands, racing pulse (tachycardia), pallor, and intense panic hunger.</p>
+            </div>
+            <div class="tri-card" style="border-color:rgba(255,71,87,0.45)">
+              <span class="badge-tag badge-danger">Wave 2: Neuroglycopenia (&lt; 54 mg/dL)</span>
+              <h4 style="margin-top:8px">Direct Brain Starvation</h4>
+              <p>Cortical neuron ATP collapses. Cognitive slowing, slurred speech, ataxia (stumbling), double vision, confusion, emotional outbursts, and rapid progression to epileptic seizures or coma.</p>
+            </div>
+          </div>
+
+          <div class="callout callout-sun">
+            <div class="callout-head" style="color:var(--sun)">
+              <span>⚡</span> The Lost Defense: Alpha-Cell Glucagon Failure in T1D
+            </div>
+            <p>
+              In a non-diabetic, the body's instant response to dropping glucose is switching off beta-cell insulin and triggering pancreatic alpha-cells to secrete <strong>glucagon</strong>, releasing liver glycogen reserves.
+              <br><br>
+              In Type 1 Diabetes, within 1 to 5 years of diagnosis, the intra-islet paracrine signaling is permanently broken. <strong>Alpha cells completely lose the ability to sense hypoglycemia.</strong> The body has zero automatic brakes to halt falling glucose — survival depends entirely on external carbohydrates or emergency rescue glucagon (Baqsimi, Zegalogue, GlucaGen).
+            </p>
+          </div>
+
+          <h3>Hypoglycemia Unawareness (HAAF)</h3>
+          <p>
+            When a person experiences frequent lows, the brain's autonomic thermostat resets downward (**Hypoglycemia-Associated Autonomic Failure**). The body stops generating the adrenaline surge at 70 mg/dL. Shaking and sweating disappear. Patients can be sitting at 42 mg/dL chatting normally — until cortical ATP abruptly cuts out, resulting in instantaneous collapse or seizure.
+          </p>
+        </article>
+
+        <!-- CHAPTER 4: CHRONIC COMPLICATIONS -->
+        <article id="complications" class="chapter ch-vascular">
+          <div class="chapter-head">
+            <span class="chapter-eyebrow" style="color:var(--sky)">Chapter 04 · Long-Term Pathophysiology</span>
+            <h2>Chronic Complications: How Sugar Destroys Blood Vessels</h2>
+            <p class="chapter-intro">
+              Why does elevated glucose cause blindness, kidney failure, and amputations over 10–20 years? The answer lies in the destructive chemistry of Advanced Glycation End-Products (AGEs) and capillary pericyte death.
+            </p>
+          </div>
+
+          <p>
+            Dr. Michael Brownlee's seminal research unified the mechanisms of diabetic tissue damage: excess glucose flooding endothelial cells overloads mitochondrial electron transport, producing massive bursts of <strong>superoxide (O<sub>2</sub><sup>•−</sup>)</strong> and free radicals that shut down GAPDH, diverting toxic metabolites into four destructive pathways:
+          </p>
+
+          <div class="feature-tri">
+            <div class="tri-card">
+              <span class="badge-tag badge-sky">1. AGE / RAGE Cross-Linking</span>
+              <h4 style="margin-top:8px">Protein Stiffening &amp; Inflammation</h4>
+              <p>Glucose non-enzymatically binds to vessel collagen (Maillard reaction), forming irreversible cross-linked AGEs that stiffen arteries and trigger chronic NF-κB inflammation via RAGE receptors.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-coral">2. Polyol Pathway Flux</span>
+              <h4 style="margin-top:8px">Antioxidant Depletion &amp; Swelling</h4>
+              <p>Aldose reductase converts glucose to sorbitol, consuming NADPH. Without NADPH, cells cannot regenerate reduced glutathione (GSH), exposing eyes and nerves to devastating oxidative stress.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-sun">3. Protein Kinase C (PKC)</span>
+              <h4 style="margin-top:8px">Capillary Leakage &amp; VEGF Surge</h4>
+              <p>Excess diacylglycerol (DAG) hyperactivates PKC, thickening capillary basement membranes, shutting down protective nitric oxide (eNOS), and inducing pathological vascular permeability.</p>
+            </div>
+          </div>
+
+          <h3>Microvascular Destruction (The Vulnerable Organs)</h3>
+
+          <details class="deep-dive" open>
+            <summary>👁️ Diabetic Retinopathy (The Eyes)</summary>
+            <div class="deep-dive-body">
+              <p>
+                Retinal capillaries are supported by contractile cells called <strong>pericytes</strong> (1:1 ratio with endothelial cells). Hyperglycemia selectively triggers pericyte apoptosis. Without pericyte structural support, capillary walls balloon into <strong>microaneurysms</strong> that leak blood and lipid exudates into the macula (<strong>Diabetic Macular Edema / DME</strong>), blurring central vision.
+              </p>
+              <p>
+                As capillary closures expand, the ischemic retina starves for oxygen and secretes <strong>Vascular Endothelial Growth Factor (VEGF)</strong>. In Proliferative Diabetic Retinopathy (PDR), fragile new capillaries sprout across the retina. These vessels rupture into the vitreous humor (vitreous hemorrhage) and scar down, creating traction bands that tear the retina off the back of the eye (retinal detachment).
+              </p>
+            </div>
+          </details>
+
+          <details class="deep-dive" open>
+            <summary>🫘 Diabetic Nephropathy (The Kidneys)</summary>
+            <div class="deep-dive-body">
+              <p>
+                Each kidney filters 180 liters of plasma daily across 1 million microscopic glomeruli. Early hyperglycemia creates afferent arteriolar dilation, driving intense <strong>glomerular hyperfiltration</strong>. Over years, mesangial cells produce excess extracellular matrix, forming nodular intercapillary glomerulosclerosis (<strong>Kimmelstiel-Wilson lesions</strong>).
+              </p>
+              <p>
+                Podocyte foot processes detach, destroying the filtration barrier. Proteins spill into urine: <strong>Microalbuminuria (30–300 mg/day)</strong> progresses to <strong>Macroalbuminuria (&gt;300 mg/day)</strong>, GFR collapses, culminating in End-Stage Renal Disease (ESRD) requiring lifelong hemodialysis or organ transplant.
+              </p>
+            </div>
+          </details>
+
+          <details class="deep-dive" open>
+            <summary>⚡ Diabetic Neuropathy (Nerves &amp; Amputation Risk)</summary>
+            <div class="deep-dive-body">
+              <p>
+                Nerves require oxygen and nutrients from microscopic capillaries called the <em>vasa nervorum</em>. Hyperglycemia occludes these microvessels while sorbitol accumulates inside Schwann cells. Longest sensory axons die first in a "glove-and-stocking" pattern:
+              </p>
+              <ul style="padding-left:18px;margin-bottom:10px">
+                <li><strong>Loss of Protective Sensation:</strong> Patients step on tacks, develop blisters, or fracture bones (Charcot joint) without feeling pain. Neglected pressure sores become infected diabetic ulcers, penetrating bone (osteomyelitis) and requiring surgical amputation.</li>
+                <li><strong>Autonomic Neuropathy (Gastroparesis):</strong> Vagus nerve paralysis prevents the stomach from emptying normally. Meals sit in the stomach for 6+ hours unpredictably. Insulin administered before eating causes immediate hypoglycemia, followed hours later by massive unexplained spikes.</li>
+                <li><strong>Cardiac Autonomic Neuropathy (CAN):</strong> Resting heart rate exceeds 100 bpm, beat-to-beat variability vanishes, and visceral pain fibers are lost, leading to completely <strong>silent, painless heart attacks</strong>.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <!-- CHAPTER 5: CGM DYNAMICS & WHY AHEAD WAS BUILT -->
+        <article id="cgm" class="chapter ch-cgm">
+          <div class="chapter-head">
+            <span class="chapter-eyebrow" style="color:var(--mint)">Chapter 05 · Clinical Engineering</span>
+            <h2>Continuous Glucose Monitors (CGMs), Sensor Lag &amp; Ahead Math</h2>
+            <p class="chapter-intro">
+              Why do people crash after treating a high? Why does a sensor scream low in the middle of the night when blood is normal? The answers lie in interstitial fluid physics and sensor rate-of-change dynamics.
+            </p>
+          </div>
+
+          <h3>The 10–15 Minute Interstitial Sensor Lag</h3>
+          <p>
+            Continuous Glucose Monitors (Dexcom G7, Abbott Libre) do <strong>not</strong> measure blood. Their flexible filament resides in subcutaneous <strong>interstitial fluid</strong> (the fluid bathing tissue cells).
+          </p>
+          <p>
+            Glucose in capillary blood must physically extravasate across vascular endothelium and diffuse through extracellular matrix to reach the sensor's glucose oxidase electrode. This creates an unavoidable physiologic lag of <strong>5 to 15 minutes</strong>:
+          </p>
+
+          <div class="callout callout-coral">
+            <div class="callout-head" style="color:var(--coral)">
+              <span>⏱️</span> The Danger of Velocity Discrepancy
+            </div>
+            <p>
+              During stable periods (flat line), capillary blood and interstitial fluid are in equilibrium.
+              <br><br>
+              <strong>During rapid drops (e.g. falling at −2.5 mg/dL/min):</strong>
+              <br>
+              <div style="margin:10px 0;padding:10px 16px;background:rgba(0,0,0,0.3);border-radius:8px;display:inline-block">
+                <span class="mono" style="font-size:1.05rem;font-weight:700;color:var(--sun)">Lag = 10 minutes × 2.5 mg/dL/min = 25 mg/dL discrepancy!</span>
+              </div>
+              <br>
+              Your capillary blood is already at <strong>65 mg/dL</strong> (brain starvation underway, adrenergic tremors active), but your CGM screen still displays a comfortable <strong>90 mg/dL</strong>! By the time the CGM alarm finally rings at 65 mg/dL 10 minutes later, your true blood is already down in the dangerous 40s.
+            </p>
+          </div>
+
+          <h3>The Panic Overcorrection Trap &amp; Insulin Stacking</h3>
+          <p>
+            Subcutaneously injected rapid-acting insulin (Novolog, Humalog, Fiasp) takes 15 minutes to enter circulation and <strong>60 to 90 minutes to reach peak biological activity</strong>, lasting 3 to 5 hours in the body (Insulin on Board / IOB).
+          </p>
+          <p>
+            When a user sees 210 mg/dL with a rising arrow, they inject 4 units. 30 minutes later, because the carbohydrates are still absorbing and insulin hasn't peaked, the sensor reads 225 mg/dL. Assuming the insulin "failed," the user injects another 4 units.
+          </p>
+          <p>
+            <strong>This is Insulin Stacking.</strong> Two hours later, both boluses peak simultaneously, sending glucose crashing downward at −3.5 mg/dL/min into a life-threatening hypo. The user panics, chugs 80 grams of juice, and triggers an explosive rebound spike back to 280 mg/dL. The roller-coaster continues.
+          </p>
+
+          <h3>The Ahead Philosophy: Velocity, Acceleration &amp; The Rule of 3</h3>
+          <p>
+            Ahead was engineered specifically to solve the mathematical and physiological flaws of reactive CGM alarms:
+          </p>
+
+          <div class="feature-tri">
+            <div class="tri-card">
+              <span class="badge-tag badge-mint">Vector Projections</span>
+              <h4 style="margin-top:8px">15m &amp; 30m Trajectories</h4>
+              <p>By computing the first derivative (<span class="mono">dG/dt</span> velocity) and second derivative (<span class="mono">d²G/dt²</span> curvature), Ahead projects where your glucose will land 15 and 30 minutes in advance, bypassing sensor lag.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-sun">The Rule of 3 Checks</span>
+              <h4 style="margin-top:8px">3 Checks / 15-Minute Rule</h4>
+              <p>A single high ping might be noise or an already-peaking curve. Ahead monitors an amber rise over 3 consecutive checks (15 min) before escalating alerts, completely eliminating panic stacking.</p>
+            </div>
+            <div class="tri-card">
+              <span class="badge-tag badge-sky">Compression Artifacts</span>
+              <h4 style="margin-top:8px">Compression Low Filtering</h4>
+              <p>Sleeping on a sensor squeezes capillary blood out of the local skin pocket, creating a false 45 mg/dL reading. Ahead's trajectory math helps identify unnatural cliff-drops from true metabolic falls.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 6: CLINICAL GLOSSARY -->
+        <article id="glossary" class="chapter ch-cellular">
+          <div class="chapter-head">
+            <span class="chapter-eyebrow">Chapter 06 · Reference Guide</span>
+            <h2>Searchable Clinical &amp; Biological Glossary</h2>
+            <p class="chapter-intro">
+              Instant plain-English medical definitions for key endocrine, metabolic, and continuous glucose monitoring concepts.
+            </p>
+          </div>
+
+          <input type="text" id="glossarySearch" class="glossary-search-box" placeholder="Search terms (e.g. GLUT4, DKA, Basal, Somogyi, Anion Gap, Pericytes)…" aria-label="Search clinical terms" />
+
+          <div class="glossary-grid" id="glossaryGrid">
+            <div class="glossary-item" data-term="glut4 glucose transporter insulin">
+              <div class="glossary-term"><span>GLUT4</span><span class="badge-tag badge-mint">Transporter</span></div>
+              <div class="glossary-def">Insulin-regulated glucose transporter protein found in skeletal muscle and fat. Translocates from cytoplasmic vesicles to the cell membrane when insulin binds its receptor.</div>
+            </div>
+
+            <div class="glossary-item" data-term="dka diabetic ketoacidosis ketones acidosis">
+              <div class="glossary-term"><span>DKA</span><span class="badge-tag badge-danger">Emergency</span></div>
+              <div class="glossary-def">Diabetic Ketoacidosis. Life-threatening metabolic collapse caused by absolute insulin deficiency. Uncontrolled lipolysis floods blood with acidic ketone bodies, crashing blood pH.</div>
+            </div>
+
+            <div class="glossary-item" data-term="beta-hydroxybutyrate ketones dka acid">
+              <div class="glossary-term"><span>β-Hydroxybutyrate</span><span class="badge-tag badge-coral">Biomarker</span></div>
+              <div class="glossary-def">The primary circulating ketone body in DKA. Organic acid produced by liver mitochondria from excess Acetyl-CoA during cellular starvation.</div>
+            </div>
+
+            <div class="glossary-item" data-term="haaf hypoglycemia unawareness adrenaline autonomic">
+              <div class="glossary-term"><span>HAAF &amp; Unawareness</span><span class="badge-tag badge-sun">Autonomic</span></div>
+              <div class="glossary-def">Hypoglycemia-Associated Autonomic Failure. Recurrent lows blunt sympathetic adrenaline warning signs (shaking, sweating), causing silent drops into severe neuroglycopenia.</div>
+            </div>
+
+            <div class="glossary-item" data-term="neuroglycopenia brain glucose confusion seizure">
+              <div class="glossary-term"><span>Neuroglycopenia</span><span class="badge-tag badge-danger">Neurologic</span></div>
+              <div class="glossary-def">Shortage of glucose in cortical neurons. Manifests as cognitive slowing, slurred speech, confusion, emotional outbursts, and progresses to seizures or coma below 54 mg/dL.</div>
+            </div>
+
+            <div class="glossary-item" data-term="ages advanced glycation end products maillard collagen">
+              <div class="glossary-term"><span>AGEs</span><span class="badge-tag badge-sky">Vascular</span></div>
+              <div class="glossary-def">Advanced Glycation End-Products. Irreversible cross-links formed when high glucose binds to tissue proteins, stiffening blood vessels and triggering chronic vascular inflammation.</div>
+            </div>
+
+            <div class="glossary-item" data-term="retinopathy pericytes eyes microaneurysms vegf">
+              <div class="glossary-term"><span>Diabetic Retinopathy</span><span class="badge-tag badge-sky">Microvascular</span></div>
+              <div class="glossary-def">Retinal damage initiated by capillary pericyte death, producing microaneurysms, macular edema, and VEGF-driven fragile neovascularization that can cause blindness.</div>
+            </div>
+
+            <div class="glossary-item" data-term="nephropathy kidneys microalbuminuria gfr kimmelstiel">
+              <div class="glossary-term"><span>Diabetic Nephropathy</span><span class="badge-tag badge-sky">Microvascular</span></div>
+              <div class="glossary-def">Progressive kidney damage from glomerular hyperfiltration and basement membrane thickening, leading to microalbuminuria, nephrotic syndrome, and ESRD.</div>
+            </div>
+
+            <div class="glossary-item" data-term="gastroparesis vagus nerve stomach motility digestion">
+              <div class="glossary-term"><span>Gastroparesis</span><span class="badge-tag badge-coral">Autonomic</span></div>
+              <div class="glossary-def">Vagal autonomic neuropathy that paralyzes stomach motility. Food sits in the stomach unpredictably for hours, decoupling insulin peak from carbohydrate absorption.</div>
+            </div>
+
+            <div class="glossary-item" data-term="somogyi effect rebound hyperglycemia nocturnal low">
+              <div class="glossary-term"><span>Somogyi Effect</span><span class="badge-tag badge-sun">Endocrine</span></div>
+              <div class="glossary-def">Rebound morning hyperglycemia triggered by an untreated middle-of-the-night hypoglycemic crash that sparks an emergency stress hormone surge (epinephrine &amp; cortisol).</div>
+            </div>
+
+            <div class="glossary-item" data-term="dawn phenomenon growth hormone cortisol liver morning">
+              <div class="glossary-term"><span>Dawn Phenomenon</span><span class="badge-tag badge-sun">Endocrine</span></div>
+              <div class="glossary-def">Natural early-morning rise in blood sugar (4 AM – 8 AM) caused by circadian surges of growth hormone and cortisol prompting the liver to dump glucose in anticipation of waking.</div>
+            </div>
+
+            <div class="glossary-item" data-term="tir time in range agp 70 180 cgm">
+              <div class="glossary-term"><span>Time in Range (TIR)</span><span class="badge-tag badge-mint">Clinical Metric</span></div>
+              <div class="glossary-def">The percentage of time spent between 70–180 mg/dL. Clinical goal is &gt;70%, with &lt;4% below 70 mg/dL. Proven to be a more sensitive predictor of vascular damage than HbA1c alone.</div>
+            </div>
+
+            <div class="glossary-item" data-term="insulin stacking bolus iob active insulin">
+              <div class="glossary-term"><span>Insulin Stacking</span><span class="badge-tag badge-danger">Dosing Error</span></div>
+              <div class="glossary-def">Injecting consecutive correction boluses before previous doses reach peak action (60–90 min), leading to dangerous overlapping peaks and catastrophic hypoglycemic crashes.</div>
+            </div>
+
+            <div class="glossary-item" data-term="compression low sensor sleep pressure false alarm">
+              <div class="glossary-term"><span>Compression Low</span><span class="badge-tag badge-sun">CGM Physics</span></div>
+              <div class="glossary-def">False hypoglycemic reading caused by sleeping directly on a CGM sensor, which mechanically squeezes capillary blood out of the local skin pocket and starves the sensor filament.</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-disclaimer">
+        <strong>Medical Disclaimer:</strong> This resource hub is authored strictly for educational, biological, and informational purposes based on peer-reviewed endocrinology literature. It does not constitute formal medical diagnosis, individualized clinical advice, or treatment prescriptions. Always consult your board-certified endocrinologist or diabetes care and education specialist (CDCES) before adjusting basal rates, insulin-to-carb ratios, or treatment regimens.
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#downloads">Downloads</a>
+        <a href="resources.html">Resources</a>
+        <a href="tutorial.html">Clinical Simulator</a>
+        <a href="portal.html">Ahead Portal</a>
+        <a href="login.html">Sign In</a>
+        <a href="legal.html">Privacy &amp; Terms</a>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <span>© 2026 AheadT1D. Built by Ryan Singer in Colorado Springs, CO.</span>
+        <span>Ahead of diabetes. Ahead of the curve.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // Mobile Navigation Toggle
+    var navToggle = document.getElementById('navToggle');
+    var navlinks = document.getElementById('navlinks');
+    if (navToggle && navlinks) {
+      navToggle.addEventListener('click', function() {
+        var isOpen = navlinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+    // Interactive Mechanism Stage Script
+    var stageTabs = document.querySelectorAll('.stage-tab');
+    var stageSteps = document.getElementById('stageDiagramSteps');
+    var stageTitle = document.getElementById('stageDetailTitle');
+    var stageDesc = document.getElementById('stageDetailDesc');
+    var stageBadge = document.getElementById('stageStatusBadge');
+
+    var STAGE_DATA = {
+      healthy: {
+        badge: 'Healthy Physiology',
+        badgeClass: 'badge-mint',
+        title: 'Normal Cellular Energy Balance',
+        desc: 'Insulin acts as the chemical key. Glucose enters muscle for glycogen storage and fat cells for energy, keeping bloodstream levels tightly buffered between 70–140 mg/dL.',
+        steps: [
+          { num: '1', color: 'var(--mint)', text: 'Carbohydrates break down into glucose; blood level rises to 100–120 mg/dL.' },
+          { num: '2', color: 'var(--mint)', text: 'Pancreatic beta-cells sense glucose via GLUT2 &amp; exocytose insulin.' },
+          { num: '3', color: 'var(--mint)', text: 'Insulin docks into tyrosine kinase receptors on muscle &amp; fat tissues.' },
+          { num: '4', color: 'var(--mint)', text: 'IRS-1/PI3K/Akt cascade triggers GLUT4 vesicles to fuse with membrane. Glucose enters.' }
+        ]
+      },
+      t1d: {
+        badge: 'Type 1 Diabetes (Untreated)',
+        badgeClass: 'badge-coral',
+        title: 'Cellular Starvation in a Sea of Glucose',
+        desc: 'Autoimmune T-cells execute pancreatic beta-cells. Without insulin, GLUT4 remains locked in the cytoplasm. Blood glucose surges past 300 mg/dL, yet muscle and fat cells are starving.',
+        steps: [
+          { num: '1', color: 'var(--coral)', text: 'Autoimmune insulitis destroys &gt;85% of insulin-producing beta cells.' },
+          { num: '2', color: 'var(--coral)', text: 'Endogenous insulin production drops to zero. No keys available.' },
+          { num: '3', color: 'var(--coral)', text: 'GLUT4 transporter gates stay locked inside cell cytoplasm.' },
+          { num: '4', color: 'var(--coral)', text: 'Glucose accumulates in blood (350+ mg/dL) while cells starve and signal for rescue.' }
+        ]
+      },
+      hypo: {
+        badge: 'Severe Hypoglycemia (<54 mg/dL)',
+        badgeClass: 'badge-danger',
+        title: 'Cerebral Energy Depletion & Neuroglycopenia',
+        desc: 'The brain relies strictly on continuous glucose delivery. When levels crash, cortical neurons run out of ATP, triggering adrenaline panics followed by confusion, seizures, or coma.',
+        steps: [
+          { num: '1', color: '#ff5252', text: 'Systemic blood glucose drops below 70 mg/dL; brain fuel influx drops.' },
+          { num: '2', color: '#ff5252', text: 'Hypothalamic sensors fire sympathoadrenal storm: epinephrine surge (shaking, sweating).' },
+          { num: '3', color: '#ff5252', text: 'In T1D, alpha-cell glucagon response is missing; glucose drops further (&lt;54 mg/dL).' },
+          { num: '4', color: '#ff5252', text: 'Cortical ATP fails: confusion, slurred speech, double vision, and seizure risk.' }
+        ]
+      },
+      dka: {
+        badge: 'Diabetic Ketoacidosis (DKA)',
+        badgeClass: 'badge-sun',
+        title: 'The Unchecked Lipolysis & Ketone Acid Surge',
+        desc: 'Without insulin to inhibit Hormone-Sensitive Lipase, adipose tissue dumps vast quantities of fatty acids into the liver. Excess Acetyl-CoA is converted into strong organic ketone acids, collapsing blood pH.',
+        steps: [
+          { num: '1', color: 'var(--sun)', text: 'Zero insulin unleashes Hormone-Sensitive Lipase (HSL) in fat tissue.' },
+          { num: '2', color: 'var(--sun)', text: 'Massive wave of Free Fatty Acids floods liver mitochondria via CPT-1.' },
+          { num: '3', color: 'var(--sun)', text: 'Beta-oxidation creates tidal wave of Acetyl-CoA; liver synthesizes ketone bodies.' },
+          { num: '4', color: 'var(--sun)', text: 'β-hydroxybutyrate acid exhausts bicarbonate buffer; blood pH collapses below 7.1.' }
+        ]
+      }
+    };
+
+    stageTabs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        stageTabs.forEach(function(b) { b.classList.remove('on'); });
+        btn.classList.add('on');
+        var key = btn.getAttribute('data-state');
+        var data = STAGE_DATA[key];
+        if (!data) return;
+
+        stageBadge.textContent = data.badge;
+        stageBadge.className = 'badge-tag ' + data.badgeClass;
+        stageTitle.textContent = data.title;
+        stageTitle.style.color = data.steps[0].color;
+        stageDesc.innerHTML = data.desc;
+
+        var html = '';
+        data.steps.forEach(function(s) {
+          html += '<div class="d-step"><span class="d-num" style="background:' + s.color + ';color:#000">' + s.num + '</span><span>' + s.text + '</span></div>';
+        });
+        stageSteps.innerHTML = html;
+      });
+    });
+
+    // Glossary Real-Time Search Filter
+    var searchInput = document.getElementById('glossarySearch');
+    var glossaryItems = document.querySelectorAll('.glossary-item');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        var q = searchInput.value.toLowerCase().trim();
+        glossaryItems.forEach(function(item) {
+          var text = (item.getAttribute('data-term') || '') + ' ' + item.textContent.toLowerCase();
+          if (!q || text.indexOf(q) !== -1) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // Highlight active chapter on scroll
+    var chapters = document.querySelectorAll('article.chapter');
+    var topicBtns = document.querySelectorAll('.topic-btn');
+
+    window.addEventListener('scroll', function() {
+      var scrollPos = window.scrollY + 140;
+      chapters.forEach(function(ch) {
+        var top = ch.offsetTop;
+        var height = ch.offsetHeight;
+        var id = ch.getAttribute('id');
+        if (scrollPos >= top && scrollPos < top + height) {
+          topicBtns.forEach(function(b) {
+            b.classList.toggle('on', b.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

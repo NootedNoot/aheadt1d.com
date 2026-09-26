@@ -939,23 +939,20 @@ html.modal-open{overflow:hidden}
             <button type="button" id="closeServerModalBtn" class="btn-mini" style="background:none;border:none;font-size:1.4rem;color:var(--mute);cursor:pointer;padding:2px 8px;" aria-label="Close modal">&times;</button>
           </div>
           <p class="lede" style="font-size:.88rem;margin-bottom:16px;">
-            Choose which backend server this portal connects to. Data is synchronized across servers through Supabase.
+            Choose how this portal connects to your 100% self-hosted Ahead backend.
           </p>
 
           <div style="display:grid;gap:10px;margin-bottom:18px;">
-            <button type="button" id="btnSelectRailway" class="server-preset-card" style="text-align:left;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:var(--ink);cursor:pointer;">
-              <div style="font-weight:700;display:flex;align-items:center;gap:6px;color:var(--mint);">☁️ Railway Cloud (Default)</div>
-              <div style="font-size:.78rem;color:var(--mute);margin-top:2px;word-break:break-all;">https://ahead-backend-production-ee80.up.railway.app</div>
-            </button>
-
             <button type="button" id="btnSelectLocalTunnel" class="server-preset-card" style="text-align:left;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:var(--ink);cursor:pointer;">
-              <div style="font-weight:700;display:flex;align-items:center;gap:6px;color:var(--sky);">🏠 Local PC (Cloudflare Tunnel)</div>
+              <div style="font-weight:700;display:flex;align-items:center;gap:6px;color:var(--mint);">🏠 Self-Hosted Server (Tunnel)</div>
               <div id="tunnelPresetSub" style="font-size:.78rem;color:var(--mute);margin-top:2px;word-break:break-all;">https://martial-optimum-projects-conflict.trycloudflare.com</div>
+              <div style="font-size:.74rem;color:var(--dim);margin-top:2px;">Works anywhere (Home Wi-Fi, cellular, remote). Encrypted HTTPS.</div>
             </button>
 
             <button type="button" id="btnSelectLocalhost" class="server-preset-card" style="text-align:left;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:var(--ink);cursor:pointer;">
               <div style="font-weight:700;display:flex;align-items:center;gap:6px;color:var(--sun);">⚡ Localhost Direct</div>
-              <div style="font-size:.78rem;color:var(--mute);margin-top:2px;">http://localhost:3000 (direct on this PC)</div>
+              <div style="font-size:.78rem;color:var(--mute);margin-top:2px;">http://localhost:3000</div>
+              <div style="font-size:.74rem;color:var(--dim);margin-top:2px;">Direct local connection on this PC.</div>
             </button>
           </div>
 
@@ -1139,6 +1136,37 @@ html.modal-open{overflow:hidden}
           </div>
         </section>
 
+        <section class="dash-card" id="historyCard" style="margin-top:24px">
+          <div class="dash-card-header">
+            <div>
+              <p class="acct-eyebrow" style="margin-bottom:4px">Logs &amp; History</p>
+              <h2>Glucose Readings History</h2>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <span id="historyCountBadge" class="badge-tag">Loading…</span>
+              <button type="button" class="btn-mini" id="refreshHistoryBtn">Refresh history</button>
+            </div>
+          </div>
+          <p style="font-size:.88rem;color:var(--mute);margin:0 0 16px">Chronological log of glucose readings with date, exact timestamp, trend velocity, and range classification.</p>
+          
+          <div style="overflow-x:auto">
+            <table class="user-table" style="width:100%;border-collapse:collapse;font-size:.88rem;text-align:left">
+              <thead>
+                <tr>
+                  <th>Date &amp; Time</th>
+                  <th>Glucose</th>
+                  <th>Trend / Rate</th>
+                  <th>15m Projected</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <tr><td colspan="5" style="padding:14px 8px;color:var(--mute)">Loading glucose history…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <div class="portal-grid-2">
           <section class="dash-card">
             <div class="dash-card-header">
@@ -1204,7 +1232,7 @@ html.modal-open{overflow:hidden}
             <div class="metric-box">
               <div class="metric-label">Server Uptime</div>
               <div class="metric-val" id="adminUptime">--</div>
-              <div class="metric-sub" id="adminMemory">Railway API</div>
+              <div class="metric-sub" id="adminMemory">Local Node API</div>
             </div>
           </div>
 
@@ -1273,7 +1301,7 @@ html.modal-open{overflow:hidden}
                 <table class="user-table" style="width:100%;border-collapse:collapse;font-size:.88rem;text-align:left">
                   <thead>
                     <tr>
-                      <th>Time</th>
+                      <th>Date &amp; Time</th>
                       <th>Glucose</th>
                       <th>Severity</th>
                       <th>Rate of Change</th>
@@ -1499,8 +1527,28 @@ html.modal-open{overflow:hidden}
 
 (function () {
   'use strict';
-  var DEFAULT_API = "https://ahead-backend-production-ee80.up.railway.app";
   var KNOWN_TUNNEL = "https://martial-optimum-projects-conflict.trycloudflare.com";
+  var LOCAL_DIRECT = "http://localhost:3000";
+
+  function getDefaultApi() {
+    if (typeof location !== 'undefined') {
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        return location.port === '3000' ? location.origin : LOCAL_DIRECT;
+      }
+      if (location.protocol === 'file:') return LOCAL_DIRECT;
+    }
+    return KNOWN_TUNNEL;
+  }
+
+  var DEFAULT_API = getDefaultApi();
+
+  // Purge any legacy Railway/cloud cached endpoints
+  try {
+    var stored = localStorage.getItem('ahead_api_url');
+    if (stored && (stored.indexOf('railway.app') !== -1 || stored.indexOf('supabase') !== -1)) {
+      localStorage.removeItem('ahead_api_url');
+    }
+  } catch (_) {}
 
   var urlParams = new URLSearchParams(location.search);
   var paramApi = urlParams.get('api');
@@ -1529,9 +1577,8 @@ html.modal-open{overflow:hidden}
   function getServerLabel(url) {
     if (!url) return 'Unknown';
     if (url.indexOf('localhost') !== -1 || url.indexOf('127.0.0.1') !== -1) return 'Local Direct';
-    if (url.indexOf('trycloudflare.com') !== -1) return 'Local Tunnel';
+    if (url.indexOf('trycloudflare.com') !== -1) return 'Self-Hosted (Tunnel)';
     if (url.indexOf('api.aheadt1d.com') !== -1) return 'aheadt1d.com';
-    if (url.indexOf('railway.app') !== -1) return 'Railway Cloud';
     try { return new URL(url).hostname; } catch (_) { return 'Custom Server'; }
   }
 
@@ -1607,14 +1654,6 @@ html.modal-open{overflow:hidden}
     if (bannerBtn) bannerBtn.addEventListener('click', openModal);
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-    var btnRailway = $('btnSelectRailway');
-    if (btnRailway) {
-      btnRailway.addEventListener('click', function() {
-        input.value = DEFAULT_API;
-        feedback.style.display = 'none';
-      });
-    }
-
     var btnTunnel = $('btnSelectLocalTunnel');
     if (btnTunnel) {
       btnTunnel.addEventListener('click', function() {
@@ -1626,7 +1665,7 @@ html.modal-open{overflow:hidden}
     var btnLocalhost = $('btnSelectLocalhost');
     if (btnLocalhost) {
       btnLocalhost.addEventListener('click', function() {
-        input.value = 'http://localhost:3000';
+        input.value = LOCAL_DIRECT;
         feedback.style.display = 'none';
       });
     }
@@ -1754,7 +1793,7 @@ html.modal-open{overflow:hidden}
       if (banner) {
         banner.style.display = 'flex';
         var msg = $('portalBannerMsg');
-        if (msg) msg.textContent = 'Unable to reach ' + getServerLabel(API) + ' (' + API + '). Click "Switch Server" to switch between Railway Cloud and Local PC.';
+        if (msg) msg.textContent = 'Unable to reach ' + getServerLabel(API) + ' (' + API + '). Ensure your local backend is running (Start Ahead Backend.bat) or click "Switch Server" to verify server address.';
       }
     });
 
@@ -1886,12 +1925,14 @@ html.modal-open{overflow:hidden}
         }
         loadLiveGlucose();
         loadStats();
+        loadGlucoseHistory();
         loadCaregivers();
       })
       .catch(function () {
         currentOwnerId = currentUser.id;
         loadLiveGlucose();
         loadStats();
+        loadGlucoseHistory();
         loadCaregivers();
       });
   }
@@ -1900,6 +1941,7 @@ html.modal-open{overflow:hidden}
     currentOwnerId = this.value;
     loadLiveGlucose();
     loadStats();
+    loadGlucoseHistory();
   });
 
   // Load 14-Day Stats
@@ -2385,6 +2427,101 @@ html.modal-open{overflow:hidden}
     loadOwnerUsers($('adminUserSearch').value);
   });
 
+  function formatDateTime(ms) {
+    if (!ms) return { date: '--', time: '--' };
+    var d = new Date(ms);
+    if (isNaN(d.getTime())) return { date: '--', time: '--' };
+    var dateStr = d.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
+    var timeStr = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+    return { date: dateStr, time: timeStr };
+  }
+
+  // ── Glucose Readings History (All Users / Streams) ──
+  function loadGlucoseHistory() {
+    var owner = currentOwnerId || (currentUser ? currentUser.id : null);
+    if (!owner) return;
+    var tbody = $('historyTableBody');
+    if (!tbody) return;
+
+    authFetch('/api/readings?count=50&ownerId=' + owner)
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var list = data && data.entries;
+        if (!Array.isArray(list) || list.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" style="padding:14px 8px;color:var(--mute)">No glucose readings recorded yet for this stream.</td></tr>';
+          if ($('historyCountBadge')) $('historyCountBadge').textContent = '0 Readings';
+          return;
+        }
+
+        // Show newest readings first
+        var sorted = list.slice().reverse();
+        if ($('historyCountBadge')) $('historyCountBadge').textContent = sorted.length + ' Readings';
+
+        var html = '';
+        sorted.forEach(function (row) {
+          var dt = formatDateTime(row.date);
+          var sgv = row.sgv;
+          var sgvColor = 'var(--mint)';
+          var statusBadge = '<span class="badge-tag" style="background:rgba(46,204,113,.15);color:var(--mint);border-color:rgba(46,204,113,.3)">In Range</span>';
+
+          if (sgv < 54) {
+            sgvColor = '#ff5252';
+            statusBadge = '<span class="badge-tag" style="background:rgba(255,82,82,.25);color:#ff5252;border-color:rgba(255,82,82,.5)">Very Low</span>';
+          } else if (sgv < 70) {
+            sgvColor = '#ff4757';
+            statusBadge = '<span class="badge-tag" style="background:rgba(255,71,87,.2);color:#ff4757;border-color:rgba(255,71,87,.4)">Low</span>';
+          } else if (sgv >= 250) {
+            sgvColor = '#ff5252';
+            statusBadge = '<span class="badge-tag" style="background:rgba(255,82,82,.25);color:#ff5252;border-color:rgba(255,82,82,.5)">Very High</span>';
+          } else if (sgv >= 180) {
+            sgvColor = '#ffd166';
+            statusBadge = '<span class="badge-tag" style="background:rgba(255,209,102,.2);color:#ffd166;border-color:rgba(255,209,102,.4)">Elevated</span>';
+          }
+
+          var rateStr = '--';
+          if (row.rate !== null && row.rate !== undefined) {
+            var sign = row.rate >= 0 ? '+' : '';
+            var arrow = '→';
+            if (row.rate > 3.0) arrow = '⇈';
+            else if (row.rate > 2.0) arrow = '↑';
+            else if (row.rate > 1.0) arrow = '↗';
+            else if (row.rate < -3.0) arrow = '⇊';
+            else if (row.rate < -2.0) arrow = '↓';
+            else if (row.rate < -1.0) arrow = '↘';
+            rateStr = sign + Number(row.rate).toFixed(2) + ' mg/dL/min ' + arrow;
+          }
+
+          var projStr = row.projected != null ? (row.projected + ' mg/dL') : '--';
+
+          html += '<tr style="border-bottom:1px solid rgba(255,255,255,.05)">' +
+            '<td style="padding:10px 8px;font-family:var(--f-mono);font-size:.82rem;white-space:nowrap">' +
+              '<span style="color:var(--mint);font-weight:600">' + dt.date + '</span> ' +
+              '<span style="color:var(--dim)">·</span> ' +
+              '<span style="color:var(--ink)">' + dt.time + '</span>' +
+            '</td>' +
+            '<td style="padding:10px 8px;font-weight:700;color:' + sgvColor + '">' + (sgv || '--') + ' <span style="font-size:.75rem;color:var(--dim)">mg/dL</span></td>' +
+            '<td style="padding:10px 8px;font-family:var(--f-mono);font-size:.84rem">' + escapeHtml(rateStr) + '</td>' +
+            '<td style="padding:10px 8px;font-weight:600">' + projStr + '</td>' +
+            '<td style="padding:10px 8px">' + statusBadge + '</td>' +
+            '</tr>';
+        });
+        tbody.innerHTML = html;
+      })
+      .catch(function () {
+        tbody.innerHTML = '<tr><td colspan="5" style="padding:14px 8px;color:var(--coral)">Failed to load glucose history.</td></tr>';
+      });
+  }
+
+  var refreshHistoryBtn = $('refreshHistoryBtn');
+  if (refreshHistoryBtn) {
+    refreshHistoryBtn.addEventListener('click', function () {
+      loadGlucoseHistory();
+    });
+  }
+
   // ── Real-Time Telemetry Logs (Owner-only) ──
   function loadOwnerTelemetryLog() {
     var tbody = $('adminTelemetryTableBody');
@@ -2403,7 +2540,7 @@ html.modal-open{overflow:hidden}
         }
         var html = '';
         list.forEach(function (row) {
-          var timeStr = row.timestamp ? new Date(row.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : '--';
+          var dt = formatDateTime(row.timestamp);
 
           var sev = (row.severity || 'normal').toLowerCase();
           var sevBadge = '<span class="badge-tag" style="background:rgba(46,204,113,.15);color:var(--mint);border-color:rgba(46,204,113,.3)">Normal</span>';
@@ -2435,7 +2572,11 @@ html.modal-open{overflow:hidden}
           var backfilledNote = row.isBackfilled ? ' <span style="font-size:.7rem;color:var(--dim);font-style:italic" title="Computed retroactively or via fallback, not live">(backfilled)</span>' : '';
 
           html += '<tr style="border-bottom:1px solid rgba(255,255,255,.05)">' +
-            '<td style="padding:10px 8px;font-family:var(--f-mono);font-size:.82rem">' + timeStr + '</td>' +
+            '<td style="padding:10px 8px;font-family:var(--f-mono);font-size:.82rem;white-space:nowrap">' +
+              '<span style="color:var(--mint);font-weight:600">' + dt.date + '</span> ' +
+              '<span style="color:var(--dim)">·</span> ' +
+              '<span style="color:var(--ink)">' + dt.time + '</span>' +
+            '</td>' +
             '<td style="padding:10px 8px;font-weight:700;color:var(--ink)">' + (row.sgv || '--') + ' <span style="font-size:.75rem;color:var(--dim)">mg/dL</span></td>' +
             '<td style="padding:10px 8px">' + sevBadge + '</td>' +
             '<td style="padding:10px 8px;font-family:var(--f-mono);font-size:.84rem">' + escapeHtml(rateStr) + '</td>' +

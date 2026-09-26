@@ -1001,7 +1001,29 @@ html.modal-open{overflow:hidden}
 
 (function () {
   'use strict';
-  var DEFAULT_API = "https://ahead-backend-production-ee80.up.railway.app";
+  var KNOWN_TUNNEL = "https://martial-optimum-projects-conflict.trycloudflare.com";
+  var LOCAL_DIRECT = "http://localhost:3000";
+
+  function getDefaultApi() {
+    if (typeof location !== 'undefined') {
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        return location.port === '3000' ? location.origin : LOCAL_DIRECT;
+      }
+      if (location.protocol === 'file:') return LOCAL_DIRECT;
+    }
+    return KNOWN_TUNNEL;
+  }
+
+  var DEFAULT_API = getDefaultApi();
+
+  // Purge any legacy Railway/cloud cached endpoints
+  try {
+    var stored = localStorage.getItem('ahead_api_url');
+    if (stored && (stored.indexOf('railway.app') !== -1 || stored.indexOf('supabase') !== -1)) {
+      localStorage.removeItem('ahead_api_url');
+    }
+  } catch (_) {}
+
   var params = new URLSearchParams(location.search);
   var _paramApi = params.get('api');
   if (_paramApi) {

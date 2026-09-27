@@ -6,23 +6,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 aheadt1d.com — served as static files (it sits behind Cloudflare; pushing to `main` is how it gets updated). No framework, no package.json, no CI in this repo.
 
-**Rebuilt 2026-09-18:** the old multi-page marketing site (showcase / tech / research / videos / founder / portal / support / contact, plus a shared `styles.css` + `app.js`) was retired in favour of ONE page. It is all in git history if anything needs recovering.
+**History:** rebuilt 2026-09-18 as one page, then grew again (Sep 23-27) into a small multi-page site. Older pages are in git history.
 
-## Files
+## Files (as of 2026-09-27)
 
-- `index.html` — the whole site: hero with real screenshots, downloads (with SHA-256 checker), how it fits together, account explainer, setup checklist, AheadBLE explainer, safety/privacy summary, permissions, FAQ. Self-contained (inline CSS + JS); only outside request is Google Fonts.
-- `legal.html` — Privacy Policy, Terms of Use, software licenses. Written 2026-09-18 from what the backend/apps actually do (see `ahead-backend/schema.sql`). NOT lawyer-reviewed — the page says so. If the data model changes (new tables, new vendors, retention), update this page in the same change.
-- `download.html` — a tiny redirect to `index.html#downloads` so old shared links keep working.
-- `downloads/` — the APKs the page links to: `ahead-ble-latest.apk`, `ahead-latest.apk`, `ahead-lite-latest.apk`. All are debug builds. Each is listed on the page with its SHA-256 and size.
-- `media/` — real screenshots from the developer's phone (status/nav bars cropped). They show a real glucose value on purpose; the owner approved that. Never add screenshots with names, emails, notification text or anything else personal.
+- `index.html`: home. Hero, downloads (with SHA-256 checker + download gate), setup, AheadBLE explainer, safety/privacy summary, permissions, FAQ.
+- `resources.html` / `resources-science.html`: simple "start here" page + full deep dive (see "Resources pages" below). `learn.html` redirects to `resources.html`.
+- `tutorial.html`: interactive alert simulator.
+- `login.html`, `signup.html`, `portal.html`, `reset-password.html`, `verify-email.html`: the account pages. They talk to `ahead-backend`, whose address comes from **`api-config.js`** (one line; change it there, not in each page). `portal.html` shows the signed-in user's own live glucose; that is the only place the site fetches glucose, and only for the logged-in account.
+- `legal.html`: Privacy Policy, Terms of Use, software licenses. NOT lawyer-reviewed (the page says so). `privacy.html` is just a redirect to `legal.html#privacy`; don't grow it back into a second copy.
+- `download.html`: redirect to `index.html#downloads`.
+- `downloads/`: the three debug APKs. `media/`: real screenshots (see rules).
 
-## How the page is authored
+Many pages are now hand-edited directly in this repo. `index.html`/`legal.html` were originally generated from `website-drafts/claude-download/src` (`node build-v2.mjs`); if you edit them here, the generator source is out of date, so check with the owner before regenerating over these edits.
 
-`index.html` and `legal.html` are GENERATED, not hand-edited. The source lives outside this repo at `C:\Users\singe\Projects\website-drafts\claude-download\src\` (page.html, legal.html, v2.css, v2.js, faq/compare/perms blocks). Edit there, then run `node build-v2.mjs` and copy `site/*` here. After rebuilding any APK: copy it into `downloads/`, run `node update-hashes.mjs` there, then rebuild — otherwise the on-page checker will flag a genuine build as a mismatch.
+**The backend is self-hosted on the owner's PC** behind a Cloudflare tunnel (currently a `trycloudflare.com` quick tunnel that changes address on restart). The plan is a named tunnel at `https://api.aheadt1d.com`; the switchover checklist is in `ahead-backend/SERVICE-SETUP.md`. The privacy policy describes this setup; if hosting or vendors change (e.g. Resend for email), update `legal.html` in the same change.
+
+The account pages ignore a `?api=` URL override except on localhost/file:// (it used to let a crafted link send credentials to another server). Keep it that way.
 
 ## Rules that must hold
 
-- **Privacy history:** `reports/` once held real personal glucose exports, scrubbed from the entire git history via `git filter-repo`. It is gitignored specifically to stop that recurring — do not remove the entry, and treat anything appearing under `reports/` as suspect. Do not re-add a "see your live glucose from any browser" link, and do not fetch live glucose from the page (the old status-orb did; it's gone).
+- **Privacy history:** `reports/` once held real personal glucose exports, scrubbed from the entire git history via `git filter-repo`. It is gitignored specifically to stop that recurring — do not remove the entry, and treat anything appearing under `reports/` as suspect. Do not re-add a public "see your live glucose from any browser" link, and do not fetch live glucose on public pages (the old status-orb did; it's gone). The signed-in portal showing the user's own data is the exception.
 - **Be honest on the page.** Claims come from the code, not vibes: "data never leaves your device" was false (family sharing uploads readings), so it isn't on the page. The three apps are beta debug builds and the page says so.
 - Don't explain the trend-detection thresholds/formulas on the site — describe the concept only.
 - AheadBLE is GPLv3 (builds on Juggluco). The page links to `github.com/NootedNoot/ahead-ble` for source; that repo needs a LICENSE and to be public for the link to resolve (owner is handling this).
@@ -37,7 +41,7 @@ Owner's rules for any theme/decoration work: **no candy, sweets or food imagery 
 
 Every APK download button on `index.html` opens an agree-to-continue popup (medical disclaimer, own-risk/release, Dexcom non-affiliation, minors, emergencies) with a required checkbox; the download only starts after "Accept & download". It asks every time; a note of which app/when is stored in the visitor's own browser only (`localStorage` `ahead-dl-accepted`, terms version stored with each note). The fuller Terms live in `legal.html` (assumption of risk + release, AS-IS disclaimer, $0 liability with a $100 fallback only if a court won't allow $0, "accept any and all risks" + covenant not to sue, indemnity, Colorado law/venue). Owner's stated goal (2026-09-19): he can't pay out anything, so zero liability and users accept all risks. These were drafted without a lawyer - the page says so - and the Colorado venue is a placeholder. Acceptance notes carry a terms version (currently `2026-09-19.2`); bump `TERMS_VERSION` in the source whenever the terms text changes.
 
-Known limits: direct `/downloads/*.apk` URLs still work for anyone who has them (static hosting can't gate them), and there is no server-side record of acceptance. Any new page that lets people download or sign up must carry the same agreement.
+Known limits: direct `/downloads/*.apk` URLs still work for anyone who has them (static hosting can't gate them), and there is no server-side record of acceptance. Any new page that lets people download or sign up must carry the same agreement. `signup.html` has a required agreement checkbox (added 2026-09-27).
 
 ## Where the FACTS about the apps come from (read this before editing claims)
 

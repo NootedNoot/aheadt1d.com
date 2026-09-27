@@ -833,7 +833,7 @@ html.modal-open{overflow:hidden}
     <div class="wrap prose-wrap">
       <p class="eyebrow" style="color:var(--sun)">Legal, in plain English</p>
       <h1>Privacy Policy &amp; Terms of Use</h1>
-      <p class="updated">Last updated September 19, 2026</p>
+      <p class="updated">Last updated September 27, 2026</p>
 
       <div class="notice" role="note">
         <svg class="icon" aria-hidden="true" style="width:1.2em;height:1.2em"><use href="#i-drop"/></svg>
@@ -846,7 +846,7 @@ html.modal-open{overflow:hidden}
 
       <section id="privacy" class="prose">
         <h2>Privacy Policy</h2>
-        <p><strong>The short version:</strong> your Bluetooth link and alerting happen directly on your phone. We collect your email address and blood glucose (BG) data solely to deliver trend calculations, alerts, and optional caregiver sharing. <strong>We do not sell, rent, monetize, or share this info with anyone outside of Ahead, AheadBLE, and aheadt1d.com.</strong> There are no advertisements, data brokers, or third-party tracking scripts in any of the apps.</p>
+        <p><strong>The short version:</strong> your Bluetooth link and alerting happen directly on your phone. We collect your email address and blood glucose (BG) data solely to deliver trend calculations, alerts, and optional caregiver sharing. <strong>We do not sell, rent or monetize it, and the only outside companies that touch it are the two service providers named below (Cloudflare and Resend), which help run the service.</strong> There are no advertisements, data brokers, or third-party tracking scripts in any of the apps.</p>
 
         <h3>Who we are</h3>
         <p>Ahead (“we”) is an independent project built by Ryan Singer in Colorado Springs, Colorado, USA. It includes three Android apps — <strong>AheadBLE</strong>, <strong>Ahead</strong> and <strong>Ahead Lite</strong> — and this website, aheadt1d.com. Contact: <a href="mailto:hello@aheadt1d.com">hello@aheadt1d.com</a>.</p>
@@ -871,23 +871,25 @@ html.modal-open{overflow:hidden}
         <p>We do <strong>not</strong> collect your GPS location, phone contacts, photos, microphone audio, or biometric identifiers. AheadBLE only requires camera permission locally on your device to scan the pairing barcode on the sensor applicator; no images or video are ever stored or uploaded.</p>
 
         <h3>Who we share with</h3>
-        <p><strong>Nobody outside of Ahead, AheadBLE, and aheadt1d.com.</strong> We never sell, rent, lease, or disclose your personal or health data to commercial third parties, data aggregators, ad networks, pharmaceutical companies, or insurance providers.</p>
-        <p>Your glucose data is only shared with individuals whom you explicitly designate via in-app sharing (<strong>Menu → Account → Manage Sharing</strong>) or via secure viewer keys. You retain full control to revoke access instantly at any time.</p>
+        <p>We never sell, rent, lease, or disclose your personal or health data to data aggregators, ad networks, pharmaceutical companies, or insurance providers.</p>
+        <p>Your glucose data is only shared with people you explicitly choose via in-app sharing (<strong>Menu → Account → Manage Sharing</strong>) or viewer keys. You can revoke access at any time.</p>
 
-        <h3>Infrastructure &amp; Privacy Architecture</h3>
-        <p>Ahead is designed with a 100% self-hosted, user-owned architecture:</p>
+        <h3>Where your data lives</h3>
+        <p>Ahead is run by one person, so we want to be plain about this:</p>
         <ul>
-          <li><strong>Self-Hosted Local Server</strong> hosts your application backend and encrypted PostgreSQL database directly on user hardware.</li>
-          <li><strong>Cloudflare</strong> provides secure end-to-end encrypted tunneling and website delivery.</li>
+          <li><strong>The Ahead server</strong> (the account backend and its PostgreSQL database) runs on a computer owned and operated by Ryan Singer, the developer, in Colorado, USA. It is not on your phone and not on a big cloud provider. Your account details and uploaded readings are stored there.</li>
+          <li><strong>Cloudflare</strong> connects the apps and this website to that server and delivers this website. Traffic is encrypted with HTTPS between your phone and Cloudflare and between Cloudflare and the server, but Cloudflare decrypts it in between to route it, like it does for any site behind Cloudflare. This is not end-to-end encryption.</li>
+          <li><strong>Resend</strong> sends our account emails (email verification and password resets), so it receives your email address and the content of those emails. It does not receive your glucose readings.</li>
           <li><strong>Google Fonts</strong> provides website typography; the apps bundle fonts locally and do not contact Google Fonts.</li>
         </ul>
-        <p>These infrastructure providers process data solely on our behalf to operate the service under strict confidentiality obligations. We do not sell your data to them, and we do not permit them to use your data for advertising, profiling, or machine learning training.</p>
+        <p>The developer's admin tools show account details (email, sign-in history, devices) but not your glucose readings. As the person operating the server, the developer does have the technical ability to access the database directly, and only does so to keep the service running, fix problems, or when required by law. The database is not separately encrypted at rest beyond the protection of the machine it runs on.</p>
+        <p>Because it runs on one computer, the server can go offline (power, internet or maintenance). Ahead's alerts run on your phone and keep working; syncing, sharing and Ahead Lite pause until it's back.</p>
 
         <h3>Google Health Connect &amp; Limited Use Policy</h3>
         <p>Ahead's use and transfer of information received from Google Health Connect adheres to the <a href="https://support.google.com/googleplay/android-developer/answer/9888379" target="_blank" rel="noopener">Google Health Connect Permissions Policy</a>, including the <strong>Limited Use</strong> requirements:</p>
         <ul>
           <li>Health data is used exclusively to provide user-facing features of Ahead (real-time glucose tracking, rate-of-change mathematics, and safety alerts).</li>
-          <li>Health data is never transferred to third parties except as necessary to provide Ahead services (such as encrypted cloud storage for your account), to comply with applicable laws, or with your explicit consent.</li>
+          <li>Health data is never transferred to third parties except as necessary to provide Ahead services (such as storing your readings on the Ahead server so the people you share with can see them), to comply with applicable laws, or with your explicit consent.</li>
           <li>Health data is never used or transferred for serving advertisements, retargeting, or interest-based advertising.</li>
           <li>Health data is never used or transferred to determine creditworthiness or for lending or insurance purposes.</li>
         </ul>

@@ -868,6 +868,7 @@ html.modal-open{overflow:hidden}
   .portal-tab-btn:hover{background:var(--card2);color:var(--ink);border-color:rgba(255,255,255,.25)}
   .portal-tab-btn.active{border-color:var(--mint);background:rgba(46,229,157,.15);color:var(--mint);font-weight:700}
 </style>
+  <script src="api-config.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -1001,7 +1002,7 @@ html.modal-open{overflow:hidden}
 
 (function () {
   'use strict';
-  var KNOWN_TUNNEL = "https://martial-optimum-projects-conflict.trycloudflare.com";
+  var KNOWN_TUNNEL = window.AHEAD_API_BASE || "https://martial-optimum-projects-conflict.trycloudflare.com";
   var LOCAL_DIRECT = "http://localhost:3000";
 
   function getDefaultApi() {

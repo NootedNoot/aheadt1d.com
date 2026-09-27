@@ -868,6 +868,7 @@ html.modal-open{overflow:hidden}
   .portal-tab-btn:hover{background:var(--card2);color:var(--ink);border-color:rgba(255,255,255,.25)}
   .portal-tab-btn.active{border-color:var(--mint);background:rgba(46,229,157,.15);color:var(--mint);font-weight:700}
 </style>
+  <script src="api-config.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -1528,7 +1529,7 @@ html.modal-open{overflow:hidden}
 
 (function () {
   'use strict';
-  var KNOWN_TUNNEL = "https://martial-optimum-projects-conflict.trycloudflare.com";
+  var KNOWN_TUNNEL = window.AHEAD_API_BASE || "https://martial-optimum-projects-conflict.trycloudflare.com";
   var LOCAL_DIRECT = "http://localhost:3000";
 
   function getDefaultApi() {
@@ -1542,6 +1543,7 @@ html.modal-open{overflow:hidden}
   }
 
   var DEFAULT_API = getDefaultApi();
+  try { var _tps = document.getElementById('tunnelPresetSub'); if (_tps) _tps.textContent = KNOWN_TUNNEL; } catch (_) {}
 
   // Purge any legacy Railway/cloud cached endpoints
   try {
@@ -1581,7 +1583,7 @@ html.modal-open{overflow:hidden}
   function getServerLabel(url) {
     if (!url) return 'Unknown';
     if (url.indexOf('localhost') !== -1 || url.indexOf('127.0.0.1') !== -1) return 'Local Direct';
-    if (url.indexOf('trycloudflare.com') !== -1) return 'Self-Hosted (Tunnel)';
+    if (url === KNOWN_TUNNEL || url.indexOf('trycloudflare.com') !== -1) return 'Self-Hosted (Tunnel)';
     if (url.indexOf('api.aheadt1d.com') !== -1) return 'aheadt1d.com';
     try { return new URL(url).hostname; } catch (_) { return 'Custom Server'; }
   }

@@ -1440,7 +1440,7 @@ details.deep-dive[open] summary::after { content: "−"; }
                 <span class="mono" style="font-size:1.05rem;font-weight:700;color:var(--sun)">Lag = 10 minutes × 2.5 mg/dL/min = 25 mg/dL discrepancy!</span>
               </div>
               <br>
-              Your capillary blood is already at <strong>65 mg/dL</strong> (brain starvation underway, adrenergic tremors active), but your CGM screen still displays a comfortable <strong>90 mg/dL</strong>! By the time the CGM alarm finally rings at 65 mg/dL 10 minutes later, your true blood is already down in the dangerous 40s.
+              Your blood might already be around <strong>65 mg/dL</strong> while your CGM still shows about <strong>90 mg/dL</strong>. If the drop keeps going, the sensor keeps trailing behind, so when the alarm finally goes off your blood sugar can be meaningfully lower than the screen says. That's why "falling fast" matters as much as the number, and why a finger stick is worth doing when symptoms and the screen disagree.
             </p>
           </div>
 
@@ -1462,24 +1462,24 @@ details.deep-dive[open] summary::after { content: "−"; }
 
           <h3>The Ahead Philosophy: Velocity, Acceleration &amp; The Rule of 3</h3>
           <p>
-            Ahead was engineered specifically to solve the mathematical and physiological flaws of reactive CGM alarms:
+            Ahead was built to work around some of the limits of alarms that only react to the current number:
           </p>
 
           <div class="feature-tri">
             <div class="tri-card">
               <span class="badge-tag badge-mint">Vector Projections</span>
               <h4 style="margin-top:8px">15m &amp; 30m Trajectories</h4>
-              <p>By computing the first derivative (<span class="mono">dG/dt</span> — <span class="jargon" tabindex="0" data-word="Velocity (dG/dt)" data-phonetic="dG/dt · veh-LAH-sih-tee" data-plain="The speed and direction your glucose is moving right now, measured in mg/dL per minute (e.g. falling at -2.5 mg/dL/min)." data-t1d="Tells you how fast you're dropping before your sensor threshold triggers.">velocity</span>) and second derivative (<span class="mono">d²G/dt²</span> — <span class="jargon" tabindex="0" data-word="Acceleration & Curvature (d²G/dt²)" data-phonetic="d²G/dt² · ak-SEL-er-AY-shun" data-plain="Whether your blood sugar change is speeding up, flattening out, or rounding a corner to reverse." data-t1d="Helps you know whether a falling line is braking safely to a stop or accelerating into a dangerous crash.">acceleration &amp; curvature</span>), Ahead projects where your glucose will land 15 and 30 minutes in advance, bypassing sensor lag.</p>
+              <p>By computing the first derivative (<span class="mono">dG/dt</span> — <span class="jargon" tabindex="0" data-word="Velocity (dG/dt)" data-phonetic="dG/dt · veh-LAH-sih-tee" data-plain="The speed and direction your glucose is moving right now, measured in mg/dL per minute (e.g. falling at -2.5 mg/dL/min)." data-t1d="Tells you how fast you're dropping before your sensor threshold triggers.">velocity</span>) and second derivative (<span class="mono">d²G/dt²</span> — <span class="jargon" tabindex="0" data-word="Acceleration & Curvature (d²G/dt²)" data-phonetic="d²G/dt² · ak-SEL-er-AY-shun" data-plain="Whether your blood sugar change is speeding up, flattening out, or rounding a corner to reverse." data-t1d="Helps you know whether a falling line is braking safely to a stop or accelerating into a dangerous crash.">acceleration &amp; curvature</span>), Ahead estimates where your glucose is heading over the next 15 and 30 minutes. It's an estimate from glucose alone (it doesn't know about insulin, food or exercise) and it can't remove sensor lag, but it can warn you earlier than a fixed threshold would.</p>
             </div>
             <div class="tri-card">
-              <span class="badge-tag badge-sun">The Rule of 3 Checks</span>
-              <h4 style="margin-top:8px">3 Checks / 15-Minute Rule</h4>
-              <p>A single high ping might be noise or an already-peaking curve. Ahead monitors an amber rise over 3 consecutive checks (15 min) before escalating alerts, completely eliminating panic stacking.</p>
+              <span class="badge-tag badge-sun">Confirm Before Escalating</span>
+              <h4 style="margin-top:8px">Patience on the High Side</h4>
+              <p>A single high reading might be noise or a curve that's already peaking. Ahead waits for a rise to hold up across several readings before it escalates a high alert, which is meant to cut down on the "it's still going up, dose again" moments that lead to stacking. It can't prevent stacking on its own; your insulin-on-board still matters.</p>
             </div>
             <div class="tri-card">
               <span class="badge-tag badge-sky">Compression Artifacts</span>
               <h4 style="margin-top:8px">Compression Low Filtering</h4>
-              <p>Sleeping on a sensor squeezes capillary blood out of the local skin pocket, creating a false 45 mg/dL reading (<span class="jargon" tabindex="0" data-word="Compression Low" data-phonetic="kum-PRESH-un low" data-plain="A false low reading that happens when you lay on your sensor while sleeping, mechanically squeezing fluid away from the sensor wire." data-t1d="The sensor reads 45 mg/dL even though your actual blood sugar is 115 mg/dL. Eating carbs for a compression low results in waking up at 250+ mg/dL.">compression low</span>). Ahead's trajectory math helps identify unnatural cliff-drops from true metabolic falls.</p>
+              <p>Sleeping on a sensor squeezes capillary blood out of the local skin pocket, creating a false 45 mg/dL reading (<span class="jargon" tabindex="0" data-word="Compression Low" data-phonetic="kum-PRESH-un low" data-plain="A false low reading that happens when you lay on your sensor while sleeping, mechanically squeezing fluid away from the sensor wire." data-t1d="The sensor reads 45 mg/dL even though your actual blood sugar is 115 mg/dL. Eating carbs for a compression low results in waking up at 250+ mg/dL.">compression low</span>). A sudden, unnaturally steep drop overnight is a classic sign. If the reading doesn't match how you feel, check with a finger stick before treating.</p>
             </div>
           </div>
           <h3>Everyday Wildcards: Exercise &amp; Alcohol</h3>

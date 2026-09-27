@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Type 1 Diabetes: Biology, Molecular Mechanics &amp; Clinical Complications — Ahead Resources</title>
-  <meta name="description" content="A comprehensive, peer-reviewed medical and biological reference on Type 1 Diabetes: cellular starvation, GLUT4 translocation, DKA ketone cascade, hypoglycemia neuroglycopenia, microvascular complications, and CGM interstitial sensor dynamics." />
+  <title>Type 1 Diabetes, Made Simple — Ahead Resources</title>
+  <meta name="description" content="New to Type 1 diabetes? A calm, plain-English starting point for kids and parents: when to get help, the basics, and how to say the words you'll hear." />
   <meta name="theme-color" content="#1d0339" />
-  <meta property="og:title" content="Type 1 Diabetes: Biology, Molecular Mechanics &amp; Complications — Ahead Resources" />
-  <meta property="og:description" content="Deep clinical and biological guide to cellular energy starvation, insulin receptor kinetics, acute emergencies, long-term vascular pathophysiology, and continuous glucose monitoring." />
+  <meta property="og:title" content="Type 1 Diabetes, Made Simple — Ahead Resources" />
+  <meta property="og:description" content="A calm, plain-English starting point for kids and parents, with links to the full science when you want it." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://aheadt1d.com/resources.html" />
   <link rel="canonical" href="https://aheadt1d.com/resources.html" />
@@ -59,6 +59,9 @@ p { margin: 0 0 1em; }
 .mono { font-family: var(--f-mono); font-size: 0.9em; }
 .wrap { width: min(1180px, 100% - 32px); margin-inline: auto; position: relative; z-index: 2; }
 :focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 8px; }
+
+.back-simple { display:inline-block; margin-bottom:14px; font-weight:700; color:var(--mint); }
+.glossary-item:target { border-color: var(--mint); box-shadow: 0 0 0 2px rgba(46,229,157,0.35); }
 
 /* Aurora Background */
 .aurora {
@@ -858,6 +861,104 @@ details.deep-dive[open] summary::after { content: "−"; }
 }
 .footer-links a { color: var(--mute); }
 .footer-links a:hover { color: #fff; }
+
+/* ── Simple "start here" page ── */
+.narrow { width: min(860px, 100% - 32px); }
+.g-hero { padding-bottom: 20px; }
+.jump-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.topic-btn.urgent { border-color: rgba(255, 71, 87, 0.5); color: #ff8a94; }
+.g-section { margin: 34px 0 54px; }
+.g-section h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 18px; }
+.section-sub { color: var(--mute); margin-top: -8px; }
+.help-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.help-card { border-radius: var(--r-sm); padding: 18px 20px; background: var(--card); border: 1px solid var(--line); }
+.help-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.help-card ul { margin: 0; padding-left: 18px; }
+.help-card li { margin-bottom: 6px; }
+.help-red { border-color: rgba(255, 71, 87, 0.55); background: rgba(255, 71, 87, 0.09); }
+.help-red h3 { color: #ff8a94; }
+.help-sun { border-color: rgba(255, 200, 87, 0.5); background: rgba(255, 200, 87, 0.07); }
+.help-sun h3 { color: var(--sun); }
+.help-note { margin: 10px 0 0; color: var(--mute); font-size: 0.95rem; }
+.small-print { color: var(--dim); font-size: 0.92rem; margin-top: 14px; }
+.basic-card { display: flex; gap: 16px; padding: 20px; margin-bottom: 14px; border-radius: var(--r-sm); background: var(--card); border: 1px solid var(--line); }
+.basic-emoji { font-size: 1.7rem; line-height: 1.2; flex: none; }
+.basic-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
+.basic-card p { color: var(--mute); margin-bottom: 10px; }
+.basic-card p strong { color: var(--ink); }
+.deeper { font-weight: 700; color: var(--mint); font-size: 0.95rem; }
+.word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.word-card { display: flex; flex-direction: column; padding: 16px; border-radius: var(--r-sm); background: var(--card); border: 1px solid var(--line); }
+.word-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.word { font-family: var(--f-head); font-weight: 700; font-size: 1.08rem; }
+.say { font-family: var(--f-mono); font-size: 0.86rem; color: var(--sun); margin: 2px 0 6px; }
+.word-card p { color: var(--mute); font-size: 0.95rem; line-height: 1.55; margin: 4px 0 8px; flex: 1; }
+.word-more { font-size: 0.88rem; font-weight: 700; color: var(--mint); }
+.speak-btn { flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--card2); cursor: pointer; font-size: 1rem; line-height: 1; }
+.speak-btn:hover, .speak-btn.speaking { background: rgba(46, 229, 157, 0.2); border-color: var(--mint); }
+.deep-cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin: 20px 0 70px; padding: 24px; border-radius: var(--r); background: linear-gradient(120deg, rgba(46, 229, 157, 0.1), rgba(196, 155, 255, 0.12)); border: 1px solid var(--line); }
+.deep-cta h2 { font-size: 1.4rem; margin-bottom: 6px; }
+.deep-cta p { color: var(--mute); margin: 0; max-width: 34em; }
+@media (max-width: 560px) { .basic-card { flex-direction: column; gap: 6px; } }
+
+/* Mobile nav: same collapse-to-hamburger behaviour as index.html */
+@media(max-width:980px){
+  .nav{position:relative}
+  .nav-toggle{display:flex}
+  .nav ul{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0;
+    right:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding:14px;
+    border-radius:20px;
+    background:rgba(26,3,52,.96);
+    backdrop-filter:blur(22px) saturate(140%);
+    -webkit-backdrop-filter:blur(22px) saturate(140%);
+    border:1px solid var(--line);
+    box-shadow:0 24px 60px -12px rgba(0,0,0,.85),0 0 40px -10px rgba(157,101,255,.35);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:opacity .22s ease,transform .22s ease,visibility .22s;
+    pointer-events:none;
+    z-index:110;
+  }
+  .nav ul.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .nav ul li{width:100%}
+  .nav ul a{
+    display:flex;
+    align-items:center;
+    padding:12px 18px;
+    font-size:1.02rem;
+    font-weight:700;
+    color:var(--ink);
+    border-radius:12px;
+    background:rgba(255,255,255,.04);
+    border:1px solid transparent;
+    transition:background .18s,color .18s;
+  }
+  .nav ul a:hover,.nav ul a:active{
+    background:rgba(196,155,255,.15);
+    color:#fff;
+  }
+  .nav ul a.on{
+    color:var(--mint);
+    background:rgba(46,229,157,.12);
+    border-color:rgba(46,229,157,.25);
+  }
+}
+@media(max-width:600px){.nav{padding-left:14px}.nav-cta{padding:9px 14px}}
+.glossary-item { scroll-margin-top: 150px; }
 </style>
 </head>
 <body>
@@ -896,1094 +997,272 @@ details.deep-dive[open] summary::after { content: "−"; }
     </nav>
   </header>
 
-  <!-- Hero Header -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="kicker"><i></i>Medical &amp; Biological Knowledge Base</div>
-      <h1>The Biology of <span class="shimmer">Diabetes</span> &amp; Its Complications</h1>
+    <!-- Hero -->
+  <section class="hero g-hero">
+    <div class="wrap narrow">
+      <div class="kicker"><i></i>Type 1 Diabetes · Start here</div>
+      <h1>Take a breath. <span class="shimmer">You've got this.</span></h1>
       <p class="lead">
-        A clinical, peer-reviewed guide to what actually happens inside human cells during Type 1 Diabetes: cellular starvation, insulin-receptor signaling, the ketone acid surge, brain glucose deprivation, and long-term vascular destruction.
+        Whether you just got diagnosed, or you're the parent trying to keep up — you don't have to learn everything today. This page is the short version. Every section has a <strong>"Go deeper"</strong> link if you want the full science later.
       </p>
-      <div class="meta-ribbon">
-        <span><strong>Target Audience:</strong> People with T1D, Caregivers, Doctors, Researchers</span>
-        <span>•</span>
-        <span><strong>Scientific Grounding:</strong> Cellular Physiology &amp; Endocrine Biochemistry</span>
-        <span>•</span>
-        <span><strong>Reading Time:</strong> ~12 min deep dive</span>
-      </div>
-
-      <!-- Plain English & Pronunciation Banner -->
-      <div class="jargon-banner">
-        <div class="jargon-banner-text">
-          <span class="jargon-banner-icon">💡</span>
-          <div>
-            <strong>Plain English Mode &amp; Audio Pronunciations:</strong>
-            Complex medical jargon is translated into plain English right in the text. Look for terms with dotted underlines like <span class="jargon-sample">adipose (body fat)</span> or <span class="jargon-sample">autophosphorylation</span> — hover or tap any term to view simple breakdowns, phonetic guides, and hear audio pronunciations spoken aloud!
-          </div>
-        </div>
+      <div class="jump-row">
+        <a href="#help-now" class="topic-btn urgent">🚨 When to get help</a>
+        <a href="#basics" class="topic-btn">🧭 The basics</a>
+        <a href="#words" class="topic-btn">🗣️ Words you'll hear</a>
       </div>
     </div>
   </section>
 
-  <!-- Sticky Topic Navigation Quick-Bar -->
-  <nav class="topic-nav" aria-label="Resource sections">
-    <div class="wrap">
-      <div class="topic-nav-inner">
-        <a href="#cellular" class="topic-btn on">🧬 1. Cellular Machinery</a>
-        <a href="#dka" class="topic-btn">⚡ 2. Starvation &amp; DKA</a>
-        <a href="#hypo" class="topic-btn">🚨 3. Hypoglycemia &amp; The Brain</a>
-        <a href="#complications" class="topic-btn">🩸 4. Vascular Complications</a>
-        <a href="#cgm" class="topic-btn">📉 5. CGM Lag &amp; The Rule of 3</a>
-        <a href="#glossary" class="topic-btn">📖 6. Clinical Glossary</a>
-      </div>
-    </div>
-  </nav>
+  <main class="wrap narrow">
 
-  <!-- Main Body Content Grid -->
-  <main class="wrap">
-    <div class="content-grid">
-
-      <!-- Sticky Sidebar Table of Contents -->
-      <aside class="sidebar">
-        <div class="toc-card">
-          <div class="toc-title">Chapter Directory</div>
-          <ul class="toc-list">
-            <li><a href="#cellular">1. Cellular Machinery &amp; GLUT4</a></li>
-            <li><a href="#dka">2. The Starvation Paradox &amp; DKA</a></li>
-            <li><a href="#hypo">3. Acute Hypoglycemia &amp; Brain Energy</a></li>
-            <li><a href="#complications">4. Micro &amp; Macrovascular Damage</a></li>
-            <li><a href="#cgm">5. Sensor Lag, Velocity &amp; Ahead Math</a></li>
-            <li><a href="#glossary">6. Searchable Clinical Glossary</a></li>
-            <li><a href="tutorial.html" style="color:var(--mint);font-weight:700">✦ Interactive Simulator</a></li>
+    <!-- Get help now -->
+    <section id="help-now" class="g-section">
+      <h2>🚨 When to get help right away</h2>
+      <div class="help-grid">
+        <div class="help-card help-red">
+          <h3>Call 911</h3>
+          <ul>
+            <li>Passed out, having a seizure, or too out of it to swallow safely.</li>
+            <li><strong>Don't</strong> put food or drink in their mouth. Give emergency glucagon if you have it, and roll them onto their side.</li>
           </ul>
         </div>
-      </aside>
-
-      <!-- Main Chapters Column -->
-      <div class="main-column">
-
-        <!-- CHAPTER 1: CELLULAR MACHINERY & INSULIN -->
-        <article id="cellular" class="chapter ch-cellular">
-          <div class="chapter-head">
-            <span class="chapter-eyebrow">Chapter 01 · Biochemistry</span>
-            <h2>The Molecular Machinery: How Glucose Enters a Cell</h2>
-            <p class="chapter-intro">
-              Every thought, heartbeat, and muscle twitch runs on adenosine triphosphate (ATP) generated from cellular glucose. But glucose is a <span class="jargon" tabindex="0" data-word="Polar Molecule" data-phonetic="POH-ler MAHL-uh-kyool" data-plain="A molecule with uneven electrical charges (like water). It cannot dissolve in or pass through fatty cell membranes on its own." data-t1d="Because glucose is polar, it cannot get into cells without insulin unlocking specialized doorway gates.">polar molecule</span> that cannot cross cell membranes without an escort.
-            </p>
-          </div>
-
-          <p>
-            Glucose (C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>) is decorated with water-loving hydroxyl (−OH) groups. Because every cell is wrapped in a <span class="jargon" tabindex="0" data-word="Phospholipid Bilayer" data-phonetic="FOSS-foh-LIP-id BY-lay-er" data-plain="The microscopic, oily, two-layer fatty wrapper that forms the outer skin around every cell in the human body." data-t1d="Because this cell skin is made of pure oily fat, water-soluble glucose is completely blocked from entering without transporter gates.">hydrophobic phospholipid bilayer (an oily, water-repelling fatty skin)</span>, glucose cannot diffuse into cells on its own. It requires specialized transmembrane carrier proteins from the <strong>Glucose Transporter (GLUT)</strong> family:
-          </p>
-
-          <div class="feature-tri">
-            <div class="tri-card">
-              <span class="badge-tag badge-mint">GLUT1 &amp; GLUT3</span>
-              <h4 style="margin-top:8px">Brain &amp; Red Blood Cells</h4>
-              <p>Insulin-independent. High affinity. The brain and red blood cells absorb glucose constantly from circulating blood regardless of how much insulin is present.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-sky">GLUT2</span>
-              <h4 style="margin-top:8px">Pancreatic Beta Cells &amp; Liver</h4>
-              <p>Bidirectional sensor. In healthy beta cells, GLUT2 allows rapid glucose entry, triggering the ATP-sensitive channel cascade that releases insulin into the bloodstream.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-coral">GLUT4 (Insulin-Dependent)</span>
-              <h4 style="margin-top:8px">Skeletal Muscle &amp; <span class="jargon" tabindex="0" data-word="Adipose Tissue" data-phonetic="AD-ih-pohs TISH-oo" data-plain="Body fat. Not just inert cushioning, but an active metabolic tissue that stores backup fuel and responds directly to insulin." data-t1d="Insulin is the lock that keeps fat inside fat cells. In T1D without insulin, adipose tissue dissolves into free fatty acids that turn into dangerous DKA ketones.">Adipose Tissue (Body Fat)</span></h4>
-              <p>The body's primary fuel sink. Largely sequestered inside intracellular storage bubbles until insulin binds its receptor and orders the doors to the cell surface.</p>
-            </div>
-          </div>
-
-          <h3>The Insulin Receptor &amp; The GLUT4 Translocation Cascade</h3>
-          <p>
-            In skeletal muscle and <span class="jargon" tabindex="0" data-word="Adipose Tissue" data-phonetic="AD-ih-pohs TISH-oo" data-plain="Body fat. Not just inert cushioning, but an active metabolic tissue that stores backup fuel and responds directly to insulin." data-t1d="Insulin is the lock that keeps fat inside fat cells. In T1D without insulin, adipose tissue dissolves into free fatty acids that turn into dangerous DKA ketones.">adipose tissue (body fat)</span>, the cell doors are permanently shut until insulin acts as the molecular key:
-          </p>
-          <ol style="padding-left:20px;margin-bottom:18px;color:var(--mute);display:flex;flex-direction:column;gap:10px">
-            <li>
-              <strong>1. Receptor Binding:</strong> Insulin docks into the extracellular locks of the <span class="jargon" tabindex="0" data-word="Heterotetrameric" data-phonetic="HET-er-oh-TET-ruh-MAIR-ik" data-plain="A fancy biological term for a molecular machine assembled from four connected protein pieces that aren't all identical (two alpha pieces and two beta pieces)." data-t1d="The insulin receptor has two alpha locks on the outside of the cell and two beta switches on the inside.">heterotetrameric (four connected pieces)</span> insulin receptor <span class="jargon" tabindex="0" data-word="Tyrosine Kinase" data-phonetic="TY-roh-seen KY-nace" data-plain="A specialized enzyme switch that activates cellular machinery by transferring energy-rich phosphate tags onto target proteins." data-t1d="This is the receptor's internal engine. When insulin binds, the kinase revs up to signal the rest of the cell to open its doors.">tyrosine kinase</span>.
-            </li>
-            <li>
-              <strong>2. Autophosphorylation:</strong> <span class="jargon" tabindex="0" data-word="Autophosphorylation" data-phonetic="aw-toh-FOSS-for-ih-LAY-shun" data-plain="When a protein flips on its own power switch. It tags itself with a phosphate molecule to say: 'I am activated, start letting sugar in!'" data-t1d="This is step #2 of how insulin opens cell doors. If this self-activation switch doesn't flip, glucose is locked out entirely.">Autophosphorylation (pronounced <em>aw-toh-FOSS-for-ih-LAY-shun</em> — when the receptor flips on its own internal power switch)</span>: The intracellular &beta;-subunits tag themselves with phosphate molecules, recruiting <strong>Insulin Receptor Substrates (IRS-1 &amp; IRS-2)</strong>.
-            </li>
-            <li>
-              <strong>3. PI3K Activation:</strong> IRS proteins activate <strong>Phosphoinositide 3-Kinase (PI3K)</strong>, which converts membrane lipids into secondary messenger signals inside the cell.
-            </li>
-            <li>
-              <strong>4. The Akt Kinase Switch:</strong> The signal activates <strong>Akt (Protein Kinase B)</strong>, the master switchboard enzyme for energy metabolism.
-            </li>
-            <li>
-              <strong>5. Vesicle Translocation:</strong> <span class="jargon" tabindex="0" data-word="Translocation" data-phonetic="trans-loh-KAY-shun" data-plain="Moving cargo from deep inside the cell up to the outer cell surface." data-t1d="GLUT4 glucose doors normally sit parked inside tiny bubbles (vesicles). Insulin triggers translocation so the doors merge with the cell surface and let sugar flood in.">Vesicle Translocation (moving glucose doors to the cell surface)</span>: Phosphorylated Akt disables the molecular brake AS160, freeing <strong>GLUT4 storage vesicles</strong> to migrate through the cell skeleton, fuse with the cell surface, and open the gates. Glucose floods into the cell by facilitated diffusion.
-            </li>
-          </ol>
-
-          <div class="callout callout-coral">
-            <div class="callout-head" style="color:var(--coral)">
-              <span>⚠️</span> The Autoimmune Breach in Type 1 Diabetes
-            </div>
-            <p>
-              In Type 1 Diabetes, genetically predisposed individuals experience an immune breakdown. Autoreactive immune cells invade the pancreatic Islets of Langerhans (<span class="jargon" tabindex="0" data-word="Insulitis" data-phonetic="in-soo-LY-tis" data-plain="Inflammation inside the pancreas caused by white blood cells mistakenly attacking the body's own insulin-producing beta cells." data-t1d="This autoimmune inflammation is the root cause of Type 1 Diabetes.">insulitis — immune inflammation of pancreatic islets</span>). Through toxic perforin and cytokines, they selectively force <span class="jargon" tabindex="0" data-word="Apoptosis" data-phonetic="ay-pop-TOE-sis" data-plain="Programmed cell suicide — a clean, orderly cellular self-destruct mechanism." data-t1d="In T1D, the immune system tricks or forces insulin-producing beta cells into apoptosis until virtually none remain.">beta-cell apoptosis (cellular self-destruction)</span>.
-              <br><br>
-              When beta-cell mass collapses past ~80–90%, endogenous insulin production falls to near zero (trace C-peptide can linger for years in some people, but not enough to sustain life). <strong>The lock-and-key mechanism is destroyed. The doors remain locked forever without synthetic insulin.</strong>
-            </p>
-            <p style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1)">
-              <strong>The honeymoon period:</strong> Shortly after diagnosis, surviving beta cells — freed from glucose toxicity once treatment starts — can briefly recover and resume some insulin production. Insulin needs fall, sometimes dramatically, for weeks to months. It feels like a remission, but it always ends as the autoimmune attack finishes its work. Doses must be reduced during the honeymoon to avoid constant lows, then raised again as it fades — one more reason newly diagnosed patients need close follow-up.
-            </p>
-          </div>
-
-          <!-- Interactive Molecular Stage -->
-          <div class="interactive-stage">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
-              <div>
-                <h4 style="margin:0;font-size:1.1rem;color:#fff">Interactive Molecular Mechanism Viewer</h4>
-                <p style="margin:2px 0 0;font-size:0.84rem;color:var(--dim)">Toggle below to observe how cellular fuel flow behaves across states.</p>
-              </div>
-              <span class="badge-tag badge-mint" id="stageStatusBadge">Healthy Physiology</span>
-            </div>
-
-            <div class="stage-tabs">
-              <button type="button" class="stage-tab on" data-state="healthy">1. Normal Physiology (Insulin Key Active)</button>
-              <button type="button" class="stage-tab" data-state="t1d">2. Type 1 Diabetes (Cellular Starvation)</button>
-              <button type="button" class="stage-tab" data-state="hypo">3. Acute Hypoglycemia (Cerebral Starvation)</button>
-              <button type="button" class="stage-tab" data-state="dka">4. Ketoacidosis Cascade (DKA)</button>
-            </div>
-
-            <div class="stage-display">
-              <div class="diagram-canvas">
-                <div class="diagram-steps" id="stageDiagramSteps">
-                  <div class="d-step"><span class="d-num" style="background:var(--mint);color:#000">1</span><span>Glucose rises in blood after digestion (100–120 mg/dL).</span></div>
-                  <div class="d-step"><span class="d-num" style="background:var(--mint);color:#000">2</span><span>Beta cells release insulin pulses into portal circulation.</span></div>
-                  <div class="d-step"><span class="d-num" style="background:var(--mint);color:#000">3</span><span>Insulin binds tyrosine kinase receptors on muscle &amp; fat.</span></div>
-                  <div class="d-step"><span class="d-num" style="background:var(--mint);color:#000">4</span><span>GLUT4 vesicles fuse with membrane; glucose enters cell to produce ATP.</span></div>
-                </div>
-              </div>
-              <div style="background:rgba(0,0,0,0.35);padding:18px;border-radius:12px;border:1px solid var(--line)">
-                <h4 id="stageDetailTitle" style="color:var(--mint);margin-bottom:6px">Normal Cellular Energy Balance</h4>
-                <p id="stageDetailDesc" style="font-size:0.88rem;color:var(--mute);margin-bottom:10px">
-                  Insulin serves as the master anabolic hormone. Glucose smoothly enters muscle for glycogen storage and fat cells for energy, keeping bloodstream levels tightly regulated between 70–140 mg/dL.
-                </p>
-                <div style="font-size:0.82rem;font-family:var(--f-mono);color:var(--dim)">
-                  <strong>Key Biochemical Marker:</strong> Normal blood pH 7.35–7.45 · Basal ketone &lt; 0.6 mmol/L
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- CHAPTER 2: THE STARVATION PARADOX & DKA -->
-        <article id="dka" class="chapter ch-dka">
-          <div class="chapter-head">
-            <span class="chapter-eyebrow" style="color:var(--sun)">Chapter 02 · Acute Pathophysiology</span>
-            <h2>The Starvation Paradox &amp; Diabetic Ketoacidosis (DKA)</h2>
-            <p class="chapter-intro">
-              The supreme irony of Type 1 Diabetes: a person's bloodstream can be drowning in 600 mg/dL of glucose, yet their muscle and fat cells are literally starving to death.
-            </p>
-          </div>
-
-          <h3>Why Cells Starve in a Sea of Sugar</h3>
-          <p>
-            Because GLUT4 transporters remain sequestered in the cytoplasm without insulin, extracellular glucose cannot penetrate muscle or <span class="jargon" tabindex="0" data-word="Adipose Tissue" data-phonetic="AD-ih-pohs TISH-oo" data-plain="Body fat cells that store energy as triglycerides." data-t1d="Insulin is required to keep fat stored. Without insulin, fat cells violently split open and flood the liver with acid-forming ketones.">adipose tissue (body fat)</span>. The cell's power furnaces (mitochondria) are completely deprived of fuel. Starving tissues release urgent chemical distress signals to the central nervous system.
-          </p>
-
-          <p>
-            The body responds as if it is in extreme wilderness starvation. Counter-regulatory stress hormones explode into the bloodstream:
-          </p>
-          <ul style="padding-left:20px;margin-bottom:18px;color:var(--mute);display:flex;flex-direction:column;gap:8px">
-            <li>
-              <strong>Glucagon</strong> (unrestrained by normal insulin suppression) orders the liver to empty all stored glycogen (<span class="jargon" tabindex="0" data-word="Glycogenolysis" data-phonetic="gly-kuh-juh-NAHL-ih-sis" data-plain="Chopping up emergency stored sugar (glycogen) inside the liver and dumping it straight into the blood." data-t1d="Without insulin holding it back, the liver empties all its sugar stores, driving blood glucose even higher."><strong>glycogenolysis</strong> — chopping up stored liver sugar</span>) and convert protein into brand-new glucose (<span class="jargon" tabindex="0" data-word="Gluconeogenesis" data-phonetic="gloo-koh-nee-oh-JEN-uh-sis" data-plain="The liver manufacturing brand-new glucose from scratch out of protein and lactic acid." data-t1d="Even when blood sugar is already at 400 mg/dL, starving cells signal the liver to keep manufacturing new sugar non-stop."><strong>gluconeogenesis</strong> — manufacturing sugar from protein</span>).
-            </li>
-            <li>
-              <strong>Epinephrine (Adrenaline)</strong> increases metabolic demand and accelerates hepatic glucose dumping.
-            </li>
-            <li>
-              <strong>Cortisol &amp; Growth Hormone</strong> induce intense peripheral insulin resistance and accelerate muscle <span class="jargon" tabindex="0" data-word="Proteolysis" data-phonetic="proh-tee-AHL-ih-sis" data-plain="The body digesting and breaking down its own muscle tissue to harvest raw amino acids for fuel." data-t1d="Explains rapid weight loss and severe muscle wasting prior to T1D diagnosis or during DKA."><strong>proteolysis</strong> (muscle breakdown)</span>.
-            </li>
+        <div class="help-card help-sun">
+          <h3>Call the care team or go to the ER</h3>
+          <ul>
+            <li>Throwing up, bad stomach pain, breathing fast and deep, or fruity-smelling breath.</li>
+            <li>Ketones are moderate or high.</li>
           </ul>
-          <p>
-            The liver dumps thousands of milligrams of new glucose into a bloodstream that already cannot clear it. Blood glucose skyrockets from 250 to 500, 800, or past 1,000 mg/dL.
-          </p>
-
-          <h3>The Unrestrained Lipolysis Cascade (The Ketone Factory)</h3>
-          <p>
-            Under normal conditions, insulin is the potent physiological inhibitor of <span class="jargon" tabindex="0" data-word="Hormone-Sensitive Lipase" data-phonetic="HOR-mohn SEN-sih-tiv LY-pace" data-plain="The enzyme 'chainsaw' inside fat cells that shreds stored fat into free fatty acids. Insulin normally keeps this enzyme locked away in a box." data-t1d="When you have zero insulin, HSL runs out of control, flooding your liver with fat fuel that turns into DKA ketones."><strong>Hormone-Sensitive Lipase (HSL)</strong></span> in adipose tissue. In zero-insulin states, HSL runs unchecked, violently tearing fat cells apart through <span class="jargon" tabindex="0" data-word="Lipolysis" data-phonetic="ly-PAHL-ih-sis" data-plain="Breaking down stored body fat into free fatty acids and glycerol to burn for fuel." data-t1d="Without insulin, fat cells rapidly break down, flooding the liver with fatty acids that become dangerous acidic ketones."><strong>lipolysis</strong> (breaking down body fat into fuel)</span>, dumping massive surges of <span class="jargon" tabindex="0" data-word="Free Fatty Acids" data-phonetic="free FAT-ee AS-idz" data-plain="Small fat fuel molecules released from fat tissue into the bloodstream." data-t1d="When massive waves of fatty acids hit the liver without insulin, the liver converts them into acidic ketones."><strong>Free Fatty Acids (FFAs)</strong></span> into circulation.
-          </p>
-
-          <div class="tbl-wrap">
-            <table class="comp-table">
-              <thead>
-                <tr>
-                  <th>Phase</th>
-                  <th>Biochemical Mechanism</th>
-                  <th>Physiological Result (Plain English)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>1. FFA Influx</strong></td>
-                  <td>Uninhibited HSL releases tidal waves of free fatty acids from fat into liver hepatocytes.</td>
-                  <td>Fat fuel floods the liver, completely overwhelming its normal processing capacity.</td>
-                </tr>
-                <tr>
-                  <td><strong>2. CPT-1 Shuttle</strong></td>
-                  <td>Low insulin fully activates <span class="jargon" tabindex="0" data-word="CPT-1" data-phonetic="KAR-nih-teen PAL-mih-toyl-TRANS-fer-ace" data-plain="The molecular furnace gatekeeper that shuttles fatty acids into cell mitochondria to be burned." data-t1d="Without insulin, CPT-1 switches wide open, sending fat straight into the ketone-producing furnace.">Carnitine Palmitoyltransferase-1 (CPT-1)</span>.</td>
-                  <td>Fatty acids flood mitochondrial furnaces for <span class="jargon" tabindex="0" data-word="Beta-Oxidation" data-phonetic="BAY-tuh ox-ih-DAY-shun" data-plain="The chemical furnace inside mitochondria that burns fatty acids into energy units called Acetyl-CoA." data-t1d="When overloaded in DKA, excess Acetyl-CoA overflows into ketone acid production.">&beta;-oxidation (burning fat for fuel)</span>.</td>
-                </tr>
-                <tr>
-                  <td><strong>3. Acetyl-CoA Jam</strong></td>
-                  <td>Fat burning generates massive Acetyl-CoA, but the normal Krebs cycle is depleted by gluconeogenesis.</td>
-                  <td>Excess fuel is blocked from normal energy pathways and shunted into emergency <span class="jargon" tabindex="0" data-word="Ketogenesis" data-phonetic="kee-toh-JEN-uh-sis" data-plain="The liver process of transforming excess fat breakdown products into ketone acids." data-t1d="Ketones can feed the brain during starvation, but without insulin they build up so fast they turn the bloodstream acidic.">ketogenesis (ketone acid production)</span>.</td>
-                </tr>
-                <tr>
-                  <td><strong>4. Ketone Synthesis</strong></td>
-                  <td>Mitochondrial HMG-CoA synthase and lyase generate Acetoacetate, <span class="jargon" tabindex="0" data-word="β-Hydroxybutyrate" data-phonetic="BAY-tuh hy-DROX-ee-BYOO-ter-ate" data-plain="The primary, strongest acidic ketone body produced during DKA. This is the exact chemical measured by blood ketone meters." data-t1d="Normal is under 0.6 mmol/L. Levels above 1.5 mmol/L signal impending DKA, and above 3.0 mmol/L requires immediate emergency room care."><strong>&beta;-hydroxybutyrate</strong> (the main DKA acid)</span>, and Acetone.</td>
-                  <td>Ketone bodies flood blood as strong organic acids (pK<sub>a</sub> ~3.6–4.7), directly poisoning blood pH.</td>
-                </tr>
-                <tr>
-                  <td><strong>5. Acidosis Collapse</strong></td>
-                  <td>Excess H<sup>+</sup> ions consume serum bicarbonate. The <span class="jargon" tabindex="0" data-word="Anion Gap" data-phonetic="AN-eye-un gap" data-plain="An emergency room blood test calculation that proves unmeasured acid molecules are poisoning the bloodstream." data-t1d="In DKA, the anion gap spikes well above the normal 12 mEq/L, confirming that ketone acids have overwhelmed the blood buffer."><strong>anion gap</strong> (blood acid test)</span> spikes past 20–30 mEq/L.</td>
-                  <td>Blood pH plummets below 7.10. Life-threatening metabolic emergency.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="callout callout-danger">
-            <div class="callout-head" style="color:#ff5252">
-              <span>🚨</span> The Deadly Triad of DKA: Acidosis, Dehydration &amp; Potassium Shifts
-            </div>
-            <p>
-              <strong>1. Kussmaul Respirations (<span class="jargon" tabindex="0" data-word="Kussmaul Breathing" data-phonetic="KOOS-mowl BREETH-ing" data-plain="Deep, rapid, labored panting as the brain tries to blow off acidic carbon dioxide through the lungs to save the blood from turning toxic." data-t1d="A classic physical emergency symptom of severe diabetic ketoacidosis.">pronounced <em>KOOS-mowl</em> — desperate rapid panting to blow off acid</span>):</strong> The brain's respiratory center detects systemic acidosis and triggers rapid, deep, panting breaths to blow off CO<sub>2</sub> and lower carbonic acid. Breath smells distinctively fruity or like nail-polish remover from exhaled acetone.
-              <br><br>
-              <strong>2. Osmotic Diuresis (<span class="jargon" tabindex="0" data-word="Osmotic Diuresis" data-phonetic="oz-MAH-tik dy-yoo-REE-sis" data-plain="Excess sugar in the kidneys acting like a sponge, dragging gallons of water and essential salts directly into urine." data-t1d="The reason why undiagnosed diabetes or severe highs cause extreme unquenchable thirst and 5 to 10 liters of severe dehydration.">sugar pulling massive amounts of water into urine</span>):</strong> Glucose exceeds the kidney threshold (~180 mg/dL). High sugar in kidney tubules acts as an osmotic sponge, dragging water, sodium, and potassium out into urine. Patients lose 5 to 10 liters of water, collapsing blood pressure into <span class="jargon" tabindex="0" data-word="Hypovolemic Shock" data-phonetic="hy-poh-voh-LEE-mik shahk" data-plain="A dangerous collapse in blood pressure caused by losing massive amounts of body fluids (severe dehydration)." data-t1d="Can cause organ failure or cardiac collapse during severe DKA if IV fluids aren't given quickly.">hypovolemic shock (blood pressure collapse from fluid loss)</span>.
-              <br><br>
-              <strong>3. The Potassium Deception:</strong> Acidosis forces K<sup>+</sup> out of cells into the blood in exchange for acid H<sup>+</sup> ions. Blood tests may show "normal" or high potassium, but the entire body is critically depleted. Giving insulin without potassium monitoring will suck K<sup>+</sup> back into cells, causing sudden fatal cardiac arrest.
-            </p>
-          </div>
-
-          <div class="callout callout-sun">
-            <div class="callout-head">
-              <span>🛡️</span> Sick-Day Rules: Stopping DKA Before It Starts
-            </div>
-            <p>
-              Illness, infection, and physical stress flood the body with cortisol and adrenaline — the same counter-regulatory hormones from the cascade above — so glucose and ketones can surge even if you are eating nothing. The prevention protocol:
-              <br><br>
-              <strong>1. Never stop basal insulin.</strong> Even while vomiting or fasting, the body still needs background insulin. Stopping it is the fastest route to DKA.
-              <br><br>
-              <strong>2. Check ketones early.</strong> Test blood ketones (&beta;-hydroxybutyrate) whenever glucose stays above roughly 240&ndash;250 mg/dL, during any illness, or with DKA symptoms like nausea, abdominal pain, or fruity breath. Anything at or above 0.6 mmol/L deserves attention; above 1.5 mmol/L with high glucose or vomiting means contacting your care team or seeking urgent care.
-              <br><br>
-              <strong>3. Hydrate aggressively</strong> with water or sugar-free fluids to help the kidneys flush glucose and ketones.
-              <br><br>
-              <strong>4. Correct cautiously</strong> per your care team's sick-day plan — insulin needs often rise during illness, but the stacking trap from Chapter 5 still applies.
-            </p>
-          </div>
-
-          <div class="callout callout-danger">
-            <div class="callout-head" style="color:#ff5252">
-              <span>⚠️</span> Euglycemic DKA: Ketoacidosis Without the High
-            </div>
-            <p>
-              DKA does not always arrive with sky-high glucose. In <strong>euglycemic DKA</strong>, blood sugar stays below ~250 mg/dL — sometimes near normal — while ketoacidosis rages underneath. The classic triggers in type 1 diabetes: <strong>SGLT2 inhibitors</strong> (the “flozins,” sometimes used off-label — they dump glucose into urine, so readings look reassuring while insulin deficiency deepens), <strong>prolonged fasting or very-low-carbohydrate eating</strong>, <strong>pregnancy</strong>, and <strong>heavy alcohol use</strong>. The lipolysis cascade above runs exactly the same; it simply runs at a glucose level that disarms everyone’s suspicion.
-              <br><br>
-              This is the dangerous one precisely because the number on the screen says “fine.” The rule: <strong>check ketones for symptoms, not just for highs</strong> — nausea, vomiting, abdominal pain, rapid breathing, or fruity breath warrant a ketone check even at 140 mg/dL. Euglycemic DKA is a medical emergency exactly like any other DKA, and it is most often missed in emergency departments that triage by glucose alone.
-            </p>
-          </div>
-        </article>
-
-        <!-- CHAPTER 3: HYPOGLYCEMIA & THE BRAIN -->
-        <article id="hypo" class="chapter ch-hypo">
-          <div class="chapter-head">
-            <span class="chapter-eyebrow" style="color:var(--coral)">Chapter 03 · Acute Crises</span>
-            <h2>Hypoglycemia &amp; Cerebral Energy Deprivation</h2>
-            <p class="chapter-intro">
-              The human brain represents only 2% of total body weight, but consumes over 20% of resting glucose. When glucose drops, the brain is the first organ to suffocate.
-            </p>
-          </div>
-
-          <p>
-            Unlike skeletal muscle, brain neurons cannot store meaningful glycogen reserves, nor can they burn fatty acids (which cannot cross the blood-brain barrier). Brain survival requires an uninterrupted, minute-by-minute stream of glucose entering through insulin-independent GLUT1 and GLUT3 doors.
-          </p>
-
-          <h3>The Two Waves of Low Blood Sugar</h3>
-          <div class="feature-tri">
-            <div class="tri-card" style="border-color:rgba(255,200,87,0.35)">
-              <span class="badge-tag badge-sun">Wave 1: Adrenergic (70–54 mg/dL)</span>
-              <h4 style="margin-top:8px">The <span class="jargon" tabindex="0" data-word="Sympathoadrenal" data-phonetic="sim-path-oh-uh-DREE-nul" data-plain="The brainstem nervous system and adrenal glands firing an emergency blast of adrenaline to fight off a crisis." data-t1d="This is your body's early siren system. It senses your blood sugar falling and sounds alarms before brain cells run out of power.">Sympathoadrenal Alarm</span></h4>
-              <p>The hypothalamus senses falling fuel and unleashes a flood of <strong>epinephrine (adrenaline)</strong>. Triggers cold sweats (<span class="jargon" tabindex="0" data-word="Diaphoresis" data-phonetic="dy-uh-fer-EE-sis" data-plain="Profuse, cold, drenched sweating triggered by a sudden surge of emergency stress hormones." data-t1d="Waking up soaked in sweat in the middle of the night is a primary physical warning of a nocturnal low.">diaphoresis</span>), shaking hands, racing pulse (<span class="jargon" tabindex="0" data-word="Tachycardia" data-phonetic="tak-ih-KAR-dee-uh" data-plain="An abnormally rapid heart rate, typically over 100 beats per minute at rest." data-t1d="Adrenaline speeds up your heart during a low to pump scarce blood sugar to the brain as fast as possible.">tachycardia</span>), pale skin, and intense panic hunger.</p>
-            </div>
-            <div class="tri-card" style="border-color:rgba(255,71,87,0.45)">
-              <span class="badge-tag badge-danger">Wave 2: Neuroglycopenia (&lt; 54 mg/dL)</span>
-              <h4 style="margin-top:8px">Direct Brain Starvation</h4>
-              <p><span class="jargon" tabindex="0" data-word="Neuroglycopenia" data-phonetic="NYOO-roh-gly-koh-PEE-nee-uh" data-plain="Brain sugar starvation. When neurons run out of glucose and their rechargeable batteries (ATP) fail, shutting down mental and physical functions." data-t1d="Occurs below 54 mg/dL. Causes cognitive slowing, slurred speech, clumsy hands, emotional outbursts, and progresses to seizures or coma."><strong>Neuroglycopenia</strong> (pronounced <em>NYOO-roh-gly-koh-PEE-nee-uh</em> — brain sugar starvation)</span>: Cortical neuron batteries fail. Manifests as cognitive slowing, slurred speech, <span class="jargon" tabindex="0" data-word="Ataxia" data-phonetic="uh-TAK-see-uh" data-plain="Loss of physical coordination, causing stumbling, wobbly walking, and clumsy hands like being severely intoxicated." data-t1d="Hypoglycemia deprives the brain's balance center of fuel, causing stumbling that bystanders often mistake for alcohol drunkenness.">ataxia (stumbling, loss of balance)</span>, double vision, confusion, emotional outbursts, and rapid progression to epileptic seizures or unconsciousness.</p>
-            </div>
-          </div>
-
-          <div class="callout callout-sun">
-            <div class="callout-head" style="color:var(--sun)">
-              <span>⚡</span> The Lost Defense: Alpha-Cell Glucagon Failure in T1D
-            </div>
-            <p>
-              In a non-diabetic, the body's instant response to dropping glucose is switching off beta-cell insulin and triggering pancreatic alpha cells to secrete <strong>glucagon</strong>, releasing liver glycogen reserves.
-              In Type 1 Diabetes, the <span class="jargon" tabindex="0" data-word="Paracrine" data-phonetic="PAIR-uh-krin" data-plain="Short-distance chemical communication between neighboring cells sitting right next to each other inside an organ." data-t1d="In healthy islets, beta cells talk directly to alpha cells. In T1D, beta-cell death destroys this neighbor signaling, leaving alpha cells deaf to falling blood sugar.">intra-islet paracrine signal (neighbor-cell communication)</span> that normally triggers glucagon release — the sudden fall in local insulin as glucose drops — goes missing. <strong>The alpha-cell glucagon response to hypoglycemia progressively fails</strong>, typically within 1 to 5 years of diagnosis. The body has zero automatic brakes to halt falling glucose — survival depends entirely on external rescue carbohydrates or emergency glucagon (Baqsimi, Zegalogue, GlucaGen).
-            </p>
-          </div>
-
-          <h3>Hypoglycemia Unawareness (<span class="jargon" tabindex="0" data-word="HAAF" data-phonetic="haff" data-plain="Hypoglycemia-Associated Autonomic Failure. When repeated low blood sugars numb the brain's warning sensors, turning off shaking and sweating alarms." data-t1d="A dangerous condition where someone feels completely normal at 45 mg/dL with zero symptoms until they suddenly faint or seize.">HAAF</span>)</h3>
-          <p>
-            When a person experiences frequent lows, the brain's autonomic thermostat resets downward (<strong>Hypoglycemia-Associated Autonomic Failure / HAAF</strong>). The body stops generating the adrenaline surge at 70 mg/dL. Shaking and sweating disappear. Patients can be sitting at 42 mg/dL chatting normally — until cortical brain fuel abruptly cuts out, resulting in instantaneous collapse or seizure without any warning symptoms.
-          </p>
-
-          <h3>Treating a Low: The 15-15 Rule</h3>
-          <p>
-            The standard rescue protocol is deliberately simple enough to follow while cognitively impaired — which is exactly the point:
-          </p>
-          <ol style="padding-left:18px;margin-bottom:10px">
-            <li><strong>15 grams of fast carbohydrate</strong> — glucose tablets, juice, or regular soda. Not chocolate, not a full meal: fat slows absorption.</li>
-            <li><strong>Wait 15 minutes</strong>, then recheck.</li>
-            <li><strong>Still below 70 mg/dL?</strong> Repeat once.</li>
-            <li><strong>Recovered?</strong> If the next meal is more than an hour away, follow with a snack containing slower carbs plus protein or fat to hold the line.</li>
-          </ol>
-          <p>
-            The two classic mistakes are treating with too little (fear of the rebound spike) and treating with far too much (the 80-gram juice chug from Chapter 5). The 15-15 rule exists to land the plane, not launch it. If the person is unconscious, seizing, or cannot swallow, do <strong>not</strong> put food or liquid in their mouth — use emergency glucagon and call for help.
-          </p>
-        </article>
-
-        <!-- CHAPTER 4: CHRONIC COMPLICATIONS -->
-        <article id="complications" class="chapter ch-vascular">
-          <div class="chapter-head">
-            <span class="chapter-eyebrow" style="color:var(--sky)">Chapter 04 · Long-Term Pathophysiology</span>
-            <h2>Chronic Complications: How Sugar Destroys Blood Vessels</h2>
-            <p class="chapter-intro">
-              Why does elevated glucose cause blindness, kidney failure, amputations — and heart attacks and strokes — over 10–20 years? The answer lies in the destructive chemistry of Advanced Glycation End-Products (AGEs), capillary pericyte death, and accelerated atherosclerosis.
-            </p>
-          </div>
-
-          <p>
-            Dr. Michael Brownlee's seminal research unified the mechanisms of diabetic tissue damage: excess glucose flooding blood vessel lining cells overloads mitochondrial electron transport, producing massive bursts of <span class="jargon" tabindex="0" data-word="Superoxide" data-phonetic="soo-per-OX-yde" data-plain="A highly reactive, destructive oxygen radical that acts like molecular shrapnel inside cells, damaging DNA and proteins." data-t1d="Excess blood sugar overloads cell power plants, creating bursts of superoxide that trigger vascular damage."><strong>superoxide (O<sub>2</sub><sup>•−</sup>) free radicals</strong></span> that shut down normal metabolism, diverting toxic sugar metabolites into four destructive pathways:
-          </p>
-
-          <div class="feature-tri">
-            <div class="tri-card">
-              <span class="badge-tag badge-sky">1. AGE / RAGE Cross-Linking</span>
-              <h4 style="margin-top:8px">Protein Stiffening &amp; Inflammation</h4>
-              <p>Glucose non-enzymatically glues itself to vessel collagen via the <span class="jargon" tabindex="0" data-word="Maillard Reaction" data-phonetic="my-YAR ree-AK-shun" data-plain="The same browning reaction that turns bread crust golden or browns a seared steak — happening slowly inside your blood vessels when glucose is high." data-t1d="Causes permanent chemical cross-linking that stiffens arteries and heart valves over years."><strong>Maillard reaction</strong> (tissue caramelization)</span>, forming irreversible <span class="jargon" tabindex="0" data-word="AGEs" data-phonetic="ay-jeez" data-plain="Advanced Glycation End-Products. Irreversible, sticky, caramel-like bonds formed when glucose chemically glues itself onto body proteins and collagen." data-t1d="AGEs stiffen arteries, make tissues brittle, and keep blood vessel walls under constant inflammatory stress."><strong>Advanced Glycation End-Products (AGEs)</strong></span> that stiffen arteries and trigger chronic inflammation.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-coral">2. Polyol Pathway Flux</span>
-              <h4 style="margin-top:8px">Antioxidant Depletion &amp; Swelling</h4>
-              <p>Aldose reductase converts overflowing glucose into <span class="jargon" tabindex="0" data-word="Sorbitol" data-phonetic="SOR-bih-tawl" data-plain="A sugar alcohol produced when cells try to handle overflowing glucose. It cannot escape cells easily, so it acts like a sponge, pulling in water and causing cellular swelling." data-t1d="Sorbitol buildup inside the eye lens causes cataracts, and inside nerves causes swelling and neuropathy."><strong>sorbitol (swelling sugar alcohol)</strong></span>, consuming NADPH. Without NADPH, cells cannot regenerate antioxidants, exposing eyes and nerves to devastating oxidative stress.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-sun">3. Protein Kinase C (PKC)</span>
-              <h4 style="margin-top:8px">Capillary Leakage &amp; VEGF Surge</h4>
-              <p>Excess diacylglycerol hyperactivates PKC, thickening capillary walls, burning away the <span class="jargon" tabindex="0" data-word="Endothelial Glycocalyx" data-phonetic="en-doh-THEE-lee-ul gly-koh-KAY-liks" data-plain="The microscopic, slippery, non-stick Teflon coating lining the inside of all your blood vessels." data-t1d="High glucose strips away this non-stick layer, allowing inflammatory cells and cholesterol to stick and form arterial plaques.">endothelial glycocalyx (the vessel's non-stick Teflon lining)</span>, and inducing leaky capillaries.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-mint">4. Hexosamine Pathway Flux</span>
-              <h4 style="margin-top:8px">Gene-Expression Hijack</h4>
-              <p>Excess fructose-6-phosphate is diverted by the enzyme GFAT into UDP-<em>N</em>-acetylglucosamine, which gets stapled onto transcription factors (O-GlcNAcylation), rewiring vessel-wall gene expression toward clotting (PAI-1) and scarring (TGF-&beta;1) programs.</p>
-            </div>
-          </div>
-
-          <h3>Microvascular Destruction (The Vulnerable Organs)</h3>
-
-          <details class="deep-dive" open>
-            <summary>👁️ Diabetic Retinopathy (The Eyes)</summary>
-            <div class="deep-dive-body">
-              <p>
-                Retinal capillaries are supported by contractile guard cells called <span class="jargon" tabindex="0" data-word="Pericytes" data-phonetic="PAIR-ih-sytes" data-plain="Specialized contractile guard cells wrapped around the outside of delicate eye capillaries to reinforce their walls and prevent leaks." data-t1d="High glucose selectively poisons pericytes first. Once they die, eye capillaries balloon into microaneurysms that leak blood into the retina."><strong>pericytes</strong> (capillary structural guard cells)</span>. Hyperglycemia selectively poisons pericytes. Without pericyte support, fragile capillary walls balloon into <span class="jargon" tabindex="0" data-word="Microaneurysms" data-phonetic="my-kroh-AN-yoo-riz-ums" data-plain="Microscopic balloon-like blister bulges in weakened capillary walls that are prone to leaking or bursting." data-t1d="The earliest visible physical sign of diabetic eye damage during an annual dilated eye exam."><strong>microaneurysms</strong> (tiny capillary blowouts)</span> that leak blood and lipid exudates into the retina (<strong>Diabetic Macular Edema / DME</strong>), blurring central vision.
-              </p>
-              <p>
-                As capillaries close off, the oxygen-starved retina secretes <span class="jargon" tabindex="0" data-word="VEGF" data-phonetic="vedge-EF" data-plain="Vascular Endothelial Growth Factor. An emergency distress hormone secreted by oxygen-starved tissue that commands new blood vessels to sprout rapidly." data-t1d="In the retina, VEGF causes fragile, tangled rogue vessels to grow across the eye. These bleed easily and can scar down, causing retinal detachment."><strong>Vascular Endothelial Growth Factor (VEGF)</strong></span>. In Proliferative Diabetic Retinopathy, fragile rogue capillaries sprout across the retina. These vessels rupture into the <span class="jargon" tabindex="0" data-word="Vitreous Humor" data-phonetic="VIH-tree-us HYOO-mer" data-plain="The clear, jelly-like fluid that fills the space between the lens and the retina of your eyeball." data-t1d="When fragile rogue capillaries burst, blood leaks into this clear gel (vitreous hemorrhage), creating dark spiderwebs or complete vision blockage.">vitreous humor (clear eye jelly)</span> and scar down, creating traction bands that tear the retina off the back of the eye.
-              </p>
-            </div>
-          </details>
-
-          <details class="deep-dive" open>
-            <summary>🫘 Diabetic Nephropathy (The Kidneys)</summary>
-            <div class="deep-dive-body">
-              <p>
-                Each kidney filters 180 liters of blood daily across 1 million microscopic filters (glomeruli). Early hyperglycemia forces the kidneys into intense <span class="jargon" tabindex="0" data-word="Glomerular Hyperfiltration" data-phonetic="gloh-MAIR-yoo-ler hy-per-fil-TRAY-shun" data-plain="The kidney's microscopic filtration units running under abnormally intense high fluid pressure, like running an engine in the redline." data-t1d="Early in diabetes, kidneys filter too fast. This mechanical strain slowly scars and wears out the kidney filters over years."><strong>glomerular hyperfiltration</strong> (kidney high-pressure overdrive)</span>. Over years, this excessive pressure builds up nodular scar tissue (<span class="jargon" tabindex="0" data-word="Kimmelstiel-Wilson Lesions" data-phonetic="KIM-ul-steel WIL-sun LEE-zhunz" data-plain="Distinctive, rounded nodules of scar tissue that form inside damaged kidney filtration units." data-t1d="The classic hallmark of advanced diabetic kidney disease that permanently reduces kidney filtering capacity."><strong>Kimmelstiel-Wilson lesions</strong></span>).
-              </p>
-              <p>
-                <span class="jargon" tabindex="0" data-word="Podocytes" data-phonetic="POH-doh-sytes" data-plain="Microscopic octopus-like filtration cells in the kidneys that wrap interlocking 'fingers' around capillaries to keep protein in the blood." data-t1d="When podocytes detach from high glucose pressure, vital proteins spill past the filter into urine.">Podocyte foot processes (kidney filter fingers)</span> detach, destroying the filtration barrier. Essential proteins spill into urine: <span class="jargon" tabindex="0" data-word="Microalbuminuria" data-phonetic="MY-kroh-al-byoo-min-YOO-ree-uh" data-plain="Early trace amounts of protein (albumin) leaking into urine through damaged kidney filters (30–300 mg/day)." data-t1d="The earliest detectable lab sign of kidney damage. Caught at this stage with annual urine microalbumin tests, blood pressure medications (ACE inhibitors/ARBs) can reverse or freeze it!"><strong>Microalbuminuria</strong> (early warning protein leakage in urine)</span> progresses to Macroalbuminuria, filtration rate collapses, culminating in End-Stage Renal Disease (ESRD) requiring dialysis or transplant.
-              </p>
-            </div>
-          </details>
-
-          <details class="deep-dive" open>
-            <summary>⚡ Diabetic Neuropathy (Nerves &amp; Amputation Risk)</summary>
-            <div class="deep-dive-body">
-              <p>
-                Nerves require oxygen and nutrients from microscopic capillaries called the <span class="jargon" tabindex="0" data-word="Vasa Nervorum" data-phonetic="VAY-zuh ner-VOR-um" data-plain="The microscopic capillary lifelines that supply oxygen and nutrients to peripheral nerves." data-t1d="When high glucose clogs these tiny blood vessels, sensory nerves starve and die from lack of oxygen, starting in the toes."><em>vasa nervorum</em> (nerve nutrient capillaries)</span>. Hyperglycemia occludes these microvessels while sorbitol accumulates inside nerve insulation cells. Longest sensory nerves die first in a "glove-and-stocking" pattern:
-              </p>
-              <ul style="padding-left:18px;margin-bottom:10px">
-                <li><strong>Loss of Protective Sensation:</strong> Patients step on tacks, develop blisters, or fracture bones without feeling pain. Neglected pressure sores become infected diabetic ulcers, penetrating bone and requiring surgical amputation.</li>
-                <li><strong>Autonomic Neuropathy (<span class="jargon" tabindex="0" data-word="Gastroparesis" data-phonetic="gas-troh-puh-REE-sis" data-plain="Delayed stomach emptying caused by damage to the vagus nerve. Food sits in the stomach for 4 to 8 hours unpredictably." data-t1d="Makes meal bolusing an extreme challenge: meal insulin peaks while food is still trapped, causing a severe low, followed hours later by a huge delayed spike.">Gastroparesis</span>):</strong> Vagus nerve damage prevents the stomach from emptying normally (<em>gas-troh-puh-REE-sis</em>). Meals sit trapped for 6+ hours unpredictably. Insulin injected before eating causes immediate hypoglycemia, followed hours later by massive unexplained spikes.</li>
-                <li><strong><span class="jargon" tabindex="0" data-word="Cardiac Autonomic Neuropathy" data-phonetic="KAR-dee-ak aw-tuh-NAHM-ik noo-RAHP-uh-thee" data-plain="Damage to the involuntary nerves that control heart rate and blood pressure regulation." data-t1d="Removes the heart's natural beat-to-beat variability and eliminates chest pain warnings, causing completely painless 'silent' heart attacks.">Cardiac Autonomic Neuropathy (CAN)</span>:</strong> Resting heart rate exceeds 100 bpm, beat-to-beat variability vanishes, and visceral pain fibers are lost, leading to completely <strong>silent, painless heart attacks</strong>.</li>
-              </ul>
-            </div>
-          </details>
-          <h3>Macrovascular Destruction (Heart, Brain &amp; Limbs)</h3>
-          <p>
-            The same four pathways attack large arteries too. Chronic hyperglycemia injures the endothelium, oxidizes LDL cholesterol, and keeps vessel walls in a low-grade inflammatory state — accelerating atherosclerosis by decades. People with type 1 diabetes carry <strong>two to four times the cardiovascular risk</strong> of the general population, and after roughly 20 years of living with T1D, cardiovascular disease becomes the leading cause of death.
-          </p>
-          <div class="feature-tri">
-            <div class="tri-card">
-              <span class="badge-tag badge-danger">Coronary Artery Disease</span>
-              <h4 style="margin-top:8px">Heart Attacks, Often Silent</h4>
-              <p>Atherosclerotic plaque narrows the coronary arteries. Combined with cardiac autonomic neuropathy (above), ischemia can strike with no chest pain at all — the silent MI. Unexplained fatigue or ECG changes deserve investigation, not dismissal.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-coral">Cerebrovascular Disease</span>
-              <h4 style="margin-top:8px">Stroke</h4>
-              <p>The same plaque process in carotid and cerebral arteries raises stroke risk several-fold. Tight blood-pressure and lipid control matter as much as glucose control for prevention.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-sun">Peripheral Artery Disease</span>
-              <h4 style="margin-top:8px">Limbs at Risk</h4>
-              <p>Narrowed leg arteries plus neuropathy is the classic amputation combination: poor circulation starves tissue of oxygen while nerve damage hides the injury. Foot checks and smoking cessation are the highest-leverage defenses.</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- CHAPTER 5: CGM DYNAMICS & WHY AHEAD WAS BUILT -->
-        <article id="cgm" class="chapter ch-cgm">
-          <div class="chapter-head">
-            <span class="chapter-eyebrow" style="color:var(--mint)">Chapter 05 · Clinical Engineering</span>
-            <h2>Continuous Glucose Monitors (CGMs), Sensor Lag &amp; Ahead Math</h2>
-            <p class="chapter-intro">
-              Why do people crash after treating a high? Why does a sensor scream low in the middle of the night when blood is normal? The answers lie in interstitial fluid physics and sensor rate-of-change dynamics.
-            </p>
-          </div>
-
-          <h3>The 10–15 Minute Interstitial Sensor Lag</h3>
-          <p>
-            Continuous Glucose Monitors (Dexcom G7, Abbott Libre) do <strong>not</strong> measure blood. Their flexible filament resides in subcutaneous <span class="jargon" tabindex="0" data-word="Interstitial Fluid" data-phonetic="in-ter-STISH-ul FLOO-id" data-plain="The fluid bath surrounding all your cells just under the skin. This is where CGM sensor filaments sit, NOT in blood." data-t1d="Because glucose must travel from bloodstream capillaries into this fluid bath, there is an unavoidable 5 to 15 minute delay in sensor readings."><strong>interstitial fluid</strong> (the cellular fluid under your skin)</span>.
-          </p>
-          <p>
-            Glucose in capillary blood must physically <span class="jargon" tabindex="0" data-word="Extravasate" data-phonetic="ek-STRAV-uh-sate" data-plain="Fluid or molecules leaking or passing out of blood vessels into surrounding body tissues." data-t1d="Sugar must physically leak out of capillaries into tissue before your sensor can detect it, creating sensor lag.">extravasate (seep out of capillary vessels)</span> and diffuse through extracellular matrix to reach the sensor's <span class="jargon" tabindex="0" data-word="Glucose Oxidase" data-phonetic="GLOO-kose OX-ih-dace" data-plain="A specialized biological enzyme coated onto the tip of the CGM wire that chemically reacts with glucose to generate a tiny electrical current." data-t1d="The sensor converts this tiny electrical current into the mg/dL or mmol/L number on your smartphone screen.">glucose oxidase</span> electrode. This creates an unavoidable physiologic lag of <strong>5 to 15 minutes</strong>:
-          </p>
-
-          <div class="callout callout-coral">
-            <div class="callout-head" style="color:var(--coral)">
-              <span>⏱️</span> The Danger of Velocity Discrepancy
-            </div>
-            <p>
-              During stable periods (flat line), capillary blood and interstitial fluid are in equilibrium.
-              <br><br>
-              <strong>During rapid drops (e.g. falling at −2.5 mg/dL/min):</strong>
-              <br>
-              <div style="margin:10px 0;padding:10px 16px;background:rgba(0,0,0,0.3);border-radius:8px;display:inline-block">
-                <span class="mono" style="font-size:1.05rem;font-weight:700;color:var(--sun)">Lag = 10 minutes × 2.5 mg/dL/min = 25 mg/dL discrepancy!</span>
-              </div>
-              <br>
-              Your capillary blood is already at <strong>65 mg/dL</strong> (brain starvation underway, adrenergic tremors active), but your CGM screen still displays a comfortable <strong>90 mg/dL</strong>! By the time the CGM alarm finally rings at 65 mg/dL 10 minutes later, your true blood is already down in the dangerous 40s.
-            </p>
-          </div>
-
-          <h3>The Panic Overcorrection Trap &amp; Insulin Stacking</h3>
-          <p>
-            Subcutaneously injected rapid-acting insulin (Novolog, Humalog, Fiasp, Lyumjev) takes 15 minutes to enter circulation and <strong>60 to 90 minutes to reach peak biological activity</strong>, lasting 3 to 5 hours in the body (<span class="jargon" tabindex="0" data-word="Insulin on Board (IOB)" data-phonetic="IN-suh-lin on bord" data-plain="The amount of active bolus insulin still circulating and actively lowering blood sugar in your body from previous injections or pump boluses." data-t1d="Rapid-acting insulin continues working for 3 to 5 hours. Tracking IOB is essential to prevent taking duplicate doses."><strong>Insulin on Board / IOB</strong> — active insulin still working</span>).
-          </p>
-          <p>
-            When a user sees 210 mg/dL with a rising arrow, they inject 4 units. 30 minutes later, because the carbohydrates are still absorbing and insulin hasn't peaked, the sensor reads 225 mg/dL. Assuming the insulin "failed," the user injects another 4 units.
-          </p>
-          <p>
-            <strong>This is <span class="jargon" tabindex="0" data-word="Insulin Stacking" data-phonetic="IN-suh-lin STAK-ing" data-plain="Injecting consecutive doses of insulin too close together before earlier doses have finished peaking." data-t1d="The #1 cause of catastrophic post-meal low blood sugar crashes. People see a rising number, get impatient, and take more insulin too soon.">Insulin Stacking</span>.</strong> Two hours later, both boluses peak simultaneously, sending glucose crashing downward at −3.5 mg/dL/min into a life-threatening hypo. The user panics, chugs 80 grams of juice, and triggers an explosive rebound spike back to 280 mg/dL. The roller-coaster continues.
-          </p>
-
-          <h3>Basal vs. Bolus: The Two Insulins</h3>
-          <p>
-            Injected insulin regimens mimic what a healthy pancreas does with two separate jobs. <strong>Basal insulin</strong> (long-acting glargine or degludec, or a pump's continuous trickle) is the background drip that holds glucose steady between meals and overnight — roughly 40&ndash;50% of total daily insulin, and the dose you never skip, even when sick (see Chapter 2). <strong>Bolus insulin</strong> (rapid-acting lispro, aspart, or glulisine) is the mealtime and correction dose that covers glucose about to arrive. Almost every dosing disaster — stacking, the 80-gram juice chug, the 3 a.m. crash — is a bolus timing error: dosed against where glucose <em>was</em> rather than where it is <em>going</em>.
-          </p>
-
-          <h3>The Ahead Philosophy: Velocity, Acceleration &amp; The Rule of 3</h3>
-          <p>
-            Ahead was engineered specifically to solve the mathematical and physiological flaws of reactive CGM alarms:
-          </p>
-
-          <div class="feature-tri">
-            <div class="tri-card">
-              <span class="badge-tag badge-mint">Vector Projections</span>
-              <h4 style="margin-top:8px">15m &amp; 30m Trajectories</h4>
-              <p>By computing the first derivative (<span class="mono">dG/dt</span> — <span class="jargon" tabindex="0" data-word="Velocity (dG/dt)" data-phonetic="dG/dt · veh-LAH-sih-tee" data-plain="The speed and direction your glucose is moving right now, measured in mg/dL per minute (e.g. falling at -2.5 mg/dL/min)." data-t1d="Tells you how fast you're dropping before your sensor threshold triggers.">velocity</span>) and second derivative (<span class="mono">d²G/dt²</span> — <span class="jargon" tabindex="0" data-word="Acceleration & Curvature (d²G/dt²)" data-phonetic="d²G/dt² · ak-SEL-er-AY-shun" data-plain="Whether your blood sugar change is speeding up, flattening out, or rounding a corner to reverse." data-t1d="Helps you know whether a falling line is braking safely to a stop or accelerating into a dangerous crash.">acceleration &amp; curvature</span>), Ahead projects where your glucose will land 15 and 30 minutes in advance, bypassing sensor lag.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-sun">The Rule of 3 Checks</span>
-              <h4 style="margin-top:8px">3 Checks / 15-Minute Rule</h4>
-              <p>A single high ping might be noise or an already-peaking curve. Ahead monitors an amber rise over 3 consecutive checks (15 min) before escalating alerts, completely eliminating panic stacking.</p>
-            </div>
-            <div class="tri-card">
-              <span class="badge-tag badge-sky">Compression Artifacts</span>
-              <h4 style="margin-top:8px">Compression Low Filtering</h4>
-              <p>Sleeping on a sensor squeezes capillary blood out of the local skin pocket, creating a false 45 mg/dL reading (<span class="jargon" tabindex="0" data-word="Compression Low" data-phonetic="kum-PRESH-un low" data-plain="A false low reading that happens when you lay on your sensor while sleeping, mechanically squeezing fluid away from the sensor wire." data-t1d="The sensor reads 45 mg/dL even though your actual blood sugar is 115 mg/dL. Eating carbs for a compression low results in waking up at 250+ mg/dL.">compression low</span>). Ahead's trajectory math helps identify unnatural cliff-drops from true metabolic falls.</p>
-            </div>
-          </div>
-          <h3>Everyday Wildcards: Exercise &amp; Alcohol</h3>
-          <p>
-            <strong>Aerobic exercise</strong> (running, cycling, swimming) pulls glucose into muscle through a second, insulin-independent door: contracting muscle translocates GLUT4 on its own, no insulin key required. The result is falling glucose during the activity plus heightened insulin sensitivity for hours afterward — the most common cause of delayed nighttime lows after an active day. <strong>Anaerobic or high-intensity bursts</strong> (sprints, heavy lifting, competition) do the opposite: adrenaline orders the liver to dump glucose, and readings can spike mid-workout before crashing later.
-          </p>
-          <p>
-            <strong>Alcohol</strong> is the stealth hypo trigger. The liver prioritizes metabolizing ethanol over everything else, which shuts down gluconeogenesis for hours — removing the very backup system that normally defends against falling glucose. A few evening drinks can produce hypoglycemia in the early morning, long after the buzz wore off, especially with insulin on board. The unglamorous defense: eat carbohydrate with alcohol and stay alert to lows overnight.
-          </p>
-        </article>
-
-        <!-- CHAPTER 6: CLINICAL GLOSSARY -->
-        <article id="glossary" class="chapter ch-cellular">
-          <div class="chapter-head">
-            <span class="chapter-eyebrow">Chapter 06 · Reference Guide</span>
-            <h2>Searchable Clinical &amp; Biological Glossary</h2>
-            <p class="chapter-intro">
-              Doctor talk translated into plain English. Search any medical, endocrine, or continuous glucose monitoring concept to see phonetic pronunciations, plain English breakdowns, and hear audio recordings spoken aloud.
-            </p>
-          </div>
-
-          <input type="text" id="glossarySearch" class="glossary-search-box" placeholder="Search terms (e.g. Adipose, Autophosphorylation, DKA, Basal, Somogyi, Anion Gap, Pericytes)…" aria-label="Search clinical terms" />
-
-          <div class="glossary-grid" id="glossaryGrid">
-
-            <!-- 1. Adipose Tissue -->
-            <div class="glossary-item" data-term="adipose body fat tissue lipolysis hsl triglycerides">
-              <div class="glossary-term"><span>Adipose Tissue</span><span class="badge-tag badge-coral">Body Fat</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>AD-ih-pohs TISH-oo</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Adipose Tissue" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Body fat. It isn't just inert padding, but an active organ that stores energy as fat droplets. Insulin is the biological key that keeps fat locked inside fat cells. In T1D with zero insulin, fat cells dissolve into massive surges of fatty acids that turn into DKA ketones.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Loose connective tissue composed predominantly of adipocytes that store triglycerides and secrete bioactive adipokines, acutely regulated by insulin-mediated inhibition of lipolysis.
-              </div>
-            </div>
-
-            <!-- 2. Autophosphorylation -->
-            <div class="glossary-item" data-term="autophosphorylation insulin receptor tyrosine kinase switch">
-              <div class="glossary-term"><span>Autophosphorylation</span><span class="badge-tag badge-mint">Receptor Switch</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>aw-toh-FOSS-for-ih-LAY-shun</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Autophosphorylation" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                When a receptor flips on its own power switch. When an insulin molecule docks into the receptor, the receptor tags itself with energy (phosphate tags), signaling the cell to open its doors to let sugar in.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Self-catalyzed phosphorylation of tyrosine residues on the intracellular β-subunits of the insulin receptor tyrosine kinase upon ligand binding, recruiting IRS adapter proteins.
-              </div>
-            </div>
-
-            <!-- 3. Heterotetrameric -->
-            <div class="glossary-item" data-term="heterotetrameric insulin receptor protein subunits">
-              <div class="glossary-term"><span>Heterotetrameric</span><span class="badge-tag badge-sky">Molecular Structure</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>HET-er-oh-TET-ruh-MAIR-ik</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Heterotetrameric" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                A molecular machine made of four interlocking protein pieces that aren't all identical. The insulin receptor is made of two alpha locks on the outside of the cell and two beta switches on the inside.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                A macromolecular protein complex composed of four distinct polypeptide chains organized in an α₂β₂ stoichiometric symmetry linked by disulfide bonds.
-              </div>
-            </div>
-
-            <!-- 4. GLUT4 & Translocation -->
-            <div class="glossary-item" data-term="glut4 translocation glucose transporter muscle fat">
-              <div class="glossary-term"><span>GLUT4 &amp; Translocation</span><span class="badge-tag badge-mint">Transporter</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>gloot-for · trans-loh-KAY-shun</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Translocation" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                The glucose doorways into muscle and fat cells. They normally sit parked deep inside the cell in tiny bubbles; insulin orders them to move (translocate) to the outer cell surface so sugar can flood in.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Insulin-regulated facilitated hexose transporter that undergoes exocytic translocation from intracellular storage vesicles to the plasma membrane via PI3K/Akt/AS160 signaling.
-              </div>
-            </div>
-
-            <!-- 5. Hormone-Sensitive Lipase (HSL) & Lipolysis -->
-            <div class="glossary-item" data-term="hsl hormone sensitive lipase lipolysis fat cutting enzyme">
-              <div class="glossary-term"><span>Lipolysis &amp; HSL</span><span class="badge-tag badge-coral">Fat Breakdown</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>ly-PAHL-ih-sis · HOR-mohn SEN-sih-tiv LY-pace</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Lipolysis" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Lipolysis is breaking down body fat for fuel. HSL is the enzyme chainsaw that cuts fat cells open. Insulin normally keeps this chainsaw locked in a cage; without insulin, it tears fat apart and creates ketones.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Intracellular lipase that catalyzes the hydrolysis of diacylglycerols and triacylglycerols in adipocytes, strictly suppressed by insulin-mediated PDE3B activation and cAMP lowering.
-              </div>
-            </div>
-
-            <!-- 6. Diabetic Ketoacidosis (DKA) -->
-            <div class="glossary-item" data-term="dka diabetic ketoacidosis ketones acidosis emergency">
-              <div class="glossary-term"><span>DKA (Diabetic Ketoacidosis)</span><span class="badge-tag badge-danger">Emergency</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>kee-toh-as-ih-DOH-sis</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Diabetic Ketoacidosis" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                A life-threatening medical emergency caused by lack of insulin. Without insulin, cells starve, fat dissolves into massive surges of acidic ketones, and blood pH collapses into dangerous acidity.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Acute metabolic decompensation characterized by hyperglycemia (>250 mg/dL), systemic acidosis (pH < 7.30, HCO3 < 18 mEq/L), and hyperketonemia driven by absolute insulin deficit.
-              </div>
-            </div>
-
-            <!-- 7. β-Hydroxybutyrate (βOHB) -->
-            <div class="glossary-item" data-term="beta hydroxybutyrate ketones dka acid biomarker">
-              <div class="glossary-term"><span>β-Hydroxybutyrate (βOHB)</span><span class="badge-tag badge-coral">Biomarker</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>BAY-tuh hy-DROX-ee-BYOO-ter-ate</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Beta-hydroxybutyrate" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                The primary, strongest acidic ketone body in DKA. This is the exact chemical measured by modern fingerstick blood ketone meters (normal is under 0.6 mmol/L; above 1.5 is a red alert).
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                The predominant organic acid ketone body synthesized by hepatic mitochondria via β-hydroxybutyrate dehydrogenase during high NADH/NAD+ states characteristic of DKA.
-              </div>
-            </div>
-
-            <!-- 8. Anion Gap -->
-            <div class="glossary-item" data-term="anion gap metabolic acidosis er blood test">
-              <div class="glossary-term"><span>Anion Gap</span><span class="badge-tag badge-sun">Diagnostic Test</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>AN-eye-un gap</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Anion gap" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                An ER blood test math formula: (Sodium) − (Chloride + Bicarbonate). If the gap is wide (above 12–16), it proves hidden acids like ketones are poisoning the blood and consuming your body's buffers.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Serum calculation [Na+] − ([Cl−] + [HCO3−]) assessing unmeasured anions. An elevated gap (>16 mEq/L) confirms metabolic acidosis mediated by ketoacids or organic metabolites.
-              </div>
-            </div>
-
-            <!-- 9. Kussmaul Respirations -->
-            <div class="glossary-item" data-term="kussmaul breathing respirations hyperventilation dka">
-              <div class="glossary-term"><span>Kussmaul Breathing</span><span class="badge-tag badge-danger">Physical Sign</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>KOOS-mowl BREETH-ing</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Kussmaul breathing" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Desperate, deep, rapid gasping breaths seen in severe DKA. The brain detects that blood is turning dangerously acidic and tries to blow off acidic carbon dioxide through the lungs.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Deep, rapid, labored hyperventilation triggered by central chemoreceptors in response to systemic metabolic acidosis to induce compensatory respiratory alkalosis.
-              </div>
-            </div>
-
-            <!-- 10. Osmotic Diuresis -->
-            <div class="glossary-item" data-term="osmotic diuresis kidneys dehydration polyuria thirst">
-              <div class="glossary-term"><span>Osmotic Diuresis</span><span class="badge-tag badge-sun">Kidney Mechanism</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>oz-MAH-tik dy-yoo-REE-sis</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Osmotic diuresis" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                When blood sugar exceeds ~180 mg/dL, sugar spills into urine and acts like a giant sponge, pulling gallons of body water and vital salts out with it. Causes intense thirst and severe 5–10 liter dehydration.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Increased urination caused by filtered glucose exceeding the maximum tubular transport capacity (TmG), elevating tubular fluid osmolarity and inhibiting renal water reabsorption.
-              </div>
-            </div>
-
-            <!-- 11. Neuroglycopenia -->
-            <div class="glossary-item" data-term="neuroglycopenia brain glucose low hypo confusion seizure">
-              <div class="glossary-term"><span>Neuroglycopenia</span><span class="badge-tag badge-danger">Neurologic</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>NYOO-roh-gly-koh-PEE-nee-uh</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Neuroglycopenia" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Brain sugar starvation. When neurons run out of glucose, brain function shuts down. Causes confusion, slurred speech, stumbling, personality shifts, and progresses to seizures or coma below 54 mg/dL.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Subnormal glucose delivery to cortical and subcortical neurons resulting in bioenergetic failure, impaired ATP generation, synaptic disruption, and neurological deficits.
-              </div>
-            </div>
-
-            <!-- 12. Sympathoadrenal Response -->
-            <div class="glossary-item" data-term="sympathoadrenal adrenaline epinephrine shaking sweating low">
-              <div class="glossary-term"><span>Sympathoadrenal Alarm</span><span class="badge-tag badge-sun">Autonomic</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>sim-path-oh-uh-DREE-nul</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Sympathoadrenal" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                The body's early siren during a low blood sugar. The brain fires emergency adrenaline, causing cold sweats, trembling hands, a pounding heart, and intense panic hunger so you treat the low.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Coordinated activation of the sympathetic nervous system and adrenal medulla inducing acute catecholamine release (epinephrine/norepinephrine) to stimulate hepatic glucose output.
-              </div>
-            </div>
-
-            <!-- 13. HAAF & Hypoglycemia Unawareness -->
-            <div class="glossary-item" data-term="haaf hypoglycemia unawareness adrenaline autonomic failure">
-              <div class="glossary-term"><span>HAAF &amp; Unawareness</span><span class="badge-tag badge-coral">Autonomic</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>haff · un-uh-WAIR-nis</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Hypoglycemia unawareness" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                When you have frequent lows, the brain turns down its adrenaline alarm. You stop feeling shaky or sweaty and can be at 45 mg/dL chatting normally until you suddenly faint with zero warning symptoms.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Hypoglycemia-Associated Autonomic Failure. Recent or recurrent hypoglycemia shifts hypothalamic glycemic triggers downward, blunting sympathoadrenal and symptomatic responses.
-              </div>
-            </div>
-
-            <!-- 14. Glucagon & Alpha-Cell Failure -->
-            <div class="glossary-item" data-term="glucagon alpha cell liver glycogen rescue">
-              <div class="glossary-term"><span>Glucagon &amp; Alpha-Cell Defect</span><span class="badge-tag badge-sky">Endocrine</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>GLOO-kuh-gon</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Glucagon" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                The natural hormone that tells the liver to dump stored sugar during a low. In T1D, the pancreas permanently loses the ability to release glucagon during lows, leaving you with zero automatic safety brakes.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Pancreatic counter-regulatory hormone whose secretion during hypoglycemia is selectively lost in established T1D due to disruption of intra-islet paracrine signaling from destroyed beta cells.
-              </div>
-            </div>
-
-            <!-- 15. Advanced Glycation End-Products (AGEs) -->
-            <div class="glossary-item" data-term="ages advanced glycation end products maillard collagen vessels">
-              <div class="glossary-term"><span>AGEs (Sugar Cross-Links)</span><span class="badge-tag badge-sky">Vascular</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>ay-jeez</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Advanced Glycation End-Products" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Sticky, caramel-like bonds formed when excess blood sugar permanently glues itself onto body proteins and collagen. Stiffens blood vessels, hardens tissues, and keeps artery walls chronically inflamed.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Irreversible cross-linked compounds formed non-enzymatically via the Maillard reaction between reducing sugars and protein amino groups, binding RAGE receptors to drive vascular injury.
-              </div>
-            </div>
-
-            <!-- 16. Endothelial Glycocalyx -->
-            <div class="glossary-item" data-term="endothelial glycocalyx teflon vessel lining plaque">
-              <div class="glossary-term"><span>Endothelial Glycocalyx</span><span class="badge-tag badge-mint">Vessel Lining</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>en-doh-THEE-lee-ul gly-koh-KAY-liks</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Endothelial glycocalyx" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                The microscopic, slippery, non-stick Teflon coating lining every blood vessel in your body. High glucose burns this coating away, allowing inflammation and cholesterol to stick and form arterial plaques.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Proteoglycan- and glycosaminoglycan-rich carbohydrate layer coating the luminal surface of vascular endothelial cells, acting as a macromolecular sieve and anti-atherogenic barrier.
-              </div>
-            </div>
-
-            <!-- 17. Pericytes & Retinopathy -->
-            <div class="glossary-item" data-term="pericytes retinopathy eyes microaneurysms vegf blindness">
-              <div class="glossary-term"><span>Pericytes &amp; Retinopathy</span><span class="badge-tag badge-coral">Microvascular</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>PAIR-ih-sytes · ret-ih-NAHP-uh-thee</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Pericytes" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Guard cells that wrap around delicate eye blood vessels to keep them strong. High sugar selectively kills pericytes first; without them, capillaries balloon into leaky microaneurysms that damage vision.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Mural cells wrapped around capillary endothelial cells. Hyperglycemia induces pericyte apoptosis, leading to vessel instability, microaneurysms, macular edema, and ischemia-driven VEGF neovascularization.
-              </div>
-            </div>
-
-            <!-- 18. Microalbuminuria & Nephropathy -->
-            <div class="glossary-item" data-term="microalbuminuria nephropathy kidneys urine protein gfr">
-              <div class="glossary-term"><span>Microalbuminuria</span><span class="badge-tag badge-sky">Kidney Filter</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>MY-kroh-al-byoo-min-YOO-ree-uh</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Microalbuminuria" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Early trace amounts of protein (albumin) leaking into urine through damaged kidney filters. Caught early on annual urine tests, blood pressure medications (ACE inhibitors/ARBs) can freeze or reverse it!
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Persistent excretion of 30–300 mg/day of albumin in urine, reflecting early glomerular endothelial barrier disruption and podocyte effacement in diabetic kidney disease.
-              </div>
-            </div>
-
-            <!-- 19. Gastroparesis -->
-            <div class="glossary-item" data-term="gastroparesis vagus nerve stomach digestion motility delayed">
-              <div class="glossary-term"><span>Gastroparesis</span><span class="badge-tag badge-coral">Autonomic</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>gas-troh-puh-REE-sis</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Gastroparesis" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Delayed stomach emptying caused by damage to the vagus nerve. Food sits in the stomach for 4 to 8 hours unpredictably, causing an early low from insulin followed hours later by a giant delayed spike.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Vagal autonomic neuropathy that impairs gastric motility and pyloric relaxation, resulting in delayed gastric emptying without mechanical obstruction and decoupling meal bolus kinetics.
-              </div>
-            </div>
-
-            <!-- 20. Somogyi Effect -->
-            <div class="glossary-item" data-term="somogyi effect rebound hyperglycemia nocturnal low 3am">
-              <div class="glossary-term"><span>Somogyi Effect</span><span class="badge-tag badge-sun">Endocrine</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>soh-MOH-jee ee-FEKT</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Somogyi effect" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Waking up high caused by a hidden low in the middle of the night. An untreated low at 3 AM triggers an emergency stress hormone surge (adrenaline and cortisol) that causes the liver to dump sugar. Classical teaching; modern CGM data show true Somogyi rebound is uncommon — most morning highs are waning insulin or the dawn phenomenon instead.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Post-hypoglycemic rebound hyperglycemia attributed to counter-regulatory neuroendocrine surges (epinephrine, cortisol, growth hormone) following an unrecognized nocturnal nadir.
-              </div>
-            </div>
-
-            <!-- 21. Dawn Phenomenon -->
-            <div class="glossary-item" data-term="dawn phenomenon morning rise growth hormone cortisol liver">
-              <div class="glossary-term"><span>Dawn Phenomenon</span><span class="badge-tag badge-sun">Endocrine</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>dawn fuh-NAHM-uh-non</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Dawn phenomenon" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                A natural blood sugar rise between 4 AM and 8 AM caused by your body releasing wake-up hormones (cortisol and growth hormone). Unlike Somogyi, there is NO low blood sugar beforehand.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Physiologic early-morning rise in blood glucose and basal insulin resistance driven by circadian surges of growth hormone and cortisol stimulating hepatic gluconeogenesis.
-              </div>
-            </div>
-
-            <!-- 22. Time in Range (TIR) -->
-            <div class="glossary-item" data-term="tir time in range agp 70 180 cgm metric">
-              <div class="glossary-term"><span>Time in Range (TIR)</span><span class="badge-tag badge-mint">Clinical Metric</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>time in raynj</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Time in range" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                The percentage of time spent between 70–180 mg/dL. The clinical goal is &gt;70%, with &lt;4% below 70 mg/dL. In people with type 1 diabetes, higher TIR is strongly associated with lower risk of microvascular complications, and clinicians now use it alongside HbA1c instead of relying on the average alone.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Continuous glucose monitoring consensus metric representing the proportion of readings within 70–180 mg/dL (3.9–10.0 mmol/L), directly validated against vascular complication risk.
-              </div>
-            </div>
-
-            <!-- 23. Insulin Stacking & IOB -->
-            <div class="glossary-item" data-term="insulin stacking bolus iob active insulin rapid crash">
-              <div class="glossary-term"><span>Insulin Stacking &amp; IOB</span><span class="badge-tag badge-danger">Dosing Error</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>IN-suh-lin STAK-ing</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Insulin stacking" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Taking another dose of insulin before your previous dose has finished peaking. Rapid insulin takes 60–90 minutes to peak and works for 4–5 hours (Insulin on Board). Stacking causes double-impact crashes.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Administering consecutive correction boluses before the pharmacodynamic action of prior doses has cleared, causing overlapping insulin concentration peaks and severe hypoglycemia.
-              </div>
-            </div>
-
-            <!-- 24. Compression Low -->
-            <div class="glossary-item" data-term="compression low sensor sleep pressure false alarm cgm">
-              <div class="glossary-term"><span>Compression Low</span><span class="badge-tag badge-sun">CGM Physics</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>kum-PRESH-un low</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Compression low" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                A false low reading on your CGM caused by sleeping or putting pressure on your sensor. Physical body weight squeezes fluid away from the wire, tricking it into showing 45 mg/dL when your actual blood sugar is 110.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Mechanical pressure artifact that temporarily occludes capillary perfusion and displaces interstitial fluid around a subcutaneous glucose sensor electrode during sleep.
-              </div>
-            </div>
-
-            <!-- 25. HbA1c -->
-            <div class="glossary-item" data-term="hba1c glycated hemoglobin average a1c 3 months">
-              <div class="glossary-term"><span>HbA1c</span><span class="badge-tag badge-sky">Clinical Metric</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>ay-wun-see</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Hemoglobin A1c" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Glycated hemoglobin — the percentage of red blood cells with sugar permanently stuck to them, showing your average blood sugar over roughly 3 months. The general adult goal is below 7.0%, but it hides dangerous highs and lows: a 7.0% could be a steady 154 mg/dL or wild daily swings between 40 and 300.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Fraction of hemoglobin bound to glucose through non-enzymatic glycation, reflecting mean circulating plasma glucose concentration over the approximate 120-day erythrocyte lifespan.
-              </div>
-            </div>
-
-            <!-- 26. Honeymoon Period -->
-            <div class="glossary-item" data-term="honeymoon period remission partial beta cell surviving">
-              <div class="glossary-term"><span>Honeymoon Period</span><span class="badge-tag badge-mint">Endocrine Phase</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>HUN-ee-moon PEER-ee-ud</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Honeymoon period" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                A temporary partial remission shortly after diagnosis. Surviving beta cells, freed from high sugar toxicity once insulin therapy begins, temporarily recover and make insulin again. Insulin needs plummet, but this always ends as the immune attack finishes its work.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Transient post-diagnosis phase of enhanced endogenous insulin secretion and markedly diminished exogenous insulin requirements following relief of beta-cell glucotoxicity.
-              </div>
-            </div>
-
-            <!-- 27. Basal Insulin -->
-            <div class="glossary-item" data-term="basal insulin background long acting glargine degludec pump">
-              <div class="glossary-term"><span>Basal Insulin</span><span class="badge-tag badge-sky">Dosing</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>BAY-sul IN-suh-lin</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Basal insulin" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Background insulin that keeps your blood sugar steady between meals and overnight (long-acting daily injections or a pump's steady trickle). Makes up roughly 40–50% of your daily insulin — this is the dose you never skip, even when sick or not eating.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Exogenous long-acting or continuously micro-infused insulin suppressing basal hepatic glucose output and baseline adipocyte lipolysis during the postabsorptive and fasting states.
-              </div>
-            </div>
-
-            <!-- 28. Bolus Insulin -->
-            <div class="glossary-item" data-term="bolus insulin mealtime correction rapid acting lispro aspart fiasp">
-              <div class="glossary-term"><span>Bolus Insulin</span><span class="badge-tag badge-coral">Dosing</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>BOH-lus IN-suh-lin</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Bolus insulin" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Rapid-acting insulin taken to cover meals or to correct high blood sugar. Covers carbs that are about to enter your blood — which is why taking it 10–15 minutes before eating (pre-bolusing) helps prevent spikes.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Prandial or corrective episodic dose of rapid-acting or ultra-rapid-acting insulin analog engineered to match postprandial carbohydrate absorption and correct acute excursions.
-              </div>
-            </div>
-
-            <!-- 29. 15-15 Rule -->
-            <div class="glossary-item" data-term="15-15 rule hypoglycemia treatment low rescue fast carbs">
-              <div class="glossary-term"><span>15-15 Rule</span><span class="badge-tag badge-danger">Rescue Protocol</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>fif-teen fif-teen rool</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="15-15 rule" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                The gold-standard protocol for treating low blood sugar: Take 15 grams of fast carbs (glucose tabs, juice), wait 15 minutes, and recheck. Repeat if still below 70 mg/dL. Simple enough to follow even when your brain is starving and foggy.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Standardized clinical protocol for acute hypoglycemia (<70 mg/dL): oral administration of 15–20 g of rapid-acting glucose followed by a 15-minute latency check before repeating.
-              </div>
-            </div>
-
-            <!-- 30. Sick-Day Rules -->
-            <div class="glossary-item" data-term="sick day rules illness ketones dka prevention hydration infection">
-              <div class="glossary-term"><span>Sick-Day Rules</span><span class="badge-tag badge-danger">Illness Protocol</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>sik day roolz</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Sick-day rules" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Emergency rules when you get an infection, flu, or stomach bug: NEVER stop your background basal insulin, check blood ketones if glucose is over 240 mg/dL or if nauseated, drink lots of fluids, and call your endocrinologist. Prevents illness stress hormones from sparking DKA.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Self-management protocol during acute intercurrent illness to prevent diabetic ketoacidosis, emphasizing continued basal insulin delivery, frequent blood ketone checks, and aggressive oral hydration.
-              </div>
-            </div>
-
-            <!-- 31. Euglycemic DKA -->
-            <div class="glossary-item" data-term="euglycemic dka ketoacidosis normal glucose sglt2 low carb fasting">
-              <div class="glossary-term"><span>Euglycemic DKA</span><span class="badge-tag badge-danger">Atypical Crisis</span></div>
-              <div class="glossary-phonetic">
-                <span>Pronunciation: <em>yoo-gly-SEE-mik DKA</em></span>
-                <button type="button" class="audio-btn-sm" data-speak="Euglycemic DKA" aria-label="Listen to pronunciation">🔊 Listen</button>
-              </div>
-              <div class="glossary-plain-block">
-                <strong>Plain English (What It Means):</strong>
-                Diabetic ketoacidosis where blood sugar is surprisingly under 250 mg/dL — sometimes completely normal! Triggered by SGLT2 inhibitors, fasting, strict low-carb diets, pregnancy, or alcohol. Extremely dangerous because a "normal" blood sugar falsely reassures patients and ER staff; you must test ketones for symptoms, not just for high numbers.
-              </div>
-              <div class="glossary-clinical-block">
-                <strong>Doctor Talk (Clinical Definition):</strong>
-                Ketoacidosis presenting without marked hyperglycemia (<250 mg/dL), frequently precipitated by SGLT2 inhibitors promoting glucosuria, severe glycogen depletion, or reduced carbohydrate intake.
-              </div>
-            </div>
-          </div>
-        </article>
-
+          <p class="help-note">These are signs of DKA. It can get serious fast, so don't wait it out.</p>
+        </div>
       </div>
-    </div>
+      <p class="small-print">Your care team's own plan always wins. Keep their after-hours number somewhere easy to find.</p>
+    </section>
+
+    <!-- Basics -->
+    <section id="basics" class="g-section">
+      <h2>🧭 The basics, in plain English</h2>
+
+      <div class="basic-card">
+        <div class="basic-emoji">🔑</div>
+        <div>
+          <h3>What Type 1 actually is</h3>
+          <p>The immune system attacked the cells in the pancreas that make insulin. Insulin is the key that lets sugar out of the blood and into the body's cells. No key = sugar piles up in the blood while the body runs short on fuel. So insulin has to come from shots or a pump now. <strong>Nobody caused this.</strong> Not food, not anything you did.</p>
+          <a class="deeper" href="resources-science.html#cellular">Go deeper: how insulin opens cells →</a>
+        </div>
+      </div>
+
+      <div class="basic-card">
+        <div class="basic-emoji">⬇️</div>
+        <div>
+          <h3>Lows (under 70)</h3>
+          <p>Too much insulin, not enough food, or lots of activity. You might see shaky, sweaty, pale, cranky, hungry, or confused. <strong>Fix it with the 15-15 rule:</strong> 15 grams of fast sugar (glucose tabs, juice, regular soda), wait 15 minutes, check again, and repeat if still under 70. Little kids may need less, so ask your team what amount to use.</p>
+          <a class="deeper" href="resources-science.html#hypo">Go deeper: lows &amp; the brain →</a>
+        </div>
+      </div>
+
+      <div class="basic-card">
+        <div class="basic-emoji">⬆️</div>
+        <div>
+          <h3>Highs &amp; ketones</h3>
+          <p>One high number isn't an emergency. Being high for hours, or being sick, is when you check <strong>ketones</strong>. Ketones mean the body is burning fat because it can't use sugar. Lots of them turns into DKA. <strong>Never skip background (basal) insulin</strong>, even if they're sick and not eating.</p>
+          <a class="deeper" href="resources-science.html#dka">Go deeper: ketones &amp; DKA →</a>
+        </div>
+      </div>
+
+      <div class="basic-card">
+        <div class="basic-emoji">📱</div>
+        <div>
+          <h3>Why the sensor and the finger stick don't match</h3>
+          <p>A CGM reads the fluid under the skin, not blood, so it runs a few minutes behind. That gap is biggest when sugar is moving fast. If the number doesn't match how they feel, do a finger stick. Sleeping on the sensor can also fake a low.</p>
+          <a class="deeper" href="resources-science.html#cgm">Go deeper: sensor lag &amp; stacking insulin →</a>
+        </div>
+      </div>
+
+      <div class="basic-card">
+        <div class="basic-emoji">🌱</div>
+        <div>
+          <h3>The long game</h3>
+          <p>You'll hear about eyes, kidneys, and nerves. That damage comes from <em>years</em> of high numbers, not one bad day or even a bad week. Keeping numbers in range most of the time lowers that risk a lot. Aim for progress. Nobody's perfect at this.</p>
+          <a class="deeper" href="resources-science.html#complications">Go deeper: long-term complications →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Words -->
+    <section id="words" class="g-section">
+      <h2>🗣️ Words you'll hear</h2>
+      <p class="section-sub">How to say it, what it means. Tap 🔊 to hear it out loud.</p>
+
+      <div class="word-grid">
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Hypoglycemia</span>
+            <button type="button" class="speak-btn" data-speak="Hypoglycemia" aria-label="Hear how to say Hypoglycemia">🔊</button>
+          </div>
+          <span class="say">hy-poh-gly-SEE-mee-uh</span>
+          <p>Low blood sugar. Under 70 mg/dL.</p>
+          <a class="word-more" href="resources-science.html#hypo">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Hyperglycemia</span>
+            <button type="button" class="speak-btn" data-speak="Hyperglycemia" aria-label="Hear how to say Hyperglycemia">🔊</button>
+          </div>
+          <span class="say">hy-per-gly-SEE-mee-uh</span>
+          <p>High blood sugar.</p>
+          <a class="word-more" href="resources-science.html#dka">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Ketones</span>
+            <button type="button" class="speak-btn" data-speak="Ketones" aria-label="Hear how to say Ketones">🔊</button>
+          </div>
+          <span class="say">KEE-tohnz</span>
+          <p>What the body makes when it burns fat because it can't use sugar. Too many is dangerous.</p>
+          <a class="word-more" href="resources-science.html#g-beta-hydroxybutyrate">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">DKA (Ketoacidosis)</span>
+            <button type="button" class="speak-btn" data-speak="DKA" aria-label="Hear how to say DKA">🔊</button>
+          </div>
+          <span class="say">KEE-toh-ass-ih-DOH-sis</span>
+          <p>Too many ketones make the blood acidic. It's an emergency.</p>
+          <a class="word-more" href="resources-science.html#g-dka">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Glucagon</span>
+            <button type="button" class="speak-btn" data-speak="Glucagon" aria-label="Hear how to say Glucagon">🔊</button>
+          </div>
+          <span class="say">GLOO-kuh-gon</span>
+          <p>The emergency rescue med for a severe low. Comes as a nose spray or a shot.</p>
+          <a class="word-more" href="resources-science.html#g-glucagon-and-alpha-cell-defect">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Basal insulin</span>
+            <button type="button" class="speak-btn" data-speak="Basal insulin" aria-label="Hear how to say Basal insulin">🔊</button>
+          </div>
+          <span class="say">BAY-sul</span>
+          <p>The slow background insulin that works all day and night.</p>
+          <a class="word-more" href="resources-science.html#g-basal-insulin">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Bolus insulin</span>
+            <button type="button" class="speak-btn" data-speak="Bolus insulin" aria-label="Hear how to say Bolus insulin">🔊</button>
+          </div>
+          <span class="say">BOH-lus</span>
+          <p>The fast insulin for meals and bringing down highs.</p>
+          <a class="word-more" href="resources-science.html#g-bolus-insulin">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Insulin on board (IOB)</span>
+            <button type="button" class="speak-btn" data-speak="Insulin on board" aria-label="Hear how to say Insulin on board">🔊</button>
+          </div>
+          <span class="say">IN-suh-lin on bord</span>
+          <p>Insulin from an earlier dose that's still working.</p>
+          <a class="word-more" href="resources-science.html#g-insulin-stacking-and-iob">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">A1c</span>
+            <button type="button" class="speak-btn" data-speak="A1c" aria-label="Hear how to say A1c">🔊</button>
+          </div>
+          <span class="say">ay-wun-SEE</span>
+          <p>A lab number showing the average blood sugar over about 3 months.</p>
+          <a class="word-more" href="resources-science.html#g-hba1c">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Time in range</span>
+            <button type="button" class="speak-btn" data-speak="Time in range" aria-label="Hear how to say Time in range">🔊</button>
+          </div>
+          
+          <p>How much of the day blood sugar stays in the target zone.</p>
+          <a class="word-more" href="resources-science.html#g-time-in-range">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">CGM</span>
+            <button type="button" class="speak-btn" data-speak="CGM" aria-label="Hear how to say CGM">🔊</button>
+          </div>
+          <span class="say">see-jee-EM</span>
+          <p>The sensor on the arm or belly that reads sugar every few minutes.</p>
+          <a class="word-more" href="resources-science.html#cgm">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Compression low</span>
+            <button type="button" class="speak-btn" data-speak="Compression low" aria-label="Hear how to say Compression low">🔊</button>
+          </div>
+          <span class="say">kum-PRESH-un loh</span>
+          <p>A fake low from lying on the sensor.</p>
+          <a class="word-more" href="resources-science.html#g-compression-low">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Honeymoon period</span>
+            <button type="button" class="speak-btn" data-speak="Honeymoon period" aria-label="Hear how to say Honeymoon period">🔊</button>
+          </div>
+          <span class="say">HUN-ee-moon</span>
+          <p>Early on, the pancreas still makes a little insulin, so doses can drop for a while and then go back up.</p>
+          <a class="word-more" href="resources-science.html#g-honeymoon-period">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Dawn phenomenon</span>
+            <button type="button" class="speak-btn" data-speak="Dawn phenomenon" aria-label="Hear how to say Dawn phenomenon">🔊</button>
+          </div>
+          <span class="say">fuh-NOM-uh-non</span>
+          <p>Morning hormones push sugar up before waking.</p>
+          <a class="word-more" href="resources-science.html#g-dawn-phenomenon">More →</a>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Endocrinologist</span>
+            <button type="button" class="speak-btn" data-speak="Endocrinologist" aria-label="Hear how to say Endocrinologist">🔊</button>
+          </div>
+          <span class="say">en-doh-krih-NOL-uh-jist</span>
+          <p>The diabetes doctor. Often called "endo."</p>
+        </div>
+        <div class="word-card">
+          <div class="word-top">
+            <span class="word">Pancreas</span>
+            <button type="button" class="speak-btn" data-speak="Pancreas" aria-label="Hear how to say Pancreas">🔊</button>
+          </div>
+          <span class="say">PAN-kree-us</span>
+          <p>The organ behind the stomach that normally makes insulin.</p>
+          <a class="word-more" href="resources-science.html#cellular">More →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep dive -->
+    <section class="deep-cta">
+      <div>
+        <h2>Ready for the full science?</h2>
+        <p>Cells, hormones, ketone chemistry, sensor physics, and a searchable glossary with 30+ terms. It's all there when you want it.</p>
+      </div>
+      <a class="btn btn-hot" href="resources-science.html">Open the deep dive →</a>
+    </section>
+
   </main>
+
 
   <!-- Global Footer -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-disclaimer">
-        <strong>Medical Disclaimer:</strong> This resource hub is authored strictly for educational, biological, and informational purposes based on peer-reviewed endocrinology literature. It does not constitute formal medical diagnosis, individualized clinical advice, or treatment prescriptions. Always consult your board-certified endocrinologist or diabetes care and education specialist (CDCES) before adjusting basal rates, insulin-to-carb ratios, or treatment regimens.
+        <strong>Medical Disclaimer:</strong> This page is for learning, not medical advice. Always follow your own diabetes care team's plan, and ask them before changing doses or ratios. In an emergency, call 911.
       </div>
       <div class="footer-links">
         <a href="index.html">Home</a>
         <a href="index.html#downloads">Downloads</a>
         <a href="resources.html">Resources</a>
+        <a href="resources-science.html">The Science (Deep Dive)</a>
         <a href="tutorial.html">Clinical Simulator</a>
         <a href="portal.html">Ahead Portal</a>
         <a href="login.html">Sign In</a>
@@ -1996,28 +1275,7 @@ details.deep-dive[open] summary::after { content: "−"; }
     </div>
   </footer>
 
-  <!-- Floating Jargon Decoder Tooltip -->
-  <div id="jargonTooltip" role="tooltip" aria-hidden="true">
-    <div class="tip-header">
-      <div class="tip-title-box">
-        <div class="tip-title" id="tipWord">Word</div>
-        <div class="tip-phonetic-row">
-          <span id="tipPhonetic">phonetic</span>
-          <button type="button" class="tip-audio-btn" id="tipAudioBtn" aria-label="Listen to pronunciation">
-            <span id="tipAudioIcon">🔊</span> <span id="tipAudioText">Listen</span>
-          </button>
-        </div>
-      </div>
-      <button type="button" class="tip-close-btn" id="tipCloseBtn" aria-label="Close decoder card">✕</button>
-    </div>
-    <div class="tip-section">
-      <div class="tip-label">💡 In Plain English (What It Means)</div>
-      <div class="tip-plain" id="tipPlain">Explanation</div>
-      <div class="tip-label" style="color:var(--sun);margin-top:10px">⚡ Why It Matters In Diabetes</div>
-      <div class="tip-t1d" id="tipT1D">Relevance</div>
-    </div>
-  </div>
-
+  
   <script>
   (function() {
     'use strict';
@@ -2032,313 +1290,21 @@ details.deep-dive[open] summary::after { content: "−"; }
       });
     }
 
-    // ── Speech Synthesis Audio Pronunciation Engine ──
-    function speakWord(word, btnEl) {
-      if (!('speechSynthesis' in window)) {
-        alert("Audio speech synthesis is not supported in this browser.");
-        return;
-      }
-      try {
-        window.speechSynthesis.cancel();
-        var utterance = new SpeechSynthesisUtterance(word);
-        utterance.rate = 0.85; // Slightly slower pace for clear medical pronunciation
-        utterance.pitch = 1.0;
-        utterance.lang = 'en-US';
-
-        if (btnEl) {
-          btnEl.classList.add('speaking');
-          var originalText = btnEl.innerHTML;
-          btnEl.innerHTML = '🔊 Speaking…';
-          utterance.onend = function() {
-            btnEl.classList.remove('speaking');
-            btnEl.innerHTML = originalText;
-          };
-          utterance.onerror = function() {
-            btnEl.classList.remove('speaking');
-            btnEl.innerHTML = originalText;
-          };
-        }
-
-        window.speechSynthesis.speak(utterance);
-      } catch (err) {
-        console.warn("Speech synthesis error:", err);
-      }
-    }
-
-    // Attach speak listener to all small glossary audio buttons
-    document.addEventListener('click', function(e) {
-      var btn = e.target.closest('.audio-btn-sm');
-      if (btn) {
-        var word = btn.getAttribute('data-speak') || btn.parentElement.textContent.replace('Pronunciation:', '').trim();
-        speakWord(word, btn);
-      }
-    });
-
-    // ── Floating Jargon Decoder Tooltip System ──
-    var tooltip = document.getElementById('jargonTooltip');
-    var tipWord = document.getElementById('tipWord');
-    var tipPhonetic = document.getElementById('tipPhonetic');
-    var tipAudioBtn = document.getElementById('tipAudioBtn');
-    var tipPlain = document.getElementById('tipPlain');
-    var tipT1D = document.getElementById('tipT1D');
-    var tipCloseBtn = document.getElementById('tipCloseBtn');
-    var activeTarget = null;
-    var hoverTimeout = null;
-    var isTouch = false;
-
-    function showTooltip(el) {
-      if (!el || !tooltip) return;
-      activeTarget = el;
-
-      var word = el.getAttribute('data-word') || el.textContent.trim();
-      var phonetic = el.getAttribute('data-phonetic') || '';
-      var plain = el.getAttribute('data-plain') || '';
-      var t1d = el.getAttribute('data-t1d') || '';
-
-      tipWord.textContent = word;
-      tipPhonetic.textContent = phonetic ? phonetic : '';
-      tipPlain.textContent = plain;
-      tipT1D.textContent = t1d;
-
-      // Position tooltip accurately
-      tooltip.style.display = 'block';
-      tooltip.setAttribute('aria-hidden', 'false');
-
-      var rect = el.getBoundingClientRect();
-      var tipRect = tooltip.getBoundingClientRect();
-      var viewportW = window.innerWidth;
-      var viewportH = window.innerHeight;
-
-      // Horizontal alignment: center on word, clamp to viewport padding
-      var left = rect.left + (rect.width / 2) - (tipRect.width / 2);
-      var maxLeft = viewportW - tipRect.width - 16;
-      if (left < 16) left = 16;
-      if (left > maxLeft) left = maxLeft;
-
-      // Vertical alignment: prefer below target, flip above if near bottom
-      var top = rect.bottom + 10;
-      if (top + tipRect.height > viewportH - 16 && rect.top - tipRect.height - 10 > 16) {
-        top = rect.top - tipRect.height - 10;
-      }
-
-      tooltip.style.left = Math.round(left) + 'px';
-      tooltip.style.top = Math.round(top) + 'px';
-    }
-
-    function hideTooltip() {
-      if (!tooltip) return;
-      tooltip.style.display = 'none';
-      tooltip.setAttribute('aria-hidden', 'true');
-      activeTarget = null;
-    }
-
-    if (tipCloseBtn) {
-      tipCloseBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        hideTooltip();
-      });
-    }
-
-    if (tipAudioBtn) {
-      tipAudioBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var word = tipWord.textContent;
-        speakWord(word, tipAudioBtn);
-      });
-    }
-
-    // Touch vs Mouse handling
-    window.addEventListener('touchstart', function() {
-      isTouch = true;
-    }, { passive: true });
-
-    document.querySelectorAll('.jargon').forEach(function(el) {
-      // Hover for desktop
-      el.addEventListener('mouseenter', function() {
-        if (isTouch) return;
-        clearTimeout(hoverTimeout);
-        showTooltip(el);
-      });
-
-      el.addEventListener('mouseleave', function() {
-        if (isTouch) return;
-        hoverTimeout = setTimeout(function() {
-          if (!tooltip.matches(':hover')) {
-            hideTooltip();
-          }
-        }, 250);
-      });
-
-      // Tap / Click for mobile & desktop
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (activeTarget === el && tooltip.style.display === 'block') {
-          hideTooltip();
-        } else {
-          showTooltip(el);
-        }
-      });
-
-      // Keyboard focus
-      el.addEventListener('focus', function() {
-        showTooltip(el);
-      });
-      el.addEventListener('blur', function() {
-        setTimeout(function() {
-          if (!tooltip.contains(document.activeElement)) {
-            hideTooltip();
-          }
-        }, 150);
-      });
-      el.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          showTooltip(el);
-        } else if (e.key === 'Escape') {
-          hideTooltip();
-        }
-      });
-    });
-
-    if (tooltip) {
-      tooltip.addEventListener('mouseenter', function() {
-        if (!isTouch) clearTimeout(hoverTimeout);
-      });
-      tooltip.addEventListener('mouseleave', function() {
-        if (!isTouch) {
-          hoverTimeout = setTimeout(hideTooltip, 200);
-        }
-      });
-    }
-
-    // Dismiss on click outside or Escape
-    document.addEventListener('click', function(e) {
-      if (tooltip && tooltip.style.display === 'block') {
-        if (!tooltip.contains(e.target) && !e.target.classList.contains('jargon')) {
-          hideTooltip();
-        }
-      }
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        hideTooltip();
-      }
-    });
-
-    // Interactive Mechanism Stage Script
-    var stageTabs = document.querySelectorAll('.stage-tab');
-    var stageSteps = document.getElementById('stageDiagramSteps');
-    var stageTitle = document.getElementById('stageDetailTitle');
-    var stageDesc = document.getElementById('stageDetailDesc');
-    var stageBadge = document.getElementById('stageStatusBadge');
-
-    var STAGE_DATA = {
-      healthy: {
-        badge: 'Healthy Physiology',
-        badgeClass: 'badge-mint',
-        title: 'Normal Cellular Energy Balance',
-        desc: 'Insulin acts as the chemical key. Glucose enters muscle for glycogen storage and fat cells for energy, keeping bloodstream levels tightly buffered between 70–140 mg/dL.',
-        steps: [
-          { num: '1', color: 'var(--mint)', text: 'Carbohydrates break down into glucose; blood level rises to 100–120 mg/dL.' },
-          { num: '2', color: 'var(--mint)', text: 'Pancreatic beta-cells sense glucose via GLUT2 &amp; exocytose insulin.' },
-          { num: '3', color: 'var(--mint)', text: 'Insulin docks into tyrosine kinase receptors on muscle &amp; fat tissues.' },
-          { num: '4', color: 'var(--mint)', text: 'IRS-1/PI3K/Akt cascade triggers GLUT4 vesicles to fuse with membrane. Glucose enters.' }
-        ]
-      },
-      t1d: {
-        badge: 'Type 1 Diabetes (Untreated)',
-        badgeClass: 'badge-coral',
-        title: 'Cellular Starvation in a Sea of Glucose',
-        desc: 'Autoimmune T-cells execute pancreatic beta-cells. Without insulin, GLUT4 remains locked in the cytoplasm. Blood glucose surges past 300 mg/dL, yet muscle and fat cells are starving.',
-        steps: [
-          { num: '1', color: 'var(--coral)', text: 'Autoimmune insulitis destroys &gt;85% of insulin-producing beta cells.' },
-          { num: '2', color: 'var(--coral)', text: 'Endogenous insulin production drops to zero. No keys available.' },
-          { num: '3', color: 'var(--coral)', text: 'GLUT4 transporter gates stay locked inside cell cytoplasm.' },
-          { num: '4', color: 'var(--coral)', text: 'Glucose accumulates in blood (350+ mg/dL) while cells starve and signal for rescue.' }
-        ]
-      },
-      hypo: {
-        badge: 'Severe Hypoglycemia (<54 mg/dL)',
-        badgeClass: 'badge-danger',
-        title: 'Cerebral Energy Depletion & Neuroglycopenia',
-        desc: 'The brain relies strictly on continuous glucose delivery. When levels crash, cortical neurons run out of ATP, triggering adrenaline panics followed by confusion, seizures, or coma.',
-        steps: [
-          { num: '1', color: '#ff5252', text: 'Systemic blood glucose drops below 70 mg/dL; brain fuel influx drops.' },
-          { num: '2', color: '#ff5252', text: 'Hypothalamic sensors fire sympathoadrenal storm: epinephrine surge (shaking, sweating).' },
-          { num: '3', color: '#ff5252', text: 'In T1D, alpha-cell glucagon response is missing; glucose drops further (&lt;54 mg/dL).' },
-          { num: '4', color: '#ff5252', text: 'Cortical ATP fails: confusion, slurred speech, double vision, and seizure risk.' }
-        ]
-      },
-      dka: {
-        badge: 'Diabetic Ketoacidosis (DKA)',
-        badgeClass: 'badge-sun',
-        title: 'The Unchecked Lipolysis & Ketone Acid Surge',
-        desc: 'Without insulin to inhibit Hormone-Sensitive Lipase, adipose tissue dumps vast quantities of fatty acids into the liver. Excess Acetyl-CoA is converted into strong organic ketone acids, collapsing blood pH.',
-        steps: [
-          { num: '1', color: 'var(--sun)', text: 'Zero insulin unleashes Hormone-Sensitive Lipase (HSL) in fat tissue.' },
-          { num: '2', color: 'var(--sun)', text: 'Massive wave of Free Fatty Acids floods liver mitochondria via CPT-1.' },
-          { num: '3', color: 'var(--sun)', text: 'Beta-oxidation creates tidal wave of Acetyl-CoA; liver synthesizes ketone bodies.' },
-          { num: '4', color: 'var(--sun)', text: 'β-hydroxybutyrate acid exhausts bicarbonate buffer; blood pH collapses below 7.1.' }
-        ]
-      }
-    };
-
-    stageTabs.forEach(function(btn) {
+    // Say-it-out-loud buttons; hidden where the browser can't speak
+    var canSpeak = 'speechSynthesis' in window;
+    document.querySelectorAll('.speak-btn').forEach(function(btn) {
+      if (!canSpeak) { btn.hidden = true; return; }
       btn.addEventListener('click', function() {
-        stageTabs.forEach(function(b) { b.classList.remove('on'); });
-        btn.classList.add('on');
-        var key = btn.getAttribute('data-state');
-        var data = STAGE_DATA[key];
-        if (!data) return;
-
-        stageBadge.textContent = data.badge;
-        stageBadge.className = 'badge-tag ' + data.badgeClass;
-        stageTitle.textContent = data.title;
-        stageTitle.style.color = data.steps[0].color;
-        stageDesc.innerHTML = data.desc;
-
-        var html = '';
-        data.steps.forEach(function(s) {
-          html += '<div class="d-step"><span class="d-num" style="background:' + s.color + ';color:#000">' + s.num + '</span><span>' + s.text + '</span></div>';
-        });
-        stageSteps.innerHTML = html;
-      });
-    });
-
-    // ── Enhanced Glossary Real-Time Search Filter ──
-    var searchInput = document.getElementById('glossarySearch');
-    var glossaryItems = document.querySelectorAll('.glossary-item');
-
-    if (searchInput) {
-      searchInput.addEventListener('input', function() {
-        var q = searchInput.value.toLowerCase().trim();
-        glossaryItems.forEach(function(item) {
-          var text = (item.getAttribute('data-term') || '') + ' ' + item.textContent.toLowerCase();
-          if (!q || text.indexOf(q) !== -1) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    }
-
-    // Highlight active chapter on scroll
-    var chapters = document.querySelectorAll('article.chapter');
-    var topicBtns = document.querySelectorAll('.topic-btn');
-
-    window.addEventListener('scroll', function() {
-      var scrollPos = window.scrollY + 140;
-      chapters.forEach(function(ch) {
-        var top = ch.offsetTop;
-        var height = ch.offsetHeight;
-        var id = ch.getAttribute('id');
-        if (scrollPos >= top && scrollPos < top + height) {
-          topicBtns.forEach(function(b) {
-            b.classList.toggle('on', b.getAttribute('href') === '#' + id);
-          });
+        try {
+          window.speechSynthesis.cancel();
+          var u = new SpeechSynthesisUtterance(btn.getAttribute('data-speak'));
+          u.rate = 0.85;
+          u.lang = 'en-US';
+          btn.classList.add('speaking');
+          u.onend = u.onerror = function() { btn.classList.remove('speaking'); };
+          window.speechSynthesis.speak(u);
+        } catch (err) {
+          btn.classList.remove('speaking');
         }
       });
     });

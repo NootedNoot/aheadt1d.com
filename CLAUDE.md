@@ -49,3 +49,11 @@ Known limits: direct `/downloads/*.apk` URLs still work for anyone who has them 
 - **Permissions:** run `aapt2 dump permissions` on the APKs in `downloads/`. Ahead has NO SEND_SMS and NO full-screen-intent (the SMS escalation and lock-screen takeover were removed 2026-08-20). AheadBLE declares INTERNET only because Google's ML Kit barcode scanner (datatransport) pulls it in; AheadBLE itself has no network code.
 
 When in doubt, dump the APK or read the current local source; don't infer from GitHub `main` or from old docs.
+
+## Resources pages (2026-09-27)
+
+Two pages, on purpose:
+- `resources.html` is the **simple "start here" page**, written for a stressed newly-diagnosed kid or parent. It has when to get help, five short basics cards, and "words you'll hear" cards that show pronunciation and a one-line meaning with a 🔊 button. Keep it short. Every card links into the deep page with a "Go deeper" or "More" link, and that's where detail belongs.
+- `resources-science.html` is the **full deep dive** (the old long resources page). Glossary entries have `id="g-<slug>"` anchors that the simple page deep-links to. If you rename a glossary term, update the links in `resources.html`.
+
+Both are hand-edited here (not generated from the website-drafts source).

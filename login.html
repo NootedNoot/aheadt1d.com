@@ -1019,7 +1019,11 @@ html.modal-open{overflow:hidden}
     }
   } catch (_) {}
 
-  var _paramApi = new URLSearchParams(location.search).get('api');
+  // ?api= override is for local dev only. On the public site it let a crafted
+  // link (login.html?api=https://attacker) send someone's email + password to
+  // another server, and remembered that server afterwards.
+  var _isDevHost = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  var _paramApi = _isDevHost ? new URLSearchParams(location.search).get('api') : null;
   if (_paramApi) {
     try { localStorage.setItem('ahead_api_url', _paramApi.trim().replace(/\/+$/, '')); } catch (_) {}
   }

@@ -1025,7 +1025,10 @@ html.modal-open{overflow:hidden}
   } catch (_) {}
 
   var params = new URLSearchParams(location.search);
-  var _paramApi = params.get('api');
+  // ?api= override is for local dev only; on the public site a crafted link could
+  // point this page (and the stored API URL) at someone else's server.
+  var _isDevHost = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  var _paramApi = _isDevHost ? params.get('api') : null;
   if (_paramApi) {
     try { localStorage.setItem('ahead_api_url', _paramApi.trim().replace(/\/+$/, '')); } catch (_) {}
   }

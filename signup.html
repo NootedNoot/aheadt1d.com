@@ -1006,7 +1006,7 @@ html.modal-open{overflow:hidden}
 
 (function () {
   'use strict';
-  var KNOWN_TUNNEL = window.AHEAD_API_BASE || "https://martial-optimum-projects-conflict.trycloudflare.com";
+  var KNOWN_TUNNEL = window.AHEAD_API_BASE || "https://api.aheadt1d.com";
   var LOCAL_DIRECT = "http://localhost:3000";
 
   function getDefaultApi() {
@@ -1021,10 +1021,10 @@ html.modal-open{overflow:hidden}
 
   var DEFAULT_API = getDefaultApi();
 
-  // Purge any legacy Railway/cloud cached endpoints
+  // Purge any legacy Railway/cloud/quick tunnel cached endpoints
   try {
     var stored = localStorage.getItem('ahead_api_url');
-    if (stored && (stored.indexOf('railway.app') !== -1 || stored.indexOf('supabase') !== -1)) {
+    if (stored && (stored.indexOf('railway.app') !== -1 || stored.indexOf('supabase') !== -1 || stored.indexOf('trycloudflare.com') !== -1)) {
       localStorage.removeItem('ahead_api_url');
     }
   } catch (_) {}

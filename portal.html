@@ -947,7 +947,7 @@ html.modal-open{overflow:hidden}
           <div style="display:grid;gap:10px;margin-bottom:18px;">
             <button type="button" id="btnSelectLocalTunnel" class="server-preset-card" style="text-align:left;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:var(--ink);cursor:pointer;">
               <div style="font-weight:700;display:flex;align-items:center;gap:6px;color:var(--mint);">🏠 Self-Hosted Server (Tunnel)</div>
-              <div id="tunnelPresetSub" style="font-size:.78rem;color:var(--mute);margin-top:2px;word-break:break-all;">https://martial-optimum-projects-conflict.trycloudflare.com</div>
+              <div id="tunnelPresetSub" style="font-size:.78rem;color:var(--mute);margin-top:2px;word-break:break-all;">https://api.aheadt1d.com</div>
               <div style="font-size:.74rem;color:var(--dim);margin-top:2px;">Works anywhere (Home Wi-Fi, cellular, remote). Encrypted HTTPS.</div>
             </button>
 
@@ -1529,7 +1529,7 @@ html.modal-open{overflow:hidden}
 
 (function () {
   'use strict';
-  var KNOWN_TUNNEL = window.AHEAD_API_BASE || "https://martial-optimum-projects-conflict.trycloudflare.com";
+  var KNOWN_TUNNEL = window.AHEAD_API_BASE || "https://api.aheadt1d.com";
   var LOCAL_DIRECT = "http://localhost:3000";
 
   function getDefaultApi() {
@@ -1545,10 +1545,10 @@ html.modal-open{overflow:hidden}
   var DEFAULT_API = getDefaultApi();
   try { var _tps = document.getElementById('tunnelPresetSub'); if (_tps) _tps.textContent = KNOWN_TUNNEL; } catch (_) {}
 
-  // Purge any legacy Railway/cloud cached endpoints
+  // Purge any legacy Railway/cloud/quick tunnel cached endpoints
   try {
     var stored = localStorage.getItem('ahead_api_url');
-    if (stored && (stored.indexOf('railway.app') !== -1 || stored.indexOf('supabase') !== -1)) {
+    if (stored && (stored.indexOf('railway.app') !== -1 || stored.indexOf('supabase') !== -1 || stored.indexOf('trycloudflare.com') !== -1)) {
       localStorage.removeItem('ahead_api_url');
     }
   } catch (_) {}

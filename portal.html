@@ -872,6 +872,10 @@ html.modal-open{overflow:hidden}
 @media (max-width: 760px) { .ev-form { grid-template-columns: 1fr 1fr; } .ev-form #evNote { grid-column: 1 / -1; } }
 .ev-del { background: none; border: 0; color: var(--dim); cursor: pointer; font-size: .9rem; padding: 4px 8px; border-radius: 8px; }
 .ev-del:hover { color: #ff5252; background: rgba(255,82,82,.1); }
+.ev-chip { display: inline-block; font-weight: 700; font-size: .8rem; padding: 2px 9px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid transparent; }
+.ev-high { border-color: #b88c1a; background: rgba(184,140,26,.18); }
+.ev-low { border-color: #dc7050; background: rgba(220,112,80,.18); }
+.ev-parsed { font-family: var(--f-mono); color: var(--mint); background: rgba(46,229,157,.12); margin-right: 6px; font-size: .74rem; }
 .ev-src { font: 700 .66rem var(--f-mono); color: var(--dim); text-transform: uppercase; letter-spacing: .06em; margin-left: 6px; }
 </style>
   <script src="api-config.js"></script>
@@ -2168,6 +2172,19 @@ html.modal-open{overflow:hidden}
     illness: ['🤒', 'Illness'], stress: ['😰', 'Stress'], other: ['📝', 'Note']
   };
   function evTagLabel(tag) { var t = EVENT_TAGS[tag] || ['📝', tag]; return t[0] + ' ' + t[1]; }
+  // The phone saves corrections as "High correction (insulin)" / "Low
+  // treatment (carbs)" + " — <typed note>". Split that back into a direction
+  // chip and the words the person actually typed (same rule as report.html).
+  var CORR_RE = /^\s*(High correction \(insulin\)|Low treatment \(carbs\))\s*(?:[—-]\s*([\s\S]*))?$/;
+  function evSlice(e) {
+    var note = (e.note || '').trim(), typed = note, label = evTagLabel(e.tag), dir = null;
+    if (e.tag === 'correction') {
+      var m = note.match(CORR_RE);
+      if (m) { dir = m[1].indexOf('High') === 0 ? 'high' : 'low'; label = dir === 'high' ? '▲ High correction' : '▼ Low treatment'; typed = (m[2] || '').trim(); }
+    }
+    var dose = typed.match(/(\d+(?:\.\d+)?)\s*(?:u|units?)\b/i), carbs = typed.match(/(\d+(?:\.\d+)?)\s*(?:g|grams?|carbs?)\b/i);
+    return { label: label, dir: dir, typed: typed, dose: dose ? dose[1] + 'u' : null, carbs: carbs ? carbs[1] + 'g' : null };
+  }
   function toLocalInputValue(ms) {
     var d = new Date(ms - new Date(ms).getTimezoneOffset() * 60000);
     return d.toISOString().slice(0, 16);
@@ -2186,7 +2203,7 @@ html.modal-open{overflow:hidden}
     authFetch('/api/events?from=' + from + '&to=' + to)
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) {
-        var events = (d.events || []).slice().reverse();
+        var events = (d.events || []).slice().sort(function (a, b) { return b.time - a.time; });
         $('eventsCountBadge').textContent = events.length + ' in last 14 days';
         var body = $('eventsTableBody');
         if (!events.length) {
@@ -2196,10 +2213,12 @@ html.modal-open{overflow:hidden}
         body.innerHTML = events.map(function (e) {
           var when = new Date(e.time).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
           var g = e.glucoseAtTime != null ? Math.round(e.glucoseAtTime) + ' <span style="color:var(--dim)">mg/dL</span>' : '<span style="color:var(--dim)">—</span>';
+          var sl = evSlice(e);
+          var parsed = (sl.dose ? '<span class="ev-chip ev-parsed" title="From your note">' + escapeHtml(sl.dose) + '</span>' : '') + (sl.carbs ? '<span class="ev-chip ev-parsed" title="From your note">' + escapeHtml(sl.carbs) + '</span>' : '');
           return '<tr><td style="white-space:nowrap">' + escapeHtml(when) + '</td>' +
-            '<td style="white-space:nowrap">' + escapeHtml(evTagLabel(e.tag)) + (e.source === 'web' ? '<span class="ev-src">web</span>' : '') + '</td>' +
+            '<td style="white-space:nowrap"><span class="ev-chip' + (sl.dir ? ' ev-' + sl.dir : '') + '">' + escapeHtml(sl.label) + '</span>' + (e.source === 'web' ? '<span class="ev-src">web</span>' : '') + '</td>' +
             '<td style="white-space:nowrap">' + g + '</td>' +
-            '<td>' + escapeHtml(e.note || '') + '</td>' +
+            '<td>' + parsed + escapeHtml(sl.typed) + '</td>' +
             '<td><button type="button" class="ev-del" data-id="' + escapeHtml(e.clientId) + '" title="Delete (also removes it from your phone)" aria-label="Delete event">✕</button></td></tr>';
         }).join('');
       })

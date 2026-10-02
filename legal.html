@@ -833,7 +833,7 @@ html.modal-open{overflow:hidden}
     <div class="wrap prose-wrap">
       <p class="eyebrow" style="color:var(--sun)">Legal, in plain English</p>
       <h1>Privacy Policy &amp; Terms of Use</h1>
-      <p class="updated">Last updated September 27, 2026</p>
+      <p class="updated">Last updated October 2, 2026</p>
 
       <div class="notice" role="note">
         <svg class="icon" aria-hidden="true" style="width:1.2em;height:1.2em"><use href="#i-drop"/></svg>
@@ -863,6 +863,7 @@ html.modal-open{overflow:hidden}
         <ul>
           <li><strong>Email address &amp; account details:</strong> your email address, an optional display name, and your password (stored only as a secure salted hash via bcrypt, never in readable plain text), plus timestamps of account creation and last sign-in.</li>
           <li><strong>Blood glucose (BG) readings:</strong> glucose values and timestamped reading dates uploaded by Ahead to enable cloud backups, trend detection, and follower synchronization.</li>
+          <li><strong>Logged events &amp; notes:</strong> events you log in Ahead or the web portal (type such as meal, insulin, correction, exercise or site change; the time; your note; and the glucose reading at that time), so they appear in your portal and doctor report and stay in sync across your devices. When you delete one, its note is erased from the server and only a blank deletion marker is kept so your other devices remove it too.</li>
           <li><strong>Sharing authorization:</strong> who you have explicitly chosen to share with (or who has shared with you), enforced server-side so followers can only see the people who invited them.</li>
           <li><strong>Authorized device &amp; viewer keys:</strong> unique cryptographically generated keys for each phone or caregiver authorized on your account, so access can be revoked individually at any time.</li>
           <li><strong>Security &amp; rate-limiting telemetry:</strong> sign-in attempts (email provided, IP address, timestamp, success/failure status) to protect your account against credential guessing and brute-force attacks.</li>
@@ -872,6 +873,7 @@ html.modal-open{overflow:hidden}
 
         <h3>Who we share with</h3>
         <p>We never sell, rent, lease, or disclose your personal or health data to data aggregators, ad networks, pharmaceutical companies, or insurance providers.</p>
+        <p>Your logged events and notes are visible only to you. Sharing your glucose with a caregiver does not share your notes, and reports they open don't include them.</p>
         <p>Your glucose data is only shared with people you explicitly choose via in-app sharing (<strong>Menu → Account → Manage Sharing</strong>) or viewer keys. You can revoke access at any time.</p>
 
         <h3>Where your data lives</h3>
@@ -895,7 +897,7 @@ html.modal-open{overflow:hidden}
         </ul>
 
         <h3>How long we keep your data</h3>
-        <p>Readings are stored while your account remains active so you and your followers have continuous history. When you delete your account, your user profile, all stored glucose readings, device keys, and sharing links are deleted immediately and permanently. Security log entries regarding sign-in attempts are retained temporarily for diagnostic protection and are unlinked from your account.</p>
+        <p>Readings are stored while your account remains active so you and your followers have continuous history. When you delete your account, your user profile, all stored glucose readings, logged events and notes, device keys, and sharing links are deleted immediately and permanently. Security log entries regarding sign-in attempts are retained temporarily for diagnostic protection and are unlinked from your account.</p>
 
         <h3>Your choices &amp; data deletion</h3>
         <ul>

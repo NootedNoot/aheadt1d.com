@@ -14,6 +14,8 @@ aheadt1d.com — served as static files (it sits behind Cloudflare; pushing to `
 - `resources.html` / `resources-science.html`: simple "start here" page + full deep dive (see "Resources pages" below). `learn.html` redirects to `resources.html`.
 - `tutorial.html`: interactive alert simulator.
 - `login.html`, `signup.html`, `portal.html`, `reset-password.html`, `verify-email.html`: the account pages. They talk to `ahead-backend`, whose address comes from **`api-config.js`** (one line; change it there, not in each page). `portal.html` shows the signed-in user's own live glucose; that is the only place the site fetches glucose, and only for the logged-in account.
+- `report.html`: the doctor-facing CGM report (AGP percentiles, time in ranges vs consensus goals, low episodes, time-of-day patterns, logged events with +1h/+2h response, daily profiles). Built in the browser from `GET /api/readings/range` + `GET /api/events`; prints to PDF via the browser. Light theme on purpose (it's a printed document); range colors are a CVD-validated set and every range is labeled in text. Notes are owner-only (shared reports omit them).
+- Portal "Your Event Log" card: lists/adds/deletes events via `/api/events`; they two-way sync with the phone (see `ahead-backend/routes/events.js`).
 - `legal.html`: Privacy Policy, Terms of Use, software licenses. NOT lawyer-reviewed (the page says so). `privacy.html` is just a redirect to `legal.html#privacy`; don't grow it back into a second copy.
 - `download.html`: redirect to `index.html#downloads`.
 - `downloads/`: the three debug APKs. `media/`: real screenshots (see rules).

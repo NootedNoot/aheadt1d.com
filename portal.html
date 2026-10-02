@@ -867,6 +867,12 @@ html.modal-open{overflow:hidden}
   .portal-tab-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--mute);font-weight:600;font-size:.92rem;cursor:pointer;transition:all .18s ease}
   .portal-tab-btn:hover{background:var(--card2);color:var(--ink);border-color:rgba(255,255,255,.25)}
   .portal-tab-btn.active{border-color:var(--mint);background:rgba(46,229,157,.15);color:var(--mint);font-weight:700}
+.ev-form { display: grid; grid-template-columns: 170px 200px 1fr auto; gap: 8px; }
+.ev-form select, .ev-form input { background: rgba(0,0,0,.3); border: 1px solid var(--line); border-radius: 10px; color: var(--ink); padding: 8px 10px; font: inherit; font-size: .88rem; min-width: 0; }
+@media (max-width: 760px) { .ev-form { grid-template-columns: 1fr 1fr; } .ev-form #evNote { grid-column: 1 / -1; } }
+.ev-del { background: none; border: 0; color: var(--dim); cursor: pointer; font-size: .9rem; padding: 4px 8px; border-radius: 8px; }
+.ev-del:hover { color: #ff5252; background: rgba(255,82,82,.1); }
+.ev-src { font: 700 .66rem var(--f-mono); color: var(--dim); text-transform: uppercase; letter-spacing: .06em; margin-left: 6px; }
 </style>
   <script src="api-config.js"></script>
 </head>
@@ -1068,6 +1074,7 @@ html.modal-open{overflow:hidden}
             <div style="display:flex;gap:8px;align-items:center">
               <span id="coverageBadge" class="badge-tag">Loading data…</span>
               <button type="button" class="btn-mini" id="exportBtn">Export CSV</button>
+              <a class="btn-mini" id="doctorReportBtn" href="report.html" target="_blank" rel="noopener" style="border-color:rgba(46,229,157,.45);color:var(--mint)">🩺 Doctor report</a>
             </div>
           </div>
 
@@ -1165,6 +1172,45 @@ html.modal-open{overflow:hidden}
               <tbody id="historyTableBody">
                 <tr><td colspan="5" style="padding:14px 8px;color:var(--mute)">Loading glucose history…</td></tr>
               </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="dash-card" id="eventsCard" style="margin-top:24px">
+          <div class="dash-card-header">
+            <div>
+              <p class="acct-eyebrow" style="margin-bottom:4px">Notes &amp; Events</p>
+              <h2>Your Event Log</h2>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <span id="eventsCountBadge" class="badge-tag">Loading…</span>
+              <button type="button" class="btn-mini" id="refreshEventsBtn">Refresh</button>
+            </div>
+          </div>
+          <p style="font-size:.88rem;color:var(--mute);margin:0 0 14px">Everything you log in the Ahead app (meals, insulin, corrections, exercise, site changes, notes) shows up here within a few minutes, and anything you add here syncs back to your phone. Only you can see these; sharing your glucose with someone does not share your notes.</p>
+
+          <form id="eventForm" class="ev-form" autocomplete="off">
+            <select id="evTag" aria-label="Event type">
+              <option value="meal">🍽️ Meal / Food</option>
+              <option value="insulin">💉 Insulin</option>
+              <option value="correction">💉 Correction</option>
+              <option value="exercise">🏃 Exercise</option>
+              <option value="site_change">🩹 Site Change</option>
+              <option value="pod_issue">🔧 Pod Issue</option>
+              <option value="illness">🤒 Illness</option>
+              <option value="stress">😰 Stress</option>
+              <option value="other" selected>📝 Note</option>
+            </select>
+            <input type="datetime-local" id="evTime" aria-label="When" />
+            <input type="text" id="evNote" maxlength="2000" placeholder="What happened? (e.g. pizza night, 6u for the 245)" aria-label="Note" />
+            <button type="submit" class="btn-mini" id="evAddBtn" style="border-color:rgba(46,229,157,.45);color:var(--mint)">Add</button>
+          </form>
+          <div id="evMsg" role="status" aria-live="polite" style="font-size:.85rem;min-height:1.2em;margin:6px 0 4px;color:var(--mute)"></div>
+
+          <div style="overflow-x:auto">
+            <table class="user-table" style="width:100%;border-collapse:collapse;font-size:.88rem;text-align:left">
+              <thead><tr><th>When</th><th>Event</th><th>Glucose then</th><th>Note</th><th></th></tr></thead>
+              <tbody id="eventsTableBody"><tr><td colspan="5" style="padding:14px 8px;color:var(--mute)">Loading events…</td></tr></tbody>
             </table>
           </div>
         </section>
@@ -1932,6 +1978,7 @@ html.modal-open{overflow:hidden}
         loadLiveGlucose();
         loadStats();
         loadGlucoseHistory();
+        loadEvents();
         loadCaregivers();
       })
       .catch(function () {
@@ -1939,6 +1986,7 @@ html.modal-open{overflow:hidden}
         loadLiveGlucose();
         loadStats();
         loadGlucoseHistory();
+        loadEvents();
         loadCaregivers();
       });
   }
@@ -1948,6 +1996,7 @@ html.modal-open{overflow:hidden}
     loadLiveGlucose();
     loadStats();
     loadGlucoseHistory();
+    loadEvents();
   });
 
   // Load 14-Day Stats
@@ -2090,7 +2139,7 @@ html.modal-open{overflow:hidden}
     this.disabled = true;
     this.textContent = 'Generating…';
     var btn = this;
-    authFetch('/api/readings/export?days=14&ownerId=' + currentOwnerId)
+    authFetch('/api/readings/export?days=14&tzOffsetMin=' + new Date().getTimezoneOffset() + '&ownerId=' + currentOwnerId)
       .then(function (r) { return r.blob(); })
       .then(function (blob) {
         var url = URL.createObjectURL(blob);
@@ -2110,6 +2159,87 @@ html.modal-open{overflow:hidden}
         btn.textContent = 'Export CSV';
       });
   });
+
+
+  // ── Event log (synced with the phone; owner-only) ──
+  var EVENT_TAGS = {
+    meal: ['🍽️', 'Meal / Food'], insulin: ['💉', 'Insulin'], correction: ['💉', 'Correction'],
+    exercise: ['🏃', 'Exercise'], site_change: ['🩹', 'Site Change'], pod_issue: ['🔧', 'Pod Issue'],
+    illness: ['🤒', 'Illness'], stress: ['😰', 'Stress'], other: ['📝', 'Note']
+  };
+  function evTagLabel(tag) { var t = EVENT_TAGS[tag] || ['📝', tag]; return t[0] + ' ' + t[1]; }
+  function toLocalInputValue(ms) {
+    var d = new Date(ms - new Date(ms).getTimezoneOffset() * 60000);
+    return d.toISOString().slice(0, 16);
+  }
+
+  function loadEvents() {
+    var card = $('eventsCard');
+    if (!card) return;
+    var own = currentUser && currentOwnerId === currentUser.id;
+    card.hidden = !own;
+    var rb = $('doctorReportBtn');
+    if (rb) rb.href = 'report.html' + (own || !currentOwnerId ? '' : '?ownerId=' + encodeURIComponent(currentOwnerId));
+    if (!own) return;
+    $('eventsCountBadge').textContent = 'Loading…';
+    var to = Date.now(), from = to - 14 * 24 * 3600 * 1000;
+    authFetch('/api/events?from=' + from + '&to=' + to)
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        var events = (d.events || []).slice().reverse();
+        $('eventsCountBadge').textContent = events.length + ' in last 14 days';
+        var body = $('eventsTableBody');
+        if (!events.length) {
+          body.innerHTML = '<tr><td colspan="5" style="padding:14px 8px;color:var(--mute)">No events yet. Log one in the Ahead app (Notes) or add one above.</td></tr>';
+          return;
+        }
+        body.innerHTML = events.map(function (e) {
+          var when = new Date(e.time).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+          var g = e.glucoseAtTime != null ? Math.round(e.glucoseAtTime) + ' <span style="color:var(--dim)">mg/dL</span>' : '<span style="color:var(--dim)">—</span>';
+          return '<tr><td style="white-space:nowrap">' + escapeHtml(when) + '</td>' +
+            '<td style="white-space:nowrap">' + escapeHtml(evTagLabel(e.tag)) + (e.source === 'web' ? '<span class="ev-src">web</span>' : '') + '</td>' +
+            '<td style="white-space:nowrap">' + g + '</td>' +
+            '<td>' + escapeHtml(e.note || '') + '</td>' +
+            '<td><button type="button" class="ev-del" data-id="' + escapeHtml(e.clientId) + '" title="Delete (also removes it from your phone)" aria-label="Delete event">✕</button></td></tr>';
+        }).join('');
+      })
+      .catch(function () {
+        $('eventsCountBadge').textContent = 'Unavailable';
+        $('eventsTableBody').innerHTML = '<tr><td colspan="5" style="padding:14px 8px;color:var(--mute)">Couldn\'t load events. Your server may need a restart to pick up the events feature.</td></tr>';
+      });
+  }
+
+  if ($('eventForm')) {
+    $('evTime').value = toLocalInputValue(Date.now());
+    $('eventForm').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var t = $('evTime').value ? new Date($('evTime').value).getTime() : Date.now();
+      var btn = $('evAddBtn');
+      btn.disabled = true;
+      $('evMsg').textContent = 'Saving…';
+      authFetch('/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tag: $('evTag').value, note: $('evNote').value, time: t })
+      }).then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || 'Failed'); return d; }); })
+        .then(function () {
+          $('evMsg').textContent = 'Saved. It will show up on your phone within a few minutes.';
+          $('evNote').value = '';
+          $('evTime').value = toLocalInputValue(Date.now());
+          loadEvents();
+        })
+        .catch(function (e) { $('evMsg').textContent = 'Couldn\'t save: ' + e.message; })
+        .then(function () { btn.disabled = false; });
+    });
+    $('eventsTableBody').addEventListener('click', function (ev) {
+      var b = ev.target.closest('.ev-del');
+      if (!b) return;
+      if (!confirm('Delete this event? It will also be removed from your phone.')) return;
+      authFetch('/api/events/' + encodeURIComponent(b.getAttribute('data-id')), { method: 'DELETE' })
+        .then(function () { loadEvents(); });
+    });
+    $('refreshEventsBtn').addEventListener('click', loadEvents);
+  }
 
   // Load Caregivers
   function loadCaregivers() {
